@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Runtime data
+dogs.db
+dogs.db-shm
+dogs.db-wal
+/uploads/

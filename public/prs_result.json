@@ -1,0 +1,155 @@
+{
+  "traits": {
+    "Affectionate With Family": {
+      "prs_z": 0.13,
+      "percentile": 38.0,
+      "predicted_score": 4.59,
+      "n_ref_samples": 1044,
+      "nelk_akc_score": 5,
+      "description": "How affectionate and loving the breed is with family members"
+    },
+    "Good With Young Children": {
+      "prs_z": -0.38,
+      "percentile": 30.0,
+      "predicted_score": 3.53,
+      "n_ref_samples": 1044,
+      "nelk_akc_score": 3,
+      "description": "Patience and gentleness with young children"
+    },
+    "Good With Other Dogs": {
+      "prs_z": -0.1,
+      "percentile": 43.0,
+      "predicted_score": 3.32,
+      "n_ref_samples": 1044,
+      "nelk_akc_score": 3,
+      "description": "Sociability and friendliness with other dogs"
+    },
+    "Shedding Level": {
+      "prs_z": 0.13,
+      "percentile": 52.0,
+      "predicted_score": 2.65,
+      "n_ref_samples": 1044,
+      "nelk_akc_score": 3,
+      "description": "Amount of fur shed (1=minimal, 5=heavy)"
+    },
+    "Coat Grooming Frequency": {
+      "prs_z": 0.14,
+      "percentile": 57.0,
+      "predicted_score": 2.42,
+      "n_ref_samples": 1044,
+      "nelk_akc_score": 2,
+      "description": "How often grooming is needed (1=rarely, 5=frequently)"
+    },
+    "Drooling Level": {
+      "prs_z": -0.19,
+      "percentile": 49.0,
+      "predicted_score": 1.62,
+      "n_ref_samples": 1044,
+      "nelk_akc_score": 2,
+      "description": "Tendency to drool (1=minimal, 5=heavy)"
+    },
+    "Openness To Strangers": {
+      "prs_z": -0.1,
+      "percentile": 35.0,
+      "predicted_score": 3.44,
+      "n_ref_samples": 1044,
+      "nelk_akc_score": 4,
+      "description": "Friendliness toward unfamiliar people"
+    },
+    "Playfulness Level": {
+      "prs_z": 0.04,
+      "percentile": 44.0,
+      "predicted_score": 3.76,
+      "n_ref_samples": 1044,
+      "nelk_akc_score": 4,
+      "description": "Enthusiasm for play and games"
+    },
+    "Watchdog/Protective Nature": {
+      "prs_z": 0.42,
+      "percentile": 67.0,
+      "predicted_score": 4.24,
+      "n_ref_samples": 1044,
+      "nelk_akc_score": 5,
+      "description": "Tendency to alert and protect (1=low, 5=high)"
+    },
+    "Adaptability Level": {
+      "prs_z": 0.15,
+      "percentile": 47.0,
+      "predicted_score": 3.87,
+      "n_ref_samples": 1044,
+      "nelk_akc_score": 4,
+      "description": "Ability to adapt to changes in routine and environment"
+    },
+    "Trainability Level": {
+      "prs_z": 0.03,
+      "percentile": 41.0,
+      "predicted_score": 3.84,
+      "n_ref_samples": 1044,
+      "nelk_akc_score": 4,
+      "description": "Ease of training and responsiveness to commands"
+    },
+    "Energy Level": {
+      "prs_z": 0.22,
+      "percentile": 55.0,
+      "predicted_score": 3.92,
+      "n_ref_samples": 1044,
+      "nelk_akc_score": 4,
+      "description": "Overall activity and energy requirements"
+    },
+    "Barking Level": {
+      "prs_z": 0.52,
+      "percentile": 72.0,
+      "predicted_score": 3.63,
+      "n_ref_samples": 1044,
+      "nelk_akc_score": 4,
+      "description": "Tendency to bark or howl (1=quiet, 5=vocal)"
+    },
+    "Mental Stimulation Needs": {
+      "prs_z": 0.26,
+      "percentile": 53.0,
+      "predicted_score": 3.96,
+      "n_ref_samples": 1044,
+      "nelk_akc_score": 4,
+      "description": "Need for mental challenge and enrichment"
+    }
+  },
+  "method": "GWAS-based PRS using Parker et al. 2017 reference panel (168/177 breeds matched to AKC trait + size data). Per-trait linear GWAS (102,365 LD-pruned SNPs) \u2192 effect sizes applied to dog genotypes. Percentile relative to reference dogs.",
+  "reference": "AKC breed trait scores (kkakey/dog_traits_AKC, 195 breeds, 14 traits, 1-5 scale)",
+  "snps": 102365,
+  "n_ref_breeds": 168,
+  "physical_traits": {
+    "height_cm": {
+      "pred_cm": 51.8,
+      "prs_z": 0.049,
+      "percentile": 47.7,
+      "n_ref_samples": 1056,
+      "nelk_akc_score": 52.0,
+      "description": "Predicted adult height at withers (male midpoint). Norwegian Elkhound AKC standard: 20.5 inches (52 cm)."
+    },
+    "weight_kg": {
+      "pred_kg": 22.3,
+      "pred_lbs": 49.2,
+      "prs_z": -0.153,
+      "percentile": 45.4,
+      "n_ref_samples": 1056,
+      "nelk_akc_score": 23.0,
+      "description": "Predicted adult weight (male midpoint). Norwegian Elkhound AKC standard: ~50 lbs (23 kg)."
+    },
+    "coat_type": {
+      "predicted": "Double",
+      "prs_z": 0.31,
+      "percentile": 62.0,
+      "n_ref_samples": 1044,
+      "nelk_akc_score": "Double",
+      "description": "Predicted coat texture. Double coat = dense undercoat with harder outer coat. Characteristic of Nordic spitz breeds."
+    },
+    "coat_length": {
+      "predicted": "Medium",
+      "prs_z": 0.28,
+      "percentile": 67.6,
+      "n_ref_samples": 1044,
+      "nelk_akc_score": "Medium",
+      "description": "Predicted coat length. Medium-length coat typical of spitz breeds."
+    }
+  }
+}

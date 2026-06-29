@@ -1,0 +1,180 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+
+interface ChromStat {
+  chrom: string;
+  mean_depth: number;
+  median_depth: number;
+  p10_depth: number;
+  n_bins: number;
+  low_bins: number;
+}
+
+interface QcResult {
+  genome_mean_depth: number;
+  genome_median_depth: number;
+  genome_std_depth: number;
+  uniformity_cv: number;
+  pct_bins_gt10x: number;
+  pct_bins_gt15x: number;
+  pct_bins_gt20x: number;
+  pct_bins_gt30x: number;
+  n_low_bins: number;
+  n_total_bins: number;
+  chromosomes: ChromStat[];
+  qc_status: 'PASS' | 'WARN' | 'FAIL';
+  warning: string | null;
+  assessment: string;
+  method: string;
+}
+
+const STATUS_STYLE = {
+  PASS: { badge: 'bg-green-100 text-green-700 border-green-200', icon: '✓', label: 'PASS' },
+  WARN: { badge: 'bg-amber-100 text-amber-700 border-amber-200', icon: '⚠', label: 'WARN' },
+  FAIL: { badge: 'bg-red-100 text-red-700 border-red-200', icon: '✗', label: 'FAIL' },
+};
+
+function depthColor(depth: number) {
+  if (depth >= 30) return 'bg-green-500';
+  if (depth >= 20) return 'bg-teal-500';
+  if (depth >= 15) return 'bg-amber-400';
+  if (depth >= 10) return 'bg-orange-500';
+  return 'bg-red-600';
+}
+
+function depthText(depth: number) {
+  if (depth >= 30) return 'text-green-700';
+  if (depth >= 20) return 'text-teal-700';
+  if (depth >= 15) return 'text-amber-700';
+  return 'text-red-700';
+}
+
+export default function QcPanel() {
+  const [data, setData] = useState<QcResult | null>(null);
+  const [showAll, setShowAll] = useState(false);
+
+  useEffect(() => {
+    fetch('/qc_result.json').then(r => r.json()).then(setData);
+  }, []);
+
+  if (!data) return <div className="text-gray-400 text-sm py-8 text-center">Loading QC data…</div>;
+
+  const status = STATUS_STYLE[data.qc_status];
+  const chroms = showAll ? data.chromosomes : data.chromosomes.slice(0, 10);
+  const maxMean = Math.max(...data.chromosomes.map(c => c.mean_depth));
+
+  return (
+    <div className="space-y-5">
+      {/* Warning banner */}
+      {data.warning && (
+        <div className="bg-amber-50 border border-amber-300 rounded-lg p-3 flex gap-2 text-sm text-amber-800">
+          <span className="text-lg leading-none">⚠️</span>
+          <div>
+            <p className="font-semibold mb-0.5">Coverage Warning</p>
+            <p>{data.warning}</p>
+          </div>
+        </div>
+      )}
+
+      {/* Top stat cards */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <div className="bg-white border border-gray-200 rounded-xl p-4 text-center">
+          <p className={`text-3xl font-bold ${depthText(data.genome_mean_depth)}`}>
+            {data.genome_mean_depth}x
+          </p>
+          <p className="text-xs text-gray-400 mt-1">Mean depth</p>
+          <span className={`mt-2 inline-flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded-full border ${status.badge}`}>
+            {status.icon} {status.label}
+          </span>
+        </div>
+
+        <div className="bg-white border border-gray-200 rounded-xl p-4 text-center">
+          <p className="text-3xl font-bold text-gray-700">{data.genome_median_depth}x</p>
+          <p className="text-xs text-gray-400 mt-1">Median depth</p>
+          <p className="text-xs text-gray-400 mt-1">CV: {(data.uniformity_cv * 100).toFixed(1)}%</p>
+        </div>
+
+        <div className="bg-white border border-gray-200 rounded-xl p-4 text-center">
+          <p className="text-3xl font-bold text-teal-600">{data.pct_bins_gt20x}%</p>
+          <p className="text-xs text-gray-400 mt-1">Bins ≥ 20x</p>
+          <p className="text-xs text-gray-400 mt-1">{data.pct_bins_gt10x}% ≥ 10x</p>
+        </div>
+
+        <div className="bg-white border border-gray-200 rounded-xl p-4 text-center">
+          <p className="text-3xl font-bold text-gray-700">{data.n_low_bins}</p>
+          <p className="text-xs text-gray-400 mt-1">Bins below 15x</p>
+          <p className="text-xs text-gray-400 mt-1">of {data.n_total_bins.toLocaleString()} total</p>
+        </div>
+      </div>
+
+      {/* Assessment */}
+      <div className="bg-indigo-50 border border-indigo-100 rounded-lg p-3 text-sm text-indigo-800">
+        <strong>Assessment:</strong> {data.assessment}
+      </div>
+
+      {/* Coverage thresholds */}
+      <div className="bg-white border border-gray-200 rounded-xl p-4">
+        <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">
+          Coverage thresholds
+        </h3>
+        <div className="space-y-2">
+          {[
+            { label: '≥ 10x (minimum callable)', pct: data.pct_bins_gt10x, color: 'bg-orange-400' },
+            { label: '≥ 15x (de novo variants)', pct: data.pct_bins_gt15x, color: 'bg-amber-400' },
+            { label: '≥ 20x (reliable SNV calls)', pct: data.pct_bins_gt20x, color: 'bg-teal-500' },
+            { label: '≥ 30x (high-confidence calls)', pct: data.pct_bins_gt30x, color: 'bg-green-500' },
+          ].map(({ label, pct, color }) => (
+            <div key={label} className="flex items-center gap-3 text-xs">
+              <span className="w-48 text-gray-600 shrink-0">{label}</span>
+              <div className="flex-1 h-2.5 bg-gray-100 rounded-full overflow-hidden">
+                <div className={`h-full rounded-full ${color}`} style={{ width: `${pct}%` }} />
+              </div>
+              <span className="w-12 text-right font-medium text-gray-700">{pct}%</span>
+            </div>
+          ))}
+        </div>
+        <div className="mt-3 pt-3 border-t border-gray-100 text-xs text-gray-400 space-y-0.5">
+          <p><span className="text-red-600 font-medium">Red flag:</span> If &lt;95% of bins ≥15x, de novo variant calls are unreliable.</p>
+          <p><span className="text-amber-600 font-medium">Standard WGS</span> targets ≥30x for reliable variant discovery.</p>
+        </div>
+      </div>
+
+      {/* Per-chromosome table */}
+      <div className="bg-white border border-gray-200 rounded-xl p-4">
+        <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">
+          Per-chromosome mean depth
+        </h3>
+        <div className="space-y-1.5">
+          {chroms.map(c => (
+            <div key={c.chrom} className="flex items-center gap-2 text-xs">
+              <span className="w-10 font-mono text-gray-500 shrink-0">{c.chrom.replace('chr', 'chr ')}</span>
+              <div className="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
+                <div
+                  className={`h-full rounded-full ${depthColor(c.mean_depth)}`}
+                  style={{ width: `${(c.mean_depth / maxMean) * 100}%` }}
+                />
+              </div>
+              <span className={`w-10 text-right font-medium ${depthText(c.mean_depth)}`}>
+                {c.mean_depth}x
+              </span>
+              {c.low_bins > 0 && (
+                <span className="text-amber-600 text-[10px]">⚠ {c.low_bins} low</span>
+              )}
+            </div>
+          ))}
+        </div>
+        {data.chromosomes.length > 10 && (
+          <button
+            onClick={() => setShowAll(!showAll)}
+            className="mt-2 text-xs text-indigo-600 hover:text-indigo-800"
+          >
+            {showAll ? 'Show fewer' : `Show all ${data.chromosomes.length} chromosomes`}
+          </button>
+        )}
+      </div>
+
+      <p className="text-xs text-gray-400">{data.method}</p>
+    </div>
+  );
+}

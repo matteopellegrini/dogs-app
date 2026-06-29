@@ -1,0 +1,49 @@
+{
+  "breed_composition": [
+    {
+      "breed": "Norwegian Elkhound (NELK)",
+      "code": "NELK",
+      "proportion": 0.952923
+    },
+    {
+      "breed": "Maltese",
+      "code": "MALT",
+      "proportion": 0.017639
+    },
+    {
+      "breed": "Brussels Griffon",
+      "code": "BRUS",
+      "proportion": 0.016532
+    },
+    {
+      "breed": "Toy Poodle",
+      "code": "TPOO",
+      "proportion": 0.00487
+    },
+    {
+      "breed": "German Shepherd Dog",
+      "code": "GSD",
+      "proportion": 0.002832
+    },
+    {
+      "breed": "American Staffordshire Terrier",
+      "code": "AMST",
+      "proportion": 0.002178
+    },
+    {
+      "breed": "Brittany Spaniel",
+      "code": "BRIT",
+      "proportion": 0.001535
+    },
+    {
+      "breed": "Berger de Brie (Briard)",
+      "code": "BERD",
+      "proportion": 0.001491
+    }
+  ],
+  "method": "SCOPE supervised (ALStructure)",
+  "reference_panel": "Parker et al. 2017 Cell Reports (161 breeds, 1355 dogs, lifted to canFam4)",
+  "snps_used": 102365,
+  "k": 177,
+  "note": "Supervised SCOPE (ALStructure) on 102,365 LD-pruned SNPs genotyped directly from BAM. The dog is known to be a Jamthund (Swedish Elkhound). The Parker 2017 reference panel contains Norwegian Elkhound (NELK) but not Jamthund as a separate breed \u2014 these two breeds are closely related spitz-type dogs, explaining the 95.3% NELK ancestry. Minor components (Maltese 1.8%, Brussels Griffon 1.7%) likely reflect noise or shared ancient ancestry rather than true admixture."
+}

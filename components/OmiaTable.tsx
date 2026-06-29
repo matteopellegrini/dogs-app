@@ -61,10 +61,10 @@ export default function OmiaTable() {
           <p className="text-xl font-semibold text-gray-700">{s.omia_variants_screened}</p>
           <p className="text-[10px] text-gray-400 mt-0.5">genotyped from BAM</p>
         </div>
-        <div className="bg-indigo-50 border border-indigo-100 rounded-lg p-3">
-          <p className="text-xs text-indigo-400 mb-1">Allele matches</p>
-          <p className="text-xl font-semibold text-indigo-700">{s.allele_matches_found}</p>
-          <p className="text-[10px] text-indigo-400 mt-0.5">exact position + allele</p>
+        <div className="bg-[#C4F9FF]/20 border border-[#C4F9FF]/40 rounded-lg p-3">
+          <p className="text-xs text-[#3540CA] mb-1">Allele matches</p>
+          <p className="text-xl font-semibold text-[#3540CA]">{s.allele_matches_found}</p>
+          <p className="text-[10px] text-[#3540CA] mt-0.5">exact position + allele</p>
         </div>
         <div className="bg-amber-50 border border-amber-100 rounded-lg p-3">
           <p className="text-xs text-amber-400 mb-1">With trait/disease</p>
@@ -145,7 +145,7 @@ export default function OmiaTable() {
                   <p><strong>Molecular genetics:</strong> {m.mol_gen}</p>
                 )}
                 {m.clinical_note && (
-                  <p className="text-indigo-700 bg-indigo-50 px-2 py-1.5 rounded">
+                  <p className="text-[#3540CA] bg-[#C4F9FF]/20 px-2 py-1.5 rounded">
                     <strong>Note:</strong> {m.clinical_note}
                   </p>
                 )}

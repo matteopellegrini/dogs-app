@@ -104,8 +104,8 @@ export default function DogNotes({ dogs }: { dogs: Dog[] }) {
               onClick={() => setSelectedDogId(d.id)}
               className={`px-3 py-1.5 rounded-full text-sm font-medium border transition-colors ${
                 d.id === selectedDogId
-                  ? 'bg-indigo-600 text-white border-indigo-600'
-                  : 'bg-white text-gray-600 border-gray-200 hover:border-indigo-300'
+                  ? 'bg-[#3540CA] text-white border-[#3540CA]'
+                  : 'bg-white text-gray-600 border-gray-200 hover:border-[#3540CA]/40'
               }`}
             >
               🐾 {d.name}
@@ -118,7 +118,7 @@ export default function DogNotes({ dogs }: { dogs: Dog[] }) {
         <>
           {/* Dog header */}
           <div className="bg-white border border-gray-200 rounded-xl p-4 flex items-center gap-4">
-            <div className="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center text-2xl">
+            <div className="w-12 h-12 bg-[#C4F9FF]/40 rounded-full flex items-center justify-center text-2xl">
               🐕
             </div>
             <div>
@@ -147,13 +147,13 @@ export default function DogNotes({ dogs }: { dogs: Dog[] }) {
                     onClick={() => setActiveSection(s.key)}
                     className={`w-full text-left px-3 py-2 rounded-lg text-xs font-medium transition-colors flex items-center gap-1.5 ${
                       activeSection === s.key
-                        ? 'bg-indigo-50 text-indigo-700'
+                        ? 'bg-[#C4F9FF]/20 text-[#3540CA]'
                         : 'text-gray-600 hover:bg-gray-50'
                     }`}
                   >
                     <span>{s.icon}</span>
                     <span className="flex-1 truncate">{s.label}</span>
-                    {hasContent && <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 shrink-0" />}
+                    {hasContent && <span className="w-1.5 h-1.5 rounded-full bg-[#3540CA] shrink-0" />}
                   </button>
                 );
               })}
@@ -166,7 +166,7 @@ export default function DogNotes({ dogs }: { dogs: Dog[] }) {
                 <span className="text-sm font-medium text-gray-700">{section.label}</span>
               </div>
               <textarea
-                className="flex-1 min-h-64 border border-gray-200 rounded-xl p-3 text-sm text-gray-700 resize-none focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300"
+                className="flex-1 min-h-64 border border-gray-200 rounded-xl p-3 text-sm text-gray-700 resize-none focus:outline-none focus:ring-2 focus:ring-[#3540CA]/30 focus:border-[#3540CA]/40"
                 placeholder={section.placeholder}
                 value={notes[activeSection] ?? ''}
                 onChange={e => handleChange(e.target.value)}

@@ -131,7 +131,7 @@ export default function CnvTable() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search gene or chromosome…"
-          className="flex-1 min-w-40 border border-gray-300 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          className="flex-1 min-w-40 border border-gray-300 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#3540CA]/40"
         />
         <div className="flex rounded-lg bg-gray-100 p-0.5 text-xs gap-0.5">
           <button

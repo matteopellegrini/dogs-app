@@ -53,8 +53,8 @@ const TRAIT_ICONS: Record<string, string> = {
 };
 
 function percentileColor(p: number) {
-  if (p >= 75) return { bar: 'bg-indigo-500', text: 'text-indigo-700', bg: 'bg-indigo-50' };
-  if (p >= 50) return { bar: 'bg-teal-500', text: 'text-teal-700', bg: 'bg-teal-50' };
+  if (p >= 75) return { bar: 'bg-[#3540CA]', text: 'text-[#3540CA]', bg: 'bg-[#C4F9FF]/20' };
+  if (p >= 50) return { bar: 'bg-[#3540CA]', text: 'text-[#3540CA]', bg: 'bg-[#C4F9FF]/20' };
   if (p >= 25) return { bar: 'bg-amber-400', text: 'text-amber-700', bg: 'bg-amber-50' };
   return { bar: 'bg-gray-400', text: 'text-gray-600', bg: 'bg-gray-50' };
 }
@@ -82,7 +82,7 @@ export default function PrsPanel() {
   return (
     <div className="space-y-5">
       {/* Header */}
-      <div className="bg-indigo-50 border border-indigo-100 rounded-lg p-3 text-xs text-indigo-700">
+      <div className="bg-[#C4F9FF]/20 border border-[#C4F9FF]/40 rounded-lg p-3 text-xs text-[#3540CA]">
         <strong>Method:</strong> GWAS-based PRS · {data.snps.toLocaleString()} LD-pruned SNPs ·{' '}
         {data.n_ref_breeds} AKC breed trait profiles · Parker 2017 reference panel
       </div>
@@ -96,11 +96,11 @@ export default function PrsPanel() {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {/* Height */}
             {data.physical_traits.height_cm && (
-              <div className="bg-indigo-50 rounded-lg p-3 text-center">
-                <p className="text-2xl font-bold text-indigo-700">
+              <div className="bg-[#C4F9FF]/20 rounded-lg p-3 text-center">
+                <p className="text-2xl font-bold text-[#3540CA]">
                   {data.physical_traits.height_cm.pred_cm} <span className="text-sm font-normal">cm</span>
                 </p>
-                <p className="text-xs text-indigo-500 mt-0.5">Height (withers)</p>
+                <p className="text-xs text-[#3540CA] mt-0.5">Height (withers)</p>
                 <p className="text-[10px] text-gray-400 mt-1">
                   {data.physical_traits.height_cm.percentile.toFixed(0)}th pct · NELK {data.physical_traits.height_cm.nelk_akc_score} cm
                 </p>
@@ -108,11 +108,11 @@ export default function PrsPanel() {
             )}
             {/* Weight */}
             {data.physical_traits.weight_kg && (
-              <div className="bg-teal-50 rounded-lg p-3 text-center">
-                <p className="text-2xl font-bold text-teal-700">
+              <div className="bg-[#C4F9FF]/20 rounded-lg p-3 text-center">
+                <p className="text-2xl font-bold text-[#3540CA]">
                   {data.physical_traits.weight_kg.pred_kg} <span className="text-sm font-normal">kg</span>
                 </p>
-                <p className="text-xs text-teal-500 mt-0.5">
+                <p className="text-xs text-[#3540CA] mt-0.5">
                   Weight <span className="text-gray-400">({data.physical_traits.weight_kg.pred_lbs} lbs)</span>
                 </p>
                 <p className="text-[10px] text-gray-400 mt-1">
@@ -160,7 +160,7 @@ export default function PrsPanel() {
           return (
             <div
               key={trait}
-              className="bg-white border border-gray-200 rounded-xl p-4 cursor-pointer hover:border-indigo-200 transition-colors"
+              className="bg-white border border-gray-200 rounded-xl p-4 cursor-pointer hover:border-[#3540CA]/20 transition-colors"
               onClick={() => setExpanded(isOpen ? null : trait)}
             >
               <div className="flex items-start justify-between gap-2 mb-2">

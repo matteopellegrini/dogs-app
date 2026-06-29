@@ -47,12 +47,11 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
+    <div className="min-h-screen flex items-center justify-center p-4" style={{ background: '#0E1B05' }}>
       <div className="bg-white rounded-2xl shadow-xl w-full max-w-md p-8">
         <div className="text-center mb-8">
-          <div className="text-5xl mb-3">🐕</div>
-          <h1 className="text-2xl font-bold text-gray-800">DogGenomics</h1>
-          <p className="text-gray-500 text-sm mt-1">Veterinary Genomics Platform</p>
+          <img src="/prosper-k9-logo.png" alt="Prosper K9" className="h-14 mx-auto mb-2" />
+          <p className="text-gray-400 text-sm mt-1">Canine Genomics Platform</p>
         </div>
 
         <div className="flex rounded-lg bg-gray-100 p-1 mb-6">
@@ -83,7 +82,7 @@ export default function LoginPage() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
-                className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#3540CA]/40"
                 placeholder="Dr. Jane Smith"
               />
             </div>
@@ -95,7 +94,7 @@ export default function LoginPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#3540CA]/40"
               placeholder="you@example.com"
             />
           </div>
@@ -106,7 +105,7 @@ export default function LoginPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#3540CA]/40"
               placeholder={mode === 'register' ? 'Min. 8 characters' : '••••••••'}
             />
           </div>
@@ -120,7 +119,7 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2.5 rounded-lg transition-colors disabled:opacity-50"
+            className="w-full bg-[#3540CA] hover:bg-[#2a34b0] text-white font-medium py-2.5 rounded-lg transition-colors disabled:opacity-50"
           >
             {loading ? 'Please wait...' : mode === 'login' ? 'Sign In' : 'Create Account'}
           </button>

@@ -61,7 +61,7 @@ export default function FileUpload({ dogs, onUploadComplete }: FileUploadProps) 
           <select
             value={selectedDogId}
             onChange={(e) => setSelectedDogId(e.target.value)}
-            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#3540CA]/40"
           >
             <option value="">— No dog selected —</option>
             {dogs.map((d) => (
@@ -79,7 +79,7 @@ export default function FileUpload({ dogs, onUploadComplete }: FileUploadProps) 
         onDrop={handleDrop}
         onClick={() => inputRef.current?.click()}
         className={`border-2 border-dashed rounded-xl p-8 text-center cursor-pointer transition-colors ${
-          dragging ? 'border-indigo-400 bg-indigo-50' : 'border-gray-300 hover:border-indigo-300 hover:bg-gray-50'
+          dragging ? 'border-[#3540CA]/60 bg-[#C4F9FF]/20' : 'border-gray-300 hover:border-[#3540CA]/40 hover:bg-gray-50'
         }`}
       >
         <input
@@ -90,7 +90,7 @@ export default function FileUpload({ dogs, onUploadComplete }: FileUploadProps) 
           onChange={handleFileChange}
         />
         {uploading ? (
-          <div className="text-indigo-600">
+          <div className="text-[#3540CA]">
             <div className="animate-spin text-3xl mb-2">⏳</div>
             <p className="text-sm font-medium">Parsing and uploading...</p>
           </div>

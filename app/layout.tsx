@@ -3,7 +3,7 @@ import "./globals.css";
 import { Providers } from "./providers";
 
 export const metadata: Metadata = {
-  title: "DogGenomics — Veterinary Genomics Platform",
+  title: "Prosper K9 — Canine Genomics Platform",
   description: "Upload and analyze canine genomic data with AI-assisted interpretation",
 };
 

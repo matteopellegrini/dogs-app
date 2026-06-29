@@ -96,7 +96,7 @@ export default function BreedChart() {
   return (
     <div className="space-y-6">
       {/* Method note */}
-      <div className="bg-indigo-50 border border-indigo-100 rounded-lg p-3 text-xs text-indigo-700">
+      <div className="bg-[#C4F9FF]/20 border border-[#C4F9FF]/40 rounded-lg p-3 text-xs text-[#3540CA]">
         <strong>Method:</strong> {data.method} · {data.snps_used.toLocaleString()} LD-pruned SNPs · K={data.k ?? 177} breeds ·{' '}
         Reference: {data.reference_panel}
       </div>

@@ -141,7 +141,7 @@ export default function CoverageChart() {
               onClick={() => setSelected(c)}
               className={`text-xs px-2 py-1 rounded-md font-medium transition-colors ${
                 selected === c
-                  ? 'bg-indigo-600 text-white'
+                  ? 'bg-[#3540CA] text-white'
                   : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
               }`}
             >
@@ -183,7 +183,7 @@ export default function CoverageChart() {
       {/* Legend */}
       <div className="flex gap-4 text-xs text-gray-400">
         <span className="flex items-center gap-1.5">
-          <span className="w-3 h-3 rounded-sm bg-indigo-500 inline-block" />
+          <span className="w-3 h-3 rounded-sm bg-[#3540CA] inline-block" />
           Normal depth
         </span>
         <span className="flex items-center gap-1.5">

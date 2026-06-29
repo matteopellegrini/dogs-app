@@ -98,7 +98,7 @@ export default function ChatInterface({ hasData }: { hasData: boolean }) {
                   <button
                     key={q}
                     onClick={() => send(q)}
-                    className="w-full text-left text-sm px-4 py-2.5 rounded-lg border border-gray-200 hover:bg-indigo-50 hover:border-indigo-300 text-gray-700 transition-colors"
+                    className="w-full text-left text-sm px-4 py-2.5 rounded-lg border border-gray-200 hover:bg-[#C4F9FF]/20 hover:border-[#3540CA]/40 text-gray-700 transition-colors"
                   >
                     {q}
                   </button>
@@ -113,7 +113,7 @@ export default function ChatInterface({ hasData }: { hasData: boolean }) {
             <div
               className={`max-w-[80%] rounded-2xl px-4 py-3 text-sm whitespace-pre-wrap ${
                 msg.role === 'user'
-                  ? 'bg-indigo-600 text-white rounded-br-sm'
+                  ? 'bg-[#3540CA] text-white rounded-br-sm'
                   : 'bg-gray-100 text-gray-800 rounded-bl-sm'
               }`}
             >
@@ -137,12 +137,12 @@ export default function ChatInterface({ hasData }: { hasData: boolean }) {
             placeholder="Ask about variants, genes, or health implications..."
             rows={2}
             disabled={streaming}
-            className="flex-1 border border-gray-300 rounded-xl px-3 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-indigo-500 disabled:opacity-50"
+            className="flex-1 border border-gray-300 rounded-xl px-3 py-2 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-[#3540CA]/40 disabled:opacity-50"
           />
           <button
             onClick={() => send(input)}
             disabled={streaming || !input.trim()}
-            className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 rounded-xl transition-colors disabled:opacity-40 flex-shrink-0"
+            className="bg-[#3540CA] hover:bg-[#2a34b0] text-white px-4 rounded-xl transition-colors disabled:opacity-40 flex-shrink-0"
           >
             {streaming ? '⏳' : '↑'}
           </button>

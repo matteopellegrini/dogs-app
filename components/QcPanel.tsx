@@ -37,7 +37,7 @@ const STATUS_STYLE = {
 
 function depthColor(depth: number) {
   if (depth >= 30) return 'bg-green-500';
-  if (depth >= 20) return 'bg-teal-500';
+  if (depth >= 20) return 'bg-[#3540CA]';
   if (depth >= 15) return 'bg-amber-400';
   if (depth >= 10) return 'bg-orange-500';
   return 'bg-red-600';
@@ -45,7 +45,7 @@ function depthColor(depth: number) {
 
 function depthText(depth: number) {
   if (depth >= 30) return 'text-green-700';
-  if (depth >= 20) return 'text-teal-700';
+  if (depth >= 20) return 'text-[#3540CA]';
   if (depth >= 15) return 'text-amber-700';
   return 'text-red-700';
 }
@@ -96,7 +96,7 @@ export default function QcPanel() {
         </div>
 
         <div className="bg-white border border-gray-200 rounded-xl p-4 text-center">
-          <p className="text-3xl font-bold text-teal-600">{data.pct_bins_gt20x}%</p>
+          <p className="text-3xl font-bold text-[#3540CA]">{data.pct_bins_gt20x}%</p>
           <p className="text-xs text-gray-400 mt-1">Bins ≥ 20x</p>
           <p className="text-xs text-gray-400 mt-1">{data.pct_bins_gt10x}% ≥ 10x</p>
         </div>
@@ -109,7 +109,7 @@ export default function QcPanel() {
       </div>
 
       {/* Assessment */}
-      <div className="bg-indigo-50 border border-indigo-100 rounded-lg p-3 text-sm text-indigo-800">
+      <div className="bg-[#C4F9FF]/20 border border-[#C4F9FF]/40 rounded-lg p-3 text-sm text-[#0E1B05]">
         <strong>Assessment:</strong> {data.assessment}
       </div>
 
@@ -122,7 +122,7 @@ export default function QcPanel() {
           {[
             { label: '≥ 10x (minimum callable)', pct: data.pct_bins_gt10x, color: 'bg-orange-400' },
             { label: '≥ 15x (de novo variants)', pct: data.pct_bins_gt15x, color: 'bg-amber-400' },
-            { label: '≥ 20x (reliable SNV calls)', pct: data.pct_bins_gt20x, color: 'bg-teal-500' },
+            { label: '≥ 20x (reliable SNV calls)', pct: data.pct_bins_gt20x, color: 'bg-[#3540CA]' },
             { label: '≥ 30x (high-confidence calls)', pct: data.pct_bins_gt30x, color: 'bg-green-500' },
           ].map(({ label, pct, color }) => (
             <div key={label} className="flex items-center gap-3 text-xs">
@@ -167,7 +167,7 @@ export default function QcPanel() {
         {data.chromosomes.length > 10 && (
           <button
             onClick={() => setShowAll(!showAll)}
-            className="mt-2 text-xs text-indigo-600 hover:text-indigo-800"
+            className="mt-2 text-xs text-[#3540CA] hover:text-[#0E1B05]"
           >
             {showAll ? 'Show fewer' : `Show all ${data.chromosomes.length} chromosomes`}
           </button>

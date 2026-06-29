@@ -119,13 +119,13 @@ export default function InbreedingPanel() {
               <span className="w-32 text-gray-600 shrink-0">{b.label}</span>
               <div className="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
                 <div
-                  className="h-full bg-indigo-200 rounded-full"
+                  className="h-full bg-[#C4F9FF]/50 rounded-full"
                   style={{ width: `${Math.min(b.f / 0.30 * 100, 100)}%` }}
                 />
               </div>
               <span className="w-10 text-right text-gray-400">{(b.f * 100).toFixed(1)}%</span>
               {Math.abs(data.f_roh - b.f) < 0.02 && (
-                <span className="text-indigo-600 font-medium">← this dog</span>
+                <span className="text-[#3540CA] font-medium">← this dog</span>
               )}
             </div>
           ))}
@@ -183,7 +183,7 @@ export default function InbreedingPanel() {
         {data.roh_segments.length > 10 && (
           <button
             onClick={() => setShowAll(!showAll)}
-            className="mt-2 text-xs text-indigo-600 hover:text-indigo-800"
+            className="mt-2 text-xs text-[#3540CA] hover:text-[#0E1B05]"
           >
             {showAll ? 'Show fewer' : `Show all ${data.n_roh} segments`}
           </button>

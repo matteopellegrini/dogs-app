@@ -144,8 +144,8 @@ export default function Dashboard() {
 
   if (status === 'loading' || status === 'unauthenticated') {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-brand-dark">
-        <Image src="/prosper-k9-logo.png" alt="Prosper K9" width={180} height={80} className="opacity-80" />
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <Image src="/prosper-k9-logo.png" alt="Prosper K9" width={180} height={80} />
       </div>
     );
   }
@@ -156,14 +156,13 @@ export default function Dashboard() {
     <div className="min-h-screen flex flex-col" style={{ background: '#f4f4f8' }}>
 
       {/* ── Header ─────────────────────────────────────────────── */}
-      <header style={{ background: '#0E1B05' }} className="px-6 py-3 flex items-center justify-between shrink-0">
+      <header className="bg-white border-b border-gray-200 px-6 py-3 flex items-center justify-between shrink-0">
         <Image src="/prosper-k9-logo.png" alt="Prosper K9" width={140} height={60} priority />
         <div className="flex items-center gap-5">
-          <span className="text-sm font-medium" style={{ color: '#C4F9FF' }}>{session?.user?.name}</span>
+          <span className="text-sm font-medium text-gray-600">{session?.user?.name}</span>
           <button
             onClick={() => signOut({ callbackUrl: '/login' })}
-            className="text-xs px-3 py-1.5 rounded-full border font-medium transition-colors hover:bg-white/10"
-            style={{ color: '#C4F9FF', borderColor: '#C4F9FF55' }}
+            className="text-xs px-3 py-1.5 rounded-full border border-gray-300 font-medium text-gray-600 transition-colors hover:border-[#3540CA] hover:text-[#3540CA]"
           >
             Sign out
           </button>
@@ -173,7 +172,7 @@ export default function Dashboard() {
       <div className="flex flex-1 overflow-hidden">
 
         {/* ── Sidebar ────────────────────────────────────────────── */}
-        <aside className="w-64 shrink-0 flex flex-col overflow-y-auto" style={{ background: '#0E1B05' }}>
+        <aside className="w-64 shrink-0 flex flex-col overflow-y-auto bg-white border-r border-gray-200">
 
           {/* Nav */}
           <nav className="flex-1 py-3">
@@ -184,30 +183,29 @@ export default function Dashboard() {
                 className="w-full text-left flex items-center gap-3 px-5 py-2.5 text-sm font-medium transition-all"
                 style={
                   tab === key
-                    ? { background: '#3540CA', color: '#ffffff' }
-                    : { color: '#C4F9FFaa' }
+                    ? { background: '#EEF0FB', color: '#3540CA' }
+                    : { color: '#6b7280' }
                 }
-                onMouseEnter={e => { if (tab !== key) (e.currentTarget as HTMLButtonElement).style.color = '#C4F9FF'; }}
-                onMouseLeave={e => { if (tab !== key) (e.currentTarget as HTMLButtonElement).style.color = '#C4F9FFaa'; }}
+                onMouseEnter={e => { if (tab !== key) (e.currentTarget as HTMLButtonElement).style.color = '#3540CA'; }}
+                onMouseLeave={e => { if (tab !== key) (e.currentTarget as HTMLButtonElement).style.color = '#6b7280'; }}
               >
                 <span className="text-base w-5 shrink-0 text-center">{icon}</span>
                 <span>{label}</span>
                 {tab === key && (
-                  <span className="ml-auto w-1.5 h-1.5 rounded-full bg-brand-light shrink-0"
-                    style={{ background: '#C4F9FF' }} />
+                  <span className="ml-auto w-1 h-4 rounded-full shrink-0"
+                    style={{ background: '#3540CA' }} />
                 )}
               </button>
             ))}
           </nav>
 
           {/* Dogs section */}
-          <div className="border-t px-5 py-4 space-y-3" style={{ borderColor: '#ffffff15' }}>
+          <div className="border-t border-gray-200 px-5 py-4 space-y-3">
             <div className="flex items-center justify-between">
-              <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: '#C4F9FF88' }}>Dogs</p>
+              <p className="text-xs font-semibold uppercase tracking-wider text-gray-400">Dogs</p>
               <button
                 onClick={() => setShowAddDog(!showAddDog)}
-                className="text-xs font-medium px-2 py-0.5 rounded transition-colors hover:bg-white/10"
-                style={{ color: '#C4F9FF' }}
+                className="text-xs font-medium px-2 py-0.5 rounded text-[#3540CA] hover:bg-[#EEF0FB] transition-colors"
               >
                 + Add
               </button>
@@ -218,30 +216,29 @@ export default function Dashboard() {
                   placeholder="Name *"
                   value={newDog.name}
                   onChange={e => setNewDog({ ...newDog, name: e.target.value })}
-                  className="w-full rounded-lg px-2.5 py-1.5 text-xs bg-white/10 text-white placeholder-white/40 border border-white/10 focus:outline-none focus:border-brand-light"
+                  className="w-full rounded-lg px-2.5 py-1.5 text-xs bg-gray-50 text-gray-800 placeholder-gray-400 border border-gray-200 focus:outline-none focus:border-[#3540CA]"
                 />
                 <input
                   placeholder="Breed"
                   value={newDog.breed}
                   onChange={e => setNewDog({ ...newDog, breed: e.target.value })}
-                  className="w-full rounded-lg px-2.5 py-1.5 text-xs bg-white/10 text-white placeholder-white/40 border border-white/10 focus:outline-none focus:border-brand-light"
+                  className="w-full rounded-lg px-2.5 py-1.5 text-xs bg-gray-50 text-gray-800 placeholder-gray-400 border border-gray-200 focus:outline-none focus:border-[#3540CA]"
                 />
                 <button
                   onClick={addDog}
-                  className="w-full py-1.5 rounded-lg text-xs font-semibold transition-colors"
-                  style={{ background: '#3540CA', color: '#ffffff' }}
+                  className="w-full py-1.5 rounded-lg text-xs font-semibold transition-colors bg-[#3540CA] text-white hover:bg-[#2a34b0]"
                 >
                   Save
                 </button>
               </div>
             )}
             {dogs.length === 0
-              ? <p className="text-xs" style={{ color: '#C4F9FF55' }}>No dogs added yet</p>
+              ? <p className="text-xs text-gray-400">No dogs added yet</p>
               : dogs.map(d => (
-                  <div key={d.id} className="flex items-center gap-2 text-sm" style={{ color: '#C4F9FFcc' }}>
+                  <div key={d.id} className="flex items-center gap-2 text-sm text-gray-700">
                     <span>🐾</span>
                     <span className="font-medium truncate">{d.name}</span>
-                    {d.breed && <span className="text-xs truncate" style={{ color: '#C4F9FF55' }}>· {d.breed}</span>}
+                    {d.breed && <span className="text-xs truncate text-gray-400">· {d.breed}</span>}
                   </div>
                 ))
             }
@@ -249,18 +246,18 @@ export default function Dashboard() {
 
           {/* Quick stats */}
           {(genes.length > 0 || (summary && summary.total > 0)) && (
-            <div className="border-t px-5 py-4" style={{ borderColor: '#ffffff15' }}>
-              <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: '#C4F9FF88' }}>Data</p>
+            <div className="border-t border-gray-200 px-5 py-4">
+              <p className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">Data</p>
               {genes.length > 0 && (
                 <>
-                  <p className="text-2xl font-bold mb-0.5" style={{ color: '#C4F9FF' }}>{genes.length.toLocaleString()}</p>
-                  <p className="text-xs mb-2" style={{ color: '#C4F9FF55' }}>genes with variants</p>
+                  <p className="text-2xl font-bold mb-0.5 text-[#3540CA]">{genes.length.toLocaleString()}</p>
+                  <p className="text-xs mb-2 text-gray-400">genes with variants</p>
                   {(['HIGH', 'MODERATE', 'LOW'] as const).map(imp => {
                     const count = genes.reduce((s, g) => s + (g[`impact_${imp.toLowerCase() as 'high'|'moderate'|'low'}`] ?? 0), 0);
                     return count > 0 ? (
                       <div key={imp} className="flex items-center justify-between mb-1">
                         <span className={`text-xs px-1.5 py-0.5 rounded font-medium ${IMPACT_COLORS[imp]}`}>{imp}</span>
-                        <span className="text-xs" style={{ color: '#C4F9FF88' }}>{count.toLocaleString()}</span>
+                        <span className="text-xs text-gray-500">{count.toLocaleString()}</span>
                       </div>
                     ) : null;
                   })}

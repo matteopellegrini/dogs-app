@@ -50,13 +50,13 @@ function depthText(depth: number) {
   return 'text-red-700';
 }
 
-export default function QcPanel() {
+export default function QcPanel({ samplePath = '' }: { samplePath?: string } = {}) {
   const [data, setData] = useState<QcResult | null>(null);
   const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
-    fetch('/qc_result.json').then(r => r.json()).then(setData);
-  }, []);
+    fetch(`${samplePath}/qc_result.json`).then(r => r.json()).then(setData);
+  }, [samplePath]);
 
   if (!data) return <div className="text-gray-400 text-sm py-8 text-center">Loading QC data…</div>;
 

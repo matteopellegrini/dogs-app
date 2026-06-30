@@ -40,13 +40,13 @@ const ZYG_STYLE: Record<string, string> = {
   hom_ref:     'bg-green-100 text-green-700',
 };
 
-export default function OmiaTable() {
+export default function OmiaTable({ samplePath = '' }: { samplePath?: string } = {}) {
   const [data, setData]     = useState<OmiaResult | null>(null);
   const [expanded, setExpanded] = useState<number | null>(null);
 
   useEffect(() => {
-    fetch('/omia_result.json').then((r) => r.json()).then(setData);
-  }, []);
+    fetch(`${samplePath}/omia_result.json`).then((r) => r.json()).then(setData);
+  }, [samplePath]);
 
   if (!data) return <div className="text-gray-400 text-sm py-8 text-center">Loading OMIA data…</div>;
 

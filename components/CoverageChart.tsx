@@ -17,7 +17,7 @@ const IMPACT_NOTE: Record<string, string> = {
   chrX: 'Single dip to 15x at 72 Mb',
 };
 
-export default function CoverageChart() {
+export default function CoverageChart({ samplePath = '' }: { samplePath?: string } = {}) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const chartRef = useRef<unknown>(null);
   const [data, setData] = useState<CoverageData | null>(null);
@@ -25,10 +25,10 @@ export default function CoverageChart() {
   const [stats, setStats] = useState({ mean: 0, low: 0, total: 0 });
 
   useEffect(() => {
-    fetch('/coverage_1mb.json')
+    fetch(`${samplePath}/coverage_1mb.json`)
       .then((r) => r.json())
       .then((d: CoverageData) => setData(d));
-  }, []);
+  }, [samplePath]);
 
   useEffect(() => {
     if (!data || !canvasRef.current) return;

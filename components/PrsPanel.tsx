@@ -67,13 +67,13 @@ function scoreLabel(score: number) {
   return 'Very low';
 }
 
-export default function PrsPanel() {
+export default function PrsPanel({ samplePath = '' }: { samplePath?: string } = {}) {
   const [data, setData] = useState<PrsResult | null>(null);
   const [expanded, setExpanded] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch('/prs_result.json').then(r => r.json()).then(setData);
-  }, []);
+    fetch(`${samplePath}/prs_result.json`).then(r => r.json()).then(setData);
+  }, [samplePath]);
 
   if (!data) return <div className="text-gray-400 text-sm py-8 text-center">Loading polygenic risk scores…</div>;
 

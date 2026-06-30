@@ -25,14 +25,14 @@ const COLORS = [
   '#8b5cf6', '#f97316', '#14b8a6', '#ec4899', '#84cc16',
 ];
 
-export default function BreedChart() {
+export default function BreedChart({ samplePath = '' }: { samplePath?: string } = {}) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const chartRef = useRef<unknown>(null);
   const [data, setData] = useState<BreedResult | null>(null);
 
   useEffect(() => {
-    fetch('/breed_result.json').then((r) => r.json()).then(setData);
-  }, []);
+    fetch(`${samplePath}/breed_result.json`).then((r) => r.json()).then(setData);
+  }, [samplePath]);
 
   useEffect(() => {
     if (!data || !canvasRef.current) return;

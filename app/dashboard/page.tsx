@@ -90,11 +90,17 @@ const NAV_ITEMS = [
 
 type TabKey = typeof NAV_ITEMS[number]['key'];
 
+const SAMPLES = [
+  { id: 'nelk', label: 'NELK (Jamthund)', path: '' },
+  { id: 'cosmo', label: 'Cosmo', path: '/cosmo' },
+];
+
 export default function Dashboard() {
   const { data: session, status } = useSession();
   const router = useRouter();
 
   const [tab, setTab] = useState<TabKey>('upload');
+  const [activeSample, setActiveSample] = useState('nelk');
   const [uploads, setUploads] = useState<Upload[]>([]);
   const [summary, setSummary] = useState<Summary | null>(null);
   const [genes, setGenes] = useState<GeneRecord[]>([]);
@@ -102,6 +108,8 @@ export default function Dashboard() {
   const [dogs, setDogs] = useState<Dog[]>([]);
   const [showAddDog, setShowAddDog] = useState(false);
   const [newDog, setNewDog] = useState({ name: '', breed: '', dob: '', notes: '' });
+
+  const samplePath = SAMPLES.find(s => s.id === activeSample)?.path ?? '';
 
   useEffect(() => {
     if (status === 'unauthenticated') router.push('/login');
@@ -158,7 +166,22 @@ export default function Dashboard() {
       {/* ── Header ─────────────────────────────────────────────── */}
       <header className="bg-white border-b border-gray-200 px-6 py-3 flex items-center justify-between shrink-0">
         <Image src="/prosper-k9-logo.png" alt="Prosper K9" width={140} height={60} priority />
-        <div className="flex items-center gap-5">
+        <div className="flex items-center gap-4">
+          {/* Sample selector */}
+          <div className="flex items-center gap-1 bg-gray-100 rounded-lg p-1">
+            {SAMPLES.map(s => (
+              <button
+                key={s.id}
+                onClick={() => setActiveSample(s.id)}
+                className="text-xs font-medium px-3 py-1.5 rounded-md transition-all"
+                style={activeSample === s.id
+                  ? { background: '#3540CA', color: '#fff' }
+                  : { color: '#6b7280' }}
+              >
+                {s.label}
+              </button>
+            ))}
+          </div>
           <span className="text-sm font-medium text-gray-600">{session?.user?.name}</span>
           <button
             onClick={() => signOut({ callbackUrl: '/login' })}
@@ -419,13 +442,13 @@ export default function Dashboard() {
                   </div>
                 )}
 
-                {tab === 'coverage'   && <CoverageChart />}
-                {tab === 'cnv'        && <CnvTable />}
-                {tab === 'breed'      && <BreedChart />}
-                {tab === 'inbreeding' && <InbreedingPanel />}
-                {tab === 'omia'       && <OmiaTable />}
-                {tab === 'prs'        && <PrsPanel />}
-                {tab === 'qc'         && <QcPanel />}
+                {tab === 'coverage'   && <CoverageChart samplePath={samplePath} />}
+                {tab === 'cnv'        && <CnvTable samplePath={samplePath} />}
+                {tab === 'breed'      && <BreedChart samplePath={samplePath} />}
+                {tab === 'inbreeding' && <InbreedingPanel samplePath={samplePath} />}
+                {tab === 'omia'       && <OmiaTable samplePath={samplePath} />}
+                {tab === 'prs'        && <PrsPanel samplePath={samplePath} />}
+                {tab === 'qc'         && <QcPanel samplePath={samplePath} />}
                 {tab === 'notes'      && <DogNotes dogs={dogs} />}
 
               </div>

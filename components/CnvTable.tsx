@@ -71,14 +71,14 @@ const CAT_STYLE: Record<string, { label: string; cls: string }> = {
 const CAT_ORDER = ['CDS', '5UTR', '3UTR', 'EXON_NC', 'INTRONIC'];
 const PRIORITY: Record<string, number> = { CDS: 0, '5UTR': 1, '3UTR': 2, EXON_NC: 3, INTRONIC: 4 };
 
-export default function CnvTable() {
+export default function CnvTable({ samplePath = '' }: { samplePath?: string } = {}) {
   const [data, setData] = useState<CnvData | null>(null);
   const [catFilter, setCatFilter] = useState<string>('all');
   const [search, setSearch] = useState('');
 
   useEffect(() => {
-    fetch('/cnv_homdel.json').then((r) => r.json()).then(setData);
-  }, []);
+    fetch(`${samplePath}/cnv_homdel.json`).then((r) => r.json()).then(setData);
+  }, [samplePath]);
 
   if (!data) return <div className="text-gray-400 text-sm py-8 text-center">Loading CNV data…</div>;
 

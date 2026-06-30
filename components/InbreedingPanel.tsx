@@ -40,13 +40,13 @@ const BENCHMARKS = [
   { label: 'Parent × offspring',f: 0.250, desc: 'F = 0.250' },
 ];
 
-export default function InbreedingPanel() {
+export default function InbreedingPanel({ samplePath = '' }: { samplePath?: string } = {}) {
   const [data, setData] = useState<InbreedingResult | null>(null);
   const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
-    fetch('/inbreeding_result.json').then(r => r.json()).then(setData);
-  }, []);
+    fetch(`${samplePath}/inbreeding_result.json`).then(r => r.json()).then(setData);
+  }, [samplePath]);
 
   if (!data) return <div className="text-gray-400 text-sm py-8 text-center">Loading inbreeding data…</div>;
 

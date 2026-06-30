@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 interface BreedComponent {
   breed: string;
   code: string;
-  component: number;
+  component?: number;
   proportion: number;
 }
 
@@ -97,7 +97,7 @@ export default function BreedChart({ samplePath = '' }: { samplePath?: string } 
     <div className="space-y-6">
       {/* Method note */}
       <div className="bg-[#C4F9FF]/20 border border-[#C4F9FF]/40 rounded-lg p-3 text-xs text-[#3540CA]">
-        <strong>Method:</strong> {data.method} · {data.snps_used.toLocaleString()} LD-pruned SNPs · K={data.k ?? 177} breeds ·{' '}
+        <strong>Method:</strong> {data.method} · {data.snps_used.toLocaleString()} SNPs · K={data.k ?? 177} breeds ·{' '}
         Reference: {data.reference_panel}
       </div>
 
@@ -134,9 +134,8 @@ export default function BreedChart({ samplePath = '' }: { samplePath?: string } 
       <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 text-xs text-amber-700 space-y-1">
         <p><strong>Interpretation notes:</strong></p>
         <ul className="list-disc list-inside space-y-0.5 ml-1">
-          <li><strong>Jamthund note:</strong> The Parker 2017 panel includes Norwegian Elkhound (NELK) but not Jamthund (Swedish Elkhound) as a separate breed. These are closely related spitz-type dogs — the 95.3% NELK result is consistent with a purebred Jamthund mapping to its nearest reference.</li>
-          <li>Supervised SCOPE fixes reference samples to breed labels; minor components (&lt;2%) likely reflect noise or shared ancient spitz ancestry rather than true admixture.</li>
-          <li>143,933 Parker SNP positions genotyped directly from BAM (vs ~9,770 from VCF previously).</li>
+          <li>Supervised SCOPE fixes reference samples to breed labels; minor components (&lt;2%) likely reflect noise or shared ancestry rather than true admixture.</li>
+          {data.note && <li>{data.note}</li>}
         </ul>
       </div>
     </div>

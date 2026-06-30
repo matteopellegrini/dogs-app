@@ -1,0 +1,75 @@
+{
+  "summary": {
+    "omia_variants_screened": 2,
+    "positions_genotyped_from_bam": 1,
+    "allele_matches_found": 1,
+    "with_disease_or_trait_phene": 0
+  },
+  "matches": [
+    {
+      "gene": "MC1R",
+      "chrom": "chr5",
+      "pos": 64186854,
+      "ref": "C",
+      "alt": "T",
+      "zygosity": "homozygous_alt",
+      "depth": 3,
+      "hgvs_c": "c.790A>G",
+      "hgvs_p": "p.(M264V)",
+      "omia_id": "001590",
+      "phene_name": "Coat colour, mask (melanistic mask, Em allele)",
+      "phene_symbol": "E^M",
+      "characterised": "yes",
+      "characterised_year": "2003",
+      "deleterious": "no",
+      "mol_gen": "Homozygous M264V (Em/Em): all dogs with a melanistic mask carry at least one copy of this MC1R variant. Schmutz et al. (2003) showed this A>G transition at codon 264 causes the mask phenotype. Homozygous dogs express a full melanistic mask.",
+      "clinical_note": "Coat colour trait, not a disease variant. Consistent with a dark facial mask phenotype.",
+      "ref_count": 0,
+      "alt_count": 3
+    }
+  ],
+  "all_results": [
+    {
+      "gene": "MC1R",
+      "chrom": "chr5",
+      "pos": 64186854,
+      "ref": "C",
+      "alt": "T",
+      "zygosity": "homozygous_alt",
+      "depth": 3,
+      "hgvs_c": "c.790A>G",
+      "hgvs_p": "p.(M264V)",
+      "omia_id": "001590",
+      "phene_name": "Coat colour, mask (melanistic mask, Em allele)",
+      "phene_symbol": "E^M",
+      "characterised": "yes",
+      "characterised_year": "2003",
+      "deleterious": "no",
+      "mol_gen": "Homozygous M264V (Em/Em): all dogs with a melanistic mask carry at least one copy of this MC1R variant. Schmutz et al. (2003) showed this A>G transition at codon 264 causes the mask phenotype. Homozygous dogs express a full melanistic mask.",
+      "clinical_note": "Coat colour trait, not a disease variant. Consistent with a dark facial mask phenotype.",
+      "ref_count": 0,
+      "alt_count": 3
+    },
+    {
+      "gene": "IGF1-AS (LOC111090066)",
+      "chrom": "chr15",
+      "pos": 41511739,
+      "ref": "T",
+      "alt": "C",
+      "zygosity": "no_call",
+      "depth": 0,
+      "hgvs_c": "r.1043T>C",
+      "hgvs_p": "",
+      "omia_id": "",
+      "phene_name": "",
+      "phene_symbol": "",
+      "characterised": "",
+      "deleterious": "no",
+      "mol_gen": "",
+      "clinical_note": "No disease phenotype associated in OMIA. IGF1 antisense RNA locus; variant marked as non-deleterious.",
+      "ref_count": 0,
+      "alt_count": 0
+    }
+  ],
+  "method": "Exact position+allele match from OMIA database, genotyped from BAM (min depth 2, at ~3x WGS coverage)"
+}

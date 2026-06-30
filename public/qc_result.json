@@ -326,5 +326,10 @@
   "qc_status": "PASS",
   "warning": null,
   "assessment": "Genome coverage is good (20\u201330x). SNVs and most indels are reliably callable.",
-  "method": "Mean depth per 1 Mb genomic bin across 39 chromosomes (canFam4)."
+  "method": "Mean depth per 1 Mb genomic bin across 39 chromosomes (canFam4).",
+  "total_reads_raw": 505004590,
+  "total_reads_after_qc": 499977864,
+  "reads_mapped": 495516070,
+  "read_length_bp": 151,
+  "pct_q30": null
 }

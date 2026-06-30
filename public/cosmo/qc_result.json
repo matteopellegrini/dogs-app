@@ -1,0 +1,342 @@
+{
+  "genome_mean_depth": 2.2,
+  "genome_median_depth": 2.2,
+  "genome_std_depth": 0.6,
+  "uniformity_cv": 0.252,
+  "pct_bins_gt10x": 0.0,
+  "pct_bins_gt15x": 0.0,
+  "pct_bins_gt20x": 0.0,
+  "pct_bins_gt30x": 0.0,
+  "n_low_bins": 2372,
+  "n_total_bins": 2373,
+  "chromosomes": [
+    {
+      "chrom": "chr1",
+      "mean_depth": 2.3,
+      "median_depth": 2.3,
+      "p10_depth": 2.1,
+      "n_bins": 124,
+      "low_bins": 124
+    },
+    {
+      "chrom": "chr2",
+      "mean_depth": 2.3,
+      "median_depth": 2.3,
+      "p10_depth": 2.1,
+      "n_bins": 85,
+      "low_bins": 85
+    },
+    {
+      "chrom": "chr3",
+      "mean_depth": 2.2,
+      "median_depth": 2.2,
+      "p10_depth": 2.1,
+      "n_bins": 93,
+      "low_bins": 93
+    },
+    {
+      "chrom": "chr4",
+      "mean_depth": 2.2,
+      "median_depth": 2.2,
+      "p10_depth": 2.1,
+      "n_bins": 90,
+      "low_bins": 90
+    },
+    {
+      "chrom": "chr5",
+      "mean_depth": 2.4,
+      "median_depth": 2.3,
+      "p10_depth": 2.2,
+      "n_bins": 90,
+      "low_bins": 90
+    },
+    {
+      "chrom": "chr6",
+      "mean_depth": 2.3,
+      "median_depth": 2.3,
+      "p10_depth": 2.1,
+      "n_bins": 79,
+      "low_bins": 79
+    },
+    {
+      "chrom": "chr7",
+      "mean_depth": 2.3,
+      "median_depth": 2.2,
+      "p10_depth": 2.1,
+      "n_bins": 82,
+      "low_bins": 82
+    },
+    {
+      "chrom": "chr8",
+      "mean_depth": 2.2,
+      "median_depth": 2.2,
+      "p10_depth": 2.1,
+      "n_bins": 77,
+      "low_bins": 77
+    },
+    {
+      "chrom": "chr9",
+      "mean_depth": 2.4,
+      "median_depth": 2.4,
+      "p10_depth": 2.2,
+      "n_bins": 62,
+      "low_bins": 62
+    },
+    {
+      "chrom": "chr10",
+      "mean_depth": 2.3,
+      "median_depth": 2.3,
+      "p10_depth": 2.2,
+      "n_bins": 71,
+      "low_bins": 71
+    },
+    {
+      "chrom": "chr11",
+      "mean_depth": 2.3,
+      "median_depth": 2.3,
+      "p10_depth": 2.1,
+      "n_bins": 75,
+      "low_bins": 75
+    },
+    {
+      "chrom": "chr12",
+      "mean_depth": 2.2,
+      "median_depth": 2.2,
+      "p10_depth": 2.1,
+      "n_bins": 73,
+      "low_bins": 73
+    },
+    {
+      "chrom": "chr13",
+      "mean_depth": 2.2,
+      "median_depth": 2.2,
+      "p10_depth": 2.1,
+      "n_bins": 65,
+      "low_bins": 65
+    },
+    {
+      "chrom": "chr14",
+      "mean_depth": 2.2,
+      "median_depth": 2.2,
+      "p10_depth": 2.1,
+      "n_bins": 62,
+      "low_bins": 62
+    },
+    {
+      "chrom": "chr15",
+      "mean_depth": 2.2,
+      "median_depth": 2.2,
+      "p10_depth": 2.1,
+      "n_bins": 65,
+      "low_bins": 65
+    },
+    {
+      "chrom": "chr16",
+      "mean_depth": 2.2,
+      "median_depth": 2.2,
+      "p10_depth": 2.1,
+      "n_bins": 61,
+      "low_bins": 61
+    },
+    {
+      "chrom": "chr17",
+      "mean_depth": 2.6,
+      "median_depth": 2.3,
+      "p10_depth": 2.1,
+      "n_bins": 66,
+      "low_bins": 65
+    },
+    {
+      "chrom": "chr18",
+      "mean_depth": 2.3,
+      "median_depth": 2.3,
+      "p10_depth": 2.1,
+      "n_bins": 57,
+      "low_bins": 57
+    },
+    {
+      "chrom": "chr19",
+      "mean_depth": 2.2,
+      "median_depth": 2.2,
+      "p10_depth": 2.0,
+      "n_bins": 56,
+      "low_bins": 56
+    },
+    {
+      "chrom": "chr20",
+      "mean_depth": 2.3,
+      "median_depth": 2.3,
+      "p10_depth": 2.2,
+      "n_bins": 59,
+      "low_bins": 59
+    },
+    {
+      "chrom": "chr21",
+      "mean_depth": 2.2,
+      "median_depth": 2.2,
+      "p10_depth": 2.1,
+      "n_bins": 52,
+      "low_bins": 52
+    },
+    {
+      "chrom": "chr22",
+      "mean_depth": 2.2,
+      "median_depth": 2.2,
+      "p10_depth": 2.0,
+      "n_bins": 62,
+      "low_bins": 62
+    },
+    {
+      "chrom": "chr23",
+      "mean_depth": 2.2,
+      "median_depth": 2.2,
+      "p10_depth": 2.1,
+      "n_bins": 54,
+      "low_bins": 54
+    },
+    {
+      "chrom": "chr24",
+      "mean_depth": 2.3,
+      "median_depth": 2.3,
+      "p10_depth": 2.2,
+      "n_bins": 49,
+      "low_bins": 49
+    },
+    {
+      "chrom": "chr25",
+      "mean_depth": 2.3,
+      "median_depth": 2.2,
+      "p10_depth": 2.2,
+      "n_bins": 52,
+      "low_bins": 52
+    },
+    {
+      "chrom": "chr26",
+      "mean_depth": 2.3,
+      "median_depth": 2.4,
+      "p10_depth": 2.2,
+      "n_bins": 40,
+      "low_bins": 40
+    },
+    {
+      "chrom": "chr27",
+      "mean_depth": 2.2,
+      "median_depth": 2.2,
+      "p10_depth": 2.1,
+      "n_bins": 47,
+      "low_bins": 47
+    },
+    {
+      "chrom": "chr28",
+      "mean_depth": 2.3,
+      "median_depth": 2.3,
+      "p10_depth": 2.1,
+      "n_bins": 42,
+      "low_bins": 42
+    },
+    {
+      "chrom": "chr29",
+      "mean_depth": 2.2,
+      "median_depth": 2.2,
+      "p10_depth": 2.1,
+      "n_bins": 43,
+      "low_bins": 43
+    },
+    {
+      "chrom": "chr30",
+      "mean_depth": 2.3,
+      "median_depth": 2.3,
+      "p10_depth": 2.2,
+      "n_bins": 41,
+      "low_bins": 41
+    },
+    {
+      "chrom": "chr31",
+      "mean_depth": 2.2,
+      "median_depth": 2.1,
+      "p10_depth": 2.0,
+      "n_bins": 40,
+      "low_bins": 40
+    },
+    {
+      "chrom": "chr32",
+      "mean_depth": 2.2,
+      "median_depth": 2.2,
+      "p10_depth": 2.0,
+      "n_bins": 41,
+      "low_bins": 41
+    },
+    {
+      "chrom": "chr33",
+      "mean_depth": 2.2,
+      "median_depth": 2.2,
+      "p10_depth": 2.0,
+      "n_bins": 33,
+      "low_bins": 33
+    },
+    {
+      "chrom": "chr34",
+      "mean_depth": 2.3,
+      "median_depth": 2.2,
+      "p10_depth": 2.1,
+      "n_bins": 43,
+      "low_bins": 43
+    },
+    {
+      "chrom": "chr35",
+      "mean_depth": 2.4,
+      "median_depth": 2.3,
+      "p10_depth": 2.2,
+      "n_bins": 29,
+      "low_bins": 29
+    },
+    {
+      "chrom": "chr36",
+      "mean_depth": 2.2,
+      "median_depth": 2.2,
+      "p10_depth": 2.1,
+      "n_bins": 32,
+      "low_bins": 32
+    },
+    {
+      "chrom": "chr37",
+      "mean_depth": 2.2,
+      "median_depth": 2.2,
+      "p10_depth": 2.1,
+      "n_bins": 31,
+      "low_bins": 31
+    },
+    {
+      "chrom": "chr38",
+      "mean_depth": 2.2,
+      "median_depth": 2.2,
+      "p10_depth": 2.0,
+      "n_bins": 25,
+      "low_bins": 25
+    },
+    {
+      "chrom": "chrX",
+      "mean_depth": 1.2,
+      "median_depth": 1.2,
+      "p10_depth": 1.1,
+      "n_bins": 125,
+      "low_bins": 125
+    }
+  ],
+  "qc_status": "FAIL",
+  "warning": "Only 0.0% of 1Mb bins have \u226515x coverage. De novo variant calls may be unreliable.",
+  "assessment": "Mean genome coverage 2.2x across 2373 1Mb bins. 0.0% of bins have \u226520x coverage.",
+  "method": "Coverage computed from samtools bedcov over 1Mb bins",
+  "total_reads_raw": 53602928,
+  "total_reads_after_qc": 50166450,
+  "reads_mapped": 48683806,
+  "read_length_bp": 151,
+  "read_length_after_trimming_bp": 125,
+  "pct_q20_raw": 95.78,
+  "pct_q30_raw": 90.48,
+  "pct_q20_trimmed": 98.62,
+  "pct_q30_trimmed": 95.91,
+  "gc_content_pct": 47.03,
+  "total_bases_raw_gb": 8.09,
+  "sequencing": "paired end (151 cycles + 151 cycles)"
+}

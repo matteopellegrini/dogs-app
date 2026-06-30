@@ -1,0 +1,8 @@
+{
+  "Froh": 0.0609,
+  "roh_total_mb": 133.92,
+  "roh_genome_mb": 2200.0,
+  "inbreeding_level": "Low",
+  "interpretation": "Genomic inbreeding is low, consistent with an outbred population.",
+  "method": "ROH from Parker 2017 SNP panel genotyped from BAM (window=30 SNPs, min=500kb, hom>=90%)"
+}

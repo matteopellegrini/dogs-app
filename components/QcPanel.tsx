@@ -27,6 +27,19 @@ interface QcResult {
   warning: string | null;
   assessment: string;
   method: string;
+  // Read count fields
+  total_reads_raw?: number;
+  total_reads_after_qc?: number;
+  reads_mapped?: number;
+  read_length_bp?: number;
+  read_length_after_trimming_bp?: number;
+  pct_q20_raw?: number;
+  pct_q30_raw?: number;
+  pct_q20_trimmed?: number;
+  pct_q30_trimmed?: number;
+  gc_content_pct?: number;
+  total_bases_raw_gb?: number;
+  sequencing?: string;
 }
 
 const STATUS_STYLE = {
@@ -107,6 +120,82 @@ export default function QcPanel({ samplePath = '' }: { samplePath?: string } = {
           <p className="text-xs text-gray-400 mt-1">of {data.n_total_bins.toLocaleString()} total</p>
         </div>
       </div>
+
+      {/* Read statistics */}
+      {data.total_reads_raw != null && (
+        <div className="bg-white border border-gray-200 rounded-xl p-4">
+          <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">
+            Read statistics
+          </h3>
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            <div>
+              <p className="text-lg font-bold text-gray-800">
+                {(data.total_reads_raw / 1e6).toFixed(1)}M
+              </p>
+              <p className="text-xs text-gray-400">Raw reads</p>
+            </div>
+            {data.total_reads_after_qc != null && (
+              <div>
+                <p className="text-lg font-bold text-gray-800">
+                  {(data.total_reads_after_qc / 1e6).toFixed(1)}M
+                </p>
+                <p className="text-xs text-gray-400">After QC</p>
+              </div>
+            )}
+            {data.reads_mapped != null && (
+              <div>
+                <p className="text-lg font-bold text-[#3540CA]">
+                  {data.total_reads_after_qc
+                    ? ((data.reads_mapped / data.total_reads_after_qc) * 100).toFixed(1)
+                    : ((data.reads_mapped / data.total_reads_raw) * 100).toFixed(1)}%
+                </p>
+                <p className="text-xs text-gray-400">Mapping rate</p>
+              </div>
+            )}
+            {data.read_length_bp != null && (
+              <div>
+                <p className="text-lg font-bold text-gray-800">{data.read_length_bp} bp</p>
+                <p className="text-xs text-gray-400">
+                  Read length{data.read_length_after_trimming_bp ? ' (raw)' : ''}
+                </p>
+              </div>
+            )}
+            {data.read_length_after_trimming_bp != null && (
+              <div>
+                <p className="text-lg font-bold text-gray-800">{data.read_length_after_trimming_bp} bp</p>
+                <p className="text-xs text-gray-400">Read length (trimmed)</p>
+              </div>
+            )}
+            {data.total_bases_raw_gb != null && (
+              <div>
+                <p className="text-lg font-bold text-gray-800">{data.total_bases_raw_gb} Gb</p>
+                <p className="text-xs text-gray-400">Total bases (raw)</p>
+              </div>
+            )}
+            {data.pct_q30_raw != null && (
+              <div>
+                <p className="text-lg font-bold text-gray-800">{data.pct_q30_raw}%</p>
+                <p className="text-xs text-gray-400">Q30 bases (raw)</p>
+              </div>
+            )}
+            {data.pct_q30_trimmed != null && (
+              <div>
+                <p className="text-lg font-bold text-green-700">{data.pct_q30_trimmed}%</p>
+                <p className="text-xs text-gray-400">Q30 bases (trimmed)</p>
+              </div>
+            )}
+            {data.gc_content_pct != null && (
+              <div>
+                <p className="text-lg font-bold text-gray-800">{data.gc_content_pct}%</p>
+                <p className="text-xs text-gray-400">GC content</p>
+              </div>
+            )}
+          </div>
+          {data.sequencing && (
+            <p className="mt-3 text-xs text-gray-400">{data.sequencing}</p>
+          )}
+        </div>
+      )}
 
       {/* Assessment */}
       <div className="bg-[#C4F9FF]/20 border border-[#C4F9FF]/40 rounded-lg p-3 text-sm text-[#0E1B05]">

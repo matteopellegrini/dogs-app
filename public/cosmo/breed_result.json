@@ -1,0 +1,59 @@
+{
+  "breed_composition": [
+    {
+      "breed": "Whippet",
+      "code": "WHIP",
+      "proportion": 0.230989
+    },
+    {
+      "breed": "Weimaraner",
+      "code": "WEIM",
+      "proportion": 0.158702
+    },
+    {
+      "breed": "Greyhound",
+      "code": "GREY",
+      "proportion": 0.152826
+    },
+    {
+      "breed": "Italian Greyhound",
+      "code": "ITGY",
+      "proportion": 0.120681
+    },
+    {
+      "breed": "Borzoi",
+      "code": "BORZ",
+      "proportion": 0.07481
+    },
+    {
+      "breed": "Basenji",
+      "code": "BSJI",
+      "proportion": 0.065193
+    },
+    {
+      "breed": "Doberman Pinscher",
+      "code": "DOBP",
+      "proportion": 0.060499
+    },
+    {
+      "breed": "Bernese Mountain Dog",
+      "code": "BMD",
+      "proportion": 0.051122
+    },
+    {
+      "breed": "Brussels Griffon",
+      "code": "BRUS",
+      "proportion": 0.042632
+    },
+    {
+      "breed": "Akita",
+      "code": "ACKR",
+      "proportion": 0.042546
+    }
+  ],
+  "method": "SCOPE supervised (ALStructure)",
+  "reference_panel": "Parker et al. 2017 Cell Reports (161 breeds, 1355 dogs, lifted to canFam4)",
+  "snps_used": 40210,
+  "k": 177,
+  "note": "Cosmo: supervised SCOPE projection on 40210 SNPs genotyped from BAM at ~3x coverage (low coverage; trait results may be less reliable)."
+}

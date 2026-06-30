@@ -1,59 +1,109 @@
 {
   "breed_composition": [
     {
-      "breed": "Whippet",
-      "code": "WHIP",
-      "proportion": 0.230989
+      "breed": "Standard Poodle",
+      "code": "SPOO",
+      "proportion": 0.3299
     },
     {
-      "breed": "Weimaraner",
-      "code": "WEIM",
-      "proportion": 0.158702
+      "breed": "Miniature Poodle",
+      "code": "MPOO",
+      "proportion": 0.1576
     },
     {
-      "breed": "Greyhound",
-      "code": "GREY",
-      "proportion": 0.152826
+      "breed": "Toy Poodle",
+      "code": "TPOO",
+      "proportion": 0.0821
     },
     {
-      "breed": "Italian Greyhound",
-      "code": "ITGY",
-      "proportion": 0.120681
-    },
-    {
-      "breed": "Borzoi",
-      "code": "BORZ",
-      "proportion": 0.07481
-    },
-    {
-      "breed": "Basenji",
-      "code": "BSJI",
-      "proportion": 0.065193
-    },
-    {
-      "breed": "Doberman Pinscher",
-      "code": "DOBP",
-      "proportion": 0.060499
-    },
-    {
-      "breed": "Bernese Mountain Dog",
-      "code": "BMD",
-      "proportion": 0.051122
-    },
-    {
-      "breed": "Brussels Griffon",
-      "code": "BRUS",
-      "proportion": 0.042632
+      "breed": "Labrador Retriever",
+      "code": "LAB",
+      "proportion": 0.0584
     },
     {
       "breed": "Akita",
       "code": "ACKR",
-      "proportion": 0.042546
+      "proportion": 0.0506
+    },
+    {
+      "breed": "English Cocker Spaniel",
+      "code": "ECKR",
+      "proportion": 0.0361
+    },
+    {
+      "breed": "Cane Pastore",
+      "code": "CPAT_Italy",
+      "proportion": 0.0332
+    },
+    {
+      "breed": "Xoloitzcuintli",
+      "code": "MXOL",
+      "proportion": 0.0308
+    },
+    {
+      "breed": "Kuvasz",
+      "code": "KUVZ",
+      "proportion": 0.016
+    },
+    {
+      "breed": "Cavalier King Charles Spaniel",
+      "code": "CKCS",
+      "proportion": 0.0159
+    },
+    {
+      "breed": "Dachshund",
+      "code": "DACH",
+      "proportion": 0.0146
+    },
+    {
+      "breed": "Australian Terrier",
+      "code": "AUST",
+      "proportion": 0.0133
+    },
+    {
+      "breed": "Volpino Italiano",
+      "code": "VPIN_Italy",
+      "proportion": 0.0116
+    },
+    {
+      "breed": "Cardigan Welsh Corgi",
+      "code": "CARD",
+      "proportion": 0.0112
+    },
+    {
+      "breed": "WOLF-China",
+      "code": "WOLF-China",
+      "proportion": 0.0108
+    },
+    {
+      "breed": "REDB",
+      "code": "REDB",
+      "proportion": 0.0096
+    },
+    {
+      "breed": "CANE",
+      "code": "CANE",
+      "proportion": 0.0094
+    },
+    {
+      "breed": "Gordon Setter",
+      "code": "GORD",
+      "proportion": 0.009
+    },
+    {
+      "breed": "Flat-Coated Retriever",
+      "code": "FCR",
+      "proportion": 0.0089
+    },
+    {
+      "breed": "LVMD_Italy",
+      "code": "LVMD_Italy",
+      "proportion": 0.0078
     }
   ],
-  "method": "SCOPE supervised (ALStructure)",
+  "method": "SCOPE supervised ALStructure (K=177, Parker 2017 reference panel)",
   "reference_panel": "Parker et al. 2017 Cell Reports (161 breeds, 1355 dogs, lifted to canFam4)",
-  "snps_used": 40210,
+  "snps_used": 103542,
   "k": 177,
-  "note": "Cosmo: supervised SCOPE projection on 40210 SNPs genotyped from BAM at ~3x coverage (low coverage; trait results may be less reliable)."
+  "note": "103,542 SNPs genotyped from Cosmo BAM (~3x WGS), including reference homozygous (0/0) calls. Merged with 1,355 Parker reference dogs."
 }

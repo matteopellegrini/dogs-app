@@ -310,25 +310,25 @@ export default function Dashboard() {
                 {/* ── Upload ── */}
                 {tab === 'upload' && (
                   <div>
-                    <p className="text-sm text-gray-500 mb-6">Upload VCF files annotated with SNPEff, or SNPEff summary gene files.</p>
-                    <FileUpload dogs={dogs} onUploadComplete={() => { refreshData(); setTab('data'); }} />
+                    <p className="text-sm text-gray-500 mb-6">Upload PDF documents associated with this sample — lab reports, health records, or any supporting files.</p>
+                    <FileUpload dogs={dogs} onUploadComplete={refreshData} />
                     {uploads.length > 0 && (
                       <div className="mt-8">
                         <h3 className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-3">Uploaded Files</h3>
                         <div className="space-y-2">
                           {uploads.map(u => (
-                            <div key={u.id} className="flex items-center justify-between border border-gray-100 rounded-xl px-4 py-3 hover:bg-gray-50 transition-colors">
-                              <div>
-                                <p className="text-sm font-medium text-gray-700">{u.original_name}</p>
+                            <div key={u.id} className="flex items-center gap-3 border border-gray-100 rounded-xl px-4 py-3 hover:bg-gray-50 transition-colors">
+                              <span className="text-2xl">📄</span>
+                              <div className="flex-1 min-w-0">
+                                <p className="text-sm font-medium text-gray-700 truncate">{u.original_name}</p>
                                 <p className="text-xs text-gray-400">
-                                  {u.variant_count > 0 && `${u.variant_count.toLocaleString()} variants · `}
                                   {u.dog_name && `${u.dog_name} · `}
                                   {new Date(u.created_at).toLocaleDateString()}
                                 </p>
                               </div>
-                              <span className="text-xs px-2 py-0.5 rounded-full font-medium uppercase"
+                              <span className="text-xs px-2 py-0.5 rounded-full font-medium uppercase shrink-0"
                                 style={{ background: '#C4F9FF', color: '#3540CA' }}>
-                                {u.file_type}
+                                PDF
                               </span>
                             </div>
                           ))}

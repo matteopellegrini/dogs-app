@@ -16,7 +16,7 @@ interface FileUploadProps {
 export default function FileUpload({ dogs, onUploadComplete }: FileUploadProps) {
   const [dragging, setDragging] = useState(false);
   const [uploading, setUploading] = useState(false);
-  const [result, setResult] = useState<{ recordCount?: number; fileType?: string; error?: string } | null>(null);
+  const [result, setResult] = useState<{ fileType?: string; error?: string } | null>(null);
   const [selectedDogId, setSelectedDogId] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -34,7 +34,7 @@ export default function FileUpload({ dogs, onUploadComplete }: FileUploadProps) 
     if (!res.ok) {
       setResult({ error: data.error });
     } else {
-      setResult({ recordCount: data.recordCount, fileType: data.fileType });
+      setResult({ fileType: data.fileType });
       onUploadComplete();
     }
   }
@@ -85,22 +85,22 @@ export default function FileUpload({ dogs, onUploadComplete }: FileUploadProps) 
         <input
           ref={inputRef}
           type="file"
-          accept=".vcf,.txt,.tsv"
+          accept=".pdf"
           className="hidden"
           onChange={handleFileChange}
         />
         {uploading ? (
           <div className="text-[#3540CA]">
             <div className="animate-spin text-3xl mb-2">⏳</div>
-            <p className="text-sm font-medium">Parsing and uploading...</p>
+            <p className="text-sm font-medium">Uploading...</p>
           </div>
         ) : (
           <>
-            <div className="text-4xl mb-2">📁</div>
+            <div className="text-4xl mb-2">📄</div>
             <p className="text-sm font-medium text-gray-700">
-              Drop a VCF or SNPEff file here, or click to browse
+              Drop a PDF here, or click to browse
             </p>
-            <p className="text-xs text-gray-400 mt-1">.vcf · .genes.txt (SNPEff summary)</p>
+            <p className="text-xs text-gray-400 mt-1">.pdf</p>
           </>
         )}
       </div>
@@ -110,9 +110,9 @@ export default function FileUpload({ dogs, onUploadComplete }: FileUploadProps) 
           {result.error}
         </div>
       )}
-      {result?.recordCount !== undefined && (
+      {result?.fileType === 'pdf' && (
         <div className="bg-green-50 border border-green-200 text-green-700 text-sm rounded-lg px-3 py-2">
-          ✓ Parsed {result.recordCount.toLocaleString()} {result.fileType === 'genes' ? 'gene records' : 'variants'}
+          ✓ PDF uploaded successfully
         </div>
       )}
     </div>

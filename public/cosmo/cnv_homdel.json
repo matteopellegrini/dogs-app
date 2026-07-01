@@ -1,1 +1,17 @@
-[]
+{
+  "regions": [],
+  "disrupted_genes": [],
+  "summary": {
+    "total_regions": 0,
+    "unique_genes": 0,
+    "protein_coding": 0,
+    "by_category": {
+      "CDS": 0,
+      "5UTR": 0,
+      "3UTR": 0,
+      "EXON_NC": 0,
+      "INTRONIC": 0
+    },
+    "note": "CNV calling requires \u226515x coverage. Cosmo mean depth is 2.2x \u2014 insufficient for reliable sub-chromosomal CNV detection."
+  }
+}

@@ -27,6 +27,7 @@ interface CnvData {
     unique_genes: number;
     protein_coding: number;
     by_category: Record<string, number>;
+    note?: string;
   };
 }
 
@@ -120,6 +121,11 @@ export default function CnvTable({ samplePath = '' }: { samplePath?: string } = 
         </div>
       </div>
 
+      {data.summary?.note && (
+        <div className="bg-amber-50 border border-amber-200 text-amber-700 text-xs rounded-lg px-3 py-2">
+          ⚠️ {data.summary.note}
+        </div>
+      )}
       <p className="text-xs text-gray-400">
         Homozygous deletions at 10 kb resolution (depth &lt;15% of mean, ≥20 kb). Each gene classified
         by highest-impact overlap: CDS &gt; 5&#39;UTR &gt; 3&#39;UTR &gt; intronic.

@@ -1,17 +1,104 @@
 {
-  "regions": [],
-  "disrupted_genes": [],
+  "regions": [
+    {
+      "chrom": "chr2",
+      "start": 16900000,
+      "end": 17300000,
+      "size": "400kb",
+      "mean_depth": 0.2509,
+      "norm": 0.1145
+    },
+    {
+      "chrom": "chr13",
+      "start": 13400000,
+      "end": 13600000,
+      "size": "200kb",
+      "mean_depth": 0.3963,
+      "norm": 0.1808
+    },
+    {
+      "chrom": "chr16",
+      "start": 55100000,
+      "end": 55400000,
+      "size": "300kb",
+      "mean_depth": 0.3247,
+      "norm": 0.1482
+    },
+    {
+      "chrom": "chr19",
+      "start": 20700000,
+      "end": 20900000,
+      "size": "200kb",
+      "mean_depth": 0.1144,
+      "norm": 0.0522
+    },
+    {
+      "chrom": "chr27",
+      "start": 20300000,
+      "end": 20500000,
+      "size": "200kb",
+      "mean_depth": 0.3202,
+      "norm": 0.1461
+    }
+  ],
+  "disrupted_genes": [
+    {
+      "chrom": "chr2",
+      "start": 17250000,
+      "end": 17290000,
+      "size": "400kb",
+      "gene": "ENSCAFG00845012582",
+      "biotype": "protein_coding",
+      "category": "INTRONIC"
+    },
+    {
+      "chrom": "chr13",
+      "start": 13490000,
+      "end": 13520000,
+      "size": "200kb",
+      "gene": "CSMD3",
+      "biotype": "protein_coding",
+      "category": "INTRONIC"
+    },
+    {
+      "chrom": "chr16",
+      "start": 55250000,
+      "end": 55300000,
+      "size": "300kb",
+      "gene": "VEGFC",
+      "biotype": "protein_coding",
+      "category": "CDS"
+    },
+    {
+      "chrom": "chr27",
+      "start": 20350000,
+      "end": 20420000,
+      "size": "200kb",
+      "gene": "SMCO2",
+      "biotype": "protein_coding",
+      "category": "CDS"
+    },
+    {
+      "chrom": "chr27",
+      "start": 20350000,
+      "end": 20420000,
+      "size": "200kb",
+      "gene": "PPFIBP1",
+      "biotype": "protein_coding",
+      "category": "5UTR"
+    }
+  ],
   "summary": {
-    "total_regions": 0,
-    "unique_genes": 0,
-    "protein_coding": 0,
+    "total_regions": 5,
+    "unique_genes": 5,
+    "protein_coding": 5,
     "by_category": {
-      "CDS": 0,
-      "5UTR": 0,
+      "CDS": 2,
+      "5UTR": 1,
       "3UTR": 0,
       "EXON_NC": 0,
-      "INTRONIC": 0
+      "INTRONIC": 2
     },
-    "note": "CNV calling requires \u226515x coverage. Cosmo mean depth is 2.2x \u2014 insufficient for reliable sub-chromosomal CNV detection."
+    "method": "100kb windows, depth <20% of autosomal mean (2.2x), merged \u2265200kb, min-mapq 20"
   }
 }

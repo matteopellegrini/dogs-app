@@ -16,8 +16,8 @@ function chromStats(depths: number[]) {
 }
 
 function barColor(v: number, mean: number, sd: number) {
-  if (v < mean - 2 * sd) return '#E24B4A';   // low — red
-  if (v > mean + 2 * sd) return '#f97316';   // high / spike — orange
+  if (v < mean - 3 * sd) return '#E24B4A';   // low — red
+  if (v > mean + 3 * sd) return '#f97316';   // high / spike — orange
   return '#6366f1';                           // normal — indigo
 }
 
@@ -40,8 +40,8 @@ export default function CoverageChart({ samplePath = '' }: { samplePath?: string
     if (!depths) return;
 
     const { mean, sd } = chromStats(depths);
-    const low  = depths.filter((v) => v < mean - 2 * sd).length;
-    const high = depths.filter((v) => v > mean + 2 * sd).length;
+    const low  = depths.filter((v) => v < mean - 3 * sd).length;
+    const high = depths.filter((v) => v > mean + 3 * sd).length;
     const max  = Math.max(...depths);
     setStats({ mean: parseFloat(mean.toFixed(1)), sd: parseFloat(sd.toFixed(1)), low, high, total: depths.length, max: parseFloat(max.toFixed(1)) });
 
@@ -76,8 +76,8 @@ export default function CoverageChart({ samplePath = '' }: { samplePath?: string
               fill: false,
             },
             {
-              label: '+2 SD',
-              data: Array(depths.length).fill(mean + 2 * sd),
+              label: '+3 SD',
+              data: Array(depths.length).fill(mean + 3 * sd),
               type: 'line' as const,
               borderColor: '#f97316',
               borderWidth: 1,
@@ -86,8 +86,8 @@ export default function CoverageChart({ samplePath = '' }: { samplePath?: string
               fill: false,
             },
             {
-              label: '−2 SD',
-              data: Array(depths.length).fill(Math.max(0, mean - 2 * sd)),
+              label: '−3 SD',
+              data: Array(depths.length).fill(Math.max(0, mean - 3 * sd)),
               type: 'line' as const,
               borderColor: '#E24B4A',
               borderWidth: 1,
@@ -114,8 +114,8 @@ export default function CoverageChart({ samplePath = '' }: { samplePath?: string
                     return `Depth: ${v.toFixed(1)}x${tag}`;
                   }
                   if (ctx.datasetIndex === 1) return `Mean: ${mean.toFixed(1)}x`;
-                  if (ctx.datasetIndex === 2) return `+2 SD: ${(mean + 2 * sd).toFixed(1)}x`;
-                  return `−2 SD: ${Math.max(0, mean - 2 * sd).toFixed(1)}x`;
+                  if (ctx.datasetIndex === 2) return `+3 SD: ${(mean + 3 * sd).toFixed(1)}x`;
+                  return `−3 SD: ${Math.max(0, mean - 3 * sd).toFixed(1)}x`;
                 },
               },
             },
@@ -163,7 +163,7 @@ export default function CoverageChart({ samplePath = '' }: { samplePath?: string
       <div>
         <p className="text-sm text-gray-500 mb-3">
           Mean sequencing depth per 1 Mb window. Y-axis auto-scaled per chromosome.
-          Coloured bars deviate more than 2 SD from the chromosome mean.
+          Coloured bars deviate more than 3 SD from the chromosome mean.
         </p>
 
         {/* Chromosome selector */}
@@ -171,7 +171,7 @@ export default function CoverageChart({ samplePath = '' }: { samplePath?: string
           {CHR_ORDER.filter((c) => data[c]).map((c) => {
             const d = data[c];
             const { mean, sd } = chromStats(d);
-            const unusual = d.filter((v) => v < mean - 2 * sd || v > mean + 2 * sd).length;
+            const unusual = d.filter((v) => v < mean - 3 * sd || v > mean + 3 * sd).length;
             return (
               <button
                 key={c}
@@ -215,8 +215,8 @@ export default function CoverageChart({ samplePath = '' }: { samplePath?: string
 
         {hasUnusual && (
           <div className="bg-amber-50 border border-amber-200 text-amber-700 text-xs rounded-lg px-3 py-2 mb-3 flex gap-4">
-            {stats.low  > 0 && <span>⬇ {stats.low}  window{stats.low  > 1 ? 's' : ''} below mean − 2 SD</span>}
-            {stats.high > 0 && <span>⬆ {stats.high} window{stats.high > 1 ? 's' : ''} above mean + 2 SD</span>}
+            {stats.low  > 0 && <span>⬇ {stats.low}  window{stats.low  > 1 ? 's' : ''} below mean − 3 SD</span>}
+            {stats.high > 0 && <span>⬆ {stats.high} window{stats.high > 1 ? 's' : ''} above mean + 3 SD</span>}
           </div>
         )}
       </div>
@@ -230,15 +230,15 @@ export default function CoverageChart({ samplePath = '' }: { samplePath?: string
       <div className="flex flex-wrap gap-4 text-xs text-gray-400">
         <span className="flex items-center gap-1.5">
           <span className="w-3 h-3 rounded-sm bg-[#6366f1] inline-block" />
-          Normal (within ±2 SD)
+          Normal (within ±3 SD)
         </span>
         <span className="flex items-center gap-1.5">
           <span className="w-3 h-3 rounded-sm bg-red-500 inline-block" />
-          Low (&lt; mean − 2 SD)
+          Low (&lt; mean − 3 SD)
         </span>
         <span className="flex items-center gap-1.5">
           <span className="w-3 h-3 rounded-sm bg-orange-400 inline-block" />
-          High (&gt; mean + 2 SD)
+          High (&gt; mean + 3 SD)
         </span>
         <span className="flex items-center gap-1.5">
           <span className="w-6 border-t-2 border-dashed border-amber-400 inline-block" />
@@ -246,7 +246,7 @@ export default function CoverageChart({ samplePath = '' }: { samplePath?: string
         </span>
         <span className="flex items-center gap-1.5">
           <span className="w-6 border-t-2 border-dashed border-orange-400 inline-block" />
-          ±2 SD bounds
+          ±3 SD bounds
         </span>
       </div>
     </div>

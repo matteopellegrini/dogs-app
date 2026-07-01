@@ -27,6 +27,7 @@ export default function CoverageChart({ samplePath = '' }: { samplePath?: string
   const [data, setData] = useState<CoverageData | null>(null);
   const [selected, setSelected] = useState('chr1');
   const [stats, setStats] = useState({ mean: 0, sd: 0, low: 0, high: 0, total: 0, max: 0 });
+  const [chartPad, setChartPad] = useState({ left: 0, right: 0 });
 
   useEffect(() => {
     fetch(`${samplePath}/coverage_1mb.json`)
@@ -141,6 +142,17 @@ export default function CoverageChart({ samplePath = '' }: { samplePath?: string
           },
         },
       });
+
+      // After render, read chart area to align chromosome schematic
+      requestAnimationFrame(() => {
+        const c = chartRef.current as { chartArea?: { left: number; right: number }; width?: number } | null;
+        if (c?.chartArea && c.width) {
+          setChartPad({
+            left: c.chartArea.left,
+            right: c.width - c.chartArea.right,
+          });
+        }
+      });
     });
 
     return () => {
@@ -226,8 +238,12 @@ export default function CoverageChart({ samplePath = '' }: { samplePath?: string
         <canvas ref={canvasRef} />
       </div>
 
-      {/* Chromosome schematic */}
-      <div className="w-full px-1" title={`Schematic of ${selected} — bars above represent coverage along its length`}>
+      {/* Chromosome schematic — padded to match chart's inner plot area */}
+      <div
+        className="w-full"
+        style={{ paddingLeft: chartPad.left, paddingRight: chartPad.right }}
+        title={`Schematic of ${selected} — bars above represent coverage along its length`}
+      >
         <svg viewBox="0 0 400 36" className="w-full" style={{ height: 36 }}>
           {/* p arm (left) */}
           <path

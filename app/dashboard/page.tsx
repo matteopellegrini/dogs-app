@@ -75,7 +75,6 @@ const IMPACT_COLORS: Record<string, string> = {
 };
 
 const NAV_ITEMS = [
-  { key: 'upload',     label: 'Upload Data',       icon: '📤' },
   { key: 'data',       label: 'Variant Summary',    icon: '📊' },
   { key: 'coverage',   label: 'Coverage',           icon: '📉' },
   { key: 'cnv',        label: 'Copy Number',        icon: '🗺' },
@@ -85,6 +84,7 @@ const NAV_ITEMS = [
   { key: 'prs',        label: 'Trait Scores',       icon: '📈' },
   { key: 'qc',         label: 'Data Quality',       icon: '🔬' },
   { key: 'notes',      label: 'Health Notes',       icon: '📝' },
+  { key: 'upload',     label: 'Upload Data',        icon: '📤' },
   { key: 'chat',       label: 'AI Assistant',       icon: '💬' },
 ] as const;
 

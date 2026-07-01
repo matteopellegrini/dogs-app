@@ -22,6 +22,7 @@ interface Upload {
   variant_count: number;
   created_at: string;
   dog_name?: string;
+  parsed_text?: string;
 }
 
 interface Summary {
@@ -95,6 +96,78 @@ const SAMPLES = [
   { id: 'cosmo', label: 'Cosmo', path: '/cosmo' },
 ];
 
+function ParsedPdfTable({ text }: { text: string }) {
+  const lines = text.split('\n').map(l => l.trimEnd()).filter(l => l.trim());
+
+  // Detect if lines look tabular: split on 2+ spaces or tabs
+  const rows = lines.map(l => l.split(/\t|  +/).map(c => c.trim()).filter(c => c));
+  const colCounts = rows.map(r => r.length);
+  const maxCols = Math.max(...colCounts);
+  const isTabular = maxCols >= 2 && rows.filter(r => r.length >= 2).length > rows.length * 0.4;
+
+  if (isTabular) {
+    // Use first row as header if it looks like one (all short words, no numbers)
+    const firstRow = rows[0];
+    const looksLikeHeader = firstRow.every(c => c.length < 40 && !/^\d+\.?\d*$/.test(c));
+    const headers = looksLikeHeader ? firstRow : Array.from({ length: maxCols }, (_, i) => `Col ${i + 1}`);
+    const dataRows = looksLikeHeader ? rows.slice(1) : rows;
+
+    return (
+      <div className="border border-gray-100 border-t-0 rounded-b-xl overflow-x-auto">
+        <table className="w-full text-xs">
+          <thead>
+            <tr className="bg-gray-50 border-b border-gray-100">
+              {headers.map((h, i) => (
+                <th key={i} className="text-left px-4 py-2 font-semibold text-gray-500 whitespace-nowrap">{h}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {dataRows.map((row, ri) => (
+              <tr key={ri} className="border-b border-gray-50 hover:bg-gray-50">
+                {Array.from({ length: headers.length }, (_, ci) => (
+                  <td key={ci} className="px-4 py-1.5 text-gray-700 align-top">{row[ci] ?? ''}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    );
+  }
+
+  // Fallback: key-value pairs or plain text
+  const kvPairs = lines.map(l => {
+    const m = l.match(/^([^:]+):\s*(.*)$/);
+    return m ? { key: m[1].trim(), value: m[2].trim() } : null;
+  });
+  const allKv = kvPairs.every(p => p !== null);
+
+  if (allKv && lines.length > 0) {
+    return (
+      <div className="border border-gray-100 border-t-0 rounded-b-xl overflow-x-auto">
+        <table className="w-full text-xs">
+          <tbody>
+            {kvPairs.map((kv, i) => kv && (
+              <tr key={i} className="border-b border-gray-50 hover:bg-gray-50">
+                <td className="px-4 py-1.5 font-semibold text-gray-500 whitespace-nowrap w-1/3">{kv.key}</td>
+                <td className="px-4 py-1.5 text-gray-700">{kv.value}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    );
+  }
+
+  // Plain text fallback
+  return (
+    <div className="border border-gray-100 border-t-0 rounded-b-xl px-4 py-3 max-h-64 overflow-y-auto">
+      <pre className="text-xs text-gray-600 whitespace-pre-wrap font-mono">{text}</pre>
+    </div>
+  );
+}
+
 export default function Dashboard() {
   const { data: session, status } = useSession();
   const router = useRouter();
@@ -106,6 +179,7 @@ export default function Dashboard() {
   const [genes, setGenes] = useState<GeneRecord[]>([]);
   const [zygVariants, setZygVariants] = useState<ZygosityVariant[]>([]);
   const [dogs, setDogs] = useState<Dog[]>([]);
+  const [selectedUpload, setSelectedUpload] = useState<Upload | null>(null);
   const [showAddDog, setShowAddDog] = useState(false);
   const [newDog, setNewDog] = useState({ name: '', breed: '', dob: '', notes: '' });
 
@@ -317,19 +391,33 @@ export default function Dashboard() {
                         <h3 className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-3">Uploaded Files</h3>
                         <div className="space-y-2">
                           {uploads.map(u => (
-                            <div key={u.id} className="flex items-center gap-3 border border-gray-100 rounded-xl px-4 py-3 hover:bg-gray-50 transition-colors">
-                              <span className="text-2xl">📄</span>
-                              <div className="flex-1 min-w-0">
-                                <p className="text-sm font-medium text-gray-700 truncate">{u.original_name}</p>
-                                <p className="text-xs text-gray-400">
-                                  {u.dog_name && `${u.dog_name} · `}
-                                  {new Date(u.created_at).toLocaleDateString()}
-                                </p>
-                              </div>
-                              <span className="text-xs px-2 py-0.5 rounded-full font-medium uppercase shrink-0"
-                                style={{ background: '#C4F9FF', color: '#3540CA' }}>
-                                PDF
-                              </span>
+                            <div key={u.id}>
+                              <button
+                                onClick={() => setSelectedUpload(selectedUpload?.id === u.id ? null : u)}
+                                className="w-full flex items-center gap-3 border border-gray-100 rounded-xl px-4 py-3 hover:bg-gray-50 transition-colors text-left"
+                              >
+                                <span className="text-2xl">📄</span>
+                                <div className="flex-1 min-w-0">
+                                  <p className="text-sm font-medium text-gray-700 truncate">{u.original_name}</p>
+                                  <p className="text-xs text-gray-400">
+                                    {u.dog_name && `${u.dog_name} · `}
+                                    {new Date(u.created_at).toLocaleDateString()}
+                                  </p>
+                                </div>
+                                <span className="text-xs px-2 py-0.5 rounded-full font-medium uppercase shrink-0"
+                                  style={{ background: '#C4F9FF', color: '#3540CA' }}>
+                                  PDF
+                                </span>
+                                <span className="text-gray-400 text-xs shrink-0">{selectedUpload?.id === u.id ? '▲' : '▼'}</span>
+                              </button>
+                              {selectedUpload?.id === u.id && u.parsed_text && (
+                                <ParsedPdfTable text={u.parsed_text} />
+                              )}
+                              {selectedUpload?.id === u.id && !u.parsed_text && (
+                                <div className="border border-gray-100 border-t-0 rounded-b-xl px-4 py-3 text-xs text-gray-400">
+                                  No text content could be extracted from this PDF.
+                                </div>
+                              )}
                             </div>
                           ))}
                         </div>

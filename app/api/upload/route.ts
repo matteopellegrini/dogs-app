@@ -30,6 +30,16 @@ export async function POST(req: NextRequest) {
   const bytes = await file.arrayBuffer();
   const buffer = Buffer.from(bytes);
 
+  // Parse PDF text
+  let parsedText = '';
+  try {
+    const pdfParse = (await import('pdf-parse')).default;
+    const parsed = await pdfParse(buffer);
+    parsedText = parsed.text;
+  } catch {
+    // Store without parsed text if parsing fails
+  }
+
   const timestamp = Date.now();
   const safeName = `${timestamp}_${file.name.replace(/[^a-zA-Z0-9._-]/g, '_')}`;
   const uploadsDir = path.join(process.cwd(), 'uploads');
@@ -39,9 +49,9 @@ export async function POST(req: NextRequest) {
 
   const result = db
     .prepare(
-      'INSERT INTO uploads (user_id, dog_id, filename, original_name, file_type, file_path) VALUES (?, ?, ?, ?, ?, ?)'
+      'INSERT INTO uploads (user_id, dog_id, filename, original_name, file_type, file_path, parsed_text) VALUES (?, ?, ?, ?, ?, ?, ?)'
     )
-    .run(user.id, dogId ? parseInt(dogId) : null, safeName, file.name, 'pdf', filePath);
+    .run(user.id, dogId ? parseInt(dogId) : null, safeName, file.name, 'pdf', filePath, parsedText || null);
 
   return NextResponse.json({ ok: true, uploadId: result.lastInsertRowid, fileType: 'pdf' });
 }

@@ -45,6 +45,7 @@ function initSchema(db: Database.Database) {
       file_type TEXT NOT NULL,
       file_path TEXT NOT NULL,
       variant_count INTEGER DEFAULT 0,
+      parsed_text TEXT,
       created_at TEXT DEFAULT (datetime('now'))
     );
 

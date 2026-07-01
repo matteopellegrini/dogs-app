@@ -76,7 +76,7 @@ const IMPACT_COLORS: Record<string, string> = {
 
 const NAV_ITEMS = [
   { key: 'breed',      label: 'Breed',              icon: '🐕' },
-  { key: 'coverage',   label: 'Coverage',           icon: '📉' },
+  { key: 'coverage',   label: 'Karyotype',          icon: '🧬' },
   { key: 'cnv',        label: 'Copy Number',        icon: '🗺' },
   { key: 'data',       label: 'Variant Summary',    icon: '📊' },
   { key: 'omia',       label: 'OMIA Diseases',      icon: '🏥' },

@@ -226,6 +226,31 @@ export default function CoverageChart({ samplePath = '' }: { samplePath?: string
         <canvas ref={canvasRef} />
       </div>
 
+      {/* Chromosome schematic */}
+      <div className="w-full px-1" title={`Schematic of ${selected} — bars above represent coverage along its length`}>
+        <svg viewBox="0 0 400 36" className="w-full" style={{ height: 36 }}>
+          {/* p arm (left) */}
+          <path
+            d="M10,8 Q6,8 6,18 Q6,28 10,28 L178,28 Q186,28 188,22 Q190,20 190,18 Q190,16 188,14 Q186,8 178,8 Z"
+            fill="#c7caf0" stroke="#3540CA" strokeWidth="1.2"
+          />
+          {/* q arm (right) */}
+          <path
+            d="M390,8 Q394,8 394,18 Q394,28 390,28 L222,28 Q214,28 212,22 Q210,20 210,18 Q210,16 212,14 Q214,8 222,8 Z"
+            fill="#c7caf0" stroke="#3540CA" strokeWidth="1.2"
+          />
+          {/* centromere constriction */}
+          <ellipse cx="200" cy="18" rx="12" ry="6" fill="#6366f1" stroke="#3540CA" strokeWidth="1.2" />
+          {/* arm labels */}
+          <text x="94" y="21" textAnchor="middle" fontSize="9" fill="#3540CA" fontWeight="600" fontFamily="sans-serif">p</text>
+          <text x="306" y="21" textAnchor="middle" fontSize="9" fill="#3540CA" fontWeight="600" fontFamily="sans-serif">q</text>
+          {/* telomere caps */}
+          <rect x="6" y="10" width="4" height="16" rx="2" fill="#3540CA" opacity="0.4" />
+          <rect x="390" y="10" width="4" height="16" rx="2" fill="#3540CA" opacity="0.4" />
+        </svg>
+        <p className="text-center text-[10px] text-gray-400 -mt-1">{selected} — bars above show sequencing depth along this chromosome</p>
+      </div>
+
       {/* Legend */}
       <div className="flex flex-wrap gap-4 text-xs text-gray-400">
         <span className="flex items-center gap-1.5">

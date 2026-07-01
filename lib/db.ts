@@ -46,6 +46,7 @@ function initSchema(db: Database.Database) {
       file_path TEXT NOT NULL,
       variant_count INTEGER DEFAULT 0,
       parsed_text TEXT,
+      sample TEXT,
       created_at TEXT DEFAULT (datetime('now'))
     );
 
@@ -116,6 +117,10 @@ function initSchema(db: Database.Database) {
     CREATE INDEX IF NOT EXISTS idx_genes_user ON gene_records(user_id);
     CREATE INDEX IF NOT EXISTS idx_genes_impact_high ON gene_records(user_id, impact_high);
   `);
+
+  // Idempotent migrations
+  const cols = (db.prepare(`PRAGMA table_info(uploads)`).all() as { name: string }[]).map(c => c.name);
+  if (!cols.includes('sample')) db.exec(`ALTER TABLE uploads ADD COLUMN sample TEXT`);
 }
 
 export function createUser(email: string, name: string, password: string) {

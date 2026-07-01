@@ -2,23 +2,15 @@
 
 import { useState, useRef } from 'react';
 
-interface Dog {
-  id: number;
-  name: string;
-  breed?: string;
-}
-
 interface FileUploadProps {
-  dogs: Dog[];
+  sample: string;
   onUploadComplete: () => void;
-  preselectedDogId?: number;
 }
 
-export default function FileUpload({ dogs, onUploadComplete, preselectedDogId }: FileUploadProps) {
+export default function FileUpload({ sample, onUploadComplete }: FileUploadProps) {
   const [dragging, setDragging] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [result, setResult] = useState<{ fileType?: string; error?: string } | null>(null);
-  const [selectedDogId, setSelectedDogId] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
 
   async function uploadFile(file: File) {
@@ -26,8 +18,7 @@ export default function FileUpload({ dogs, onUploadComplete, preselectedDogId }:
     setResult(null);
     const fd = new FormData();
     fd.append('file', file);
-    const dogId = preselectedDogId ?? (selectedDogId ? parseInt(selectedDogId) : null);
-    if (dogId) fd.append('dogId', String(dogId));
+    fd.append('sample', sample);
 
     const res = await fetch('/api/upload', { method: 'POST', body: fd });
     const data = await res.json();
@@ -55,26 +46,6 @@ export default function FileUpload({ dogs, onUploadComplete, preselectedDogId }:
 
   return (
     <div className="space-y-3">
-      {!preselectedDogId && dogs.length > 0 && (
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            Associate with dog (optional)
-          </label>
-          <select
-            value={selectedDogId}
-            onChange={(e) => setSelectedDogId(e.target.value)}
-            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#3540CA]/40"
-          >
-            <option value="">— No dog selected —</option>
-            {dogs.map((d) => (
-              <option key={d.id} value={d.id}>
-                {d.name} {d.breed ? `(${d.breed})` : ''}
-              </option>
-            ))}
-          </select>
-        </div>
-      )}
-
       <div
         onDragOver={(e) => { e.preventDefault(); setDragging(true); }}
         onDragLeave={() => setDragging(false)}
@@ -99,9 +70,7 @@ export default function FileUpload({ dogs, onUploadComplete, preselectedDogId }:
         ) : (
           <>
             <div className="text-4xl mb-2">📄</div>
-            <p className="text-sm font-medium text-gray-700">
-              Drop a PDF here, or click to browse
-            </p>
+            <p className="text-sm font-medium text-gray-700">Drop a PDF here, or click to browse</p>
             <p className="text-xs text-gray-400 mt-1">.pdf</p>
           </>
         )}

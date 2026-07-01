@@ -19,7 +19,7 @@ export async function POST(req: NextRequest) {
 
   const formData = await req.formData();
   const file = formData.get('file') as File | null;
-  const dogId = formData.get('dogId') as string | null;
+  const sample = (formData.get('sample') as string | null) ?? '';
 
   if (!file) return NextResponse.json({ error: 'No file provided' }, { status: 400 });
 
@@ -49,9 +49,9 @@ export async function POST(req: NextRequest) {
 
   const result = db
     .prepare(
-      'INSERT INTO uploads (user_id, dog_id, filename, original_name, file_type, file_path, parsed_text) VALUES (?, ?, ?, ?, ?, ?, ?)'
+      'INSERT INTO uploads (user_id, filename, original_name, file_type, file_path, parsed_text, sample) VALUES (?, ?, ?, ?, ?, ?, ?)'
     )
-    .run(user.id, dogId ? parseInt(dogId) : null, safeName, file.name, 'pdf', filePath, parsedText || null);
+    .run(user.id, safeName, file.name, 'pdf', filePath, parsedText || null, sample || null);
 
   return NextResponse.json({ ok: true, uploadId: result.lastInsertRowid, fileType: 'pdf' });
 }

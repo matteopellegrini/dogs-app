@@ -19,9 +19,8 @@ interface Upload {
   id: number;
   original_name: string;
   file_type: string;
-  variant_count: number;
   created_at: string;
-  dog_name?: string;
+  sample?: string;
   parsed_text?: string;
 }
 
@@ -185,8 +184,6 @@ export default function Dashboard() {
 
   const samplePath = SAMPLES.find(s => s.id === activeSample)?.path ?? '';
   const activeSampleLabel = SAMPLES.find(s => s.id === activeSample)?.label ?? activeSample;
-  // Match the active sample to a dog by name (case-insensitive prefix match on sample id)
-  const uploadDog = dogs.find(d => d.name.toLowerCase() === activeSample.toLowerCase()) ?? null;
 
   useEffect(() => {
     if (status === 'unauthenticated') router.push('/login');
@@ -391,69 +388,49 @@ export default function Dashboard() {
                 {/* ── Upload ── */}
                 {tab === 'upload' && (
                   <div>
-                    {/* Context banner — shows which dog is active */}
-                    <div className="flex items-center gap-2 mb-6 px-4 py-3 rounded-xl border"
-                      style={{ background: '#EEF0FB', borderColor: '#C7CAF0' }}>
-                      <span className="text-lg">🐾</span>
-                      {uploadDog ? (
-                        <p className="text-sm font-medium" style={{ color: '#3540CA' }}>
-                          Uploading files for <strong>{uploadDog.name}</strong>
-                          {uploadDog.breed && <span className="font-normal text-gray-500"> · {uploadDog.breed}</span>}
-                          <span className="ml-2 text-xs font-normal text-gray-400">— switch sample in the top-right to change dog</span>
-                        </p>
-                      ) : (
-                        <p className="text-sm" style={{ color: '#3540CA' }}>
-                          No dog named <strong>{activeSample.toUpperCase()}</strong> found in your dogs list.
-                          Add a dog with that name in the sidebar to enable uploads for this sample.
-                        </p>
-                      )}
-                    </div>
-
-                    {uploadDog && (
-                      <>
-                        <p className="text-sm text-gray-500 mb-4">Upload PDF documents — lab reports, health records, or any supporting files.</p>
-                        <FileUpload dogs={[]} preselectedDogId={uploadDog.id} onUploadComplete={refreshData} />
-                        {(() => {
-                          const dogUploads = uploads.filter(u => u.dog_name === uploadDog.name);
-                          return dogUploads.length > 0 ? (
-                            <div className="mt-8">
-                              <h3 className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-3">
-                                Files for {uploadDog.name}
-                              </h3>
-                              <div className="space-y-2">
-                                {dogUploads.map(u => (
-                                  <div key={u.id}>
-                                    <button
-                                      onClick={() => setSelectedUpload(selectedUpload?.id === u.id ? null : u)}
-                                      className="w-full flex items-center gap-3 border border-gray-100 rounded-xl px-4 py-3 hover:bg-gray-50 transition-colors text-left"
-                                    >
-                                      <span className="text-2xl">📄</span>
-                                      <div className="flex-1 min-w-0">
-                                        <p className="text-sm font-medium text-gray-700 truncate">{u.original_name}</p>
-                                        <p className="text-xs text-gray-400">{new Date(u.created_at).toLocaleDateString()}</p>
-                                      </div>
-                                      <span className="text-xs px-2 py-0.5 rounded-full font-medium uppercase shrink-0"
-                                        style={{ background: '#C4F9FF', color: '#3540CA' }}>
-                                        PDF
-                                      </span>
-                                      <span className="text-gray-400 text-xs shrink-0">{selectedUpload?.id === u.id ? '▲' : '▼'}</span>
-                                    </button>
-                                    {selectedUpload?.id === u.id && u.parsed_text && (
-                                      <ParsedPdfTable text={u.parsed_text} />
-                                    )}
-                                    {selectedUpload?.id === u.id && !u.parsed_text && (
-                                      <div className="border border-gray-100 border-t-0 rounded-b-xl px-4 py-3 text-xs text-gray-400">
-                                        No text content could be extracted from this PDF.
-                                      </div>
-                                    )}
+                    <p className="text-sm text-gray-500 mb-6">
+                      Upload PDF documents for <strong>{activeSampleLabel}</strong> — lab reports, health records, or any supporting files.
+                    </p>
+                    <FileUpload sample={activeSample} onUploadComplete={refreshData} />
+                    {(() => {
+                      const sampleUploads = uploads.filter(u => u.sample === activeSample);
+                      return sampleUploads.length > 0 ? (
+                        <div className="mt-8">
+                          <h3 className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-3">
+                            Uploaded files
+                          </h3>
+                          <div className="space-y-2">
+                            {sampleUploads.map(u => (
+                              <div key={u.id}>
+                                <button
+                                  onClick={() => setSelectedUpload(selectedUpload?.id === u.id ? null : u)}
+                                  className="w-full flex items-center gap-3 border border-gray-100 rounded-xl px-4 py-3 hover:bg-gray-50 transition-colors text-left"
+                                >
+                                  <span className="text-2xl">📄</span>
+                                  <div className="flex-1 min-w-0">
+                                    <p className="text-sm font-medium text-gray-700 truncate">{u.original_name}</p>
+                                    <p className="text-xs text-gray-400">{new Date(u.created_at).toLocaleDateString()}</p>
                                   </div>
-                                ))}
+                                  <span className="text-xs px-2 py-0.5 rounded-full font-medium uppercase shrink-0"
+                                    style={{ background: '#C4F9FF', color: '#3540CA' }}>
+                                    PDF
+                                  </span>
+                                  <span className="text-gray-400 text-xs shrink-0">{selectedUpload?.id === u.id ? '▲' : '▼'}</span>
+                                </button>
+                                {selectedUpload?.id === u.id && u.parsed_text && (
+                                  <ParsedPdfTable text={u.parsed_text} />
+                                )}
+                                {selectedUpload?.id === u.id && !u.parsed_text && (
+                                  <div className="border border-gray-100 border-t-0 rounded-b-xl px-4 py-3 text-xs text-gray-400">
+                                    No text content could be extracted from this PDF.
+                                  </div>
+                                )}
                               </div>
-                            </div>
-                          ) : null;
-                        })()}
-                      </>
-                    )}
+                            ))}
+                          </div>
+                        </div>
+                      ) : null;
+                    })()}
                   </div>
                 )}
 

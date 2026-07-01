@@ -1,75 +1,4181 @@
 {
-  "summary": {
-    "omia_variants_screened": 2,
-    "positions_genotyped_from_bam": 1,
-    "allele_matches_found": 1,
-    "with_disease_or_trait_phene": 0
-  },
-  "matches": [
+  "variants": [
     {
+      "variant_id": "34",
       "gene": "MC1R",
       "chrom": "chr5",
       "pos": 64186854,
       "ref": "C",
       "alt": "T",
-      "zygosity": "homozygous_alt",
-      "depth": 3,
       "hgvs_c": "c.790A>G",
       "hgvs_p": "p.(M264V)",
-      "omia_id": "001590",
       "phene_name": "Coat colour, mask (melanistic mask, Em allele)",
-      "phene_symbol": "E^M",
-      "characterised": "yes",
-      "characterised_year": "2003",
+      "omia_id": "001590",
       "deleterious": "no",
+      "characterised": "yes",
       "mol_gen": "Homozygous M264V (Em/Em): all dogs with a melanistic mask carry at least one copy of this MC1R variant. Schmutz et al. (2003) showed this A>G transition at codon 264 causes the mask phenotype. Homozygous dogs express a full melanistic mask.",
       "clinical_note": "Coat colour trait, not a disease variant. Consistent with a dark facial mask phenotype.",
-      "ref_count": 0,
-      "alt_count": 3
-    }
-  ],
-  "all_results": [
-    {
-      "gene": "MC1R",
-      "chrom": "chr5",
-      "pos": 64186854,
-      "ref": "C",
-      "alt": "T",
-      "zygosity": "homozygous_alt",
-      "depth": 3,
-      "hgvs_c": "c.790A>G",
-      "hgvs_p": "p.(M264V)",
-      "omia_id": "001590",
-      "phene_name": "Coat colour, mask (melanistic mask, Em allele)",
-      "phene_symbol": "E^M",
-      "characterised": "yes",
-      "characterised_year": "2003",
-      "deleterious": "no",
-      "mol_gen": "Homozygous M264V (Em/Em): all dogs with a melanistic mask carry at least one copy of this MC1R variant. Schmutz et al. (2003) showed this A>G transition at codon 264 causes the mask phenotype. Homozygous dogs express a full melanistic mask.",
-      "clinical_note": "Coat colour trait, not a disease variant. Consistent with a dark facial mask phenotype.",
-      "ref_count": 0,
-      "alt_count": 3
+      "nelk": {
+        "zygosity": "homozygous",
+        "depth": 31,
+        "ref_count": 0,
+        "alt_count": 31,
+        "affected": true
+      },
+      "cosmo": {
+        "zygosity": "alt/alt",
+        "depth": 3,
+        "ref_count": 0,
+        "alt_count": 3,
+        "affected": true
+      }
     },
     {
+      "variant_id": "37",
+      "gene": "SPTB",
+      "chrom": "chr8",
+      "pos": 39446734,
+      "ref": "G",
+      "alt": "A",
+      "hgvs_c": "c.6119C>T",
+      "hgvs_p": "p.(T2020M)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "ref/ref",
+        "depth": 18,
+        "ref_count": 18,
+        "alt_count": 0,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "no call",
+        "depth": 2,
+        "ref_count": 2,
+        "alt_count": 0,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "72",
+      "gene": "PKD1",
+      "chrom": "chr6",
+      "pos": 39301108,
+      "ref": "G",
+      "alt": "A",
+      "hgvs_c": "c.9559G>A",
+      "hgvs_p": "p.(E3187K)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "ref/ref",
+        "depth": 20,
+        "ref_count": 20,
+        "alt_count": 0,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "no call",
+        "depth": 0,
+        "ref_count": 0,
+        "alt_count": 0,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "93",
+      "gene": "BRAF",
+      "chrom": "chr16",
+      "pos": 8081167,
+      "ref": "T",
+      "alt": "A",
+      "hgvs_c": "c.1643T>A",
+      "hgvs_p": "p.(V548E)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "ref/ref",
+        "depth": 19,
+        "ref_count": 19,
+        "alt_count": 0,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "no call",
+        "depth": 1,
+        "ref_count": 1,
+        "alt_count": 0,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "102",
+      "gene": "FAM20C",
+      "chrom": "chr6",
+      "pos": 16600662,
+      "ref": "G",
+      "alt": "A",
+      "hgvs_c": "c.899C>T",
+      "hgvs_p": "p.(A300V)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "ref/ref",
+        "depth": 22,
+        "ref_count": 22,
+        "alt_count": 0,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "no call",
+        "depth": 1,
+        "ref_count": 1,
+        "alt_count": 0,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "370",
+      "gene": "VDR",
+      "chrom": "chr27",
+      "pos": 39700521,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.462del",
+      "hgvs_p": "p.(P155Lfs*40)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 15,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 7,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "411",
+      "gene": "SLC37A2",
+      "chrom": "chr5",
+      "pos": 9406431,
+      "ref": "G",
+      "alt": "A",
+      "hgvs_c": "c.1332C>T",
+      "hgvs_p": "",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "ref/ref",
+        "depth": 15,
+        "ref_count": 15,
+        "alt_count": 0,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "no call",
+        "depth": 1,
+        "ref_count": 1,
+        "alt_count": 0,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "415",
+      "gene": "SNX14",
+      "chrom": "chr12",
+      "pos": 45749113,
+      "ref": "C",
+      "alt": "T",
+      "hgvs_c": "c.26531G>A",
+      "hgvs_p": "",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "ref/ref",
+        "depth": 17,
+        "ref_count": 17,
+        "alt_count": 0,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "no call",
+        "depth": 1,
+        "ref_count": 1,
+        "alt_count": 0,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "425",
+      "gene": "TPO",
+      "chrom": "chr17",
+      "pos": 775439,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.39_40insG",
+      "hgvs_p": "p.(R14Efs*184)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 22,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 2,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "452",
+      "gene": "ENAM",
+      "chrom": "chr13",
+      "pos": 61005994,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.1991_1995delTTTCC",
+      "hgvs_p": "p.(F665Rfs*3)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 24,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 6,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "454",
+      "gene": "P2RY12",
+      "chrom": "chr23",
+      "pos": 46454857,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.516_518del",
+      "hgvs_p": "p.(S173del)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 21,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 2,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "455",
+      "gene": "C3",
+      "chrom": "chr20",
+      "pos": 53972803,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.2136del",
+      "hgvs_p": "p.(F712Lfs*11)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 25,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 6,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "456",
+      "gene": "HSF4",
+      "chrom": "chr5",
+      "pos": 82783339,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.971del",
+      "hgvs_p": "p.(P324Hfs*87)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 32,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 4,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "457",
+      "gene": "SPTBN2",
+      "chrom": "chr18",
+      "pos": 51168605,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.5855_5862del",
+      "hgvs_p": "p.(I1952Rfs*28)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 22,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 2,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "458",
+      "gene": "CBD103",
+      "chrom": "chr16",
+      "pos": 55468992,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.231_233del",
+      "hgvs_p": "p.(G78del)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "no",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 26,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 2,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "459",
+      "gene": "KIT",
+      "chrom": "chr13",
+      "pos": 47941195,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.1936_1938del",
+      "hgvs_p": "p.(L646del)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "no",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 28,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 1,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "460",
+      "gene": "FAM83H",
+      "chrom": "chr13",
+      "pos": 38072385,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.977del",
+      "hgvs_p": "p.(P326Hfs*258)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 15,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 2,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "461",
+      "gene": "FUCA1",
+      "chrom": "chr2",
+      "pos": 75060032,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.379_392del",
+      "hgvs_p": "p.(A127Vfs*26)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 12,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 3,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "464",
+      "gene": "KIT",
+      "chrom": "chr13",
+      "pos": 47940552,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.1664_1669del",
+      "hgvs_p": "",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 28,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 3,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "465",
+      "gene": "KIT",
+      "chrom": "chr13",
+      "pos": 47940555,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.1667_1672del",
+      "hgvs_p": "",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 28,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 3,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "467",
+      "gene": "F9",
+      "chrom": "chrX",
+      "pos": 110505881,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.548_553delinsT",
+      "hgvs_p": "p.(R183Lfs*3)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 22,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 0,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "468",
+      "gene": "RPE65",
+      "chrom": "chr6",
+      "pos": 77428111,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.460_463del",
+      "hgvs_p": "p.(K154Lfs*53)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 25,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 1,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "470",
+      "gene": "MSTN",
+      "chrom": "chr37",
+      "pos": 630061,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.939_940delTG",
+      "hgvs_p": "p.(C313*)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 26,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 6,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "471",
+      "gene": "COL4A5",
+      "chrom": "chrX",
+      "pos": 82740164,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.513_522del",
+      "hgvs_p": "p.(N172Ifs)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 36,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 8,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "472",
+      "gene": "MFN2",
+      "chrom": "chr2",
+      "pos": 83765723,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.1617_1619del",
+      "hgvs_p": "p.(E539del)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 22,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 2,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "473",
+      "gene": "TPP1",
+      "chrom": "chr21",
+      "pos": 30433002,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.325delC",
+      "hgvs_p": "p.(R108Gfs*6)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 17,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 1,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "474",
+      "gene": "NDRG1",
+      "chrom": "chr13",
+      "pos": 30226269,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.1080_1089del",
+      "hgvs_p": "p.(R361Sfs*60)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 20,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 3,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "476",
+      "gene": "IL2RG",
+      "chrom": "chrX",
+      "pos": 55680372,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.30_33del",
+      "hgvs_p": "p.(L11Yfs)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 25,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 0,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "477",
+      "gene": "RASGRP2",
+      "chrom": "chr18",
+      "pos": 52923513,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.509_511del",
+      "hgvs_p": "p.(F170del)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 11,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 4,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "478",
+      "gene": "VPS13B",
+      "chrom": "chr13",
+      "pos": 1522615,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.2893_2896del",
+      "hgvs_p": "p.(V595Ifs)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 21,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 0,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "479",
+      "gene": "VWF",
+      "chrom": "chr27",
+      "pos": 7244427,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.255del",
+      "hgvs_p": "p.(V86Cfs)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 41,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 1,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "526",
+      "gene": "SLC3A1",
+      "chrom": "chr10",
+      "pos": 47761270,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.350del",
+      "hgvs_p": "p.(G117Afs*41)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 10,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 2,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "527",
+      "gene": "SLC3A1",
+      "chrom": "chr10",
+      "pos": 47785679,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.1098_1103del",
+      "hgvs_p": "p.(T367_T368del)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 19,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 3,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "528",
+      "gene": "PDE6B",
+      "chrom": "chr3",
+      "pos": 92356095,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.2404_2406del",
+      "hgvs_p": "p.(802del)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 29,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 5,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "531",
+      "gene": "FNIP2",
+      "chrom": "chr15",
+      "pos": 56323265,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.1078del",
+      "hgvs_p": "p.(I360Lfs*3)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 23,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 2,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "541",
+      "gene": "CLN5",
+      "chrom": "chr22",
+      "pos": 30662323,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.935_936del",
+      "hgvs_p": "p.(E312Vfs*6)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 19,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 2,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "542",
+      "gene": "DMD",
+      "chrom": "chrX",
+      "pos": 27778709,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.3084delG",
+      "hgvs_p": "p.(G1029Nfs*30)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 28,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 2,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "546",
+      "gene": "RAB3GAP1",
+      "chrom": "chr19",
+      "pos": 39392723,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.743del",
+      "hgvs_p": "p.P248Lfs*4",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 30,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 0,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "547",
+      "gene": "CNGA1",
+      "chrom": "chr13",
+      "pos": 44524171,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.1752_1755del",
+      "hgvs_p": "p.(T585Sfs*7)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 25,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 3,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "548",
+      "gene": "CNGA3",
+      "chrom": "chr10",
+      "pos": 45284311,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.1931_1933del",
+      "hgvs_p": "p.(V644del)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 19,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 6,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "551",
+      "gene": "MFSD8",
+      "chrom": "chr19",
+      "pos": 13821471,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.846del",
+      "hgvs_p": "p.(F282Lfs*13)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 27,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 3,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "552",
+      "gene": "SCARF2",
+      "chrom": "chr26",
+      "pos": 30405793,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.1873_1874del",
+      "hgvs_p": "p.(S625Gfs*15)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 16,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 5,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "562",
+      "gene": "DMD",
+      "chrom": "chrX",
+      "pos": 27615619,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.6057_6063del",
+      "hgvs_p": "p.(N2021Pfs)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 26,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 2,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "563",
+      "gene": "NIPAL4",
+      "chrom": "chr4",
+      "pos": 53624075,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.744delC",
+      "hgvs_p": "p.(I249*)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 21,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 0,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "564",
+      "gene": "SGK3",
+      "chrom": "chr29",
+      "pos": 16835127,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.287_290delTTAG",
+      "hgvs_p": "p.(V96Gfs*50)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 22,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 0,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "565",
+      "gene": "DIRAS1",
+      "chrom": "chr20",
+      "pos": 56946247,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.564_567del",
+      "hgvs_p": "p.(D189Afs*11)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 26,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 0,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "568",
+      "gene": "HSF4",
+      "chrom": "chr5",
+      "pos": 82783339,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.971_972insC",
+      "hgvs_p": "p.(L325Tfs*28)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 32,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 4,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "570",
+      "gene": "KIT",
+      "chrom": "chr13",
+      "pos": 47906539,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.140_141insA",
+      "hgvs_p": "p.(L48Vfs*10)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "no",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 28,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 1,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "572",
+      "gene": "ABCB4",
+      "chrom": "chr14",
+      "pos": 13562632,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.1660_1661insG",
+      "hgvs_p": "p.(L554Rfs)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 23,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 3,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "574",
+      "gene": "CCDC66",
+      "chrom": "chr20",
+      "pos": 33994690,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.521_522insA",
+      "hgvs_p": "p.(N174Kfs*2)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 21,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 2,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "575",
+      "gene": "SLC4A3",
+      "chrom": "chr37",
+      "pos": 26021559,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.2601_2602insC",
+      "hgvs_p": "p.(E859Rfs*104)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 24,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 4,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "576",
+      "gene": "FERMT3",
+      "chrom": "chr18",
+      "pos": 53343333,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.1349_1350insAAGACGGCTGCC",
+      "hgvs_p": "p.(L450_A451insRRLP)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 19,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 0,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "577",
+      "gene": "SGSH",
+      "chrom": "chr9",
+      "pos": 2406797,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.685_686insA",
+      "hgvs_p": "p.(Y229*)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 24,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 4,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "579",
+      "gene": "PPT1",
+      "chrom": "chr15",
+      "pos": 2953668,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.736_737insC",
+      "hgvs_p": "p.(F246Lfs*29)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 19,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 1,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "581",
+      "gene": "COL9A3",
+      "chrom": "chr24",
+      "pos": 47503148,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.10_11insG",
+      "hgvs_p": "p.(A4Gfs*46)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 3,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 0,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "582",
+      "gene": "PDE6B",
+      "chrom": "chr3",
+      "pos": 92356052,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.2448_2449insTGAAGTCC",
+      "hgvs_p": "p.(K817*)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 25,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 6,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "583",
+      "gene": "PCARE",
+      "chrom": "chr17",
+      "pos": 22937964,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.3149_3150insC",
+      "hgvs_p": "p.(C1051Vfs*90)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 13,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 0,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "584",
+      "gene": "IL2RG",
+      "chrom": "chrX",
+      "pos": 55679176,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.583_584insC",
+      "hgvs_p": "p.(R195Pfs*5)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 18,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 2,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "585",
+      "gene": "RASGRP2",
+      "chrom": "chr18",
+      "pos": 52923456,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.452dup",
+      "hgvs_p": "p.(D151Efs)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 17,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 4,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "606",
+      "gene": "IQCB1",
+      "chrom": "chr33",
+      "pos": 25712644,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.952_53insC",
+      "hgvs_p": "p.(S319Ifs*12)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 20,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 2,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "616",
+      "gene": "PNPLA1",
+      "chrom": "chr12",
+      "pos": 5599030,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.1445_1447delinsTACTACTA",
+      "hgvs_p": "p.(N482Ifs*11)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 37,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 8,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "632",
+      "gene": "NHEJ1",
+      "chrom": "chr37",
+      "pos": 25574007,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.588+462_588+8260del",
+      "hgvs_p": "",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 29,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 2,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "634",
+      "gene": "NPHP4",
+      "chrom": "chr5",
+      "pos": 60397403,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.479_526+130del",
+      "hgvs_p": "",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 25,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 3,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "638",
+      "gene": "SLC6A5",
+      "chrom": "chr21",
+      "pos": 43263755,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.-52_562+504del",
+      "hgvs_p": "",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 25,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 5,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "642",
+      "gene": "SLC13A1",
+      "chrom": "chr14",
+      "pos": 60764134,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.99+3353_*56671del",
+      "hgvs_p": "",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 34,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 3,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "675",
+      "gene": "SLC45A2",
+      "chrom": "chr4",
+      "pos": 74777793,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.1442_*3934del",
+      "hgvs_p": "",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 22,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 3,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "690",
+      "gene": "CLN8",
+      "chrom": "chr37",
+      "pos": 30738248,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.-14679_*18669del",
+      "hgvs_p": "",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 31,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 2,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "735",
+      "gene": "L2HGDH",
+      "chrom": "chr8",
+      "pos": 26947409,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.1298_1300delinsCTT",
+      "hgvs_p": "p.(L433_H434delinsPY)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 32,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 2,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "737",
+      "gene": "BEST1",
+      "chrom": "chr18",
+      "pos": 55072872,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.1388del",
+      "hgvs_p": "p.(P463Hfs)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 0,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 0,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "739",
+      "gene": "JAK2",
+      "chrom": "chr1",
+      "pos": 94091480,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.1849_1853delinsTTCCT",
+      "hgvs_p": "p.(V617_C618delinsFL)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 42,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 2,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "790",
+      "gene": "NSDHL",
+      "chrom": "chrX",
+      "pos": 122055445,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.507+220_*9662del",
+      "hgvs_p": "",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 25,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 0,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "794",
+      "gene": "GJA9",
+      "chrom": "chr15",
+      "pos": 3935567,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.1107_1108delAG",
+      "hgvs_p": "p.(A370Nfs*12)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 36,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 2,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "796",
+      "gene": "TYRP1",
+      "chrom": "chr11",
+      "pos": 33385242,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.1033_1035del",
+      "hgvs_p": "p.(P345del)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "no",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 27,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 1,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "802",
+      "gene": "SGCD",
+      "chrom": "chr4",
+      "pos": 54241112,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.534_535del",
+      "hgvs_p": "p.(E178Dfs*3)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 21,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 0,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "809",
+      "gene": "POMC",
+      "chrom": "chr17",
+      "pos": 19497254,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.561_575del",
+      "hgvs_p": "p.(E188fs)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 16,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 0,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "851",
+      "gene": "BTBD17",
+      "chrom": "chr9",
+      "pos": 6924623,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.85+206_85+207insG",
+      "hgvs_p": "",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 13,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 3,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "862",
+      "gene": "BMP3",
+      "chrom": "chr32",
+      "pos": 34768246,
+      "ref": "C",
+      "alt": "A",
+      "hgvs_c": "c.1344C>A",
+      "hgvs_p": "p.(F448L)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "no call",
+        "depth": 31,
+        "ref_count": 0,
+        "alt_count": 0,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "no call",
+        "depth": 4,
+        "ref_count": 0,
+        "alt_count": 0,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "918",
+      "gene": "CNGB1",
+      "chrom": "chr2",
+      "pos": 57893552,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.2387_2389delinsCTAGCTAC",
+      "hgvs_p": "p.(Y796Sfs*7)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 26,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 3,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "937",
+      "gene": "SLC27A4",
+      "chrom": "chr9",
+      "pos": 55256760,
+      "ref": "C",
+      "alt": "T",
+      "hgvs_c": "c.1250G>A",
+      "hgvs_p": "",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "ref/ref",
+        "depth": 21,
+        "ref_count": 21,
+        "alt_count": 0,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "no call",
+        "depth": 1,
+        "ref_count": 1,
+        "alt_count": 0,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "943",
+      "gene": "MAP9",
+      "chrom": "chr15",
+      "pos": 53267128,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.75+181_1378-215del",
+      "hgvs_p": "",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 30,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 0,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "949",
+      "gene": "TTC8",
+      "chrom": "chr8",
+      "pos": 60419811,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.669delA",
+      "hgvs_p": "p.(K223Rfs*15)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 28,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 2,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "954",
+      "gene": "SGSH",
+      "chrom": "chr9",
+      "pos": 2406852,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.740_742delCCA",
+      "hgvs_p": "p.(T247del)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 27,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 4,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "961",
+      "gene": "NEB",
+      "chrom": "chr19",
+      "pos": 54495515,
+      "ref": "G",
+      "alt": "T",
+      "hgvs_c": "",
+      "hgvs_p": "p.(S8042*)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "ref/ref",
+        "depth": 23,
+        "ref_count": 23,
+        "alt_count": 0,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "no call",
+        "depth": 1,
+        "ref_count": 1,
+        "alt_count": 0,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "968",
+      "gene": "VWF",
+      "chrom": "chr27",
+      "pos": 7223626,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.738del",
+      "hgvs_p": "p.(F366Lfs)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 20,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 4,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "970",
+      "gene": "SUV39H2",
+      "chrom": "chr2",
+      "pos": 20695177,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.996+3_996+6del",
+      "hgvs_p": "",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 30,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 0,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "971",
+      "gene": "CLN8",
+      "chrom": "chr37",
+      "pos": 30759857,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.349dupT",
+      "hgvs_p": "p.(E117*)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 32,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 8,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "976",
+      "gene": "MKLN1",
+      "chrom": "chr14",
+      "pos": 5560588,
+      "ref": "T",
+      "alt": "G",
+      "hgvs_c": "c.400+3A>C",
+      "hgvs_p": "p.(G105Sfs*10)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "ref/ref",
+        "depth": 20,
+        "ref_count": 20,
+        "alt_count": 0,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "ref/ref",
+        "depth": 3,
+        "ref_count": 3,
+        "alt_count": 0,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "986",
+      "gene": "NAPEPLD",
+      "chrom": "chr18",
+      "pos": 17261365,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.345_346insC",
+      "hgvs_p": "p.(E116Rfs*186)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 11,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 4,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "988",
+      "gene": "PTPRQ",
+      "chrom": "chr15",
+      "pos": 23227949,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.9230_9231insA",
+      "hgvs_p": "p.(N3077Kfs*24)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 24,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 10,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "993",
+      "gene": "RBP4",
+      "chrom": "chr28",
+      "pos": 8009403,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.90_92del",
+      "hgvs_p": "p.(K31del)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 5,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 0,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "997",
+      "gene": "MC1R",
+      "chrom": "chr5",
+      "pos": 64186827,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.816_817del",
+      "hgvs_p": "p.(I272Mfs*22)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "no",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 32,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 4,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "1017",
+      "gene": "EDA",
+      "chrom": "chrX",
+      "pos": 54703152,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.842delT",
+      "hgvs_p": "p.(L281Hfs*22)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 21,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 0,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "1039",
+      "gene": "F9",
+      "chrom": "chrX",
+      "pos": 110486026,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.-73del",
+      "hgvs_p": "",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 25,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 0,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "1043",
+      "gene": "KRT71",
+      "chrom": "chr27",
+      "pos": 44109043,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.1266_1273delinsACA",
+      "hgvs_p": "p.(S422Rfs)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "no",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 19,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 2,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "1056",
+      "gene": "DVL2",
+      "chrom": "chr5",
+      "pos": 32401939,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.2051del",
+      "hgvs_p": "p.(P684Lfs*26)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 18,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 2,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "1063",
+      "gene": "SGK3",
+      "chrom": "chr29",
+      "pos": 16820435,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.137_138insT",
+      "hgvs_p": "p.(E47Gfs*3)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 32,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 0,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "1080",
+      "gene": "SLC6A5",
+      "chrom": "chr21",
+      "pos": 43292580,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.1379_1380delCT",
+      "hgvs_p": "p.(S460Ffs*47)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 18,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 3,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "1084",
+      "gene": "ADAMTS3",
+      "chrom": "chr13",
+      "pos": 62347689,
+      "ref": "G",
+      "alt": "A",
+      "hgvs_c": "c.2786G>A",
+      "hgvs_p": "p.(R929H)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "ref/ref",
+        "depth": 28,
+        "ref_count": 28,
+        "alt_count": 0,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "no call",
+        "depth": 0,
+        "ref_count": 0,
+        "alt_count": 0,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "1085",
+      "gene": "MICOS13",
+      "chrom": "chr20",
+      "pos": 54739265,
+      "ref": "G",
+      "alt": "A",
+      "hgvs_c": "c.325G>A",
+      "hgvs_p": "p.(G109S)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "ref/ref",
+        "depth": 21,
+        "ref_count": 21,
+        "alt_count": 0,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "no call",
+        "depth": 2,
+        "ref_count": 2,
+        "alt_count": 0,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "1095",
+      "gene": "HSD17B3",
+      "chrom": "chr1",
+      "pos": 71141090,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.159_160del",
+      "hgvs_p": "p.(T54Wfs*13)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 47,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 1,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "1097",
+      "gene": "GP9",
+      "chrom": "chr20",
+      "pos": 3053455,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.127_*2052del",
+      "hgvs_p": "",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 16,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 1,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "1150",
+      "gene": "GDF9",
+      "chrom": "chr11",
+      "pos": 21142877,
+      "ref": "G",
+      "alt": "A",
+      "hgvs_c": "c.229C>T",
+      "hgvs_p": "p.(P77S)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "no",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "ref/ref",
+        "depth": 27,
+        "ref_count": 27,
+        "alt_count": 0,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "no call",
+        "depth": 2,
+        "ref_count": 2,
+        "alt_count": 0,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "1190",
+      "gene": "IDUA",
+      "chrom": "chr3",
+      "pos": 92143164,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.19_20insCGGCCCCC",
+      "hgvs_p": "p.(R7Pfs)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 4,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 2,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "1194",
+      "gene": "DSG1",
+      "chrom": "chr7",
+      "pos": 58140382,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.2541_2545del",
+      "hgvs_p": "p.(G848Wfs*2)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 31,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 4,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "1216",
+      "gene": "MLPH",
+      "chrom": "chr25",
+      "pos": 48431721,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.667_668insC",
+      "hgvs_p": "p.(H223Pfs*41)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "no",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 21,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 3,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "1218",
+      "gene": "SLC12A6",
+      "chrom": "chr30",
+      "pos": 1045146,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.178_181delinsCATCTCACTCAT",
+      "hgvs_p": "p.(M60Hfs*14)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 28,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 2,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "1230",
+      "gene": "PDE6B",
+      "chrom": "chr3",
+      "pos": 92358235,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.2218-2223del",
+      "hgvs_p": "p.(F740_F741del)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 26,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 0,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "1232",
+      "gene": "GH1",
+      "chrom": "chr9",
+      "pos": 15094286,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.573_578del",
+      "hgvs_p": "p.(K191_D193delinsN)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 25,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 12,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "1233",
+      "gene": "SBF2",
+      "chrom": "chr21",
+      "pos": 33682425,
+      "ref": "C",
+      "alt": "A",
+      "hgvs_c": "c.2363+1G>T",
+      "hgvs_p": "p.(G775Vfs*5)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "ref/ref",
+        "depth": 24,
+        "ref_count": 24,
+        "alt_count": 0,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "no call",
+        "depth": 1,
+        "ref_count": 1,
+        "alt_count": 0,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "1235",
+      "gene": "DMD",
+      "chrom": "chrX",
+      "pos": 27799221,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.2841delT",
+      "hgvs_p": "",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 20,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 0,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "1237",
+      "gene": "IDUA",
+      "chrom": "chr3",
+      "pos": 92131778,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.1400-76_1521+89del",
+      "hgvs_p": "p.(G467_E507del)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 4,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 0,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "1249",
+      "gene": "DMD",
+      "chrom": "chrX",
+      "pos": 27787968,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.94-10346_2807-6207del",
+      "hgvs_p": "",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 29,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 0,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "1250",
+      "gene": "SLC19A3",
+      "chrom": "chr25",
+      "pos": 40615750,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.205_210delinsN[35]",
+      "hgvs_p": "p.(P69Ifs*45)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 29,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 1,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "1260",
+      "gene": "LRIT3",
+      "chrom": "chr32",
+      "pos": 9852193,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.763del",
+      "hgvs_p": "p.(K245Nfs*5)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 38,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 3,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "1268",
+      "gene": "NSDHL",
+      "chrom": "chrX",
+      "pos": 122058753,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.718_722delGAACA",
+      "hgvs_p": "p.(E240Pfs*17)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 21,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 2,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "1274",
+      "gene": "CCDC66",
+      "chrom": "chr20",
+      "pos": 33966930,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.2262_c.2263insA",
+      "hgvs_p": "p.(V747Sfs*8)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 40,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 3,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "1314",
+      "gene": "LOXHD1",
+      "chrom": "chr7",
+      "pos": 44796966,
+      "ref": "G",
+      "alt": "C",
+      "hgvs_c": "c.5747G>C",
+      "hgvs_p": "p.(G1914A)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "ref/ref",
+        "depth": 34,
+        "ref_count": 34,
+        "alt_count": 0,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "ref/ref",
+        "depth": 4,
+        "ref_count": 4,
+        "alt_count": 0,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "1315",
+      "gene": "NDP",
+      "chrom": "chrX",
+      "pos": 38158131,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.653_654insC",
+      "hgvs_p": "p.(M114Hfs*16)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 24,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 1,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "1324",
+      "gene": "LAMA3",
+      "chrom": "chr7",
+      "pos": 64474839,
+      "ref": "T",
+      "alt": "A",
+      "hgvs_c": "c.8615T>A",
+      "hgvs_p": "p.(D2867V)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "ref/ref",
+        "depth": 33,
+        "ref_count": 33,
+        "alt_count": 0,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "no call",
+        "depth": 2,
+        "ref_count": 2,
+        "alt_count": 0,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "1334",
+      "gene": "SEPP1",
+      "chrom": "chr4",
+      "pos": 67866859,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.-6582_*516del",
+      "hgvs_p": "",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 30,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 0,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "1338",
+      "gene": "PLG",
+      "chrom": "chr1",
+      "pos": 50089345,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.-5645_49+292del",
+      "hgvs_p": "",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 15,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 6,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "1355",
+      "gene": "MOCOS",
+      "chrom": "chr7",
+      "pos": 53964250,
+      "ref": "C",
+      "alt": "A",
+      "hgvs_c": "c.232G>T",
+      "hgvs_p": "p.(G48_Y77del)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "ref/ref",
+        "depth": 29,
+        "ref_count": 29,
+        "alt_count": 0,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "no call",
+        "depth": 2,
+        "ref_count": 2,
+        "alt_count": 0,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "1363",
+      "gene": "F9",
+      "chrom": "chrX",
+      "pos": 110516123,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.821_822insA",
+      "hgvs_p": "p.(N274Kfs*23)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 35,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 0,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "1372",
+      "gene": "MYO5A",
+      "chrom": "chr30",
+      "pos": 18294888,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.4973_4974insA",
+      "hgvs_p": "p.(N1658Kfs*28).",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 27,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 4,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "1374",
+      "gene": "MIA3",
+      "chrom": "chr38",
+      "pos": 17616671,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.3822+3_3822+4del",
+      "hgvs_p": "p.(V1238_K1274del)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 29,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 1,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "1386",
+      "gene": "ASIP",
+      "chrom": "chr24",
+      "pos": 23891659,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "",
+      "hgvs_p": "",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "no",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 0,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 0,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "1399",
+      "gene": "LAMA2",
+      "chrom": "chr1",
+      "pos": 68292960,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.610-1412_789+653del",
+      "hgvs_p": "",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 4,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 0,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "1421",
+      "gene": "HACE1",
+      "chrom": "chr12",
+      "pos": 62609465,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.1001del",
+      "hgvs_p": "p.(G334Vfs*34)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 19,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 1,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "1422",
       "gene": "IGF1-AS (LOC111090066)",
       "chrom": "chr15",
       "pos": 41511739,
       "ref": "T",
       "alt": "C",
-      "zygosity": "no_call",
-      "depth": 0,
       "hgvs_c": "r.1043T>C",
       "hgvs_p": "",
-      "omia_id": "",
       "phene_name": "",
-      "phene_symbol": "",
-      "characterised": "",
+      "omia_id": "",
       "deleterious": "no",
+      "characterised": "",
       "mol_gen": "",
       "clinical_note": "No disease phenotype associated in OMIA. IGF1 antisense RNA locus; variant marked as non-deleterious.",
-      "ref_count": 0,
-      "alt_count": 0
+      "nelk": {
+        "zygosity": "homozygous",
+        "depth": 22,
+        "ref_count": 0,
+        "alt_count": 22,
+        "affected": true
+      },
+      "cosmo": {
+        "zygosity": "no call",
+        "depth": 0,
+        "ref_count": 0,
+        "alt_count": 0,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "1444",
+      "gene": "SHH",
+      "chrom": "chr16",
+      "pos": 20112737,
+      "ref": "C",
+      "alt": "T",
+      "hgvs_c": "",
+      "hgvs_p": "",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "ref/ref",
+        "depth": 25,
+        "ref_count": 25,
+        "alt_count": 0,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "no call",
+        "depth": 0,
+        "ref_count": 0,
+        "alt_count": 0,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "1445",
+      "gene": "SHH",
+      "chrom": "chr16",
+      "pos": 20112974,
+      "ref": "C",
+      "alt": "T",
+      "hgvs_c": "",
+      "hgvs_p": "",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "ref/ref",
+        "depth": 24,
+        "ref_count": 24,
+        "alt_count": 0,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "no call",
+        "depth": 0,
+        "ref_count": 0,
+        "alt_count": 0,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "1459",
+      "gene": "MTM1",
+      "chrom": "chrX",
+      "pos": 120209973,
+      "ref": "C",
+      "alt": "T",
+      "hgvs_c": "c.1467C>T",
+      "hgvs_p": "p.(R512*)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "ref/ref",
+        "depth": 18,
+        "ref_count": 18,
+        "alt_count": 0,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "no call",
+        "depth": 0,
+        "ref_count": 0,
+        "alt_count": 0,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "1460",
+      "gene": "COL5A2",
+      "chrom": "chr36",
+      "pos": 30944509,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.3388_3414del",
+      "hgvs_p": "p.(Lys1130_Asp1138del)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 22,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 2,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "1502",
+      "gene": "CNP",
+      "chrom": "chr9",
+      "pos": 20224304,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.1107del",
+      "hgvs_p": "p.(K370Nfs*11)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 33,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 3,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "1536",
+      "gene": "GUCY2D",
+      "chrom": "chr5",
+      "pos": 33055062,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.1598_1599insT",
+      "hgvs_p": "p.(S534Efs*20)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 34,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 4,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "1604",
+      "gene": "IBA57",
+      "chrom": "chr14",
+      "pos": 479737,
+      "ref": "G",
+      "alt": "A",
+      "hgvs_c": "c.439C>T",
+      "hgvs_p": "p.(R147W)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "ref/ref",
+        "depth": 17,
+        "ref_count": 17,
+        "alt_count": 0,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "no call",
+        "depth": 2,
+        "ref_count": 2,
+        "alt_count": 0,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "1625",
+      "gene": "COL6A3",
+      "chrom": "chr25",
+      "pos": 48287604,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.6398del",
+      "hgvs_p": "p.(P2133Rfs*109)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 25,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 2,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "1655",
+      "gene": "F8",
+      "chrom": "chrX",
+      "pos": 124075495,
+      "ref": null,
+      "alt": null,
+      "hgvs_c": "c.3206delA",
+      "hgvs_p": "",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "indel",
+        "depth": 25,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "indel",
+        "depth": 2,
+        "ref_count": null,
+        "alt_count": null,
+        "affected": false
+      }
+    },
+    {
+      "variant_id": "1657",
+      "gene": "COL11A1",
+      "chrom": "chr6",
+      "pos": 48049999,
+      "ref": "T",
+      "alt": "C",
+      "hgvs_c": "c.1775T>C",
+      "hgvs_p": "p.(F1592S)",
+      "phene_name": "",
+      "omia_id": "",
+      "deleterious": "yes",
+      "characterised": "",
+      "mol_gen": "",
+      "clinical_note": "",
+      "nelk": {
+        "zygosity": "ref/ref",
+        "depth": 23,
+        "ref_count": 23,
+        "alt_count": 0,
+        "affected": false
+      },
+      "cosmo": {
+        "zygosity": "no call",
+        "depth": 2,
+        "ref_count": 2,
+        "alt_count": 0,
+        "affected": false
+      }
     }
   ],
-  "method": "Exact position+allele match from OMIA database, genotyped from BAM (min depth 2, at ~3x WGS coverage)"
+  "summary": {
+    "total_screened": 139,
+    "nelk_affected": 2,
+    "cosmo_affected": 1,
+    "affected": 1
+  },
+  "method": "All OMIA canFam4 positions genotyped from BAM using pysam pileup (min_bq=20, min_mq=20). SNVs: allele-specific genotype; indels: depth only."
 }

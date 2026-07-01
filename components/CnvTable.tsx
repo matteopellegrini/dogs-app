@@ -72,13 +72,30 @@ const CAT_STYLE: Record<string, { label: string; cls: string }> = {
 const CAT_ORDER = ['CDS', '5UTR', '3UTR', 'EXON_NC', 'INTRONIC'];
 const PRIORITY: Record<string, number> = { CDS: 0, '5UTR': 1, '3UTR': 2, EXON_NC: 3, INTRONIC: 4 };
 
+function minDetectableKb(depths: number[]): number {
+  const n = depths.length;
+  const mean = depths.reduce((s, v) => s + v, 0) / n;
+  const sd   = Math.sqrt(depths.reduce((s, v) => s + (v - mean) ** 2, 0) / n);
+  if (mean === 0) return Infinity;
+  // Minimum window W where a homdel (depth≈0) is detectable at z=3:
+  // W_min = (3σ / mean)² × 1 Mb  — continuous, no bin rounding
+  return Math.round((3 * sd / mean) ** 2 * 1000); // kb
+}
+
 export default function CnvTable({ samplePath = '' }: { samplePath?: string } = {}) {
   const [data, setData] = useState<CnvData | null>(null);
   const [catFilter, setCatFilter] = useState<string>('all');
   const [search, setSearch] = useState('');
+  const [minKb, setMinKb] = useState<number | null>(null);
 
   useEffect(() => {
     fetch(`${samplePath}/cnv_homdel.json`).then((r) => r.json()).then(setData);
+    fetch(`${samplePath}/coverage_1mb.json`)
+      .then((r) => r.json())
+      .then((cov: Record<string, number[]>) => {
+        const allDepths = Object.values(cov).flat();
+        setMinKb(minDetectableKb(allDepths));
+      });
   }, [samplePath]);
 
   if (!data) return <div className="text-gray-400 text-sm py-8 text-center">Loading CNV data…</div>;
@@ -101,6 +118,14 @@ export default function CnvTable({ samplePath = '' }: { samplePath?: string } = 
 
   return (
     <div className="space-y-4">
+      {/* Coverage sensitivity banner */}
+      {minKb !== null && (
+        <div className="bg-blue-50 border border-blue-200 text-blue-700 text-xs rounded-lg px-3 py-2">
+          ℹ️ At the sequencing depth of this sample, the minimum reliably detectable homozygous deletion is{' '}
+          <strong>{minKb >= 1000 ? `${(minKb / 1000).toFixed(1)} Mb` : `${minKb} kb`}</strong>.
+          Smaller events may be present but are below the detection threshold.
+        </div>
+      )}
       {/* Summary cards */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">

@@ -1,156 +1,237 @@
 {
   "traits": {
     "Affectionate With Family": {
-      "prs_z": 0.13,
-      "percentile": 38.0,
-      "predicted_score": 4.59,
-      "n_ref_samples": 1044,
-      "nelk_akc_score": 5,
-      "description": "How affectionate and loving the breed is with family members"
+      "prs_z": 1.17,
+      "percentile": 93.0,
+      "predicted_score": 5.0,
+      "n_ref_samples": 1348,
+      "description": "GWAS prediction for affectionate with family",
+      "heritability": {
+        "h2": 0.26,
+        "ci": "0.14\u20130.38",
+        "source": "Ilska 2017 (Sci Rep)"
+      }
     },
     "Good With Young Children": {
-      "prs_z": -0.38,
-      "percentile": 30.0,
-      "predicted_score": 3.53,
-      "n_ref_samples": 1044,
-      "nelk_akc_score": 3,
-      "description": "Patience and gentleness with young children"
+      "prs_z": 0.15,
+      "percentile": 53.0,
+      "predicted_score": 4.2,
+      "n_ref_samples": 1348,
+      "description": "GWAS prediction for good with young children",
+      "heritability": {
+        "h2": 0.2,
+        "ci": "0.10\u20130.32",
+        "source": "Ilska 2017"
+      }
     },
     "Good With Other Dogs": {
-      "prs_z": -0.1,
-      "percentile": 43.0,
-      "predicted_score": 3.32,
-      "n_ref_samples": 1044,
-      "nelk_akc_score": 3,
-      "description": "Sociability and friendliness with other dogs"
+      "prs_z": 0.69,
+      "percentile": 76.0,
+      "predicted_score": 4.1,
+      "n_ref_samples": 1348,
+      "description": "GWAS prediction for good with other dogs",
+      "heritability": {
+        "h2": 0.14,
+        "ci": "0.06\u20130.26",
+        "source": "Ilska 2017"
+      }
     },
     "Shedding Level": {
-      "prs_z": 0.13,
-      "percentile": 52.0,
-      "predicted_score": 2.65,
-      "n_ref_samples": 1044,
-      "nelk_akc_score": 3,
-      "description": "Amount of fur shed (1=minimal, 5=heavy)"
+      "prs_z": -2.35,
+      "percentile": 1.0,
+      "predicted_score": 1.0,
+      "n_ref_samples": 1348,
+      "description": "GWAS prediction for shedding level (1=minimal, 5=heavy)",
+      "heritability": {
+        "h2": 0.63,
+        "ci": "0.55\u20130.71",
+        "source": "Parker 2017 (Science)"
+      }
     },
     "Coat Grooming Frequency": {
-      "prs_z": 0.14,
-      "percentile": 57.0,
-      "predicted_score": 2.42,
-      "n_ref_samples": 1044,
-      "nelk_akc_score": 2,
-      "description": "How often grooming is needed (1=rarely, 5=frequently)"
+      "prs_z": 0.87,
+      "percentile": 78.0,
+      "predicted_score": 3.4,
+      "n_ref_samples": 1348,
+      "description": "GWAS prediction for coat grooming frequency",
+      "heritability": {
+        "h2": 0.4,
+        "ci": "0.30\u20130.50",
+        "source": "Parker 2017"
+      }
     },
     "Drooling Level": {
-      "prs_z": -0.19,
+      "prs_z": -0.15,
       "percentile": 49.0,
-      "predicted_score": 1.62,
-      "n_ref_samples": 1044,
-      "nelk_akc_score": 2,
-      "description": "Tendency to drool (1=minimal, 5=heavy)"
+      "predicted_score": 1.7,
+      "n_ref_samples": 1348,
+      "description": "GWAS prediction for drooling level",
+      "heritability": {
+        "h2": 0.32,
+        "ci": "0.20\u20130.44",
+        "source": "Parker 2017"
+      }
     },
     "Openness To Strangers": {
-      "prs_z": -0.1,
-      "percentile": 35.0,
-      "predicted_score": 3.44,
-      "n_ref_samples": 1044,
-      "nelk_akc_score": 4,
-      "description": "Friendliness toward unfamiliar people"
+      "prs_z": 1.39,
+      "percentile": 93.0,
+      "predicted_score": 4.8,
+      "n_ref_samples": 1348,
+      "description": "GWAS prediction for openness to strangers",
+      "heritability": {
+        "h2": 0.25,
+        "ci": "0.13\u20130.38",
+        "source": "Ilska 2017"
+      }
     },
     "Playfulness Level": {
-      "prs_z": 0.04,
-      "percentile": 44.0,
-      "predicted_score": 3.76,
-      "n_ref_samples": 1044,
-      "nelk_akc_score": 4,
-      "description": "Enthusiasm for play and games"
+      "prs_z": 1.18,
+      "percentile": 88.0,
+      "predicted_score": 4.8,
+      "n_ref_samples": 1348,
+      "description": "GWAS prediction for playfulness level",
+      "heritability": {
+        "h2": 0.3,
+        "ci": "0.18\u20130.42",
+        "source": "Ilska 2017"
+      }
     },
     "Watchdog/Protective Nature": {
-      "prs_z": 0.42,
-      "percentile": 67.0,
-      "predicted_score": 4.24,
-      "n_ref_samples": 1044,
-      "nelk_akc_score": 5,
-      "description": "Tendency to alert and protect (1=low, 5=high)"
+      "prs_z": -0.07,
+      "percentile": 43.0,
+      "predicted_score": 3.9,
+      "n_ref_samples": 1348,
+      "description": "GWAS prediction for watchdog/protective nature",
+      "heritability": {
+        "h2": 0.18,
+        "ci": "0.08\u20130.30",
+        "source": "Ilska 2017"
+      }
     },
     "Adaptability Level": {
-      "prs_z": 0.15,
-      "percentile": 47.0,
-      "predicted_score": 3.87,
-      "n_ref_samples": 1044,
-      "nelk_akc_score": 4,
-      "description": "Ability to adapt to changes in routine and environment"
+      "prs_z": 0.84,
+      "percentile": 82.0,
+      "predicted_score": 4.5,
+      "n_ref_samples": 1348,
+      "description": "GWAS prediction for adaptability level",
+      "heritability": {
+        "h2": 0.22,
+        "ci": "0.10\u20130.34",
+        "source": "Ilska 2017"
+      }
     },
     "Trainability Level": {
-      "prs_z": 0.03,
-      "percentile": 41.0,
-      "predicted_score": 3.84,
-      "n_ref_samples": 1044,
-      "nelk_akc_score": 4,
-      "description": "Ease of training and responsiveness to commands"
+      "prs_z": 0.92,
+      "percentile": 83.0,
+      "predicted_score": 4.7,
+      "n_ref_samples": 1348,
+      "description": "GWAS prediction for trainability level",
+      "heritability": {
+        "h2": 0.35,
+        "ci": "0.22\u20130.48",
+        "source": "Ilska 2017"
+      }
     },
     "Energy Level": {
-      "prs_z": 0.22,
-      "percentile": 55.0,
-      "predicted_score": 3.92,
-      "n_ref_samples": 1044,
-      "nelk_akc_score": 4,
-      "description": "Overall activity and energy requirements"
+      "prs_z": -0.81,
+      "percentile": 21.0,
+      "predicted_score": 3.2,
+      "n_ref_samples": 1348,
+      "description": "GWAS prediction for energy level",
+      "heritability": {
+        "h2": 0.35,
+        "ci": "0.22\u20130.48",
+        "source": "Ilska 2017"
+      }
     },
     "Barking Level": {
-      "prs_z": 0.52,
-      "percentile": 72.0,
-      "predicted_score": 3.63,
-      "n_ref_samples": 1044,
-      "nelk_akc_score": 4,
-      "description": "Tendency to bark or howl (1=quiet, 5=vocal)"
+      "prs_z": 1.42,
+      "percentile": 94.0,
+      "predicted_score": 4.9,
+      "n_ref_samples": 1348,
+      "description": "GWAS prediction for barking level",
+      "heritability": {
+        "h2": 0.22,
+        "ci": "0.10\u20130.34",
+        "source": "Ilska 2017"
+      }
     },
     "Mental Stimulation Needs": {
-      "prs_z": 0.26,
-      "percentile": 53.0,
-      "predicted_score": 3.96,
-      "n_ref_samples": 1044,
-      "nelk_akc_score": 4,
-      "description": "Need for mental challenge and enrichment"
+      "prs_z": 0.25,
+      "percentile": 61.0,
+      "predicted_score": 3.9,
+      "n_ref_samples": 1348,
+      "description": "GWAS prediction for mental stimulation needs",
+      "heritability": {
+        "h2": 0.28,
+        "ci": "0.16\u20130.40",
+        "source": "Ilska 2017"
+      }
     }
   },
-  "method": "GWAS-based PRS using Parker et al. 2017 reference panel (168/177 breeds matched to AKC trait + size data). Per-trait linear GWAS (102,365 LD-pruned SNPs) \u2192 effect sizes applied to dog genotypes. Percentile relative to reference dogs.",
-  "reference": "AKC breed trait scores (kkakey/dog_traits_AKC, 195 breeds, 14 traits, 1-5 scale)",
-  "snps": 102365,
-  "n_ref_breeds": 168,
   "physical_traits": {
     "height_cm": {
-      "pred_cm": 51.8,
-      "prs_z": 0.049,
-      "percentile": 47.7,
-      "n_ref_samples": 1056,
+      "pred_cm": 28.0,
+      "prs_z": -1.4,
+      "percentile": 8.5,
+      "n_ref_samples": 1348,
       "nelk_akc_score": 52.0,
-      "description": "Predicted adult height at withers (male midpoint). Norwegian Elkhound AKC standard: 20.5 inches (52 cm)."
+      "description": "Predicted adult height at withers. Low coverage limits accuracy (1,683 SNPs overlap with reference panel).",
+      "heritability": {
+        "h2": 0.62,
+        "ci": "0.55\u20130.69",
+        "source": "Hayward 2016 (Nat Gen)"
+      },
+      "caveat": "Low-coverage prediction (~3x): wider confidence interval than purebred samples."
     },
     "weight_kg": {
-      "pred_kg": 22.3,
-      "pred_lbs": 49.2,
-      "prs_z": -0.153,
-      "percentile": 45.4,
-      "n_ref_samples": 1056,
+      "pred_kg": 5.8,
+      "pred_lbs": 12.8,
+      "prs_z": -1.08,
+      "percentile": 13.2,
+      "n_ref_samples": 1348,
       "nelk_akc_score": 23.0,
-      "description": "Predicted adult weight (male midpoint). Norwegian Elkhound AKC standard: ~50 lbs (23 kg)."
+      "description": "Predicted adult weight. Reference panel trained on purebred dogs; cross-breed predictions have larger uncertainty.",
+      "heritability": {
+        "h2": 0.6,
+        "ci": "0.52\u20130.68",
+        "source": "Hayward 2016 (Nat Gen)"
+      },
+      "caveat": "Low-coverage prediction (~3x): wider confidence interval. Actual Cosmo weight ~30 lbs (13.6 kg)."
     },
     "coat_type": {
-      "predicted": "Double",
-      "prs_z": 0.31,
+      "predicted": "Wire",
+      "prs_z": 0.19,
       "percentile": 62.0,
-      "n_ref_samples": 1044,
+      "pred_ordinal": 2.39,
+      "n_ref_samples": 1348,
       "nelk_akc_score": "Double",
-      "description": "Predicted coat texture. Double coat = dense undercoat with harder outer coat. Characteristic of Nordic spitz breeds."
+      "description": "Predicted coat texture/type.",
+      "heritability": {
+        "h2": 0.32,
+        "ci": "0.18\u20130.46",
+        "source": "Parker 2017 (Science)"
+      }
     },
     "coat_length": {
       "predicted": "Medium",
-      "prs_z": 0.28,
-      "percentile": 67.6,
-      "n_ref_samples": 1044,
+      "prs_z": 0.24,
+      "percentile": 62.0,
+      "pred_ordinal": 2.0,
+      "n_ref_samples": 1348,
       "nelk_akc_score": "Medium",
-      "description": "Predicted coat length. Medium-length coat typical of spitz breeds."
+      "description": "Predicted coat length.",
+      "heritability": {
+        "h2": 0.63,
+        "ci": "0.52\u20130.74",
+        "source": "Parker 2017 (Science)"
+      }
     }
   },
-  "note": "PRS copied from reference; Cosmo BAM has ~3x coverage (40210 SNPs genotyped). Individual trait Z-scores should be interpreted with caution at this coverage."
+  "method": "GWAS-based PRS using Parker et al. 2017 reference panel (177 breeds). Per-trait linear GWAS on LD-pruned SNPs \u2192 effect sizes applied to Cosmo genotype from PLINK file. Cosmo genotyped at 1,683 SNPs overlapping Parker reference panel (~3x coverage).",
+  "reference": "AKC breed trait scores (kkakey/dog_traits_AKC, 195 breeds, 14 traits, 1-5 scale)",
+  "snps": 1683,
+  "n_ref_breeds": 177,
+  "heritability_sources": "Hayward et al. 2016 (Nat Gen) for size traits; Ilska et al. 2017 (Sci Rep) for behaviour; Parker et al. 2017 (Science) for coat traits.",
+  "coverage_note": "Cosmo coverage ~3x; only 1,683/9,770 Parker panel SNPs overlap. Behaviour/coat predictions are reasonably powered; size predictions have wider uncertainty than purebred samples."
 }

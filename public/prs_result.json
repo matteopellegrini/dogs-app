@@ -6,7 +6,12 @@
       "predicted_score": 4.59,
       "n_ref_samples": 1044,
       "nelk_akc_score": 5,
-      "description": "How affectionate and loving the breed is with family members"
+      "description": "How affectionate and loving the breed is with family members",
+      "heritability": {
+        "h2": 0.26,
+        "ci": "0.14\u20130.38",
+        "source": "Ilska 2017 (Sci Rep)"
+      }
     },
     "Good With Young Children": {
       "prs_z": -0.38,
@@ -14,7 +19,12 @@
       "predicted_score": 3.53,
       "n_ref_samples": 1044,
       "nelk_akc_score": 3,
-      "description": "Patience and gentleness with young children"
+      "description": "Patience and gentleness with young children",
+      "heritability": {
+        "h2": 0.2,
+        "ci": "0.10\u20130.32",
+        "source": "Ilska 2017"
+      }
     },
     "Good With Other Dogs": {
       "prs_z": -0.1,
@@ -22,7 +32,12 @@
       "predicted_score": 3.32,
       "n_ref_samples": 1044,
       "nelk_akc_score": 3,
-      "description": "Sociability and friendliness with other dogs"
+      "description": "Sociability and friendliness with other dogs",
+      "heritability": {
+        "h2": 0.14,
+        "ci": "0.06\u20130.26",
+        "source": "Ilska 2017"
+      }
     },
     "Shedding Level": {
       "prs_z": 0.13,
@@ -30,7 +45,12 @@
       "predicted_score": 2.65,
       "n_ref_samples": 1044,
       "nelk_akc_score": 3,
-      "description": "Amount of fur shed (1=minimal, 5=heavy)"
+      "description": "Amount of fur shed (1=minimal, 5=heavy)",
+      "heritability": {
+        "h2": 0.63,
+        "ci": "0.55\u20130.71",
+        "source": "Parker 2017 (Science)"
+      }
     },
     "Coat Grooming Frequency": {
       "prs_z": 0.14,
@@ -38,7 +58,12 @@
       "predicted_score": 2.42,
       "n_ref_samples": 1044,
       "nelk_akc_score": 2,
-      "description": "How often grooming is needed (1=rarely, 5=frequently)"
+      "description": "How often grooming is needed (1=rarely, 5=frequently)",
+      "heritability": {
+        "h2": 0.4,
+        "ci": "0.30\u20130.50",
+        "source": "Parker 2017"
+      }
     },
     "Drooling Level": {
       "prs_z": -0.19,
@@ -46,7 +71,12 @@
       "predicted_score": 1.62,
       "n_ref_samples": 1044,
       "nelk_akc_score": 2,
-      "description": "Tendency to drool (1=minimal, 5=heavy)"
+      "description": "Tendency to drool (1=minimal, 5=heavy)",
+      "heritability": {
+        "h2": 0.32,
+        "ci": "0.20\u20130.44",
+        "source": "Parker 2017"
+      }
     },
     "Openness To Strangers": {
       "prs_z": -0.1,
@@ -54,7 +84,12 @@
       "predicted_score": 3.44,
       "n_ref_samples": 1044,
       "nelk_akc_score": 4,
-      "description": "Friendliness toward unfamiliar people"
+      "description": "Friendliness toward unfamiliar people",
+      "heritability": {
+        "h2": 0.25,
+        "ci": "0.13\u20130.38",
+        "source": "Ilska 2017"
+      }
     },
     "Playfulness Level": {
       "prs_z": 0.04,
@@ -62,7 +97,12 @@
       "predicted_score": 3.76,
       "n_ref_samples": 1044,
       "nelk_akc_score": 4,
-      "description": "Enthusiasm for play and games"
+      "description": "Enthusiasm for play and games",
+      "heritability": {
+        "h2": 0.3,
+        "ci": "0.18\u20130.42",
+        "source": "Ilska 2017"
+      }
     },
     "Watchdog/Protective Nature": {
       "prs_z": 0.42,
@@ -70,7 +110,12 @@
       "predicted_score": 4.24,
       "n_ref_samples": 1044,
       "nelk_akc_score": 5,
-      "description": "Tendency to alert and protect (1=low, 5=high)"
+      "description": "Tendency to alert and protect (1=low, 5=high)",
+      "heritability": {
+        "h2": 0.18,
+        "ci": "0.08\u20130.30",
+        "source": "Ilska 2017"
+      }
     },
     "Adaptability Level": {
       "prs_z": 0.15,
@@ -78,7 +123,12 @@
       "predicted_score": 3.87,
       "n_ref_samples": 1044,
       "nelk_akc_score": 4,
-      "description": "Ability to adapt to changes in routine and environment"
+      "description": "Ability to adapt to changes in routine and environment",
+      "heritability": {
+        "h2": 0.22,
+        "ci": "0.10\u20130.34",
+        "source": "Ilska 2017"
+      }
     },
     "Trainability Level": {
       "prs_z": 0.03,
@@ -86,7 +136,12 @@
       "predicted_score": 3.84,
       "n_ref_samples": 1044,
       "nelk_akc_score": 4,
-      "description": "Ease of training and responsiveness to commands"
+      "description": "Ease of training and responsiveness to commands",
+      "heritability": {
+        "h2": 0.35,
+        "ci": "0.22\u20130.48",
+        "source": "Ilska 2017"
+      }
     },
     "Energy Level": {
       "prs_z": 0.22,
@@ -94,7 +149,12 @@
       "predicted_score": 3.92,
       "n_ref_samples": 1044,
       "nelk_akc_score": 4,
-      "description": "Overall activity and energy requirements"
+      "description": "Overall activity and energy requirements",
+      "heritability": {
+        "h2": 0.35,
+        "ci": "0.22\u20130.48",
+        "source": "Ilska 2017"
+      }
     },
     "Barking Level": {
       "prs_z": 0.52,
@@ -102,7 +162,12 @@
       "predicted_score": 3.63,
       "n_ref_samples": 1044,
       "nelk_akc_score": 4,
-      "description": "Tendency to bark or howl (1=quiet, 5=vocal)"
+      "description": "Tendency to bark or howl (1=quiet, 5=vocal)",
+      "heritability": {
+        "h2": 0.22,
+        "ci": "0.10\u20130.34",
+        "source": "Ilska 2017"
+      }
     },
     "Mental Stimulation Needs": {
       "prs_z": 0.26,
@@ -110,7 +175,12 @@
       "predicted_score": 3.96,
       "n_ref_samples": 1044,
       "nelk_akc_score": 4,
-      "description": "Need for mental challenge and enrichment"
+      "description": "Need for mental challenge and enrichment",
+      "heritability": {
+        "h2": 0.28,
+        "ci": "0.16\u20130.40",
+        "source": "Ilska 2017"
+      }
     }
   },
   "method": "GWAS-based PRS using Parker et al. 2017 reference panel (168/177 breeds matched to AKC trait + size data). Per-trait linear GWAS (102,365 LD-pruned SNPs) \u2192 effect sizes applied to dog genotypes. Percentile relative to reference dogs.",
@@ -124,7 +194,12 @@
       "percentile": 47.7,
       "n_ref_samples": 1056,
       "nelk_akc_score": 52.0,
-      "description": "Predicted adult height at withers (male midpoint). Norwegian Elkhound AKC standard: 20.5 inches (52 cm)."
+      "description": "Predicted adult height at withers (male midpoint). Norwegian Elkhound AKC standard: 20.5 inches (52 cm).",
+      "heritability": {
+        "h2": 0.62,
+        "ci": "0.55\u20130.69",
+        "source": "Hayward 2016 (Nat Gen)"
+      }
     },
     "weight_kg": {
       "pred_kg": 22.3,
@@ -133,7 +208,12 @@
       "percentile": 45.4,
       "n_ref_samples": 1056,
       "nelk_akc_score": 23.0,
-      "description": "Predicted adult weight (male midpoint). Norwegian Elkhound AKC standard: ~50 lbs (23 kg)."
+      "description": "Predicted adult weight (male midpoint). Norwegian Elkhound AKC standard: ~50 lbs (23 kg).",
+      "heritability": {
+        "h2": 0.6,
+        "ci": "0.52\u20130.68",
+        "source": "Hayward 2016 (Nat Gen)"
+      }
     },
     "coat_type": {
       "predicted": "Double",
@@ -141,7 +221,12 @@
       "percentile": 62.0,
       "n_ref_samples": 1044,
       "nelk_akc_score": "Double",
-      "description": "Predicted coat texture. Double coat = dense undercoat with harder outer coat. Characteristic of Nordic spitz breeds."
+      "description": "Predicted coat texture. Double coat = dense undercoat with harder outer coat. Characteristic of Nordic spitz breeds.",
+      "heritability": {
+        "h2": 0.32,
+        "ci": "0.18\u20130.46",
+        "source": "Parker 2017 (Science)"
+      }
     },
     "coat_length": {
       "predicted": "Medium",
@@ -149,7 +234,13 @@
       "percentile": 67.6,
       "n_ref_samples": 1044,
       "nelk_akc_score": "Medium",
-      "description": "Predicted coat length. Medium-length coat typical of spitz breeds."
+      "description": "Predicted coat length. Medium-length coat typical of spitz breeds.",
+      "heritability": {
+        "h2": 0.63,
+        "ci": "0.52\u20130.74",
+        "source": "Parker 2017 (Science)"
+      }
     }
-  }
+  },
+  "heritability_sources": "Hayward et al. 2016 (Nat Gen) for size traits; Ilska et al. 2017 (Sci Rep) for behaviour; Parker et al. 2017 (Science) for coat traits."
 }

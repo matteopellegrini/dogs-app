@@ -2,6 +2,12 @@
 
 import { useEffect, useState } from 'react';
 
+interface Heritability {
+  h2: number;
+  ci: string;
+  source: string;
+}
+
 interface TraitResult {
   prs_z: number;
   percentile: number;
@@ -9,6 +15,7 @@ interface TraitResult {
   n_ref_samples: number;
   nelk_akc_score: number | null;
   description: string;
+  heritability?: Heritability;
 }
 
 interface PhysicalTrait {
@@ -17,6 +24,8 @@ interface PhysicalTrait {
   n_ref_samples: number;
   nelk_akc_score: number | string;
   description: string;
+  caveat?: string;
+  heritability?: Heritability;
   // height
   pred_cm?: number;
   // weight
@@ -33,6 +42,8 @@ interface PrsResult {
   reference: string;
   snps: number;
   n_ref_breeds: number;
+  coverage_note?: string;
+  heritability_sources?: string;
 }
 
 const TRAIT_ICONS: Record<string, string> = {
@@ -87,6 +98,13 @@ export default function PrsPanel({ samplePath = '' }: { samplePath?: string } = 
         {data.n_ref_breeds} AKC breed trait profiles · Parker 2017 reference panel
       </div>
 
+      {/* Coverage note for low-coverage samples */}
+      {data.coverage_note && (
+        <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 text-xs text-amber-700">
+          ⚠️ <strong>Coverage note:</strong> {data.coverage_note}
+        </div>
+      )}
+
       {/* Physical traits */}
       {data.physical_traits && (
         <div className="bg-white border border-gray-200 rounded-xl p-4">
@@ -102,8 +120,14 @@ export default function PrsPanel({ samplePath = '' }: { samplePath?: string } = 
                 </p>
                 <p className="text-xs text-[#3540CA] mt-0.5">Height (withers)</p>
                 <p className="text-[10px] text-gray-400 mt-1">
-                  {data.physical_traits.height_cm.percentile.toFixed(0)}th pct · NELK {data.physical_traits.height_cm.nelk_akc_score} cm
+                  {data.physical_traits.height_cm.percentile.toFixed(0)}th pct
                 </p>
+                {data.physical_traits.height_cm.heritability && (
+                  <p className="text-[10px] text-gray-400">h² = {data.physical_traits.height_cm.heritability.h2}</p>
+                )}
+                {data.physical_traits.height_cm.caveat && (
+                  <p className="text-[10px] text-amber-500 mt-0.5 leading-tight">{data.physical_traits.height_cm.caveat}</p>
+                )}
               </div>
             )}
             {/* Weight */}
@@ -116,8 +140,14 @@ export default function PrsPanel({ samplePath = '' }: { samplePath?: string } = 
                   Weight <span className="text-gray-400">({data.physical_traits.weight_kg.pred_lbs} lbs)</span>
                 </p>
                 <p className="text-[10px] text-gray-400 mt-1">
-                  {data.physical_traits.weight_kg.percentile.toFixed(0)}th pct · NELK {data.physical_traits.weight_kg.nelk_akc_score} kg
+                  {data.physical_traits.weight_kg.percentile.toFixed(0)}th pct
                 </p>
+                {data.physical_traits.weight_kg.heritability && (
+                  <p className="text-[10px] text-gray-400">h² = {data.physical_traits.weight_kg.heritability.h2}</p>
+                )}
+                {data.physical_traits.weight_kg.caveat && (
+                  <p className="text-[10px] text-amber-500 mt-0.5 leading-tight">{data.physical_traits.weight_kg.caveat}</p>
+                )}
               </div>
             )}
             {/* Coat type */}
@@ -128,8 +158,11 @@ export default function PrsPanel({ samplePath = '' }: { samplePath?: string } = 
                 </p>
                 <p className="text-xs text-amber-500 mt-0.5">Coat Type</p>
                 <p className="text-[10px] text-gray-400 mt-1">
-                  {data.physical_traits.coat_type.percentile.toFixed(0)}th pct · NELK {data.physical_traits.coat_type.nelk_akc_score}
+                  {data.physical_traits.coat_type.percentile.toFixed(0)}th pct
                 </p>
+                {data.physical_traits.coat_type.heritability && (
+                  <p className="text-[10px] text-gray-400">h² = {data.physical_traits.coat_type.heritability.h2}</p>
+                )}
               </div>
             )}
             {/* Coat length */}
@@ -140,14 +173,18 @@ export default function PrsPanel({ samplePath = '' }: { samplePath?: string } = 
                 </p>
                 <p className="text-xs text-orange-500 mt-0.5">Coat Length</p>
                 <p className="text-[10px] text-gray-400 mt-1">
-                  {data.physical_traits.coat_length.percentile.toFixed(0)}th pct · NELK {data.physical_traits.coat_length.nelk_akc_score}
+                  {data.physical_traits.coat_length.percentile.toFixed(0)}th pct
                 </p>
+                {data.physical_traits.coat_length.heritability && (
+                  <p className="text-[10px] text-gray-400">h² = {data.physical_traits.coat_length.heritability.h2}</p>
+                )}
               </div>
             )}
           </div>
           {/* Size context */}
           <p className="text-[10px] text-gray-400 mt-3">
-            Predictions based on GWAS effect sizes from {data.physical_traits.height_cm?.n_ref_samples.toLocaleString()} reference dogs across {data.n_ref_breeds} breeds. Height/weight reflect male midpoint AKC standards per breed.
+            Predictions based on GWAS effect sizes from {(data.physical_traits.height_cm?.n_ref_samples ?? 0).toLocaleString()} reference dogs across {data.n_ref_breeds} breeds.
+            Height/weight reflect male midpoint AKC standards per breed. h² = SNP heritability from published GWAS studies.
           </p>
         </div>
       )}
@@ -209,6 +246,12 @@ export default function PrsPanel({ samplePath = '' }: { samplePath?: string } = 
                   <p>{res.description}</p>
                   <p>PRS z-score: <span className="font-medium text-gray-700">{res.prs_z > 0 ? '+' : ''}{res.prs_z.toFixed(2)}</span></p>
                   <p>Reference population: {res.n_ref_samples.toLocaleString()} dogs from {data.n_ref_breeds} breeds</p>
+                  {res.heritability && (
+                    <p>
+                      Heritability: <span className="font-medium text-gray-700">h² = {res.heritability.h2}</span>
+                      <span className="text-gray-400"> (95% CI {res.heritability.ci}) · {res.heritability.source}</span>
+                    </p>
+                  )}
                   <p className="text-gray-400">Percentile rank among reference dogs based on genomic profile</p>
                 </div>
               )}
@@ -241,13 +284,20 @@ export default function PrsPanel({ samplePath = '' }: { samplePath?: string } = 
         </div>
       </div>
 
+      {data.heritability_sources && (
+        <div className="bg-gray-50 border border-gray-200 rounded-lg p-3 text-xs text-gray-500">
+          <strong>Heritability sources:</strong> {data.heritability_sources}
+        </div>
+      )}
+
       <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 text-xs text-amber-700 space-y-1">
         <p><strong>Interpretation notes:</strong></p>
         <ul className="list-disc list-inside space-y-0.5 ml-1">
-          <li>PRS scores predict <em>genomic tendency</em> relative to other dog breeds — they reflect breed-level genetic predisposition, not individual certainty.</li>
-          <li>AKC reference scores (grey bars) are for Norwegian Elkhound, the closest breed in the Parker panel to the Jamthund.</li>
-          <li>Traits with z-score near 0 indicate the dog&apos;s genomic profile is average for the reference population; high/low percentiles indicate distinctive genomic signal.</li>
-          <li>PRS is computed using {data.snps.toLocaleString()} LD-pruned SNPs genotyped directly from BAM.</li>
+          <li>PRS scores predict <em>genomic tendency</em> relative to the Parker 2017 reference panel — they reflect breed-level genetic predisposition, not individual certainty.</li>
+          <li>h² (heritability) indicates what fraction of trait variation among purebred dogs is explained by genetics. High h² = PRS more predictive.</li>
+          <li>Traits with z-score near 0 indicate an average genomic profile for the reference population; high/low percentiles indicate distinctive signal.</li>
+          <li>PRS computed using {data.snps.toLocaleString()} SNPs genotyped from the Parker reference panel.</li>
+          <li>Cross-breed dogs (e.g. labradoodles) may show predictions intermediate between parent breeds; size predictions are noisier at low coverage.</li>
         </ul>
       </div>
     </div>

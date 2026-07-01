@@ -27,7 +27,10 @@ export default function CoverageChart({ samplePath = '' }: { samplePath?: string
   const [data, setData] = useState<CoverageData | null>(null);
   const [selected, setSelected] = useState('chr1');
   const [stats, setStats] = useState({ mean: 0, sd: 0, low: 0, high: 0, total: 0, max: 0 });
-  const [chartPad, setChartPad] = useState({ left: 0, right: 0 });
+  const [chartPad, setChartPad] = useState({ left: '0px', right: '0px' });
+  const setPadRef = useRef(setChartPad);
+  // Guards so the afterDraw plugin only fires setState once per chart instance
+  const padDoneRef = useRef(false);
 
   useEffect(() => {
     fetch(`${samplePath}/coverage_1mb.json`)
@@ -48,12 +51,34 @@ export default function CoverageChart({ samplePath = '' }: { samplePath?: string
 
     import('chart.js').then(({ Chart, BarController, LineController, BarElement, PointElement, LineElement, LinearScale, CategoryScale, Tooltip }) => {
       Chart.register(BarController, LineController, BarElement, PointElement, LineElement, LinearScale, CategoryScale, Tooltip);
+
       if (chartRef.current) (chartRef.current as { destroy: () => void }).destroy();
+
+      padDoneRef.current = false;
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const chromPadPlugin: any = {
+        id: 'chromPad',
+        afterDraw(chart: any) {
+          if (padDoneRef.current) return;
+          const ca = chart.chartArea;
+          const cssWidth: number = chart.canvas?.clientWidth ?? 0;
+          if (!ca || !cssWidth) return;
+          padDoneRef.current = true;
+          requestAnimationFrame(() => {
+            setPadRef.current({
+              left:  `${ca.left}px`,
+              right: `${cssWidth - ca.right}px`,
+            });
+          });
+        },
+      };
 
       const yMax = Math.ceil(max * 1.08);
 
       chartRef.current = new Chart(canvasRef.current!, {
         type: 'bar',
+        plugins: [chromPadPlugin],
         data: {
           labels: depths.map((_, i) => i),
           datasets: [
@@ -143,16 +168,6 @@ export default function CoverageChart({ samplePath = '' }: { samplePath?: string
         },
       });
 
-      // After render, read chart area to align chromosome schematic
-      requestAnimationFrame(() => {
-        const c = chartRef.current as { chartArea?: { left: number; right: number }; width?: number } | null;
-        if (c?.chartArea && c.width) {
-          setChartPad({
-            left: c.chartArea.left,
-            right: c.width - c.chartArea.right,
-          });
-        }
-      });
     });
 
     return () => {

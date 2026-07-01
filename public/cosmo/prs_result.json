@@ -1,9 +1,9 @@
 {
   "traits": {
     "Affectionate With Family": {
-      "prs_z": 0.711,
-      "percentile": 72.0,
-      "predicted_score": 5.0,
+      "prs_z": 0.571,
+      "percentile": 60.0,
+      "predicted_score": 4.97,
       "n_ref_samples": 280,
       "description": "GWAS prediction for affectionate with family",
       "heritability": {
@@ -13,9 +13,9 @@
       }
     },
     "Good With Young Children": {
-      "prs_z": 0.451,
-      "percentile": 64.0,
-      "predicted_score": 4.54,
+      "prs_z": 2.878,
+      "percentile": 96.0,
+      "predicted_score": 5.0,
       "n_ref_samples": 280,
       "description": "GWAS prediction for good with young children",
       "heritability": {
@@ -25,9 +25,9 @@
       }
     },
     "Good With Other Dogs": {
-      "prs_z": 0.455,
-      "percentile": 74.0,
-      "predicted_score": 3.78,
+      "prs_z": 0.171,
+      "percentile": 64.0,
+      "predicted_score": 3.53,
       "n_ref_samples": 280,
       "description": "GWAS prediction for good with other dogs",
       "heritability": {
@@ -37,9 +37,9 @@
       }
     },
     "Shedding Level": {
-      "prs_z": -0.829,
-      "percentile": 21.3,
-      "predicted_score": 1.81,
+      "prs_z": -1.039,
+      "percentile": 28.0,
+      "predicted_score": 1.63,
       "n_ref_samples": 280,
       "description": "GWAS prediction for shedding level",
       "heritability": {
@@ -49,9 +49,9 @@
       }
     },
     "Coat Grooming Frequency": {
-      "prs_z": 0.742,
-      "percentile": 71.3,
-      "predicted_score": 3.25,
+      "prs_z": 1.031,
+      "percentile": 72.0,
+      "predicted_score": 3.55,
       "n_ref_samples": 280,
       "description": "GWAS prediction for coat grooming frequency",
       "heritability": {
@@ -61,9 +61,9 @@
       }
     },
     "Drooling Level": {
-      "prs_z": -0.566,
-      "percentile": 36.7,
-      "predicted_score": 1.23,
+      "prs_z": -0.523,
+      "percentile": 40.0,
+      "predicted_score": 1.28,
       "n_ref_samples": 280,
       "description": "GWAS prediction for drooling level",
       "heritability": {
@@ -73,9 +73,9 @@
       }
     },
     "Openness To Strangers": {
-      "prs_z": 0.653,
-      "percentile": 74.0,
-      "predicted_score": 4.36,
+      "prs_z": 3.474,
+      "percentile": 100.0,
+      "predicted_score": 5.0,
       "n_ref_samples": 280,
       "description": "GWAS prediction for openness to strangers",
       "heritability": {
@@ -85,9 +85,9 @@
       }
     },
     "Playfulness Level": {
-      "prs_z": 0.792,
-      "percentile": 78.7,
-      "predicted_score": 4.68,
+      "prs_z": 3.198,
+      "percentile": 100.0,
+      "predicted_score": 5.0,
       "n_ref_samples": 280,
       "description": "GWAS prediction for playfulness level",
       "heritability": {
@@ -97,9 +97,9 @@
       }
     },
     "Watchdog/Protective Nature": {
-      "prs_z": 0.096,
-      "percentile": 48.0,
-      "predicted_score": 4.09,
+      "prs_z": 1.47,
+      "percentile": 100.0,
+      "predicted_score": 5.0,
       "n_ref_samples": 280,
       "description": "GWAS prediction for watchdog/protective nature",
       "heritability": {
@@ -109,9 +109,9 @@
       }
     },
     "Adaptability Level": {
-      "prs_z": 0.581,
-      "percentile": 76.7,
-      "predicted_score": 4.3,
+      "prs_z": 0.474,
+      "percentile": 64.0,
+      "predicted_score": 4.23,
       "n_ref_samples": 280,
       "description": "GWAS prediction for adaptability level",
       "heritability": {
@@ -121,9 +121,9 @@
       }
     },
     "Trainability Level": {
-      "prs_z": 0.691,
-      "percentile": 75.3,
-      "predicted_score": 4.53,
+      "prs_z": 1.975,
+      "percentile": 100.0,
+      "predicted_score": 5.0,
       "n_ref_samples": 280,
       "description": "GWAS prediction for trainability level",
       "heritability": {
@@ -133,9 +133,9 @@
       }
     },
     "Energy Level": {
-      "prs_z": 0.595,
-      "percentile": 63.3,
-      "predicted_score": 3.98,
+      "prs_z": 1.143,
+      "percentile": 72.0,
+      "predicted_score": 4.32,
       "n_ref_samples": 280,
       "description": "GWAS prediction for energy level",
       "heritability": {
@@ -145,9 +145,9 @@
       }
     },
     "Barking Level": {
-      "prs_z": 0.686,
-      "percentile": 74.0,
-      "predicted_score": 4.07,
+      "prs_z": 0.797,
+      "percentile": 92.0,
+      "predicted_score": 4.23,
       "n_ref_samples": 280,
       "description": "GWAS prediction for barking level",
       "heritability": {
@@ -157,9 +157,9 @@
       }
     },
     "Mental Stimulation Needs": {
-      "prs_z": 0.672,
-      "percentile": 73.3,
-      "predicted_score": 4.39,
+      "prs_z": 2.061,
+      "percentile": 100.0,
+      "predicted_score": 5.0,
       "n_ref_samples": 280,
       "description": "GWAS prediction for mental stimulation needs",
       "heritability": {
@@ -171,9 +171,9 @@
   },
   "physical_traits": {
     "height_cm": {
-      "pred_cm": 43.3,
-      "prs_z": -0.484,
-      "percentile": 32.9,
+      "pred_cm": 47.2,
+      "prs_z": -0.246,
+      "percentile": 39.1,
       "n_ref_samples": 1348,
       "nelk_akc_score": 52.0,
       "description": "Predicted adult height at withers.",
@@ -184,10 +184,10 @@
       }
     },
     "weight_kg": {
-      "pred_kg": 11.7,
-      "pred_lbs": 25.8,
-      "prs_z": -0.716,
-      "percentile": 23.5,
+      "pred_kg": 15.3,
+      "pred_lbs": 33.7,
+      "prs_z": -0.486,
+      "percentile": 35.6,
       "n_ref_samples": 1348,
       "nelk_akc_score": 23.0,
       "description": "Predicted adult weight.",
@@ -198,10 +198,10 @@
       }
     },
     "coat_type": {
-      "prs_z": 0.568,
-      "percentile": 65.6,
-      "predicted": "Double",
-      "pred_ordinal": 2.76,
+      "prs_z": 1.673,
+      "percentile": 93.3,
+      "predicted": "Curly",
+      "pred_ordinal": 4.1,
       "n_ref_samples": 256,
       "nelk_akc_score": "Double",
       "description": "Predicted coat texture/type.",
@@ -212,10 +212,10 @@
       }
     },
     "coat_length": {
-      "prs_z": 0.574,
-      "percentile": 66.7,
-      "predicted": "Medium",
-      "pred_ordinal": 2.35,
+      "prs_z": 0.78,
+      "percentile": 68.0,
+      "predicted": "Long",
+      "pred_ordinal": 2.54,
       "n_ref_samples": 280,
       "nelk_akc_score": "Medium",
       "description": "Predicted coat length.",
@@ -226,9 +226,9 @@
       }
     }
   },
-  "method": "GWAS-based PRS using Parker et al. 2017 reference panel (177 breeds). Per-trait linear GWAS on 764 LD-pruned SNPs \u2192 effect sizes applied to Cosmo genotype. Genotyped 3,953/9,770 Parker panel SNPs from BAM (min depth=2, MAPQ\u226520, BQ\u226520).",
-  "reference": "AKC breed trait scores",
-  "snps": 3953,
+  "method": "GWAS-based PRS using full Parker et al. 2017 reference panel (143,933 SNPs, 177 breeds). Cosmo genotyped at all Parker positions via bcftools mpileup (MAPQ\u226520, BQ\u226520); 103,364 of 143,933 positions called (71%). 10280 LD-pruned SNPs used in GWAS regression.",
+  "reference": "AKC breed trait scores (kkakey/dog_traits_AKC)",
+  "snps": 103364,
   "n_ref_breeds": 177,
   "heritability_sources": "Hayward et al. 2016 (Nat Gen) for size; Ilska et al. 2017 (Sci Rep) for behaviour; Parker et al. 2017 (Science) for coat."
 }

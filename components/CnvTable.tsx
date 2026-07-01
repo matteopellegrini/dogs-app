@@ -82,7 +82,7 @@ export default function CnvTable({ samplePath = '' }: { samplePath?: string } = 
 
   if (!data) return <div className="text-gray-400 text-sm py-8 text-center">Loading CNV data…</div>;
 
-  const genes = data.disrupted_genes
+  const genes = (data.disrupted_genes ?? [])
     .filter((g) => catFilter === 'all' || g.category === catFilter)
     .filter((g) => !search ||
       g.gene.toLowerCase().includes(search.toLowerCase()) ||
@@ -96,7 +96,7 @@ export default function CnvTable({ samplePath = '' }: { samplePath?: string } = 
       return a.chrom.localeCompare(b.chrom) || a.start - b.start;
     });
 
-  const bc = data.summary.by_category;
+  const bc = data.summary?.by_category ?? {};
 
   return (
     <div className="space-y-4">
@@ -104,7 +104,7 @@ export default function CnvTable({ samplePath = '' }: { samplePath?: string } = 
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
           <p className="text-xs text-gray-400 mb-1">Del. regions</p>
-          <p className="text-xl font-semibold text-gray-700">{data.summary.total_regions}</p>
+          <p className="text-xl font-semibold text-gray-700">{data.summary?.total_regions ?? 0}</p>
         </div>
         <div className="bg-red-50 border border-red-100 rounded-lg p-3">
           <p className="text-xs text-red-400 mb-1">CDS-disrupting</p>

@@ -180,15 +180,21 @@ export default function Dashboard() {
   const [zygVariants, setZygVariants] = useState<ZygosityVariant[]>([]);
   const [dogs, setDogs] = useState<Dog[]>([]);
   const [selectedUpload, setSelectedUpload] = useState<Upload | null>(null);
-  const [uploadDogId, setUploadDogId] = useState<number | null>(null);
   const [showAddDog, setShowAddDog] = useState(false);
   const [newDog, setNewDog] = useState({ name: '', breed: '', dob: '', notes: '' });
 
   const samplePath = SAMPLES.find(s => s.id === activeSample)?.path ?? '';
+  const activeSampleLabel = SAMPLES.find(s => s.id === activeSample)?.label ?? activeSample;
+  // Match the active sample to a dog by name (case-insensitive prefix match on sample id)
+  const uploadDog = dogs.find(d => d.name.toLowerCase() === activeSample.toLowerCase()) ?? null;
 
   useEffect(() => {
     if (status === 'unauthenticated') router.push('/login');
   }, [status, router]);
+
+  useEffect(() => {
+    setSelectedUpload(null);
+  }, [activeSample]);
 
   useEffect(() => {
     if (status === 'authenticated') {
@@ -385,46 +391,34 @@ export default function Dashboard() {
                 {/* ── Upload ── */}
                 {tab === 'upload' && (
                   <div>
-                    <p className="text-sm text-gray-500 mb-4">Upload PDF documents — lab reports, health records, or any supporting files.</p>
+                    {/* Context banner — shows which dog is active */}
+                    <div className="flex items-center gap-2 mb-6 px-4 py-3 rounded-xl border"
+                      style={{ background: '#EEF0FB', borderColor: '#C7CAF0' }}>
+                      <span className="text-lg">🐾</span>
+                      {uploadDog ? (
+                        <p className="text-sm font-medium" style={{ color: '#3540CA' }}>
+                          Uploading files for <strong>{uploadDog.name}</strong>
+                          {uploadDog.breed && <span className="font-normal text-gray-500"> · {uploadDog.breed}</span>}
+                          <span className="ml-2 text-xs font-normal text-gray-400">— switch sample in the top-right to change dog</span>
+                        </p>
+                      ) : (
+                        <p className="text-sm" style={{ color: '#3540CA' }}>
+                          No dog named <strong>{activeSample.toUpperCase()}</strong> found in your dogs list.
+                          Add a dog with that name in the sidebar to enable uploads for this sample.
+                        </p>
+                      )}
+                    </div>
 
-                    {/* Dog selector */}
-                    {dogs.length === 0 ? (
-                      <div className="bg-amber-50 border border-amber-200 rounded-lg px-4 py-3 text-sm text-amber-700 mb-6">
-                        Add a dog in the sidebar before uploading files.
-                      </div>
-                    ) : (
-                      <div className="mb-6">
-                        <p className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-2">Select dog</p>
-                        <div className="flex flex-wrap gap-2">
-                          {dogs.map(d => (
-                            <button
-                              key={d.id}
-                              onClick={() => { setUploadDogId(d.id); setSelectedUpload(null); }}
-                              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium border transition-all"
-                              style={uploadDogId === d.id
-                                ? { background: '#3540CA', color: '#fff', borderColor: '#3540CA' }
-                                : { background: '#fff', color: '#6b7280', borderColor: '#e5e7eb' }}
-                            >
-                              <span>🐾</span> {d.name}
-                              {d.breed && <span className="text-xs opacity-70">· {d.breed}</span>}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-
-                    {uploadDogId !== null && (
+                    {uploadDog && (
                       <>
-                        <FileUpload dogs={[]} preselectedDogId={uploadDogId} onUploadComplete={refreshData} />
+                        <p className="text-sm text-gray-500 mb-4">Upload PDF documents — lab reports, health records, or any supporting files.</p>
+                        <FileUpload dogs={[]} preselectedDogId={uploadDog.id} onUploadComplete={refreshData} />
                         {(() => {
-                          const dogUploads = uploads.filter(u => {
-                            const dog = dogs.find(d => d.id === uploadDogId);
-                            return u.dog_name === dog?.name;
-                          });
+                          const dogUploads = uploads.filter(u => u.dog_name === uploadDog.name);
                           return dogUploads.length > 0 ? (
                             <div className="mt-8">
                               <h3 className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-3">
-                                Files for {dogs.find(d => d.id === uploadDogId)?.name}
+                                Files for {uploadDog.name}
                               </h3>
                               <div className="space-y-2">
                                 {dogUploads.map(u => (

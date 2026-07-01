@@ -545,11 +545,11 @@ export default function Dashboard() {
                 {tab === 'omia'       && <OmiaTable samplePath={samplePath} />}
                 {tab === 'prs'        && <PrsPanel samplePath={samplePath} />}
                 {tab === 'qc'         && <QcPanel samplePath={samplePath} />}
-                {tab === 'notes'      && <DogNotes dogs={dogs} />}
+                {tab === 'notes'      && <DogNotes dogs={dogs} sample={activeSample} />}
 
               </div>
 
-              {tab === 'chat' && <ChatInterface hasData={hasData} />}
+              {tab === 'chat' && <ChatInterface hasData={hasData} sample={activeSample} samplePath={samplePath} />}
             </div>
           </div>
         </main>

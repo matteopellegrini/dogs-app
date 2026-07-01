@@ -23,9 +23,14 @@ export async function POST(req: NextRequest) {
     | undefined;
   if (!user) return NextResponse.json({ error: 'User not found' }, { status: 404 });
 
-  const { messages } = await req.json();
+  const { messages, samplePath = '' } = await req.json();
   if (!Array.isArray(messages)) {
     return NextResponse.json({ error: 'Invalid messages' }, { status: 400 });
+  }
+
+  function publicPath(...segments: string[]) {
+    const parts = samplePath ? samplePath.split('/').filter(Boolean) : [];
+    return path.join(process.cwd(), 'public', ...parts, ...segments);
   }
 
   const variantSummary = getVariantSummaryForUser(user.id);
@@ -44,7 +49,7 @@ export async function POST(req: NextRequest) {
   }
   // Append breed composition result
   try {
-    const breedPath = path.join(process.cwd(), 'public', 'breed_result.json');
+    const breedPath = publicPath('breed_result.json');
     if (fs.existsSync(breedPath)) {
       const breed = JSON.parse(fs.readFileSync(breedPath, 'utf-8'));
       const comp = (breed.breed_composition as {breed:string;proportion:number}[])
@@ -60,7 +65,7 @@ export async function POST(req: NextRequest) {
 
   // Append inbreeding coefficient
   try {
-    const ibPath = path.join(process.cwd(), 'public', 'inbreeding_result.json');
+    const ibPath = publicPath('inbreeding_result.json');
     if (fs.existsSync(ibPath)) {
       const ib = JSON.parse(fs.readFileSync(ibPath, 'utf-8'));
       genomicContext += `\n\n=== INBREEDING COEFFICIENT ===\n`;
@@ -72,7 +77,7 @@ export async function POST(req: NextRequest) {
 
   // Append OMIA exact variant matches
   try {
-    const omiaPath = path.join(process.cwd(), 'public', 'omia_result.json');
+    const omiaPath = publicPath('omia_result.json');
     if (fs.existsSync(omiaPath)) {
       const omia = JSON.parse(fs.readFileSync(omiaPath, 'utf-8'));
       genomicContext += `\n\n=== OMIA VARIANT EXACT MATCH ANALYSIS ===\n`;
@@ -91,7 +96,7 @@ export async function POST(req: NextRequest) {
 
   // Append PRS polygenic trait scores
   try {
-    const prsPath = path.join(process.cwd(), 'public', 'prs_result.json');
+    const prsPath = publicPath('prs_result.json');
     if (fs.existsSync(prsPath)) {
       const prs = JSON.parse(fs.readFileSync(prsPath, 'utf-8'));
       genomicContext += `\n\n=== POLYGENIC TRAIT SCORES (PRS) ===\n`;
@@ -111,7 +116,7 @@ export async function POST(req: NextRequest) {
 
   // Append CNV homozygous deletion data from static analysis
   try {
-    const cnvPath = path.join(process.cwd(), 'public', 'cnv_homdel.json');
+    const cnvPath = publicPath('cnv_homdel.json');
     if (fs.existsSync(cnvPath)) {
       const cnv = JSON.parse(fs.readFileSync(cnvPath, 'utf-8'));
       const pcGenes = (cnv.disrupted_genes as {gene:string;biotype:string;chrom:string;start:number;size:string}[])

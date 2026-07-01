@@ -15,12 +15,18 @@ const STARTER_QUESTIONS = [
   'What diseases might these variants be associated with?',
 ];
 
-export default function ChatInterface({ hasData }: { hasData: boolean }) {
+export default function ChatInterface({ hasData, sample, samplePath }: { hasData: boolean; sample: string; samplePath: string }) {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [streaming, setStreaming] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  // Reset conversation when the active sample changes
+  useEffect(() => {
+    setMessages([]);
+    setInput('');
+  }, [sample]);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -41,7 +47,7 @@ export default function ChatInterface({ hasData }: { hasData: boolean }) {
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: newMessages }),
+        body: JSON.stringify({ messages: newMessages, sample, samplePath }),
       });
 
       if (!res.ok) throw new Error('Chat request failed');

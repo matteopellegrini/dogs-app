@@ -75,14 +75,14 @@ const IMPACT_COLORS: Record<string, string> = {
 };
 
 const NAV_ITEMS = [
-  { key: 'data',       label: 'Variant Summary',    icon: '📊' },
+  { key: 'breed',      label: 'Breed',              icon: '🐕' },
   { key: 'coverage',   label: 'Coverage',           icon: '📉' },
   { key: 'cnv',        label: 'Copy Number',        icon: '🗺' },
-  { key: 'breed',      label: 'Breed',              icon: '🐕' },
-  { key: 'inbreeding', label: 'Inbreeding',         icon: '🔗' },
+  { key: 'data',       label: 'Variant Summary',    icon: '📊' },
   { key: 'omia',       label: 'OMIA Diseases',      icon: '🏥' },
   { key: 'prs',        label: 'Trait Scores',       icon: '📈' },
   { key: 'qc',         label: 'Data Quality',       icon: '🔬' },
+  { key: 'inbreeding', label: 'Inbreeding',         icon: '🔗' },
   { key: 'notes',      label: 'Health Notes',       icon: '📝' },
   { key: 'upload',     label: 'Upload Data',        icon: '📤' },
   { key: 'chat',       label: 'AI Assistant',       icon: '💬' },

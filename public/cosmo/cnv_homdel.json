@@ -99,6 +99,8 @@
       "EXON_NC": 0,
       "INTRONIC": 2
     },
-    "method": "100kb windows, depth <20% of autosomal mean (2.2x), merged \u2265200kb, min-mapq 20"
+    "method": "100kb windows, depth <20% of autosomal mean (2.2x), merged \u2265200kb, min-mapq 20",
+    "min_detectable_kb": 200,
+    "calling_resolution_kb": 100
   }
 }

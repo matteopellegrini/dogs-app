@@ -11,9 +11,10 @@ interface Dog {
 interface FileUploadProps {
   dogs: Dog[];
   onUploadComplete: () => void;
+  preselectedDogId?: number;
 }
 
-export default function FileUpload({ dogs, onUploadComplete }: FileUploadProps) {
+export default function FileUpload({ dogs, onUploadComplete, preselectedDogId }: FileUploadProps) {
   const [dragging, setDragging] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [result, setResult] = useState<{ fileType?: string; error?: string } | null>(null);
@@ -25,7 +26,8 @@ export default function FileUpload({ dogs, onUploadComplete }: FileUploadProps) 
     setResult(null);
     const fd = new FormData();
     fd.append('file', file);
-    if (selectedDogId) fd.append('dogId', selectedDogId);
+    const dogId = preselectedDogId ?? (selectedDogId ? parseInt(selectedDogId) : null);
+    if (dogId) fd.append('dogId', String(dogId));
 
     const res = await fetch('/api/upload', { method: 'POST', body: fd });
     const data = await res.json();
@@ -53,7 +55,7 @@ export default function FileUpload({ dogs, onUploadComplete }: FileUploadProps) 
 
   return (
     <div className="space-y-3">
-      {dogs.length > 0 && (
+      {!preselectedDogId && dogs.length > 0 && (
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
             Associate with dog (optional)

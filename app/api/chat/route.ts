@@ -130,6 +130,26 @@ export async function POST(req: NextRequest) {
     }
   } catch { /* CNV file optional */ }
 
+  // Append uploaded lab report text (PDFs parsed from Upload Data tab)
+  try {
+    const uploads = db.prepare(
+      `SELECT original_name, parsed_text, created_at FROM uploads
+       WHERE user_id = ? AND parsed_text IS NOT NULL AND sample = ?
+       ORDER BY created_at DESC LIMIT 5`
+    ).all(user.id, samplePath.replace(/^\//, '')) as { original_name: string; parsed_text: string; created_at: string }[];
+    if (uploads.length > 0) {
+      genomicContext += `\n\n=== UPLOADED LAB REPORTS ===\n`;
+      for (const u of uploads) {
+        const date = new Date(u.created_at).toLocaleDateString();
+        genomicContext += `\n--- ${u.original_name} (uploaded ${date}) ---\n`;
+        // Include up to 4000 chars per document to keep context manageable
+        genomicContext += u.parsed_text.slice(0, 4000);
+        if (u.parsed_text.length > 4000) genomicContext += '\n[...truncated]';
+        genomicContext += '\n';
+      }
+    }
+  } catch { /* optional */ }
+
   if (!genomicContext) {
     genomicContext = 'No genomic data has been uploaded yet for this user.';
   }

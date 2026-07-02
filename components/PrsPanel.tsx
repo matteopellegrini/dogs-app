@@ -63,11 +63,12 @@ const TRAIT_ICONS: Record<string, string> = {
   'Mental Stimulation Needs': '🧠',
 };
 
-function percentileColor(p: number) {
-  if (p >= 75) return { bar: 'bg-[#3540CA]', text: 'text-[#3540CA]', bg: 'bg-[#C4F9FF]/20' };
-  if (p >= 50) return { bar: 'bg-[#3540CA]', text: 'text-[#3540CA]', bg: 'bg-[#C4F9FF]/20' };
-  if (p >= 25) return { bar: 'bg-amber-400', text: 'text-amber-700', bg: 'bg-amber-50' };
-  return { bar: 'bg-gray-400', text: 'text-gray-600', bg: 'bg-gray-50' };
+function scoreColor(score: number) {
+  if (score >= 4.5) return { bar: 'bg-[#3540CA]', text: 'text-[#3540CA]', bg: 'bg-[#C4F9FF]/20' };
+  if (score >= 3.5) return { bar: 'bg-[#3540CA]', text: 'text-[#3540CA]', bg: 'bg-[#C4F9FF]/20' };
+  if (score >= 2.5) return { bar: 'bg-amber-400', text: 'text-amber-700', bg: 'bg-amber-50' };
+  if (score >= 1.5) return { bar: 'bg-gray-400', text: 'text-gray-600', bg: 'bg-gray-50' };
+  return { bar: 'bg-gray-300', text: 'text-gray-500', bg: 'bg-gray-50' };
 }
 
 function scoreLabel(score: number) {
@@ -119,9 +120,6 @@ export default function PrsPanel({ samplePath = '' }: { samplePath?: string } = 
                   {data.physical_traits.height_cm.pred_cm} <span className="text-sm font-normal">cm</span>
                 </p>
                 <p className="text-xs text-[#3540CA] mt-0.5">Height (withers)</p>
-                <p className="text-[10px] text-gray-400 mt-1">
-                  {data.physical_traits.height_cm.percentile.toFixed(0)}th pct
-                </p>
                 {data.physical_traits.height_cm.heritability && (
                   <p className="text-[10px] text-gray-400">h² = {data.physical_traits.height_cm.heritability.h2}</p>
                 )}
@@ -139,9 +137,6 @@ export default function PrsPanel({ samplePath = '' }: { samplePath?: string } = 
                 <p className="text-xs text-[#3540CA] mt-0.5">
                   Weight <span className="text-gray-400">({data.physical_traits.weight_kg.pred_lbs} lbs)</span>
                 </p>
-                <p className="text-[10px] text-gray-400 mt-1">
-                  {data.physical_traits.weight_kg.percentile.toFixed(0)}th pct
-                </p>
                 {data.physical_traits.weight_kg.heritability && (
                   <p className="text-[10px] text-gray-400">h² = {data.physical_traits.weight_kg.heritability.h2}</p>
                 )}
@@ -157,9 +152,6 @@ export default function PrsPanel({ samplePath = '' }: { samplePath?: string } = 
                   {data.physical_traits.coat_type.predicted}
                 </p>
                 <p className="text-xs text-amber-500 mt-0.5">Coat Type</p>
-                <p className="text-[10px] text-gray-400 mt-1">
-                  {data.physical_traits.coat_type.percentile.toFixed(0)}th pct
-                </p>
                 {data.physical_traits.coat_type.heritability && (
                   <p className="text-[10px] text-gray-400">h² = {data.physical_traits.coat_type.heritability.h2}</p>
                 )}
@@ -172,9 +164,6 @@ export default function PrsPanel({ samplePath = '' }: { samplePath?: string } = 
                   {data.physical_traits.coat_length.predicted}
                 </p>
                 <p className="text-xs text-orange-500 mt-0.5">Coat Length</p>
-                <p className="text-[10px] text-gray-400 mt-1">
-                  {data.physical_traits.coat_length.percentile.toFixed(0)}th pct
-                </p>
                 {data.physical_traits.coat_length.heritability && (
                   <p className="text-[10px] text-gray-400">h² = {data.physical_traits.coat_length.heritability.h2}</p>
                 )}
@@ -192,7 +181,7 @@ export default function PrsPanel({ samplePath = '' }: { samplePath?: string } = 
       {/* Trait cards grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {entries.map(([trait, res]) => {
-          const col = percentileColor(res.percentile);
+          const col = scoreColor(res.predicted_score);
           const isOpen = expanded === trait;
           return (
             <div
@@ -206,7 +195,7 @@ export default function PrsPanel({ samplePath = '' }: { samplePath?: string } = 
                   <span className="text-sm font-medium text-gray-800">{trait}</span>
                 </div>
                 <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${col.bg} ${col.text} shrink-0`}>
-                  {res.percentile.toFixed(0)}th pct
+                  {scoreLabel(res.predicted_score)}
                 </span>
               </div>
 
@@ -214,7 +203,7 @@ export default function PrsPanel({ samplePath = '' }: { samplePath?: string } = 
               <div className="mb-1">
                 <div className="flex justify-between text-[10px] text-gray-400 mb-0.5">
                   <span>Genomic prediction</span>
-                  <span>{res.predicted_score.toFixed(1)}/5 · {scoreLabel(res.predicted_score)}</span>
+                  <span>{res.predicted_score.toFixed(1)} / 5</span>
                 </div>
                 <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
                   <div
@@ -263,21 +252,21 @@ export default function PrsPanel({ samplePath = '' }: { samplePath?: string } = 
       {/* Radar-style summary table */}
       <div className="bg-white border border-gray-200 rounded-xl p-4">
         <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">
-          Summary — all traits ranked by percentile
+          Summary — all traits
         </h3>
         <div className="space-y-1.5">
           {[...entries]
-            .sort(([, a], [, b]) => b.percentile - a.percentile)
+            .sort(([, a], [, b]) => b.predicted_score - a.predicted_score)
             .map(([trait, res]) => {
-              const col = percentileColor(res.percentile);
+              const col = scoreColor(res.predicted_score);
               return (
                 <div key={trait} className="flex items-center gap-3 text-xs">
                   <span className="w-5 text-base leading-none">{TRAIT_ICONS[trait] ?? '📊'}</span>
                   <span className="w-48 text-gray-600 truncate shrink-0">{trait}</span>
                   <div className="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
-                    <div className={`h-full rounded-full ${col.bar}`} style={{ width: `${res.percentile}%` }} />
+                    <div className={`h-full rounded-full ${col.bar}`} style={{ width: `${(res.predicted_score / 5) * 100}%` }} />
                   </div>
-                  <span className={`w-12 text-right font-medium ${col.text}`}>{res.percentile.toFixed(0)}th</span>
+                  <span className={`w-16 text-right font-medium ${col.text}`}>{scoreLabel(res.predicted_score)}</span>
                 </div>
               );
             })}

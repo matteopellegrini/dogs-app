@@ -130,6 +130,18 @@ export async function POST(req: NextRequest) {
     }
   } catch { /* CNV file optional */ }
 
+  // Append data quality metrics
+  try {
+    const qcPath = publicPath('qc_result.json');
+    if (fs.existsSync(qcPath)) {
+      const qc = JSON.parse(fs.readFileSync(qcPath, 'utf-8'));
+      genomicContext += `\n\n=== SEQUENCING DATA QUALITY ===\n`;
+      genomicContext += `Mean depth: ${qc.genome_mean_depth}x · Median depth: ${qc.genome_median_depth}x · CV: ${qc.uniformity_cv}\n`;
+      genomicContext += `% bins >10x: ${qc.pct_bins_gt10x}% · >15x: ${qc.pct_bins_gt15x}% · >20x: ${qc.pct_bins_gt20x}% · >30x: ${qc.pct_bins_gt30x}%\n`;
+      genomicContext += `Low-coverage bins: ${qc.n_low_bins} of ${qc.n_total_bins} total\n`;
+    }
+  } catch { /* optional */ }
+
   // Append health notes from DogNotes (stored as JSON in dogs.notes)
   try {
     const dog = db.prepare(

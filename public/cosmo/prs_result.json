@@ -171,10 +171,10 @@
   },
   "physical_traits": {
     "height_cm": {
-      "pred_cm": 35.6,
-      "prs_z": -0.446,
-      "percentile": 43.5,
-      "n_ref_samples": 322,
+      "pred_cm": 34.7,
+      "prs_z": -0.429,
+      "percentile": 49.5,
+      "n_ref_samples": 1355,
       "nelk_akc_score": 52.0,
       "description": "Predicted adult height at withers.",
       "heritability": {
@@ -198,11 +198,11 @@
       }
     },
     "coat_type": {
-      "prs_z": 1.072,
-      "percentile": 78.6,
+      "prs_z": 1.102,
+      "percentile": 82.2,
       "predicted": "Double",
-      "pred_ordinal": 3.37,
-      "n_ref_samples": 256,
+      "pred_ordinal": 1.5,
+      "n_ref_samples": 1355,
       "nelk_akc_score": "Double",
       "description": "Predicted coat texture/type.",
       "heritability": {
@@ -212,11 +212,11 @@
       }
     },
     "coat_length": {
-      "prs_z": 0.163,
-      "percentile": 45.8,
+      "prs_z": 0.642,
+      "percentile": 66.0,
       "predicted": "Medium",
-      "pred_ordinal": 1.98,
-      "n_ref_samples": 280,
+      "pred_ordinal": 1.6,
+      "n_ref_samples": 1355,
       "nelk_akc_score": "Medium",
       "description": "Predicted coat length.",
       "heritability": {

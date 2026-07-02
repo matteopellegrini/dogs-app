@@ -3,107 +3,82 @@
     {
       "breed": "Standard Poodle",
       "code": "SPOO",
-      "proportion": 0.3299
-    },
-    {
-      "breed": "Miniature Poodle",
-      "code": "MPOO",
-      "proportion": 0.1576
+      "proportion": 0.3549
     },
     {
       "breed": "Toy Poodle",
       "code": "TPOO",
-      "proportion": 0.0821
+      "proportion": 0.1915
     },
     {
       "breed": "Labrador Retriever",
       "code": "LAB",
-      "proportion": 0.0584
+      "proportion": 0.0671
+    },
+    {
+      "breed": "Miniature Poodle",
+      "code": "MPOO",
+      "proportion": 0.0652
     },
     {
       "breed": "Akita",
       "code": "ACKR",
-      "proportion": 0.0506
+      "proportion": 0.0482
     },
     {
       "breed": "English Cocker Spaniel",
       "code": "ECKR",
-      "proportion": 0.0361
+      "proportion": 0.0429
     },
     {
-      "breed": "Cane Pastore",
-      "code": "CPAT_Italy",
-      "proportion": 0.0332
+      "breed": "Lagotto Romagnolo",
+      "code": "LVMD_Italy",
+      "proportion": 0.0346
     },
     {
-      "breed": "Xoloitzcuintli",
-      "code": "MXOL",
-      "proportion": 0.0308
+      "breed": "Lhasa Apso",
+      "code": "LHSA",
+      "proportion": 0.0329
     },
     {
-      "breed": "Kuvasz",
-      "code": "KUVZ",
-      "proportion": 0.016
-    },
-    {
-      "breed": "Cavalier King Charles Spaniel",
-      "code": "CKCS",
-      "proportion": 0.0159
+      "breed": "Inca Hairless Dog",
+      "code": "INCA",
+      "proportion": 0.0324
     },
     {
       "breed": "Dachshund",
       "code": "DACH",
-      "proportion": 0.0146
+      "proportion": 0.019
     },
     {
-      "breed": "Australian Terrier",
-      "code": "AUST",
-      "proportion": 0.0133
+      "breed": "L\u00f6wchen",
+      "code": "LMUN",
+      "proportion": 0.014
     },
     {
-      "breed": "Volpino Italiano",
-      "code": "VPIN_Italy",
-      "proportion": 0.0116
+      "breed": "Kuvasz",
+      "code": "KUVZ",
+      "proportion": 0.0129
     },
     {
-      "breed": "Cardigan Welsh Corgi",
-      "code": "CARD",
-      "proportion": 0.0112
+      "breed": "Jack Russell Terrier",
+      "code": "JACK",
+      "proportion": 0.0118
     },
     {
-      "breed": "WOLF-China",
-      "code": "WOLF-China",
-      "proportion": 0.0108
+      "breed": "Saluki",
+      "code": "SALU",
+      "proportion": 0.0106
     },
     {
-      "breed": "REDB",
-      "code": "REDB",
-      "proportion": 0.0096
-    },
-    {
-      "breed": "CANE",
-      "code": "CANE",
-      "proportion": 0.0094
-    },
-    {
-      "breed": "Gordon Setter",
-      "code": "GORD",
-      "proportion": 0.009
-    },
-    {
-      "breed": "Flat-Coated Retriever",
-      "code": "FCR",
-      "proportion": 0.0089
-    },
-    {
-      "breed": "LVMD_Italy",
-      "code": "LVMD_Italy",
-      "proportion": 0.0078
+      "breed": "Australian Kelpie",
+      "code": "KELP",
+      "proportion": 0.01
     }
   ],
   "method": "SCOPE supervised ALStructure (K=177, Parker 2017 reference panel)",
   "reference_panel": "Parker et al. 2017 Cell Reports (161 breeds, 1355 dogs, lifted to canFam4)",
-  "snps_used": 103542,
+  "snps_used": 143933,
   "k": 177,
-  "note": "103,542 SNPs genotyped from Cosmo BAM (~3x WGS), including reference homozygous (0/0) calls. Merged with 1,355 Parker reference dogs."
+  "note": "143,933 SNPs from GLIMPSE2 imputation (2.5x WGS on canFam4). Merged with 1,355 Parker reference dogs."
 }

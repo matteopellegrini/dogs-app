@@ -95,66 +95,149 @@ const SAMPLES = [
   { id: 'cosmo', label: 'Cosmo', path: '/cosmo' },
 ];
 
-function ParsedPdfTable({ text }: { text: string }) {
-  const lines = text.split('\n').map(l => l.trimEnd()).filter(l => l.trim());
+interface LabRow { test: string; value: string; refRange: string; units: string; flags: string; prev: string[]; }
+interface LabSection { name: string; dates: string[]; rows: LabRow[]; }
 
-  // Detect if lines look tabular: split on 2+ spaces or tabs
-  const rows = lines.map(l => l.split(/\t|  +/).map(c => c.trim()).filter(c => c));
-  const colCounts = rows.map(r => r.length);
-  const maxCols = Math.max(...colCounts);
-  const isTabular = maxCols >= 2 && rows.filter(r => r.length >= 2).length > rows.length * 0.4;
+function parseLabReport(text: string): LabSection[] {
+  const SECTIONS = ['Hematology', 'Chemistry', 'Urinalysis', 'Endocrinology', 'Serology'];
+  const UNITS_RE = /^(M\/µL|K\/µL|g\/dL|g\/L|µg\/dL|mg\/dL|mmol\/L|U\/L|fL|pg|%|IU\/L|mEq\/L|HPF|\/HPF|ng\/mL|pmol\/L)$/;
+  const FLAG_RE = /^[HLN]$/;
+  const NUM_RE = /^-?\d+[\.,]?\d*$|^>\d|^<\d/;
+  // Tokens that indicate boilerplate / header content to skip
+  const SKIP_STARTS = new Set(['Generated', '©', 'Page', 'Key:', 'View', 'This', 'Dogs', 'For', 'If', 'a', 'b', 'c']);
 
-  if (isTabular) {
-    // Use first row as header if it looks like one (all short words, no numbers)
-    const firstRow = rows[0];
-    const looksLikeHeader = firstRow.every(c => c.length < 40 && !/^\d+\.?\d*$/.test(c));
-    const headers = looksLikeHeader ? firstRow : Array.from({ length: maxCols }, (_, i) => `Col ${i + 1}`);
-    const dataRows = looksLikeHeader ? rows.slice(1) : rows;
+  const tokens = text.split(/\s+/).filter(t => t.length > 0);
+  const sections: LabSection[] = [];
+  let cur: LabSection | null = null;
+  let i = 0;
 
-    return (
-      <div className="border border-gray-100 border-t-0 rounded-b-xl overflow-x-auto">
-        <table className="w-full text-xs">
-          <thead>
-            <tr className="bg-gray-50 border-b border-gray-100">
-              {headers.map((h, i) => (
-                <th key={i} className="text-left px-4 py-2 font-semibold text-gray-500 whitespace-nowrap">{h}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {dataRows.map((row, ri) => (
-              <tr key={ri} className="border-b border-gray-50 hover:bg-gray-50">
-                {Array.from({ length: headers.length }, (_, ci) => (
-                  <td key={ci} className="px-4 py-1.5 text-gray-700 align-top">{row[ci] ?? ''}</td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    );
+  while (i < tokens.length) {
+    const tok = tokens[i];
+
+    // Section header
+    if (SECTIONS.includes(tok)) {
+      cur = { name: tok, dates: [], rows: [] };
+      sections.push(cur);
+      i++;
+      if (tokens[i] === '(continued)') i++;
+      // Skip the date header that follows each section opener: skip until we see a word that could be a test name
+      // Date headers look like: "4/9/26 (Order Received) 7/7/25 ..."
+      while (i < tokens.length && (
+        /^\d+\/\d+\/\d+$/.test(tokens[i]) ||
+        /^\d+:\d+$/.test(tokens[i]) ||
+        tokens[i] === '(Order' || tokens[i] === 'Received)' ||
+        tokens[i] === '(Last' || tokens[i] === 'Updated)' ||
+        tokens[i] === 'AM' || tokens[i] === 'PM'
+      )) i++;
+      continue;
+    }
+
+    if (!cur) { i++; continue; }
+
+    // Skip boilerplate tokens
+    const BOILERPLATE = new Set([
+      'by','April','March','January','February','May','June','July','August',
+      'September','October','November','December','VetConnect','®','PLUS','IDEXX',
+      'Laboratories,','Inc.','All','rights','reserved.','US','D1072841','S.',
+      'interval','meaningfully','different','from','of','AM','PM',
+      '1','888','433-9987','13,','2026','2025','2024','6','Page',
+    ]);
+    if (
+      SKIP_STARTS.has(tok) || BOILERPLATE.has(tok) ||
+      /^\d+\/\d+\/\d+$/.test(tok) ||   // dates like 4/9/26
+      /^\d+:\d+$/.test(tok) ||          // times like 08:45
+      /^\d{4}$/.test(tok)               // years like 2025
+    ) {
+      i++;
+      continue;
+    }
+
+    // Try to collect test name (one or more Title-Case words, may include colons, hyphens)
+    const nameTokens: string[] = [];
+    let j = i;
+    while (j < tokens.length && !NUM_RE.test(tokens[j]) && !SECTIONS.includes(tokens[j])) {
+      const t = tokens[j];
+      // Stop if we hit a unit or flag already having a name
+      if (nameTokens.length > 0 && (UNITS_RE.test(t) || FLAG_RE.test(t))) break;
+      // Skip footnote single-letter suffixes
+      if (nameTokens.length > 0 && /^[a-z]$/.test(t)) { j++; continue; }
+      // Stop if we hit a date-like token
+      if (/^\d+\/\d+\/\d+$/.test(t)) break;
+      nameTokens.push(t);
+      j++;
+    }
+
+    // Must end with a numeric value
+    if (nameTokens.length === 0 || !NUM_RE.test(tokens[j])) { i++; continue; }
+
+    const testName = nameTokens.join(' ');
+    const value = tokens[j++];
+    let refRange = '';
+    let units = '';
+    const flags: string[] = [];
+    const prev: string[] = [];
+
+    // Reference range: num - num
+    if (j + 2 < tokens.length && NUM_RE.test(tokens[j]) && tokens[j + 1] === '-' && NUM_RE.test(tokens[j + 2])) {
+      refRange = `${tokens[j]} – ${tokens[j + 2]}`;
+      j += 3;
+    } else if (j + 2 < tokens.length && tokens[j] === '0' && tokens[j + 1] === '-' && NUM_RE.test(tokens[j + 2])) {
+      refRange = `0 – ${tokens[j + 2]}`;
+      j += 3;
+    }
+
+    // Units
+    if (j < tokens.length && UNITS_RE.test(tokens[j])) units = tokens[j++];
+
+    // Flags and up to 3 previous values
+    while (j < tokens.length && prev.length < 3 && !SECTIONS.includes(tokens[j])) {
+      const t = tokens[j];
+      if (FLAG_RE.test(t)) { flags.push(t); j++; }
+      else if (NUM_RE.test(t)) { prev.push(t); j++; }
+      else break;
+    }
+
+    cur.rows.push({ test: testName, value, refRange, units, flags: flags.join(' '), prev });
+    i = j;
   }
 
-  // Fallback: key-value pairs or plain text
-  const kvPairs = lines.map(l => {
-    const m = l.match(/^([^:]+):\s*(.*)$/);
-    return m ? { key: m[1].trim(), value: m[2].trim() } : null;
-  });
-  const allKv = kvPairs.every(p => p !== null);
+  return sections.filter(s => s.rows.length > 0);
+}
 
-  if (allKv && lines.length > 0) {
+function ParsedPdfTable({ text }: { text: string }) {
+  const sections = parseLabReport(text);
+
+  if (sections.length > 0) {
     return (
-      <div className="border border-gray-100 border-t-0 rounded-b-xl overflow-x-auto">
-        <table className="w-full text-xs">
-          <tbody>
-            {kvPairs.map((kv, i) => kv && (
-              <tr key={i} className="border-b border-gray-50 hover:bg-gray-50">
-                <td className="px-4 py-1.5 font-semibold text-gray-500 whitespace-nowrap w-1/3">{kv.key}</td>
-                <td className="px-4 py-1.5 text-gray-700">{kv.value}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div className="border border-gray-100 border-t-0 rounded-b-xl max-h-[70vh] overflow-y-auto">
+        {sections.map((sec, si) => (
+          <div key={si}>
+            <div className="px-3 py-1.5 bg-[#C4F9FF]/20 border-b border-[#C4F9FF]/40 text-[10px] font-semibold text-[#3540CA] uppercase tracking-wide sticky top-0">
+              {sec.name}
+            </div>
+            <div className="divide-y divide-gray-50">
+              {sec.rows.map((row, ri) => {
+                const isHigh = row.flags.includes('H');
+                const isLow = row.flags.includes('L');
+                return (
+                  <div key={ri} className="flex items-center px-3 py-1.5 hover:bg-gray-50 gap-2">
+                    <span className="flex-1 text-xs text-gray-700 font-medium">{row.test}</span>
+                    <span className={`text-xs font-mono font-semibold shrink-0 ${isHigh ? 'text-red-600' : isLow ? 'text-blue-600' : 'text-gray-800'}`}>
+                      {row.value}
+                    </span>
+                    {(isHigh || isLow) && (
+                      <span className={`text-[9px] font-bold px-1 rounded shrink-0 ${isHigh ? 'text-red-500 bg-red-50' : 'text-blue-500 bg-blue-50'}`}>
+                        {isHigh ? 'H' : 'L'}
+                      </span>
+                    )}
+                    {row.units && <span className="text-[10px] text-gray-400 shrink-0">{row.units}</span>}
+                    {row.refRange && <span className="text-[10px] text-gray-300 font-mono shrink-0 hidden sm:inline">({row.refRange})</span>}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        ))}
       </div>
     );
   }

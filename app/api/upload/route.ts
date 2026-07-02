@@ -2,8 +2,56 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { writeFile, mkdir } from 'fs/promises';
+import { inflateRawSync, unzipSync } from 'zlib';
 import path from 'path';
 import { getDb } from '@/lib/db';
+
+// Pure-Node PDF text extractor — no worker, no bundling issues.
+// Handles FlateDecode streams and uncompressed content streams.
+async function extractPdfText(buf: Buffer): Promise<string> {
+  const src = buf.toString('latin1');
+  const texts: string[] = [];
+
+  // Find all stream...endstream blocks
+  const streamRe = /stream\r?\n([\s\S]*?)\r?\nendstream/g;
+  let m: RegExpExecArray | null;
+
+  while ((m = streamRe.exec(src)) !== null) {
+    const streamStart = m.index + m[0].indexOf('\n') + 1;
+    // Look back for the object's dictionary to check /Filter
+    const dictSrc = src.slice(Math.max(0, m.index - 800), m.index);
+    const isFlate = /\/Filter\s*\/FlateDecode|\/Filter\s*\[.*?FlateDecode/s.test(dictSrc);
+    const isText = /\/Subtype\s*\/Form|\/Type\s*\/XObject/.test(dictSrc) === false;
+
+    let content = '';
+    const rawBytes = Buffer.from(m[1], 'latin1');
+    if (isFlate) {
+      try { content = unzipSync(rawBytes).toString('latin1'); } catch {
+        try { content = inflateRawSync(rawBytes).toString('latin1'); } catch { continue; }
+      }
+    } else {
+      content = m[1];
+    }
+
+    // Extract text operators: (text)Tj, [(text)]TJ, and strings in BT blocks
+    const btRe = /BT\s*([\s\S]*?)\s*ET/g;
+    let bt: RegExpExecArray | null;
+    while ((bt = btRe.exec(content)) !== null) {
+      const block = bt[1];
+      // Match (string)Tj and (string) in TJ arrays
+      const strRe = /\(([^)\\]*(?:\\.[^)\\]*)*)\)/g;
+      let s: RegExpExecArray | null;
+      while ((s = strRe.exec(block)) !== null) {
+        const decoded = s[1]
+          .replace(/\\n/g, '\n').replace(/\\r/g, '\r').replace(/\\t/g, '\t')
+          .replace(/\\\\/g, '\\').replace(/\\\(/g, '(').replace(/\\\)/g, ')');
+        if (decoded.trim()) texts.push(decoded);
+      }
+    }
+  }
+
+  return texts.join(' ');
+}
 
 export async function POST(req: NextRequest) {
   const session = await getServerSession(authOptions);
@@ -30,16 +78,12 @@ export async function POST(req: NextRequest) {
   const bytes = await file.arrayBuffer();
   const buffer = Buffer.from(bytes);
 
-  // Parse PDF text
+  // Parse PDF text using pure Node.js (no worker/bundling issues)
   let parsedText = '';
   try {
-    const { PDFParse } = await import('pdf-parse');
-    const parser = new PDFParse({ data: buffer });
-    const parsed = await parser.getText();
-    parsedText = parsed.text ?? '';
-    await parser.destroy();
-  } catch {
-    // Store without parsed text if parsing fails
+    parsedText = await extractPdfText(buffer);
+  } catch (err) {
+    console.error('[upload] PDF parse error:', err);
   }
 
   const timestamp = Date.now();

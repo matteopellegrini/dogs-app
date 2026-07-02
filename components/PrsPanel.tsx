@@ -213,21 +213,6 @@ export default function PrsPanel({ samplePath = '' }: { samplePath?: string } = 
                 </div>
               </div>
 
-              {/* AKC reference comparison */}
-              {res.nelk_akc_score !== null && (
-                <div className="mt-1">
-                  <div className="flex justify-between text-[10px] text-gray-400 mb-0.5">
-                    <span>AKC Norwegian Elkhound reference</span>
-                    <span>{res.nelk_akc_score}/5</span>
-                  </div>
-                  <div className="h-1.5 bg-gray-100 rounded-full overflow-hidden">
-                    <div
-                      className="h-full rounded-full bg-gray-300"
-                      style={{ width: `${(res.nelk_akc_score / 5) * 100}%` }}
-                    />
-                  </div>
-                </div>
-              )}
 
               {/* Expanded detail */}
               {isOpen && (

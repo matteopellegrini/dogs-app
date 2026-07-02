@@ -3,32 +3,32 @@
     {
       "breed": "Standard Poodle",
       "code": "SPOO",
-      "proportion": 0.461
+      "proportion": 0.3549
     },
     {
       "breed": "Toy Poodle",
       "code": "TPOO",
-      "proportion": 0.2488
+      "proportion": 0.1915
     },
     {
       "breed": "Labrador Retriever",
       "code": "LAB",
-      "proportion": 0.0872
+      "proportion": 0.0671
     },
     {
       "breed": "Miniature Poodle",
       "code": "MPOO",
-      "proportion": 0.0847
+      "proportion": 0.0652
     },
     {
       "breed": "Akita",
       "code": "ACKR",
-      "proportion": 0.0626
+      "proportion": 0.0482
     },
     {
       "breed": "English Cocker Spaniel",
       "code": "ECKR",
-      "proportion": 0.0557
+      "proportion": 0.0429
     }
   ],
   "method": "SCOPE supervised ALStructure (K=177, Parker 2017 reference panel)",

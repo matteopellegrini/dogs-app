@@ -79,7 +79,7 @@ const NAV_ITEMS = [
   { key: 'coverage',   label: 'Karyotype',          icon: '🧬' },
   { key: 'cnv',        label: 'Copy Number',        icon: '🗺' },
   { key: 'data',       label: 'De Novo Variants',   icon: '📊' },
-  { key: 'omia',       label: 'OMIA Diseases',      icon: '🏥' },
+  { key: 'omia',       label: 'OMIA Variants',      icon: '🏥' },
   { key: 'prs',        label: 'Trait Scores',       icon: '📈' },
   { key: 'qc',         label: 'Data Quality',       icon: '🔬' },
   { key: 'inbreeding', label: 'Inbreeding',         icon: '🔗' },

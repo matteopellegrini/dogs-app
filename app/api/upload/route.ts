@@ -33,9 +33,11 @@ export async function POST(req: NextRequest) {
   // Parse PDF text
   let parsedText = '';
   try {
-    const pdfParse = (await import('pdf-parse')).default;
-    const parsed = await pdfParse(buffer);
-    parsedText = parsed.text;
+    const { PDFParse } = await import('pdf-parse');
+    const parser = new PDFParse({ data: buffer });
+    const parsed = await parser.getText();
+    parsedText = parsed.text ?? '';
+    await parser.destroy();
   } catch {
     // Store without parsed text if parsing fails
   }

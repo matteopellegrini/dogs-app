@@ -3,77 +3,32 @@
     {
       "breed": "Standard Poodle",
       "code": "SPOO",
-      "proportion": 0.3549
+      "proportion": 0.461
     },
     {
       "breed": "Toy Poodle",
       "code": "TPOO",
-      "proportion": 0.1915
+      "proportion": 0.2488
     },
     {
       "breed": "Labrador Retriever",
       "code": "LAB",
-      "proportion": 0.0671
+      "proportion": 0.0872
     },
     {
       "breed": "Miniature Poodle",
       "code": "MPOO",
-      "proportion": 0.0652
+      "proportion": 0.0847
     },
     {
       "breed": "Akita",
       "code": "ACKR",
-      "proportion": 0.0482
+      "proportion": 0.0626
     },
     {
       "breed": "English Cocker Spaniel",
       "code": "ECKR",
-      "proportion": 0.0429
-    },
-    {
-      "breed": "Lagotto Romagnolo",
-      "code": "LVMD_Italy",
-      "proportion": 0.0346
-    },
-    {
-      "breed": "Lhasa Apso",
-      "code": "LHSA",
-      "proportion": 0.0329
-    },
-    {
-      "breed": "Inca Hairless Dog",
-      "code": "INCA",
-      "proportion": 0.0324
-    },
-    {
-      "breed": "Dachshund",
-      "code": "DACH",
-      "proportion": 0.019
-    },
-    {
-      "breed": "L\u00f6wchen",
-      "code": "LMUN",
-      "proportion": 0.014
-    },
-    {
-      "breed": "Kuvasz",
-      "code": "KUVZ",
-      "proportion": 0.0129
-    },
-    {
-      "breed": "Jack Russell Terrier",
-      "code": "JACK",
-      "proportion": 0.0118
-    },
-    {
-      "breed": "Saluki",
-      "code": "SALU",
-      "proportion": 0.0106
-    },
-    {
-      "breed": "Australian Kelpie",
-      "code": "KELP",
-      "proportion": 0.01
+      "proportion": 0.0557
     }
   ],
   "method": "SCOPE supervised ALStructure (K=177, Parker 2017 reference panel)",

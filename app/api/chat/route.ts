@@ -130,6 +130,29 @@ export async function POST(req: NextRequest) {
     }
   } catch { /* CNV file optional */ }
 
+  // Append health notes from DogNotes (stored as JSON in dogs.notes)
+  try {
+    const dog = db.prepare(
+      `SELECT name, breed, dob, notes FROM dogs WHERE user_id = ? ORDER BY id ASC LIMIT 1`
+    ).get(user.id) as { name: string; breed?: string; dob?: string; notes?: string } | undefined;
+    if (dog?.notes) {
+      const parsed = JSON.parse(dog.notes) as Record<string, string>;
+      const LABELS: Record<string, string> = {
+        general: 'General Info', health: 'Health History', medications: 'Current Medications',
+        vaccinations: 'Vaccinations', vet: 'Vet & Contacts', diet: 'Diet & Nutrition', other: 'Other Notes',
+      };
+      const filled = Object.entries(parsed).filter(([, v]) => v?.trim());
+      if (filled.length > 0) {
+        genomicContext += `\n\n=== HEALTH NOTES (${dog.name}) ===\n`;
+        if (dog.breed) genomicContext += `Breed: ${dog.breed}\n`;
+        if (dog.dob) genomicContext += `DOB: ${dog.dob}\n`;
+        for (const [key, val] of filled) {
+          genomicContext += `\n[${LABELS[key] ?? key}]\n${val.trim()}\n`;
+        }
+      }
+    }
+  } catch { /* optional */ }
+
   // Append uploaded lab report text (PDFs parsed from Upload Data tab)
   try {
     const uploads = db.prepare(

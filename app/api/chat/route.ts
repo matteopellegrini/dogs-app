@@ -209,7 +209,7 @@ Guidelines:
       try {
         const response = await anthropic.messages.stream({
           model: 'claude-sonnet-4-6',
-          max_tokens: 1024,
+          max_tokens: 4096,
           system: systemPrompt,
           messages: messages.map((m: { role: string; content: string }) => ({
             role: m.role as 'user' | 'assistant',

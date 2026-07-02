@@ -19,7 +19,7 @@ interface BreedResult {
   note?: string;
 }
 
-const THRESHOLD = 0.055; // collapse breeds below 5.5% into "Unresolved ancestry"
+const THRESHOLD = 0.04; // collapse breeds below 4% into "Unresolved ancestry"
 
 // Colour palette — distinct for each breed group
 const COLORS = [
@@ -152,7 +152,7 @@ export default function BreedChart({ samplePath = '' }: { samplePath?: string } 
       <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 text-xs text-amber-700 space-y-1">
         <p><strong>Interpretation notes:</strong></p>
         <ul className="list-disc list-inside space-y-0.5 ml-1">
-          <li>Breeds below 5% are collapsed into "Unresolved ancestry" — at low WGS coverage, minor components reflect noise rather than true admixture.</li>
+          <li>Breeds below 4% are collapsed into "Unresolved ancestry" — at low WGS coverage, minor components reflect noise rather than true admixture.</li>
           {data.note && <li>{data.note}</li>}
         </ul>
       </div>

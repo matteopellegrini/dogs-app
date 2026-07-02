@@ -171,10 +171,10 @@
   },
   "physical_traits": {
     "height_cm": {
-      "pred_cm": 58.5,
-      "prs_z": 0.476,
-      "percentile": 63.3,
-      "n_ref_samples": 1182,
+      "pred_cm": 35.6,
+      "prs_z": -0.446,
+      "percentile": 43.5,
+      "n_ref_samples": 322,
       "nelk_akc_score": 52.0,
       "description": "Predicted adult height at withers.",
       "heritability": {
@@ -184,11 +184,11 @@
       }
     },
     "weight_kg": {
-      "pred_kg": 32.2,
-      "pred_lbs": 71.0,
-      "prs_z": 0.551,
-      "percentile": 68.0,
-      "n_ref_samples": 1182,
+      "pred_kg": 13.4,
+      "pred_lbs": 29.6,
+      "prs_z": -0.599,
+      "percentile": 27.0,
+      "n_ref_samples": 1192,
       "nelk_akc_score": 23.0,
       "description": "Predicted adult weight.",
       "heritability": {

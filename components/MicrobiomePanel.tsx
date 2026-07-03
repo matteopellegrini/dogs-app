@@ -75,15 +75,38 @@ interface AgeResult {
   top_species: { name: string; coefficient: number }[];
 }
 
+interface HealthResult {
+  cosmo_richness: number;
+  cosmo_shannon: number;
+  richness_percentile: number;
+  shannon_percentile: number;
+  ref_richness_p25: number;
+  ref_richness_p50: number;
+  ref_richness_p75: number;
+  ref_shannon_p25: number;
+  ref_shannon_p50: number;
+  ref_shannon_p75: number;
+  pathobiont_burden_pct: number;
+  pathobiont_percentile: number;
+  commensal_pct: number;
+  dysbiosis_index: number;
+  ref_pathobiont_mean: number;
+  ref_pathobiont_p75: number;
+  ref_pathobiont_p90: number;
+  pathobiont_hits: { name: string; pct: number; color: string; association: string }[];
+}
+
 export default function MicrobiomePanel({ samplePath }: { samplePath: string }) {
   const [data, setData] = useState<MicrobiomeResult | null>(null);
   const [ageData, setAgeData] = useState<AgeResult | null>(null);
+  const [healthData, setHealthData] = useState<HealthResult | null>(null);
   const [activeRank, setActiveRank] = useState<'phyla' | 'families' | 'genera' | 'species'>('phyla');
   const [error, setError] = useState<string | null>(null);
   useEffect(() => {
     const base = samplePath.replace(/^\//, '');
     setData(null);
     setAgeData(null);
+    setHealthData(null);
     setError(null);
     fetch(`/${base}/microbiome_result.json`)
       .then((r) => {
@@ -95,6 +118,10 @@ export default function MicrobiomePanel({ samplePath }: { samplePath: string }) 
     fetch(`/${base}/microbiome_age_result.json`)
       .then((r) => r.ok ? r.json() : null)
       .then((d) => d && setAgeData(d))
+      .catch(() => {});
+    fetch(`/${base}/microbiome_health_result.json`)
+      .then((r) => r.ok ? r.json() : null)
+      .then((d) => d && setHealthData(d))
       .catch(() => {});
   }, [samplePath]);
 
@@ -157,6 +184,71 @@ export default function MicrobiomePanel({ samplePath }: { samplePath: string }) 
         </div>
       )}
 
+      {/* Diversity metrics */}
+      {healthData && (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* Alpha diversity */}
+          <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-5 space-y-3">
+            <p className="text-xs font-semibold text-emerald-500 uppercase tracking-wide">Alpha Diversity</p>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <p className="text-xs text-emerald-400 mb-0.5">Species Richness</p>
+                <p className="text-3xl font-bold text-emerald-700">{healthData.cosmo_richness}</p>
+                <p className="text-xs text-emerald-500">{healthData.richness_percentile}th percentile</p>
+              </div>
+              <div>
+                <p className="text-xs text-emerald-400 mb-0.5">Shannon Index</p>
+                <p className="text-3xl font-bold text-emerald-700">{healthData.cosmo_shannon.toFixed(2)}</p>
+                <p className="text-xs text-emerald-500">{healthData.shannon_percentile}th percentile</p>
+              </div>
+            </div>
+            <div className="space-y-1">
+              <p className="text-xs text-emerald-400 uppercase tracking-wide">vs. reference (n=1,045 dogs)</p>
+              <PercentileBar label="Richness" value={healthData.cosmo_richness} p25={healthData.ref_richness_p25} p50={healthData.ref_richness_p50} p75={healthData.ref_richness_p75} color="#10b981" />
+              <PercentileBar label="Shannon" value={healthData.cosmo_shannon} p25={healthData.ref_shannon_p25} p50={healthData.ref_shannon_p50} p75={healthData.ref_shannon_p75} color="#10b981" />
+            </div>
+            <p className="text-xs text-emerald-600">
+              Higher diversity generally indicates a healthier, more resilient oral microbiome.
+              Cosmo ranks above the median on both metrics.
+            </p>
+          </div>
+
+          {/* Pathobiont burden */}
+          <div className={`border rounded-xl p-5 space-y-3 ${healthData.pathobiont_percentile >= 90 ? 'bg-red-50 border-red-200' : healthData.pathobiont_percentile >= 75 ? 'bg-amber-50 border-amber-200' : 'bg-gray-50 border-gray-200'}`}>
+            <p className={`text-xs font-semibold uppercase tracking-wide ${healthData.pathobiont_percentile >= 90 ? 'text-red-500' : healthData.pathobiont_percentile >= 75 ? 'text-amber-500' : 'text-gray-500'}`}>
+              Pathobiont Burden
+            </p>
+            <div className="flex items-end gap-2">
+              <span className={`text-3xl font-bold ${healthData.pathobiont_percentile >= 90 ? 'text-red-700' : 'text-amber-700'}`}>
+                {healthData.pathobiont_burden_pct.toFixed(1)}%
+              </span>
+              <span className={`text-sm mb-1 ${healthData.pathobiont_percentile >= 90 ? 'text-red-500' : 'text-amber-500'}`}>
+                of bacterial reads · {healthData.pathobiont_percentile}th pct
+              </span>
+            </div>
+            <p className="text-xs text-gray-500">
+              Reference median: {healthData.ref_pathobiont_mean.toFixed(2)}% · 90th pct: {healthData.ref_pathobiont_p90.toFixed(2)}%
+            </p>
+            <div className="space-y-1.5">
+              <p className="text-xs text-gray-500 uppercase tracking-wide">Detected periodontal pathogens</p>
+              {healthData.pathobiont_hits.map((h) => (
+                <div key={h.name} className="flex items-center gap-2">
+                  <span className={`w-2 h-2 rounded-full flex-shrink-0 ${h.color === 'red' ? 'bg-red-500' : 'bg-amber-400'}`} />
+                  <span className="text-xs italic text-gray-700 flex-1">{h.name}</span>
+                  <span className={`text-xs font-medium ${h.color === 'red' ? 'text-red-600' : 'text-amber-600'}`}>{h.pct.toFixed(2)}%</span>
+                </div>
+              ))}
+            </div>
+            <p className="text-xs text-gray-500 mt-1">
+              Dysbiosis index (log₁₀ pathobiont/commensal): <span className="font-medium text-red-600">{healthData.dysbiosis_index.toFixed(2)}</span>
+            </p>
+            <p className="text-xs text-red-700">
+              ⚠️ Elevated Porphyromonas burden is associated with canine periodontal disease. Veterinary dental evaluation recommended.
+            </p>
+          </div>
+        </div>
+      )}
+
       {/* Top kingdoms summary */}
       {data.kingdom.length > 0 && (
         <div className="bg-gray-50 rounded-lg p-4">
@@ -205,6 +297,25 @@ export default function MicrobiomePanel({ samplePath }: { samplePath: string }) 
       {activeRank === 'phyla' && data.phyla.length > 0 && (
         <PhylumDonut phyla={data.phyla.slice(0, 8).map(p => ({ ...p, relative_abundance: normalize(p.relative_abundance) }))} />
       )}
+    </div>
+  );
+}
+
+function PercentileBar({ label, value, p25, p50, p75, color }: {
+  label: string; value: number; p25: number; p50: number; p75: number; color: string;
+}) {
+  const max = p75 * 1.5;
+  const clamp = (v: number) => Math.min(v / max * 100, 100);
+  return (
+    <div className="flex items-center gap-2 text-xs">
+      <span className="w-14 text-gray-500 shrink-0">{label}</span>
+      <div className="flex-1 relative h-4 bg-gray-100 rounded-full overflow-hidden">
+        <div className="absolute h-full rounded-full opacity-30" style={{ width: `${clamp(p75)}%`, backgroundColor: color }} />
+        <div className="absolute h-full w-0.5 bg-gray-400" style={{ left: `${clamp(p50)}%` }} />
+        <div className="absolute h-full w-0.5 bg-white" style={{ left: `${clamp(value)}%` }} />
+        <div className="absolute w-2.5 h-2.5 rounded-full border-2 border-white top-0.5" style={{ left: `calc(${clamp(value)}% - 5px)`, backgroundColor: color }} />
+      </div>
+      <span className="w-10 text-right font-medium" style={{ color }}>{typeof value === 'number' && value < 10 ? value.toFixed(2) : Math.round(value)}</span>
     </div>
   );
 }

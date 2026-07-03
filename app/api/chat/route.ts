@@ -184,6 +184,21 @@ export async function POST(req: NextRequest) {
     }
   } catch { /* optional */ }
 
+  // Append microbiome health metrics (diversity + pathobiont burden)
+  try {
+    const mbhPath = publicPath('microbiome_health_result.json');
+    if (fs.existsSync(mbhPath)) {
+      const mh = JSON.parse(fs.readFileSync(mbhPath, 'utf-8'));
+      genomicContext += `\n=== MICROBIOME HEALTH METRICS ===\n`;
+      genomicContext += `Alpha diversity: richness=${mh.cosmo_richness} species (${mh.richness_percentile}th pct), Shannon=${mh.cosmo_shannon.toFixed(2)} (${mh.shannon_percentile}th pct) vs. reference median richness=${mh.ref_richness_p50}, Shannon=${mh.ref_shannon_p50.toFixed(2)}\n`;
+      genomicContext += `Pathobiont burden: ${mh.pathobiont_burden_pct}% of bacterial reads (${mh.pathobiont_percentile}th pct; ref median ${mh.ref_pathobiont_median}%, 90th pct ${mh.ref_pathobiont_p90}%)\n`;
+      genomicContext += `Dysbiosis index (log10 pathobiont/commensal): ${mh.dysbiosis_index}\n`;
+      if (mh.pathobiont_hits?.length > 0) {
+        genomicContext += `Detected periodontal pathogens: ${mh.pathobiont_hits.map((h: {name:string;pct:number}) => `${h.name} (${h.pct}%)`).join(', ')}\n`;
+      }
+    }
+  } catch { /* optional */ }
+
   // Append microbiome age prediction
   try {
     const mbAgePath = publicPath('microbiome_age_result.json');

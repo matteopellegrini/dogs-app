@@ -75,6 +75,27 @@ const IMPACT_COLORS: Record<string, string> = {
   MODIFIER: 'bg-gray-100 text-gray-500',
 };
 
+const ChromosomeIcon = ({ color = 'currentColor' }: { color?: string }) => (
+  <svg viewBox="0 0 20 20" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    {/* Left chromatid — top arm */}
+    <path d="M4.5 2 C4.5 2 5.5 3 5.5 5.5 C5.5 7.5 4 8.5 4 10 C4 11.5 5.5 12.5 5.5 14.5 C5.5 17 4.5 18 4.5 18"
+      stroke={color} strokeWidth="2.2" strokeLinecap="round" fill="none"/>
+    {/* Right chromatid */}
+    <path d="M8.5 2 C8.5 2 7.5 3 7.5 5.5 C7.5 7.5 9 8.5 9 10 C9 11.5 7.5 12.5 7.5 14.5 C7.5 17 8.5 18 8.5 18"
+      stroke={color} strokeWidth="2.2" strokeLinecap="round" fill="none"/>
+    {/* Centromere bridge top */}
+    <path d="M4.5 8.8 C5 9 7.5 9 8.5 8.8" stroke={color} strokeWidth="1.8" strokeLinecap="round" fill="none"/>
+    {/* Centromere bridge bottom */}
+    <path d="M4.5 11.2 C5 11 7.5 11 8.5 11.2" stroke={color} strokeWidth="1.8" strokeLinecap="round" fill="none"/>
+    {/* Centromere fill region */}
+    <ellipse cx="6.5" cy="10" rx="2.2" ry="1.4" fill={color} opacity="0.25"/>
+  </svg>
+);
+
+const CUSTOM_ICONS: Partial<Record<string, React.ReactNode>> = {
+  coverage: <ChromosomeIcon />,
+};
+
 const NAV_ITEMS = [
   { key: 'breed',      label: 'Breed',              icon: '🐕' },
   { key: 'coverage',   label: 'Karyotype',          icon: '📊' },
@@ -375,7 +396,9 @@ export default function Dashboard() {
                 onMouseEnter={e => { if (tab !== key) (e.currentTarget as HTMLButtonElement).style.color = '#3540CA'; }}
                 onMouseLeave={e => { if (tab !== key) (e.currentTarget as HTMLButtonElement).style.color = '#6b7280'; }}
               >
-                <span className="text-base w-5 shrink-0 text-center">{icon}</span>
+                <span className="text-base w-5 shrink-0 text-center flex items-center justify-center">
+                  {CUSTOM_ICONS[key] ?? icon}
+                </span>
                 <span>{label}</span>
                 {tab === key && (
                   <span className="ml-auto w-1 h-4 rounded-full shrink-0"
@@ -463,8 +486,10 @@ export default function Dashboard() {
               {/* Tab title bar */}
               <div className="px-6 py-4 border-b border-gray-100">
                 <h2 className="text-base font-bold" style={{ color: '#0E1B05', fontFamily: 'Montserrat, sans-serif' }}>
-                  {NAV_ITEMS.find(n => n.key === tab)?.icon}{' '}
-                  {NAV_ITEMS.find(n => n.key === tab)?.label}
+                  <span className="inline-flex items-center gap-1.5">
+                    {CUSTOM_ICONS[tab] ?? NAV_ITEMS.find(n => n.key === tab)?.icon}{' '}
+                    {NAV_ITEMS.find(n => n.key === tab)?.label}
+                  </span>
                 </h2>
               </div>
 

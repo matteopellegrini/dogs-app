@@ -39,8 +39,7 @@ function shortName(clade: string): string {
   return last.replace(/^[a-z]__/, '').replace(/_/g, ' ');
 }
 
-function TaxonBar({ entry, max, color }: { entry: TaxonEntry; max: number; color: string }) {
-  const pct = entry.relative_abundance;
+function TaxonBar({ entry, max, color, pct }: { entry: TaxonEntry; max: number; color: string; pct: number }) {
   const barW = max > 0 ? (pct / max) * 100 : 0;
   return (
     <div className="flex items-center gap-3 py-1">
@@ -71,6 +70,8 @@ export default function MicrobiomePanel({ samplePath }: { samplePath: string }) 
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    setData(null);
+    setError(null);
     fetch(`/${samplePath.replace(/^\//, '')}/microbiome_result.json`)
       .then((r) => {
         if (!r.ok) throw new Error(`HTTP ${r.status}`);
@@ -90,8 +91,11 @@ export default function MicrobiomePanel({ samplePath }: { samplePath: string }) 
     species: data.species,
   };
 
+  const norm = data.total_classified_pct / 100; // factor to convert to % of bacterial reads
+  const normalize = (pct: number) => norm > 0 ? pct / norm : pct;
+
   const entries = (rankData[activeRank] ?? []).slice(0, 20);
-  const max = entries.length > 0 ? entries[0].relative_abundance : 1;
+  const max = entries.length > 0 ? normalize(entries[0].relative_abundance) : 1;
 
   return (
     <div className="p-6 space-y-6">
@@ -113,7 +117,7 @@ export default function MicrobiomePanel({ samplePath }: { samplePath: string }) 
                 key={k.clade}
                 className="px-3 py-1 rounded-full text-sm font-medium bg-white border border-gray-200 text-gray-700"
               >
-                {k.name}: {k.relative_abundance.toFixed(2)}%
+                {k.name}: {normalize(k.relative_abundance).toFixed(1)}% of bacterial reads
               </span>
             ))}
           </div>
@@ -143,13 +147,13 @@ export default function MicrobiomePanel({ samplePath }: { samplePath: string }) 
           <p className="text-gray-400 text-sm">No taxa detected at this rank.</p>
         )}
         {entries.map((e, i) => (
-          <TaxonBar key={e.clade} entry={e} max={max} color={COLORS[i % COLORS.length]} />
+          <TaxonBar key={e.clade} entry={e} max={max} color={COLORS[i % COLORS.length]} pct={normalize(e.relative_abundance)} />
         ))}
       </div>
 
       {/* Phylum donut placeholder via inline SVG */}
       {activeRank === 'phyla' && data.phyla.length > 0 && (
-        <PhylumDonut phyla={data.phyla.slice(0, 8)} />
+        <PhylumDonut phyla={data.phyla.slice(0, 8).map(p => ({ ...p, relative_abundance: normalize(p.relative_abundance) }))} />
       )}
     </div>
   );

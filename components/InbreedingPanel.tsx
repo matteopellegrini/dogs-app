@@ -77,10 +77,10 @@ function ParkerHistogram({ parker, cosmoBenchmarkF }: { parker: ParkerResult; co
       <div className="flex items-start justify-between mb-1">
         <div>
           <h3 className="text-sm font-semibold text-gray-800">
-            Inbreeding vs. Parker et al. panel
+            Genotype-based inbreeding (F) vs. Parker et al. panel
           </h3>
           <p className="text-xs text-gray-400 mt-0.5">
-            {parker.n_samples.toLocaleString()} dogs · {parker.n_snps_used.toLocaleString()} LD-pruned SNPs · F from excess homozygosity
+            {parker.n_samples.toLocaleString()} dogs · {parker.n_snps_used.toLocaleString()} LD-pruned SNPs
           </p>
         </div>
         <div className="text-right">
@@ -88,6 +88,12 @@ function ParkerHistogram({ parker, cosmoBenchmarkF }: { parker: ParkerResult; co
           <p className="text-xs text-gray-400">{parker.cosmo_percentile}th percentile</p>
         </div>
       </div>
+      <p className="text-xs text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 mt-2">
+        <span className="font-semibold">How to read this:</span> F is computed from excess homozygosity across all SNPs.{' '}
+        <span className="font-semibold">Higher F = more inbreeding</span> (more homozygous sites than expected).
+        This captures both <em>recent</em> inbreeding and background homozygosity from breed ancestry.
+        Cosmo sits at the {parker.cosmo_percentile}th percentile — above average for this multi-breed panel, which includes many highly inbred purebreds.
+      </p>
 
       {/* Histogram */}
       <div className="relative mt-4 mb-1" style={{ height: 100 }}>
@@ -213,6 +219,12 @@ export default function InbreedingPanel({ samplePath = '' }: { samplePath?: stri
             </div>
           </div>
           <p className="text-xs text-gray-600 mt-3">{data?.interpretation}</p>
+          <p className="text-xs text-blue-700 bg-blue-50 border border-blue-200 rounded-lg px-3 py-2 mt-3">
+            <span className="font-semibold">How to read this:</span> F<sub>ROH</sub> measures the fraction of the genome in long runs of homozygosity (≥1 Mb), which arise when the same chromosomal segment is inherited from both parents.{' '}
+            <span className="font-semibold">Higher F<sub>ROH</sub> = more recent inbreeding</span> (e.g. mating of relatives).
+            Unlike the genotype F above, this specifically reflects <em>recent</em> close-relative matings rather than ancient breed-level homozygosity.
+            Cosmo's low F<sub>ROH</sub> ({pct.toFixed(1)}%) indicates she is not the product of recent inbreeding, despite her moderately elevated genotype F.
+          </p>
         </div>
       )}
 

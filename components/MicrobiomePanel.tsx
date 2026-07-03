@@ -78,6 +78,8 @@ interface AgeResult {
 interface HealthResult {
   cosmo_richness: number;
   cosmo_shannon: number;
+  cosmo_richness_matched: number;
+  cosmo_shannon_matched: number;
   richness_percentile: number;
   shannon_percentile: number;
   ref_richness_p25: number;
@@ -86,11 +88,13 @@ interface HealthResult {
   ref_shannon_p25: number;
   ref_shannon_p50: number;
   ref_shannon_p75: number;
+  n_matched_species: number;
   pathobiont_burden_pct: number;
   pathobiont_percentile: number;
   commensal_pct: number;
   dysbiosis_index: number;
   ref_pathobiont_mean: number;
+  ref_pathobiont_median: number;
   ref_pathobiont_p75: number;
   ref_pathobiont_p90: number;
   pathobiont_hits: { name: string; pct: number; color: string; association: string }[];
@@ -193,18 +197,23 @@ export default function MicrobiomePanel({ samplePath }: { samplePath: string }) 
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <p className="text-xs text-emerald-400 mb-0.5">Species Richness</p>
-                <p className="text-3xl font-bold text-emerald-700">{healthData.cosmo_richness}</p>
-                <p className="text-xs text-emerald-500">species detected</p>
+                <p className="text-3xl font-bold text-emerald-700">{healthData.cosmo_richness_matched}</p>
+                <p className="text-xs text-emerald-500">{healthData.richness_percentile}th percentile</p>
               </div>
               <div>
                 <p className="text-xs text-emerald-400 mb-0.5">Shannon Index</p>
-                <p className="text-3xl font-bold text-emerald-700">{healthData.cosmo_shannon.toFixed(2)}</p>
-                <p className="text-xs text-emerald-500">evenness + richness</p>
+                <p className="text-3xl font-bold text-emerald-700">{healthData.cosmo_shannon_matched.toFixed(2)}</p>
+                <p className="text-xs text-emerald-500">{healthData.shannon_percentile}th percentile</p>
               </div>
             </div>
-            <p className="text-xs text-emerald-600">
-              Higher diversity generally indicates a healthier, more resilient oral microbiome.
-              Shannon &gt; 3 reflects high species evenness.
+            <div className="space-y-1">
+              <p className="text-xs text-emerald-400 uppercase tracking-wide">vs. reference (n=1,045 dogs)</p>
+              <PercentileBar label="Richness" value={healthData.cosmo_richness_matched} p25={healthData.ref_richness_p25} p50={healthData.ref_richness_p50} p75={healthData.ref_richness_p75} color="#10b981" />
+              <PercentileBar label="Shannon" value={healthData.cosmo_shannon_matched} p25={healthData.ref_shannon_p25} p50={healthData.ref_shannon_p50} p75={healthData.ref_shannon_p75} color="#10b981" />
+            </div>
+            <p className="text-xs text-emerald-500">
+              Computed on {healthData.n_matched_species} species shared with the reference panel.
+              Higher diversity indicates a more resilient oral microbiome.
             </p>
           </div>
 

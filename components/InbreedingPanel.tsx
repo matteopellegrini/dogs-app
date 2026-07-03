@@ -47,6 +47,21 @@ interface ParkerResult {
   hist_edges: number[];
 }
 
+interface FrohParkerResult {
+  cosmo_froh: number;
+  cosmo_roh_total_mb: number;
+  cosmo_percentile: number;
+  n_samples: number;
+  ref_froh_mean: number;
+  ref_froh_p50: number;
+  ref_froh_p25: number;
+  ref_froh_p75: number;
+  hist_counts: number[];
+  hist_edges: number[];
+  autosomal_genome_mb: number;
+  note?: string;
+}
+
 const LEVEL_STYLE = {
   low:       { bar: 'bg-green-500',  badge: 'bg-green-100 text-green-700',  label: 'Low' },
   moderate:  { bar: 'bg-yellow-400', badge: 'bg-yellow-100 text-yellow-700', label: 'Moderate' },
@@ -164,15 +179,107 @@ function ParkerHistogram({ parker, cosmoBenchmarkF }: { parker: ParkerResult; co
   );
 }
 
+function FrohHistogram({ frohParker }: { frohParker: FrohParkerResult }) {
+  const maxCount = Math.max(...frohParker.hist_counts);
+  const cosmoFroh = frohParker.cosmo_froh;
+  const edges = frohParker.hist_edges;
+  const range = edges[edges.length - 1] - edges[0];
+  const cosmoLeftPct = ((cosmoFroh - edges[0]) / range) * 100;
+
+  return (
+    <div className="bg-white border border-gray-200 rounded-xl p-5">
+      <div className="flex items-start justify-between mb-1">
+        <div>
+          <h3 className="text-sm font-semibold text-gray-800">
+            ROH-based inbreeding (F<sub>ROH</sub>) vs. Parker et al. panel
+          </h3>
+          <p className="text-xs text-gray-400 mt-0.5">
+            {frohParker.n_samples.toLocaleString()} dogs · SNP-array ROH detection
+          </p>
+        </div>
+        <div className="text-right">
+          <p className="text-2xl font-bold text-gray-800">{(cosmoFroh * 100).toFixed(1)}%</p>
+          <p className="text-xs text-gray-400">{frohParker.cosmo_percentile}th percentile</p>
+        </div>
+      </div>
+
+      <p className="text-xs text-blue-700 bg-blue-50 border border-blue-200 rounded-lg px-3 py-2 mt-2">
+        <span className="font-semibold">How to read this:</span> F<sub>ROH</sub> is the fraction of the autosomal genome
+        in long runs of homozygosity (ROH ≥ 500 kb). ROH arise when both copies of a chromosome segment are
+        identical by descent.{' '}
+        <span className="font-semibold">Higher F<sub>ROH</sub> = more recent inbreeding</span> — only recent
+        matings of relatives produce the long IBD tracts detected as ROH.
+        Cosmo sits at the {frohParker.cosmo_percentile}th percentile within this panel
+        ({(cosmoFroh * 100).toFixed(1)}% of her genome is in ROH segments).
+      </p>
+
+      {/* Histogram */}
+      <div className="relative mt-4 mb-1" style={{ height: 100 }}>
+        <div className="flex items-end gap-px h-full">
+          {frohParker.hist_counts.map((count, i) => {
+            const h = maxCount > 0 ? (count / maxCount) * 100 : 0;
+            const binStart = edges[i];
+            const binEnd = edges[i + 1];
+            const hasCosmo = cosmoFroh >= binStart && cosmoFroh < binEnd;
+            return (
+              <div
+                key={i}
+                title={`F_ROH ${(binStart*100).toFixed(1)}–${(binEnd*100).toFixed(1)}%: ${count} dogs`}
+                className={`flex-1 rounded-t-sm transition-colors ${hasCosmo ? 'bg-[#3540CA]' : 'bg-gray-200 hover:bg-gray-300'}`}
+                style={{ height: `${h}%`, minHeight: count > 0 ? 2 : 0 }}
+              />
+            );
+          })}
+        </div>
+        {/* Cosmo marker line */}
+        <div
+          className="absolute top-0 bottom-0 w-0.5 bg-[#3540CA] opacity-80"
+          style={{ left: `${Math.min(Math.max(cosmoLeftPct, 0), 100)}%` }}
+        >
+          <span className="absolute -top-5 left-1 text-[10px] font-semibold text-[#3540CA] whitespace-nowrap">
+            Cosmo
+          </span>
+        </div>
+      </div>
+
+      {/* X-axis */}
+      <div className="flex justify-between text-[9px] text-gray-400 mt-1">
+        {[0, 10, 20, 30, 40, 50, 60, 70].map(v => (
+          <span key={v}>{v}%</span>
+        ))}
+      </div>
+
+      {/* Stats */}
+      <div className="grid grid-cols-3 gap-3 mt-4 text-xs">
+        <div className="bg-gray-50 rounded-lg p-2">
+          <p className="text-gray-400 mb-0.5">Panel median F<sub>ROH</sub></p>
+          <p className="font-semibold text-gray-700">{(frohParker.ref_froh_p50 * 100).toFixed(1)}%</p>
+        </div>
+        <div className="bg-gray-50 rounded-lg p-2">
+          <p className="text-gray-400 mb-0.5">Panel mean F<sub>ROH</sub></p>
+          <p className="font-semibold text-gray-700">{(frohParker.ref_froh_mean * 100).toFixed(1)}%</p>
+        </div>
+        <div className="bg-[#3540CA]/5 border border-[#3540CA]/20 rounded-lg p-2">
+          <p className="text-[#3540CA]/70 mb-0.5">Cosmo F<sub>ROH</sub></p>
+          <p className="font-semibold text-[#3540CA]">{(cosmoFroh * 100).toFixed(1)}% · {frohParker.cosmo_percentile}th pct</p>
+        </div>
+      </div>
+      {frohParker.note && <p className="text-[10px] text-gray-400 mt-2">{frohParker.note}</p>}
+    </div>
+  );
+}
+
 export default function InbreedingPanel({ samplePath = '' }: { samplePath?: string } = {}) {
   const [data, setData] = useState<InbreedingResult | null>(null);
   const [parker, setParker] = useState<ParkerResult | null>(null);
+  const [frohParker, setFrohParker] = useState<FrohParkerResult | null>(null);
   const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
     const base = samplePath.replace(/^\//, '');
     fetch(`/${base}/inbreeding_result.json`).then(r => r.ok ? r.json() : null).then(d => d && setData(d)).catch(() => {});
     fetch(`/${base}/inbreeding_parker_result.json`).then(r => r.ok ? r.json() : null).then(d => d && setParker(d)).catch(() => {});
+    fetch(`/${base}/inbreeding_froh_parker_result.json`).then(r => r.ok ? r.json() : null).then(d => d && setFrohParker(d)).catch(() => {});
   }, [samplePath]);
 
   if (!data && !parker) return <div className="text-gray-400 text-sm py-8 text-center">Loading inbreeding data…</div>;
@@ -192,6 +299,9 @@ export default function InbreedingPanel({ samplePath = '' }: { samplePath?: stri
       {parker && (
         <ParkerHistogram parker={parker} cosmoBenchmarkF={data ? data.f_roh : 0} />
       )}
+
+      {/* F_ROH distribution vs Parker panel */}
+      {frohParker && <FrohHistogram frohParker={frohParker} />}
 
       {/* F_ROH gauge (original ROH-based) */}
       {data && (

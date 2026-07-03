@@ -76,13 +76,13 @@ const IMPACT_COLORS: Record<string, string> = {
 };
 
 const NAV_ITEMS = [
-  { key: 'breed',      label: 'Breed',              icon: '🐾' },
-  { key: 'coverage',   label: 'Karyotype',          icon: '🧫' },
-  { key: 'cnv',        label: 'Copy Number',        icon: '📋' },
-  { key: 'data',       label: 'De Novo Variants',   icon: '⚡' },
-  { key: 'omia',       label: 'OMIA Variants',      icon: '⚠️' },
-  { key: 'prs',        label: 'Trait Scores',       icon: '🎯' },
-  { key: 'inbreeding', label: 'Inbreeding',         icon: '🌀' },
+  { key: 'breed',      label: 'Breed',              icon: '🐕' },
+  { key: 'coverage',   label: 'Karyotype',          icon: '📊' },
+  { key: 'cnv',        label: 'Copy Number',        icon: '🔢' },
+  { key: 'data',       label: 'De Novo Variants',   icon: '🔍' },
+  { key: 'omia',       label: 'OMIA Variants',      icon: '💊' },
+  { key: 'prs',        label: 'Trait Scores',       icon: '🌡️' },
+  { key: 'inbreeding', label: 'Inbreeding',         icon: '👪' },
   { key: 'microbiome', label: 'Microbiome',         icon: '🦠' },
   { key: 'qc',         label: 'Data Quality',       icon: '✅' },
   { key: 'notes',      label: 'Health Notes',       icon: '🩺' },

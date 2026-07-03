@@ -13,6 +13,7 @@ import OmiaTable from '@/components/OmiaTable';
 import InbreedingPanel from '@/components/InbreedingPanel';
 import PrsPanel from '@/components/PrsPanel';
 import QcPanel from '@/components/QcPanel';
+import MicrobiomePanel from '@/components/MicrobiomePanel';
 import DogNotes from '@/components/DogNotes';
 
 interface Upload {
@@ -83,6 +84,7 @@ const NAV_ITEMS = [
   { key: 'prs',        label: 'Trait Scores',       icon: '📈' },
   { key: 'inbreeding', label: 'Inbreeding',         icon: '🔗' },
   { key: 'qc',         label: 'Data Quality',       icon: '🔬' },
+  { key: 'microbiome', label: 'Microbiome',         icon: '🦠' },
   { key: 'notes',      label: 'Health Notes',       icon: '📝' },
   { key: 'upload',     label: 'Upload Data',        icon: '📤' },
   { key: 'chat',       label: 'AI Assistant',       icon: '💬' },
@@ -628,6 +630,7 @@ export default function Dashboard() {
                 {tab === 'omia'       && <OmiaTable samplePath={samplePath} />}
                 {tab === 'prs'        && <PrsPanel samplePath={samplePath} />}
                 {tab === 'qc'         && <QcPanel samplePath={samplePath} />}
+                {tab === 'microbiome' && <MicrobiomePanel samplePath={samplePath} />}
                 {tab === 'notes'      && <DogNotes dogs={dogs} sample={activeSample} />}
 
               </div>

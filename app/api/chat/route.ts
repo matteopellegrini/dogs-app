@@ -165,6 +165,25 @@ export async function POST(req: NextRequest) {
     }
   } catch { /* optional */ }
 
+  // Append oral microbiome profiling results
+  try {
+    const mbPath = publicPath('microbiome_result.json');
+    if (fs.existsSync(mbPath)) {
+      const mb = JSON.parse(fs.readFileSync(mbPath, 'utf-8'));
+      genomicContext += `\n\n=== ORAL MICROBIOME (MetaPhlAn4 — ${mb.db_version}) ===\n`;
+      genomicContext += `Run date: ${mb.run_date} · Classified reads: ${mb.total_classified_pct.toFixed(2)}%\n`;
+      if (mb.phyla?.length > 0) {
+        genomicContext += `Top phyla: ${mb.phyla.slice(0,5).map((e: {name:string;relative_abundance:number}) => `${e.name} (${e.relative_abundance.toFixed(2)}%)`).join(', ')}\n`;
+      }
+      if (mb.genera?.length > 0) {
+        genomicContext += `Top genera: ${mb.genera.slice(0,8).map((e: {name:string;relative_abundance:number}) => `${e.name} (${e.relative_abundance.toFixed(2)}%)`).join(', ')}\n`;
+      }
+      if (mb.species?.length > 0) {
+        genomicContext += `Top species: ${mb.species.slice(0,10).map((e: {name:string;relative_abundance:number}) => `${e.name} (${e.relative_abundance.toFixed(2)}%)`).join(', ')}\n`;
+      }
+    }
+  } catch { /* optional */ }
+
   // Append uploaded lab report text (PDFs parsed from Upload Data tab)
   try {
     const uploads = db.prepare(

@@ -1,0 +1,40 @@
+{
+  "bcftools": {
+    "tool": "bcftools mpileup | bcftools call",
+    "version": "1.x",
+    "runtime_sec": 2644,
+    "runtime_label": "44 min 4 sec",
+    "total_variants": 12357,
+    "snvs": 11657,
+    "indels": 700,
+    "mnps": 0,
+    "tstv": 1.26,
+    "filters": "QUAL>=20, DP>=10",
+    "threads": 8
+  },
+  "freebayes": {
+    "tool": "freebayes-parallel (GNU parallel, per-chrom)",
+    "version": "v1.3.6",
+    "runtime_sec": 696,
+    "runtime_label": "11 min 36 sec",
+    "total_variants": 23848,
+    "snvs": 19958,
+    "indels": 1753,
+    "mnps": 2252,
+    "tstv": 1.99,
+    "filters": "QUAL>=20, FORMAT/DP>=10",
+    "threads": 8
+  },
+  "overlap": {
+    "unique_to_bcftools": 10166,
+    "unique_to_freebayes": 21657,
+    "in_both": 2191,
+    "note": "Overlap = exact match on CHROM+POS+REF+ALT"
+  },
+  "notes": [
+    "Ts/Tv ratio: expected ~2.1 for WGS SNPs. Freebayes (1.99) is closer to expectation than bcftools (1.26), suggesting bcftools may retain more false-positive transversions under these filter settings.",
+    "Freebayes calls MNPs (multi-nucleotide polymorphisms) which bcftools does not; this accounts for much of the difference in total count.",
+    "bcftools was run on a single sample without a panel of normals; strict filtering may explain the lower call count.",
+    "Runtime comparison: freebayes ran 3.8\u00d7 faster (parallel per-chrom vs bcftools streaming mpileup)."
+  ]
+}

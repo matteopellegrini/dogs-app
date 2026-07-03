@@ -15,6 +15,7 @@ import PrsPanel from '@/components/PrsPanel';
 import QcPanel from '@/components/QcPanel';
 import MicrobiomePanel from '@/components/MicrobiomePanel';
 import DogNotes from '@/components/DogNotes';
+import VariantCallerComparison from '@/components/VariantCallerComparison';
 
 interface Upload {
   id: number;
@@ -547,6 +548,7 @@ export default function Dashboard() {
                 {/* ── Variant data ── */}
                 {tab === 'data' && (
                   <div>
+                    <VariantCallerComparison samplePath={samplePath} />
                     {!hasData ? (
                       <p className="text-sm text-gray-400 mt-4">No data yet. Upload a SNPEff .genes.txt file to see results.</p>
                     ) : (

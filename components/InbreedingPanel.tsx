@@ -47,6 +47,18 @@ interface ParkerResult {
   hist_edges: number[];
 }
 
+interface ScatterResult {
+  pearson_r: number;
+  pearson_p: number;
+  spearman_rho: number;
+  n_samples: number;
+  cosmo_geno_F: number;
+  cosmo_froh: number;
+  ref_geno_F_mean: number;
+  ref_froh_mean: number;
+  points: { x: number; y: number }[];
+}
+
 interface FrohParkerResult {
   cosmo_froh: number;
   cosmo_roh_total_mb: number;
@@ -179,6 +191,111 @@ function ParkerHistogram({ parker, cosmoBenchmarkF }: { parker: ParkerResult; co
   );
 }
 
+function InbreedingScatter({ scatter }: { scatter: ScatterResult }) {
+  const W = 340, H = 260, PAD = { top: 24, right: 20, bottom: 44, left: 52 };
+  const plotW = W - PAD.left - PAD.right;
+  const plotH = H - PAD.top - PAD.bottom;
+
+  const allX = scatter.points.map(p => p.x);
+  const allY = scatter.points.map(p => p.y);
+  const xMin = 0, xMax = Math.ceil(Math.max(...allX, scatter.cosmo_geno_F) * 10) / 10;
+  const yMin = 0, yMax = Math.ceil(Math.max(...allY, scatter.cosmo_froh) * 10) / 10;
+
+  const sx = (v: number) => PAD.left + ((v - xMin) / (xMax - xMin)) * plotW;
+  const sy = (v: number) => PAD.top + plotH - ((v - yMin) / (yMax - yMin)) * plotH;
+
+  // Linear regression line
+  const n = scatter.points.length;
+  const meanX = allX.reduce((a, b) => a + b, 0) / n;
+  const meanY = allY.reduce((a, b) => a + b, 0) / n;
+  const slope = allX.reduce((s, x, i) => s + (x - meanX) * (allY[i] - meanY), 0) /
+                allX.reduce((s, x) => s + (x - meanX) ** 2, 0);
+  const intercept = meanY - slope * meanX;
+  const lx1 = xMin, ly1 = intercept + slope * lx1;
+  const lx2 = xMax, ly2 = intercept + slope * lx2;
+
+  const ticks = (min: number, max: number, n: number) =>
+    Array.from({ length: n }, (_, i) => +(min + (i / (n - 1)) * (max - min)).toFixed(2));
+
+  return (
+    <div className="bg-white border border-gray-200 rounded-xl p-5">
+      <div className="flex items-start justify-between mb-3">
+        <div>
+          <h3 className="text-sm font-semibold text-gray-800">Genotype F vs F<sub>ROH</sub></h3>
+          <p className="text-xs text-gray-400 mt-0.5">{scatter.n_samples.toLocaleString()} Parker panel dogs</p>
+        </div>
+        <div className="text-right bg-gray-50 rounded-lg px-3 py-2">
+          <p className="text-sm font-bold text-gray-800">r = {scatter.pearson_r.toFixed(3)}</p>
+          <p className="text-xs text-gray-400">ρ = {scatter.spearman_rho.toFixed(3)}</p>
+        </div>
+      </div>
+
+      <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ maxHeight: 300 }}>
+        {/* Grid lines */}
+        {ticks(yMin, yMax, 5).map(t => (
+          <line key={t} x1={PAD.left} x2={W - PAD.right} y1={sy(t)} y2={sy(t)}
+            stroke="#f0f0f0" strokeWidth="1" />
+        ))}
+
+        {/* Regression line */}
+        <line x1={sx(lx1)} y1={sy(ly1)} x2={sx(lx2)} y2={sy(ly2)}
+          stroke="#94a3b8" strokeWidth="1.5" strokeDasharray="4 3" />
+
+        {/* Scatter points */}
+        {scatter.points.map((p, i) => (
+          <circle key={i} cx={sx(p.x)} cy={sy(p.y)} r={2.2}
+            fill="#9ca3af" fillOpacity={0.45} />
+        ))}
+
+        {/* Cosmo */}
+        <circle cx={sx(scatter.cosmo_geno_F)} cy={sy(scatter.cosmo_froh)} r={6}
+          fill="#3540CA" stroke="white" strokeWidth={1.5} />
+        <text x={sx(scatter.cosmo_geno_F) + 9} y={sy(scatter.cosmo_froh) + 4}
+          fontSize={9} fill="#3540CA" fontWeight="600">Cosmo</text>
+
+        {/* X axis */}
+        <line x1={PAD.left} x2={W - PAD.right} y1={PAD.top + plotH} y2={PAD.top + plotH}
+          stroke="#e5e7eb" strokeWidth="1" />
+        {ticks(xMin, xMax, 5).map(t => (
+          <g key={t}>
+            <line x1={sx(t)} x2={sx(t)} y1={PAD.top + plotH} y2={PAD.top + plotH + 4}
+              stroke="#e5e7eb" strokeWidth="1" />
+            <text x={sx(t)} y={PAD.top + plotH + 14} fontSize={8} textAnchor="middle" fill="#9ca3af">
+              {(t * 100).toFixed(0)}%
+            </text>
+          </g>
+        ))}
+        <text x={PAD.left + plotW / 2} y={H - 2} fontSize={9} textAnchor="middle" fill="#6b7280">
+          Genotype F
+        </text>
+
+        {/* Y axis */}
+        <line x1={PAD.left} x2={PAD.left} y1={PAD.top} y2={PAD.top + plotH}
+          stroke="#e5e7eb" strokeWidth="1" />
+        {ticks(yMin, yMax, 5).map(t => (
+          <g key={t}>
+            <text x={PAD.left - 6} y={sy(t) + 3} fontSize={8} textAnchor="end" fill="#9ca3af">
+              {(t * 100).toFixed(0)}%
+            </text>
+          </g>
+        ))}
+        <text x={12} y={PAD.top + plotH / 2} fontSize={9} textAnchor="middle" fill="#6b7280"
+          transform={`rotate(-90, 12, ${PAD.top + plotH / 2})`}>
+          F_ROH
+        </text>
+      </svg>
+
+      <p className="text-xs text-gray-500 mt-2">
+        Both measures are highly correlated (r = {scatter.pearson_r.toFixed(3)}), confirming they capture the same underlying inbreeding signal.
+        Genotype F tends to be slightly lower than F<sub>ROH</sub> because it is calibrated against expected heterozygosity
+        across the whole panel rather than physical genome coverage.
+        Cosmo (blue dot) sits above the regression line — her F<sub>ROH</sub> is somewhat elevated relative to her genotype F,
+        suggesting her ROH are concentrated in longer segments rather than distributed genome-wide.
+      </p>
+    </div>
+  );
+}
+
 function FrohHistogram({ frohParker }: { frohParker: FrohParkerResult }) {
   const maxCount = Math.max(...frohParker.hist_counts);
   const cosmoFroh = frohParker.cosmo_froh;
@@ -273,6 +390,7 @@ export default function InbreedingPanel({ samplePath = '' }: { samplePath?: stri
   const [data, setData] = useState<InbreedingResult | null>(null);
   const [parker, setParker] = useState<ParkerResult | null>(null);
   const [frohParker, setFrohParker] = useState<FrohParkerResult | null>(null);
+  const [scatter, setScatter] = useState<ScatterResult | null>(null);
   const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
@@ -280,6 +398,7 @@ export default function InbreedingPanel({ samplePath = '' }: { samplePath?: stri
     fetch(`/${base}/inbreeding_result.json`).then(r => r.ok ? r.json() : null).then(d => d && setData(d)).catch(() => {});
     fetch(`/${base}/inbreeding_parker_result.json`).then(r => r.ok ? r.json() : null).then(d => d && setParker(d)).catch(() => {});
     fetch(`/${base}/inbreeding_froh_parker_result.json`).then(r => r.ok ? r.json() : null).then(d => d && setFrohParker(d)).catch(() => {});
+    fetch(`/${base}/inbreeding_scatter_result.json`).then(r => r.ok ? r.json() : null).then(d => d && setScatter(d)).catch(() => {});
   }, [samplePath]);
 
   if (!data && !parker) return <div className="text-gray-400 text-sm py-8 text-center">Loading inbreeding data…</div>;
@@ -299,6 +418,9 @@ export default function InbreedingPanel({ samplePath = '' }: { samplePath?: stri
       {parker && (
         <ParkerHistogram parker={parker} cosmoBenchmarkF={data ? data.f_roh : 0} />
       )}
+
+      {/* Scatter plot: genotype F vs F_ROH */}
+      {scatter && <InbreedingScatter scatter={scatter} />}
 
       {/* F_ROH distribution vs Parker panel */}
       {frohParker && <FrohHistogram frohParker={frohParker} />}

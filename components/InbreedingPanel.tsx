@@ -390,190 +390,28 @@ export default function InbreedingPanel({ samplePath = '' }: { samplePath?: stri
   const [data, setData] = useState<InbreedingResult | null>(null);
   const [parker, setParker] = useState<ParkerResult | null>(null);
   const [frohParker, setFrohParker] = useState<FrohParkerResult | null>(null);
-  const [scatter, setScatter] = useState<ScatterResult | null>(null);
-  const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
     const base = samplePath.replace(/^\//, '');
     fetch(`/${base}/inbreeding_result.json`).then(r => r.ok ? r.json() : null).then(d => d && setData(d)).catch(() => {});
     fetch(`/${base}/inbreeding_parker_result.json`).then(r => r.ok ? r.json() : null).then(d => d && setParker(d)).catch(() => {});
     fetch(`/${base}/inbreeding_froh_parker_result.json`).then(r => r.ok ? r.json() : null).then(d => d && setFrohParker(d)).catch(() => {});
-    fetch(`/${base}/inbreeding_scatter_result.json`).then(r => r.ok ? r.json() : null).then(d => d && setScatter(d)).catch(() => {});
   }, [samplePath]);
 
-  if (!data && !parker) return <div className="text-gray-400 text-sm py-8 text-center">Loading inbreeding data…</div>;
+  if (!parker && !frohParker) return <div className="text-gray-400 text-sm py-8 text-center">Loading inbreeding data…</div>;
 
-  // Normalise field names — JSON uses either Froh/f_roh and either inbreeding_level/level
-  const froh = data?.Froh ?? data?.f_roh ?? 0;
-  const pct = data?.f_roh_pct ?? froh * 100;
-  const totalRohMb = data?.roh_total_mb ?? data?.total_roh_mb ?? 0;
-  const genomeRohMb = data?.roh_genome_mb ?? data?.autosomal_genome_mb ?? 2200;
-  const levelRaw = (data?.inbreeding_level ?? data?.level ?? 'low').toLowerCase().replace(/\s+/g, '_') as keyof typeof LEVEL_STYLE;
-  const style = LEVEL_STYLE[levelRaw] ?? LEVEL_STYLE.low;
-  const segments = showAll ? (data?.roh_segments ?? []) : (data?.roh_segments ?? []).slice(0, 10);
+  const cosmoBenchmarkF = data?.Froh ?? data?.f_roh ?? 0;
 
   return (
     <div className="space-y-5">
-      {/* Parker panel distribution — primary view */}
+      {/* Parker panel distribution — genotype F */}
       {parker && (
-        <ParkerHistogram parker={parker} cosmoBenchmarkF={data ? data.f_roh : 0} />
+        <ParkerHistogram parker={parker} cosmoBenchmarkF={cosmoBenchmarkF} />
       )}
-
-      {/* Scatter plot: genotype F vs F_ROH */}
-      {scatter && <InbreedingScatter scatter={scatter} />}
 
       {/* F_ROH distribution vs Parker panel */}
       {frohParker && <FrohHistogram frohParker={frohParker} />}
 
-      {/* F_ROH gauge (original ROH-based) */}
-      {data && (
-        <div className="bg-white border border-gray-200 rounded-xl p-5">
-          <div className="flex items-start justify-between mb-3">
-            <div>
-              <p className="text-xs text-gray-400 mb-0.5">Inbreeding coefficient (F<sub>ROH</sub>, WGS-based)</p>
-              <p className="text-4xl font-bold text-gray-800">{pct.toFixed(1)}%</p>
-            </div>
-            <span className={`px-3 py-1 rounded-full text-sm font-semibold ${style.badge}`}>
-              {style.label}
-            </span>
-          </div>
-
-          <div className="relative mt-2">
-            <div className="h-3 bg-gray-100 rounded-full overflow-hidden">
-              <div
-                className={`h-full rounded-full transition-all ${style.bar}`}
-                style={{ width: `${Math.min(pct / 30 * 100, 100)}%` }}
-              />
-            </div>
-            <div className="flex justify-between text-[9px] text-gray-400 mt-1">
-              <span>0%</span><span>5%</span><span>10%</span><span>15%</span>
-              <span>20%</span><span>25%</span><span>30%+</span>
-            </div>
-          </div>
-          <p className="text-xs text-gray-600 mt-3">{data?.interpretation}</p>
-          <p className="text-xs text-blue-700 bg-blue-50 border border-blue-200 rounded-lg px-3 py-2 mt-3">
-            <span className="font-semibold">How to read this:</span> F<sub>ROH</sub> measures the fraction of the genome in long runs of homozygosity (≥1 Mb), which arise when the same chromosomal segment is inherited from both parents.{' '}
-            <span className="font-semibold">Higher F<sub>ROH</sub> = more recent inbreeding</span> (e.g. mating of relatives).
-            Unlike the genotype F above, this specifically reflects <em>recent</em> close-relative matings rather than ancient breed-level homozygosity.
-            Cosmo's low F<sub>ROH</sub> ({pct.toFixed(1)}%) indicates she is not the product of recent inbreeding, despite her moderately elevated genotype F.
-          </p>
-        </div>
-      )}
-
-      {/* Stats grid */}
-      {data && (
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-          {data.n_roh != null && (
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
-              <p className="text-xs text-gray-400 mb-1">ROH segments</p>
-              <p className="text-xl font-semibold text-gray-700">{data.n_roh}</p>
-            </div>
-          )}
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
-            <p className="text-xs text-gray-400 mb-1">Total ROH length</p>
-            <p className="text-xl font-semibold text-gray-700">{totalRohMb.toFixed(0)} Mb</p>
-          </div>
-          {data.avg_roh_mb != null && (
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
-              <p className="text-xs text-gray-400 mb-1">Avg ROH length</p>
-              <p className="text-xl font-semibold text-gray-700">{data.avg_roh_mb.toFixed(1)} Mb</p>
-            </div>
-          )}
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
-            <p className="text-xs text-gray-400 mb-1">Genome covered</p>
-            <p className="text-xl font-semibold text-gray-700">
-              {((totalRohMb / genomeRohMb) * 100).toFixed(1)}%
-            </p>
-          </div>
-        </div>
-      )}
-
-      {/* Benchmarks */}
-      {data && (
-        <div className="bg-white border border-gray-200 rounded-xl p-4">
-          <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">
-            Comparison to expected F values
-          </h3>
-          <div className="space-y-2">
-            {BENCHMARKS.map((b, i) => (
-              <div key={i} className="flex items-center gap-3 text-xs">
-                <span className="w-32 text-gray-600 shrink-0">{b.label}</span>
-                <div className="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
-                  <div
-                    className="h-full bg-[#C4F9FF]/50 rounded-full"
-                    style={{ width: `${Math.min(b.f / 0.30 * 100, 100)}%` }}
-                  />
-                </div>
-                <span className="w-10 text-right text-gray-400">{(b.f * 100).toFixed(1)}%</span>
-                {Math.abs(froh - b.f) < 0.02 && (
-                  <span className="text-[#3540CA] font-medium">← this dog</span>
-                )}
-              </div>
-            ))}
-            <div className="flex items-center gap-3 text-xs mt-1 pt-2 border-t border-gray-100">
-              <span className="w-32 font-semibold text-gray-800 shrink-0">This dog</span>
-              <div className="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
-                <div
-                  className={`h-full rounded-full ${style.bar}`}
-                  style={{ width: `${Math.min(pct / 30 * 100, 100)}%` }}
-                />
-              </div>
-              <span className="w-10 text-right font-semibold text-gray-800">{pct.toFixed(1)}%</span>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* ROH segments table */}
-      {data && (data.roh_segments ?? []).length > 0 && (
-        <div className="bg-white border border-gray-200 rounded-xl p-4">
-          <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-3">
-            Runs of Homozygosity ({data.n_roh ?? segments.length} segments ≥ 1 Mb)
-          </h3>
-          <div className="overflow-x-auto">
-            <table className="w-full text-xs">
-              <thead>
-                <tr className="border-b border-gray-100 text-gray-400 text-left">
-                  <th className="py-1.5 pr-4 font-medium">Region</th>
-                  <th className="py-1.5 pr-4 font-medium">Length</th>
-                  <th className="py-1.5 font-medium">SNPs</th>
-                </tr>
-              </thead>
-              <tbody>
-                {segments.map((s, i) => (
-                  <tr key={i} className="border-b border-gray-50 hover:bg-gray-50">
-                    <td className="py-1.5 pr-4 font-mono text-gray-600">
-                      {s.chrom}:{(s.start / 1e6).toFixed(1)}–{(s.end / 1e6).toFixed(1)} Mb
-                    </td>
-                    <td className="py-1.5 pr-4">
-                      <div className="flex items-center gap-2">
-                        <div className="w-16 h-1.5 bg-gray-100 rounded-full overflow-hidden">
-                          <div
-                            className={`h-full rounded-full ${style.bar}`}
-                            style={{ width: `${Math.min(s.length_mb / 30 * 100, 100)}%` }}
-                          />
-                        </div>
-                        <span className="text-gray-700 font-medium">{s.length_mb.toFixed(1)} Mb</span>
-                      </div>
-                    </td>
-                    <td className="py-1.5 text-gray-400">{s.n_snps.toLocaleString()}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          {(data.roh_segments ?? []).length > 10 && (
-            <button
-              onClick={() => setShowAll(!showAll)}
-              className="mt-2 text-xs text-[#3540CA] hover:text-[#0E1B05]"
-            >
-              {showAll ? 'Show fewer' : `Show all ${data.n_roh ?? (data.roh_segments ?? []).length} segments`}
-            </button>
-          )}
-        </div>
-      )}
-
-      {data?.method && <p className="text-xs text-gray-400">{data.method}</p>}
     </div>
   );
 }

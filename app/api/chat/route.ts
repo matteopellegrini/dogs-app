@@ -170,16 +170,19 @@ export async function POST(req: NextRequest) {
     const mbPath = publicPath('microbiome_result.json');
     if (fs.existsSync(mbPath)) {
       const mb = JSON.parse(fs.readFileSync(mbPath, 'utf-8'));
+      const norm = mb.total_classified_pct / 100;
+      const normPct = (v: number) => norm > 0 ? (v / norm).toFixed(2) : v.toFixed(2);
       genomicContext += `\n\n=== ORAL MICROBIOME (MetaPhlAn4 — ${mb.db_version}) ===\n`;
-      genomicContext += `Run date: ${mb.run_date} · Classified reads: ${mb.total_classified_pct.toFixed(2)}%\n`;
+      genomicContext += `Run date: ${mb.run_date} · Classified reads: ${mb.total_classified_pct.toFixed(2)}% of total (96%+ are host DNA)\n`;
+      genomicContext += `All abundances below are % of bacterial reads (normalized by classified fraction).\n`;
       if (mb.phyla?.length > 0) {
-        genomicContext += `Top phyla: ${mb.phyla.slice(0,5).map((e: {name:string;relative_abundance:number}) => `${e.name} (${e.relative_abundance.toFixed(2)}%)`).join(', ')}\n`;
+        genomicContext += `Top phyla: ${mb.phyla.slice(0,5).map((e: {name:string;relative_abundance:number}) => `${e.name} (${normPct(e.relative_abundance)}%)`).join(', ')}\n`;
       }
       if (mb.genera?.length > 0) {
-        genomicContext += `Top genera: ${mb.genera.slice(0,8).map((e: {name:string;relative_abundance:number}) => `${e.name} (${e.relative_abundance.toFixed(2)}%)`).join(', ')}\n`;
+        genomicContext += `Top genera: ${mb.genera.slice(0,8).map((e: {name:string;relative_abundance:number}) => `${e.name} (${normPct(e.relative_abundance)}%)`).join(', ')}\n`;
       }
       if (mb.species?.length > 0) {
-        genomicContext += `Top species: ${mb.species.slice(0,10).map((e: {name:string;relative_abundance:number}) => `${e.name} (${e.relative_abundance.toFixed(2)}%)`).join(', ')}\n`;
+        genomicContext += `Top species: ${mb.species.slice(0,10).map((e: {name:string;relative_abundance:number}) => `${e.name} (${normPct(e.relative_abundance)}%)`).join(', ')}\n`;
       }
     }
   } catch { /* optional */ }
@@ -190,7 +193,7 @@ export async function POST(req: NextRequest) {
     if (fs.existsSync(mbhPath)) {
       const mh = JSON.parse(fs.readFileSync(mbhPath, 'utf-8'));
       genomicContext += `\n=== MICROBIOME HEALTH METRICS ===\n`;
-      genomicContext += `Alpha diversity: richness=${mh.cosmo_richness} species (${mh.richness_percentile}th pct), Shannon=${mh.cosmo_shannon.toFixed(2)} (${mh.shannon_percentile}th pct) vs. reference median richness=${mh.ref_richness_p50}, Shannon=${mh.ref_shannon_p50.toFixed(2)}\n`;
+      genomicContext += `Alpha diversity (on ${mh.n_matched_species} species shared with reference panel): richness=${mh.cosmo_richness_matched} (${mh.richness_percentile}th pct vs. ref median ${mh.ref_richness_p50}), Shannon=${mh.cosmo_shannon_matched.toFixed(2)} (${mh.shannon_percentile}th pct vs. ref median ${mh.ref_shannon_p50.toFixed(2)})\n`;
       genomicContext += `Pathobiont burden: ${mh.pathobiont_burden_pct}% of bacterial reads (${mh.pathobiont_percentile}th pct; ref median ${mh.ref_pathobiont_median}%, 90th pct ${mh.ref_pathobiont_p90}%)\n`;
       genomicContext += `Dysbiosis index (log10 pathobiont/commensal): ${mh.dysbiosis_index}\n`;
       if (mh.pathobiont_hits?.length > 0) {

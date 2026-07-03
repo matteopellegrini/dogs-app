@@ -71,7 +71,7 @@ export default function MicrobiomePanel({ samplePath }: { samplePath: string }) 
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch(`/${samplePath}/microbiome_result.json`)
+    fetch(`/${samplePath.replace(/^\//, '')}/microbiome_result.json`)
       .then((r) => {
         if (!r.ok) throw new Error(`HTTP ${r.status}`);
         return r.json();

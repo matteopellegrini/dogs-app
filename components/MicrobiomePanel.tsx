@@ -64,21 +64,38 @@ function TaxonBar({ entry, max, color, pct }: { entry: TaxonEntry; max: number; 
   );
 }
 
+interface AgeResult {
+  predicted_age_years: number;
+  cv_r2: number;
+  cv_mae_years: number;
+  n_training_samples: number;
+  n_species_features: number;
+  n_cosmo_features_matched: number;
+  model: string;
+  top_species: { name: string; coefficient: number }[];
+}
+
 export default function MicrobiomePanel({ samplePath }: { samplePath: string }) {
   const [data, setData] = useState<MicrobiomeResult | null>(null);
+  const [ageData, setAgeData] = useState<AgeResult | null>(null);
   const [activeRank, setActiveRank] = useState<'phyla' | 'families' | 'genera' | 'species'>('phyla');
   const [error, setError] = useState<string | null>(null);
-
   useEffect(() => {
+    const base = samplePath.replace(/^\//, '');
     setData(null);
+    setAgeData(null);
     setError(null);
-    fetch(`/${samplePath.replace(/^\//, '')}/microbiome_result.json`)
+    fetch(`/${base}/microbiome_result.json`)
       .then((r) => {
         if (!r.ok) throw new Error(`HTTP ${r.status}`);
         return r.json();
       })
       .then(setData)
       .catch((e) => setError(e.message));
+    fetch(`/${base}/microbiome_age_result.json`)
+      .then((r) => r.ok ? r.json() : null)
+      .then((d) => d && setAgeData(d))
+      .catch(() => {});
   }, [samplePath]);
 
   if (error) return <div className="p-4 text-red-500">Microbiome data not available: {error}</div>;
@@ -106,6 +123,39 @@ export default function MicrobiomePanel({ samplePath }: { samplePath: string }) 
           <span className="font-medium text-green-700">{data.total_classified_pct.toFixed(1)}%</span> reads classified
         </p>
       </div>
+
+      {/* Microbiome Age */}
+      {ageData && (
+        <div className="bg-indigo-50 border border-indigo-200 rounded-xl p-5 flex flex-col gap-3">
+          <p className="text-xs font-semibold text-indigo-400 uppercase tracking-wide">Microbiome Age Prediction</p>
+          <div className="flex items-end gap-3">
+            <span className="text-5xl font-bold text-indigo-700">{ageData.predicted_age_years.toFixed(1)}</span>
+            <span className="text-lg text-indigo-500 mb-1">years</span>
+          </div>
+          <p className="text-sm text-indigo-600">
+            Estimated from {ageData.n_cosmo_features_matched} matched bacterial species against {ageData.n_training_samples} reference dogs
+            · model CV R²={ageData.cv_r2.toFixed(2)}, MAE±{ageData.cv_mae_years.toFixed(1)} yrs
+          </p>
+          <div>
+            <p className="text-xs text-indigo-400 uppercase tracking-wide mb-1">Top age-associated species</p>
+            <div className="flex flex-wrap gap-2">
+              {ageData.top_species.slice(0, 8).map((s) => (
+                <span
+                  key={s.name}
+                  className={`px-2 py-0.5 rounded-full text-xs font-medium ${
+                    s.coefficient > 0
+                      ? 'bg-orange-100 text-orange-700'
+                      : 'bg-blue-100 text-blue-700'
+                  }`}
+                >
+                  {s.coefficient > 0 ? '↑' : '↓'} {s.name}
+                </span>
+              ))}
+            </div>
+            <p className="text-xs text-indigo-400 mt-1">↑ increases with age · ↓ decreases with age</p>
+          </div>
+        </div>
+      )}
 
       {/* Top kingdoms summary */}
       {data.kingdom.length > 0 && (

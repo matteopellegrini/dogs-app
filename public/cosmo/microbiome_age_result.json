@@ -1,0 +1,71 @@
+{
+  "predicted_age_years": 3.11,
+  "cv_r2": 0.492,
+  "cv_mae_years": 1.69,
+  "n_training_samples": 1045,
+  "n_species_features": 62,
+  "n_cosmo_features_matched": 32,
+  "model": "RidgeCV (log10-transformed, prevalence>10%)",
+  "top_species": [
+    {
+      "name": "Treponema sp OMZ 798",
+      "coefficient": 0.47151
+    },
+    {
+      "name": "Corynebacterium canis",
+      "coefficient": 0.43018
+    },
+    {
+      "name": "Franklinella schreckenbergeri",
+      "coefficient": 0.38225
+    },
+    {
+      "name": "Canicola haemoglobinophilus",
+      "coefficient": -0.35664
+    },
+    {
+      "name": "Bacteroides pyogenes",
+      "coefficient": 0.33494
+    },
+    {
+      "name": "Neisseria weaveri",
+      "coefficient": 0.31081
+    },
+    {
+      "name": "Porphyromonas gulae",
+      "coefficient": 0.30867
+    },
+    {
+      "name": "Tessaracoccus sp OH4464 COT 324",
+      "coefficient": 0.30227
+    },
+    {
+      "name": "Canibacter oris",
+      "coefficient": -0.29022
+    },
+    {
+      "name": "Capnocytophaga cynodegmi",
+      "coefficient": 0.26632
+    },
+    {
+      "name": "Streptobacillus canis",
+      "coefficient": -0.26074
+    },
+    {
+      "name": "Buchananella hordeovulneris",
+      "coefficient": 0.24125
+    },
+    {
+      "name": "Arachnia propionica",
+      "coefficient": -0.23606
+    },
+    {
+      "name": "Alloprevotella sp OH1205 COT 284",
+      "coefficient": 0.22311
+    },
+    {
+      "name": "GGB76988 SGB104625",
+      "coefficient": 0.22134
+    }
+  ]
+}

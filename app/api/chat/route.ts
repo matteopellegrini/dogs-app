@@ -184,6 +184,22 @@ export async function POST(req: NextRequest) {
     }
   } catch { /* optional */ }
 
+  // Append microbiome age prediction
+  try {
+    const mbAgePath = publicPath('microbiome_age_result.json');
+    if (fs.existsSync(mbAgePath)) {
+      const ma = JSON.parse(fs.readFileSync(mbAgePath, 'utf-8'));
+      genomicContext += `\n=== MICROBIOME AGE PREDICTION ===\n`;
+      genomicContext += `Predicted microbiome age: ${ma.predicted_age_years} years (model CV R²=${ma.cv_r2}, MAE±${ma.cv_mae_years} yrs)\n`;
+      genomicContext += `Model: ${ma.model} · trained on ${ma.n_training_samples} reference dogs · ${ma.n_cosmo_features_matched}/${ma.n_species_features} species matched\n`;
+      if (ma.top_species?.length > 0) {
+        const pos = ma.top_species.filter((s: {coefficient:number}) => s.coefficient > 0).slice(0,3).map((s: {name:string}) => s.name).join(', ');
+        const neg = ma.top_species.filter((s: {coefficient:number}) => s.coefficient < 0).slice(0,3).map((s: {name:string}) => s.name).join(', ');
+        genomicContext += `Age-increasing species: ${pos}\nAge-decreasing species: ${neg}\n`;
+      }
+    }
+  } catch { /* optional */ }
+
   // Append uploaded lab report text (PDFs parsed from Upload Data tab)
   try {
     const uploads = db.prepare(

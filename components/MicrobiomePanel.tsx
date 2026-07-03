@@ -194,40 +194,35 @@ export default function MicrobiomePanel({ samplePath }: { samplePath: string }) 
               <div>
                 <p className="text-xs text-emerald-400 mb-0.5">Species Richness</p>
                 <p className="text-3xl font-bold text-emerald-700">{healthData.cosmo_richness}</p>
-                <p className="text-xs text-emerald-500">{healthData.richness_percentile}th percentile</p>
+                <p className="text-xs text-emerald-500">species detected</p>
               </div>
               <div>
                 <p className="text-xs text-emerald-400 mb-0.5">Shannon Index</p>
                 <p className="text-3xl font-bold text-emerald-700">{healthData.cosmo_shannon.toFixed(2)}</p>
-                <p className="text-xs text-emerald-500">{healthData.shannon_percentile}th percentile</p>
+                <p className="text-xs text-emerald-500">evenness + richness</p>
               </div>
-            </div>
-            <div className="space-y-1">
-              <p className="text-xs text-emerald-400 uppercase tracking-wide">vs. reference (n=1,045 dogs)</p>
-              <PercentileBar label="Richness" value={healthData.cosmo_richness} p25={healthData.ref_richness_p25} p50={healthData.ref_richness_p50} p75={healthData.ref_richness_p75} color="#10b981" />
-              <PercentileBar label="Shannon" value={healthData.cosmo_shannon} p25={healthData.ref_shannon_p25} p50={healthData.ref_shannon_p50} p75={healthData.ref_shannon_p75} color="#10b981" />
             </div>
             <p className="text-xs text-emerald-600">
               Higher diversity generally indicates a healthier, more resilient oral microbiome.
-              Cosmo ranks above the median on both metrics.
+              Shannon &gt; 3 reflects high species evenness.
             </p>
           </div>
 
           {/* Pathobiont burden */}
-          <div className={`border rounded-xl p-5 space-y-3 ${healthData.pathobiont_percentile >= 90 ? 'bg-red-50 border-red-200' : healthData.pathobiont_percentile >= 75 ? 'bg-amber-50 border-amber-200' : 'bg-gray-50 border-gray-200'}`}>
-            <p className={`text-xs font-semibold uppercase tracking-wide ${healthData.pathobiont_percentile >= 90 ? 'text-red-500' : healthData.pathobiont_percentile >= 75 ? 'text-amber-500' : 'text-gray-500'}`}>
+          <div className={`border rounded-xl p-5 space-y-3 ${healthData.pathobiont_percentile >= 75 ? 'bg-amber-50 border-amber-200' : 'bg-gray-50 border-gray-200'}`}>
+            <p className={`text-xs font-semibold uppercase tracking-wide ${healthData.pathobiont_percentile >= 75 ? 'text-amber-500' : 'text-gray-500'}`}>
               Pathobiont Burden
             </p>
             <div className="flex items-end gap-2">
-              <span className={`text-3xl font-bold ${healthData.pathobiont_percentile >= 90 ? 'text-red-700' : 'text-amber-700'}`}>
+              <span className={`text-3xl font-bold ${healthData.pathobiont_percentile >= 75 ? 'text-amber-700' : 'text-gray-700'}`}>
                 {healthData.pathobiont_burden_pct.toFixed(1)}%
               </span>
-              <span className={`text-sm mb-1 ${healthData.pathobiont_percentile >= 90 ? 'text-red-500' : 'text-amber-500'}`}>
+              <span className={`text-sm mb-1 ${healthData.pathobiont_percentile >= 75 ? 'text-amber-500' : 'text-gray-500'}`}>
                 of bacterial reads · {healthData.pathobiont_percentile}th pct
               </span>
             </div>
             <p className="text-xs text-gray-500">
-              Reference median: {healthData.ref_pathobiont_mean.toFixed(2)}% · 90th pct: {healthData.ref_pathobiont_p90.toFixed(2)}%
+              Reference: median {healthData.ref_pathobiont_median.toFixed(1)}% · 90th pct {healthData.ref_pathobiont_p90.toFixed(1)}% (n=1,045 dogs)
             </p>
             <div className="space-y-1.5">
               <p className="text-xs text-gray-500 uppercase tracking-wide">Detected periodontal pathogens</p>
@@ -240,10 +235,7 @@ export default function MicrobiomePanel({ samplePath }: { samplePath: string }) 
               ))}
             </div>
             <p className="text-xs text-gray-500 mt-1">
-              Dysbiosis index (log₁₀ pathobiont/commensal): <span className="font-medium text-red-600">{healthData.dysbiosis_index.toFixed(2)}</span>
-            </p>
-            <p className="text-xs text-red-700">
-              ⚠️ Elevated Porphyromonas burden is associated with canine periodontal disease. Veterinary dental evaluation recommended.
+              Dysbiosis index (log₁₀ pathobiont/commensal): <span className="font-medium">{healthData.dysbiosis_index.toFixed(2)}</span>
             </p>
           </div>
         </div>

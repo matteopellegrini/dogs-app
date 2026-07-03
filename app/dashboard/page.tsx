@@ -97,7 +97,7 @@ const CUSTOM_ICONS: Partial<Record<string, React.ReactNode>> = {
 };
 
 const NAV_ITEMS = [
-  { key: 'breed',      label: 'Breed',              icon: '🐕' },
+  { key: 'breed',      label: 'Breed',              icon: '🐩' },
   { key: 'coverage',   label: 'Karyotype',          icon: '📊' },
   { key: 'cnv',        label: 'Copy Number',        icon: '🔢' },
   { key: 'data',       label: 'De Novo Variants',   icon: '🔍' },

@@ -8,11 +8,11 @@ interface Message {
 }
 
 const STARTER_QUESTIONS = [
-  'What are the most clinically significant variants in this dog?',
-  'Are there any HIGH impact variants I should be concerned about?',
-  'Which genes have the most variants and what do they do?',
-  'Can you summarize the overall genomic health picture?',
-  'What diseases might these variants be associated with?',
+  'What are the rarest homozygous HIGH-impact variants I should be most concerned about?',
+  'Are there any stop-gain or splice-site variants in known disease genes?',
+  'Summarise the overall genomic health picture based on the imputed variants.',
+  'Which MODERATE-impact genes have homozygous variants rare in the Dog10K population?',
+  'How do the OMIA known-variant results compare to the imputed functional variants?',
 ];
 
 export default function ChatInterface({ hasData, sample, samplePath }: { hasData: boolean; sample: string; samplePath: string }) {
@@ -94,11 +94,9 @@ export default function ChatInterface({ hasData, sample, samplePath }: { hasData
           <div className="text-center py-8">
             <div className="text-4xl mb-3">🧬</div>
             <p className="text-gray-500 text-sm mb-6">
-              {hasData
-                ? 'Your genomic data is loaded. Ask me anything about your dog\'s variants.'
-                : 'Upload a VCF or SNPEff file first, then ask questions about the data.'}
+              {'Genomic data loaded. Ask me anything about your dog\'s variants.'}
             </p>
-            {hasData && (
+            {(
               <div className="space-y-2 max-w-md mx-auto text-left">
                 {STARTER_QUESTIONS.map((q) => (
                   <button

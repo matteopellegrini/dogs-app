@@ -2,8 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import Anthropic from '@anthropic-ai/sdk';
-import { getDb, getVariantSummaryForUser, getGeneSummaryForUser, getZygosityVariantsForUser } from '@/lib/db';
-import { buildGenomicContext, buildGeneContext, buildZygosityContext } from '@/lib/vcf-parser';
+import { getDb } from '@/lib/db';
 import fs from 'fs';
 import path from 'path';
 
@@ -33,20 +32,54 @@ export async function POST(req: NextRequest) {
     return path.join(process.cwd(), 'public', ...parts, ...segments);
   }
 
-  const variantSummary = getVariantSummaryForUser(user.id);
-  const genes = getGeneSummaryForUser(user.id);
-  const zygVariants = getZygosityVariantsForUser(user.id);
-
   let genomicContext = '';
-  if (zygVariants.length > 0) {
-    genomicContext += buildZygosityContext(zygVariants) + '\n\n';
-  }
-  if (genes.length > 0) {
-    genomicContext += buildGeneContext(genes) + '\n\n';
-  }
-  if (variantSummary.total > 0) {
-    genomicContext += buildGenomicContext(variantSummary);
-  }
+
+  // Functional variants from GLIMPSE2 imputation + snpEff
+  try {
+    const fvPath = publicPath('functional_variants.json');
+    if (fs.existsSync(fvPath)) {
+      const fv = JSON.parse(fs.readFileSync(fvPath, 'utf-8'));
+      const s = fv.summary;
+      genomicContext += `=== FUNCTIONAL VARIANTS (GLIMPSE2 + snpEff) ===\n`;
+      genomicContext += `Source: ${fv.source}\n`;
+      genomicContext += `${fv.af_note}\n\n`;
+      genomicContext += `HIGH impact: ${s.high_total} total (${s.high_hom_alt} homozygous, ${s.high_het} heterozygous)\n`;
+      genomicContext += `  Homozygous rare (AF<5% in Dog10K): ${s.high_hom_rare_5pct} · AF<1%: ${s.high_hom_rare_1pct}\n`;
+      if (fv.high_effect_counts) {
+        const counts = Object.entries(fv.high_effect_counts as Record<string,number>)
+          .map(([k,v]) => `${k.replace(/_/g,' ')} (${v})`).join(', ');
+        genomicContext += `  Effect breakdown: ${counts}\n`;
+      }
+      genomicContext += `MODERATE impact: ${s.moderate_total} total (${s.moderate_hom_alt} homozygous, ${s.moderate_het} heterozygous)\n\n`;
+
+      // Top HIGH-impact homozygous variants sorted by rarity
+      const topHigh = (fv.high_variants as {gene:string;chr:string;pos:string;ref:string;alt:string;effect:string;zygosity:string;af_dog10k:number|null}[])
+        .filter(v => v.zygosity === 'hom_alt')
+        .slice(0, 30);
+      if (topHigh.length > 0) {
+        genomicContext += `Top HIGH-impact homozygous variants (rarest first by Dog10K AF):\n`;
+        for (const v of topHigh) {
+          const af = v.af_dog10k !== null ? `AF=${(v.af_dog10k*100).toFixed(2)}%` : 'AF=unknown';
+          genomicContext += `  ${v.gene} ${v.chr}:${v.pos} ${v.ref}>${v.alt} ${v.effect.replace(/_/g,' ')} ${af}\n`;
+        }
+        genomicContext += '\n';
+      }
+
+      // Top MODERATE-impact genes with hom alt variants, sorted by rarity
+      const topMod = (fv.moderate_by_gene as {gene:string;n_moderate:number;hom_alt:number;het:number;effects:string[];min_af:number|null}[])
+        .filter(g => g.hom_alt > 0)
+        .slice(0, 20);
+      if (topMod.length > 0) {
+        genomicContext += `Top MODERATE-impact genes with homozygous variants (rarest first):\n`;
+        for (const g of topMod) {
+          const af = g.min_af !== null ? `min AF=${(g.min_af*100).toFixed(2)}%` : '';
+          genomicContext += `  ${g.gene}: ${g.hom_alt} hom / ${g.het} het · ${g.effects.slice(0,3).join(', ')} ${af}\n`;
+        }
+        genomicContext += '\n';
+      }
+    }
+  } catch { /* optional */ }
+
   // Append breed composition result
   try {
     const breedPath = publicPath('breed_result.json');
@@ -243,17 +276,17 @@ export async function POST(req: NextRequest) {
   }
 
   const systemPrompt = `You are a veterinary genomics assistant helping interpret dog genetic data.
-You have access to the following genomic data uploaded by ${user.name}:
+You have access to the following genomic data for ${user.name}'s dog:
 
 ${genomicContext}
 
 Guidelines:
-- Interpret variant impacts in the context of canine health and disease
-- HIGH impact variants (stop gained, frameshift, splice site) are most clinically significant
-- MODERATE impact variants (missense) may affect protein function
-- Refer to specific genes and chromosomal positions from the data when relevant
+- Functional variants were identified by GLIMPSE2 imputation against the Dog10K panel (29M SNPs, 1,929 dogs) followed by snpEff annotation — this is far more comprehensive and reliable than de-novo calling at low coverage
+- Prioritise homozygous HIGH-impact variants with low population AF (AF<5%) — these are the most likely to affect phenotype
+- HIGH impact = stop gained, frameshift, splice site disruption; MODERATE = missense, inframe indel
+- Population AF is from Dog10K (1,929 canids): rare variants (AF<1%) in homozygous state are the top priority
+- OMIA variants are breed-specific known pathogenic alleles genotyped directly from the BAM
 - Always recommend consulting a veterinary specialist or veterinary geneticist for clinical decisions
-- You can explain variant effects, affected genes, and potential health implications
 - Be clear about the limits of genomic interpretation without clinical context`;
 
   const encoder = new TextEncoder();

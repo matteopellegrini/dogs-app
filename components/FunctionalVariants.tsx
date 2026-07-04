@@ -11,6 +11,7 @@ interface VariantRow {
   alt: string;
   effect: string;
   zygosity: string;
+  af_dog10k: number | null;
 }
 
 interface ModGene {
@@ -19,6 +20,7 @@ interface ModGene {
   hom_alt: number;
   het: number;
   effects: string[];
+  min_af: number | null;
 }
 
 interface FunctionalData {
@@ -26,6 +28,9 @@ interface FunctionalData {
     high_total: number;
     high_hom_alt: number;
     high_het: number;
+    high_hom_rare_1pct: number;
+    high_hom_rare_5pct: number;
+    high_hom_rare_10pct: number;
     moderate_total: number;
     moderate_hom_alt: number;
     moderate_het: number;
@@ -34,6 +39,7 @@ interface FunctionalData {
   high_variants: VariantRow[];
   moderate_by_gene: ModGene[];
   source: string;
+  af_note: string;
 }
 
 const EFFECT_LABELS: Record<string, string> = {
@@ -72,10 +78,21 @@ function ZygBadge({ zygosity }: { zygosity: string }) {
     : <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded bg-blue-50 text-blue-500">het</span>;
 }
 
+function AfBadge({ af }: { af: number | null }) {
+  if (af === null) return <span className="text-gray-300 text-[10px]">—</span>;
+  const pct = (af * 100).toFixed(af < 0.001 ? 3 : af < 0.01 ? 2 : 1);
+  const cls = af < 0.01 ? 'text-red-600 font-bold'
+    : af < 0.05 ? 'text-orange-600 font-semibold'
+    : af < 0.10 ? 'text-yellow-600'
+    : 'text-gray-400';
+  return <span className={`text-[11px] ${cls}`}>{pct}%</span>;
+}
+
 export default function FunctionalVariants({ samplePath = '' }: { samplePath?: string }) {
   const [data, setData] = useState<FunctionalData | null>(null);
   const [filter, setFilter] = useState<'all' | 'hom'>('hom');
   const [impactFilter, setImpactFilter] = useState<'HIGH' | 'MODERATE'>('HIGH');
+  const [afFilter, setAfFilter] = useState<'all' | '10' | '5' | '1'>('all');
   const [search, setSearch] = useState('');
   const [page, setPage] = useState(0);
   const PAGE_SIZE = 50;
@@ -90,23 +107,26 @@ export default function FunctionalVariants({ samplePath = '' }: { samplePath?: s
 
   const filtered = useMemo(() => {
     if (!data) return [];
+    const afThresh = afFilter === '1' ? 0.01 : afFilter === '5' ? 0.05 : afFilter === '10' ? 0.10 : null;
     if (impactFilter === 'HIGH') {
       let rows = data.high_variants;
       if (filter === 'hom') rows = rows.filter(r => r.zygosity === 'hom_alt');
+      if (afThresh !== null) rows = rows.filter(r => r.af_dog10k !== null && r.af_dog10k < afThresh);
       if (search) rows = rows.filter(r => r.gene.toLowerCase().includes(search.toLowerCase()));
       return rows;
     } else {
       let rows = data.moderate_by_gene;
       if (filter === 'hom') rows = rows.filter(r => r.hom_alt > 0);
+      if (afThresh !== null) rows = rows.filter(r => r.min_af !== null && r.min_af < afThresh);
       if (search) rows = rows.filter(r => r.gene.toLowerCase().includes(search.toLowerCase()));
       return rows;
     }
-  }, [data, filter, impactFilter, search]);
+  }, [data, filter, impactFilter, afFilter, search]);
 
   const paged = filtered.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE);
   const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
 
-  useEffect(() => { setPage(0); }, [filter, impactFilter, search]);
+  useEffect(() => { setPage(0); }, [filter, impactFilter, afFilter, search]);
 
   if (!data) return null;
   const { summary } = data;
@@ -128,6 +148,11 @@ export default function FunctionalVariants({ samplePath = '' }: { samplePath?: s
             <div className="flex justify-between"><span className="text-gray-500">Homozygous</span><span className="font-bold text-red-600">{summary.high_hom_alt.toLocaleString()}</span></div>
             <div className="flex justify-between"><span className="text-gray-500">Heterozygous</span><span className="font-bold text-gray-600">{summary.high_het.toLocaleString()}</span></div>
             <div className="border-t border-gray-100 pt-2 mt-2 space-y-1">
+              <p className="text-[10px] text-gray-400 mb-1">Hom alt · rare in Dog10K</p>
+              <div className="flex justify-between"><span className="text-orange-500">AF &lt; 5%</span><span className="font-bold text-orange-600">{summary.high_hom_rare_5pct}</span></div>
+              <div className="flex justify-between"><span className="text-red-500">AF &lt; 1%</span><span className="font-bold text-red-600">{summary.high_hom_rare_1pct}</span></div>
+            </div>
+            <div className="border-t border-gray-100 pt-2 mt-2 space-y-1">
               {Object.entries(data.high_effect_counts).map(([eff, n]) => (
                 <div key={eff} className="flex justify-between">
                   <span className="text-gray-400">{EFFECT_LABELS[eff] ?? eff.replace(/_/g,' ')}</span>
@@ -147,7 +172,7 @@ export default function FunctionalVariants({ samplePath = '' }: { samplePath?: s
             <div className="flex justify-between"><span className="text-gray-500">Total</span><span className="font-bold text-gray-800">{summary.moderate_total.toLocaleString()}</span></div>
             <div className="flex justify-between"><span className="text-gray-500">Homozygous</span><span className="font-bold text-yellow-600">{summary.moderate_hom_alt.toLocaleString()}</span></div>
             <div className="flex justify-between"><span className="text-gray-500">Heterozygous</span><span className="font-bold text-gray-600">{summary.moderate_het.toLocaleString()}</span></div>
-            <p className="text-gray-400 mt-2 text-[10px]">Missense, inframe insertions/deletions</p>
+            <p className="text-gray-400 mt-2 text-[10px]">Missense, inframe insertions/deletions. Sorted by rarest hom alt variant per gene.</p>
           </div>
         </div>
       </div>
@@ -156,29 +181,30 @@ export default function FunctionalVariants({ samplePath = '' }: { samplePath?: s
       <div className="flex flex-wrap items-center gap-2">
         <div className="flex rounded-lg border border-gray-200 overflow-hidden text-xs">
           {(['HIGH', 'MODERATE'] as const).map(v => (
-            <button key={v}
-              onClick={() => setImpactFilter(v)}
+            <button key={v} onClick={() => setImpactFilter(v)}
               className={`px-3 py-1.5 font-medium transition-colors ${impactFilter === v ? (v === 'HIGH' ? 'bg-red-500 text-white' : 'bg-yellow-400 text-white') : 'bg-white text-gray-500 hover:bg-gray-50'}`}>
               {v}
             </button>
           ))}
         </div>
         <div className="flex rounded-lg border border-gray-200 overflow-hidden text-xs">
-          {([['all', 'All'], ['hom', 'Homozygous only']] as const).map(([v, label]) => (
-            <button key={v}
-              onClick={() => setFilter(v)}
+          {([['all', 'All'], ['hom', 'Hom only']] as const).map(([v, label]) => (
+            <button key={v} onClick={() => setFilter(v)}
               className={`px-3 py-1.5 font-medium transition-colors ${filter === v ? 'bg-gray-700 text-white' : 'bg-white text-gray-500 hover:bg-gray-50'}`}>
               {label}
             </button>
           ))}
         </div>
-        <input
-          type="text"
-          placeholder="Search gene…"
-          value={search}
-          onChange={e => setSearch(e.target.value)}
-          className="text-xs border border-gray-200 rounded-lg px-3 py-1.5 w-36 focus:outline-none focus:ring-1 focus:ring-gray-300"
-        />
+        <div className="flex rounded-lg border border-gray-200 overflow-hidden text-xs">
+          {([['all', 'Any AF'], ['10', 'AF<10%'], ['5', 'AF<5%'], ['1', 'AF<1%']] as const).map(([v, label]) => (
+            <button key={v} onClick={() => setAfFilter(v)}
+              className={`px-3 py-1.5 font-medium transition-colors ${afFilter === v ? 'bg-indigo-600 text-white' : 'bg-white text-gray-500 hover:bg-gray-50'}`}>
+              {label}
+            </button>
+          ))}
+        </div>
+        <input type="text" placeholder="Search gene…" value={search} onChange={e => setSearch(e.target.value)}
+          className="text-xs border border-gray-200 rounded-lg px-3 py-1.5 w-32 focus:outline-none focus:ring-1 focus:ring-gray-300" />
         <span className="text-xs text-gray-400 ml-auto">{filtered.length.toLocaleString()} variants</span>
       </div>
 
@@ -193,14 +219,15 @@ export default function FunctionalVariants({ samplePath = '' }: { samplePath?: s
                   <th className="text-left px-3 py-2 text-gray-500 font-medium">Effect</th>
                   <th className="text-left px-3 py-2 text-gray-500 font-medium">Chr:Pos</th>
                   <th className="text-left px-3 py-2 text-gray-500 font-medium">Ref→Alt</th>
-                  <th className="text-left px-3 py-2 text-gray-500 font-medium">Zygosity</th>
+                  <th className="text-left px-3 py-2 text-gray-500 font-medium">Zyg</th>
+                  <th className="text-right px-3 py-2 text-gray-500 font-medium">Pop AF</th>
                 </>
               ) : (
                 <>
-                  <th className="text-left px-3 py-2 text-gray-500 font-medium">Missense variants</th>
+                  <th className="text-left px-3 py-2 text-gray-500 font-medium">Variants</th>
                   <th className="text-left px-3 py-2 text-gray-500 font-medium">Hom</th>
                   <th className="text-left px-3 py-2 text-gray-500 font-medium">Het</th>
-                  <th className="text-left px-3 py-2 text-gray-500 font-medium">Effects</th>
+                  <th className="text-right px-3 py-2 text-gray-500 font-medium">Min hom AF</th>
                 </>
               )}
             </tr>
@@ -208,21 +235,22 @@ export default function FunctionalVariants({ samplePath = '' }: { samplePath?: s
           <tbody className="divide-y divide-gray-100">
             {impactFilter === 'HIGH'
               ? (paged as VariantRow[]).map((r, i) => (
-                <tr key={i} className="hover:bg-gray-50">
+                <tr key={i} className={`hover:bg-gray-50 ${r.af_dog10k !== null && r.af_dog10k < 0.05 ? 'bg-red-50/30' : ''}`}>
                   <td className="px-3 py-2 font-semibold text-gray-800">{r.gene}</td>
                   <td className="px-3 py-2"><EffectBadge effect={r.effect} /></td>
                   <td className="px-3 py-2 text-gray-500">{r.chr}:{parseInt(r.pos).toLocaleString()}</td>
                   <td className="px-3 py-2 font-mono text-gray-500">{r.ref}→{r.alt}</td>
                   <td className="px-3 py-2"><ZygBadge zygosity={r.zygosity} /></td>
+                  <td className="px-3 py-2 text-right"><AfBadge af={r.af_dog10k} /></td>
                 </tr>
               ))
               : (paged as ModGene[]).map((r, i) => (
-                <tr key={i} className="hover:bg-gray-50">
+                <tr key={i} className={`hover:bg-gray-50 ${r.min_af !== null && r.min_af < 0.05 ? 'bg-yellow-50/30' : ''}`}>
                   <td className="px-3 py-2 font-semibold text-gray-800">{r.gene}</td>
                   <td className="px-3 py-2 text-gray-600">{r.n_moderate}</td>
                   <td className="px-3 py-2 font-bold text-yellow-600">{r.hom_alt}</td>
                   <td className="px-3 py-2 text-gray-500">{r.het}</td>
-                  <td className="px-3 py-2 text-gray-400">{r.effects.join(', ')}</td>
+                  <td className="px-3 py-2 text-right"><AfBadge af={r.min_af} /></td>
                 </tr>
               ))
             }
@@ -239,6 +267,7 @@ export default function FunctionalVariants({ samplePath = '' }: { samplePath?: s
           </div>
         )}
       </div>
+      <p className="text-[10px] text-gray-400">{data.af_note}</p>
     </div>
   );
 }

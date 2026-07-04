@@ -2,6 +2,20 @@
 
 import { useEffect, useState } from 'react';
 
+interface Region {
+  chrom: string;
+  start: number;
+  end: number;
+  size: string;
+  mean_depth: number;
+  norm: number;
+  observed_reads: number;
+  expected_reads: number;
+  pct_diploid: number;
+  pct_het: number;
+  zygosity_call: 'likely_hom' | 'ambiguous' | 'likely_het';
+}
+
 interface Gene {
   chrom: string;
   start: number;
@@ -9,14 +23,7 @@ interface Gene {
   size: string;
   gene: string;
   biotype: string;
-  category: string;   // CDS | 5UTR | 3UTR | EXON_NC | INTRONIC
-}
-
-interface Region {
-  chrom: string;
-  start: number;
-  end: number;
-  size: string;
+  category: string;
 }
 
 interface CnvData {
@@ -30,6 +37,8 @@ interface CnvData {
     note?: string;
     min_detectable_kb?: number;
     calling_resolution_kb?: number;
+    zygosity_note?: string;
+    genome_mean_depth?: number;
   };
 }
 
@@ -37,47 +46,38 @@ const NOTABLE: Record<string, string> = {
   CDKN2B: 'Cyclin-dependent kinase inhibitor — tumour suppressor',
   MTAP: 'Methylthioadenosine phosphorylase — co-deleted with CDKN2A/B',
   PRKDC: 'DNA-PK catalytic subunit — DNA double-strand break repair',
-  GRIA4: 'Glutamate receptor subunit — neurological function',
-  TRPM6: 'Magnesium transporter — hypomagnesaemia',
-  IL37: 'Anti-inflammatory cytokine',
-  IL36B: 'Pro-inflammatory interleukin',
-  IL36RN: 'IL-36 receptor antagonist',
-  IL1F10: 'IL-1 family member',
   VEGFC: 'Vascular endothelial growth factor C — lymphangiogenesis',
+  CSMD3: 'CUB and sushi domain protein — tumour suppressor candidate',
+  PPFIBP1: 'Liprin-β1 — cell migration, axon guidance',
+  SMCO2: 'Single-pass membrane protein',
   PRKG1: 'cGMP-dependent protein kinase — cardiac/smooth muscle',
   CAMK2B: 'Calcium/calmodulin kinase — synaptic plasticity',
-  COL11A2: 'Collagen type XI — skeletal dysplasia',
-  CSMD3: 'CUB and sushi domain protein — tumour suppressor candidate',
-  AFF2: 'X-linked intellectual disability gene',
-  ARHGEF9: 'Rho GEF — synaptic inhibition',
-  TENM1: 'Teneurin — neural circuit development',
-  CD84: 'SLAM family receptor — immune regulation',
-  AGPAT2: 'Acylglycerophospholipid transferase — lipodystrophy',
-  NFS1: 'Cysteine desulfurase — iron-sulfur cluster biogenesis',
-  CADM2: 'Cell adhesion molecule — obesity/cognitive traits',
-  CALD1: 'Caldesmon — smooth muscle regulation',
-  SYT14: 'Synaptotagmin — vesicle trafficking',
-  RFT1: 'Dolichyl-phosphate mannose transferase — CDG syndrome',
-  ZFPM2: 'Zinc finger — cardiac development',
-  TPCN2: 'Two-pore channel 2 — lysosomal Ca2+ signalling',
-  RCHY1: 'RING finger E3 ubiquitin ligase — p53 regulation',
 };
 
 const CAT_STYLE: Record<string, { label: string; cls: string }> = {
-  CDS:      { label: 'CDS',     cls: 'bg-red-100 text-red-700' },
-  '5UTR':   { label: "5' UTR",  cls: 'bg-orange-100 text-orange-700' },
-  '3UTR':   { label: "3' UTR",  cls: 'bg-amber-100 text-amber-700' },
-  EXON_NC:  { label: 'Exon',    cls: 'bg-yellow-100 text-yellow-700' },
+  CDS:      { label: 'CDS',      cls: 'bg-red-100 text-red-700' },
+  '5UTR':   { label: "5' UTR",   cls: 'bg-orange-100 text-orange-700' },
+  '3UTR':   { label: "3' UTR",   cls: 'bg-amber-100 text-amber-700' },
+  EXON_NC:  { label: 'Exon',     cls: 'bg-yellow-100 text-yellow-700' },
   INTRONIC: { label: 'Intronic', cls: 'bg-blue-100 text-blue-700' },
+};
+
+const ZYG_STYLE: Record<string, { label: string; cls: string }> = {
+  likely_hom: { label: 'likely hom', cls: 'bg-red-100 text-red-700' },
+  ambiguous:  { label: 'ambiguous',  cls: 'bg-yellow-100 text-yellow-700' },
+  likely_het: { label: 'likely het', cls: 'bg-blue-100 text-blue-700' },
 };
 
 const CAT_ORDER = ['CDS', '5UTR', '3UTR', 'EXON_NC', 'INTRONIC'];
 const PRIORITY: Record<string, number> = { CDS: 0, '5UTR': 1, '3UTR': 2, EXON_NC: 3, INTRONIC: 4 };
 
+function regionKey(r: Region) { return `${r.chrom}:${r.start}`; }
+
 export default function CnvTable({ samplePath = '' }: { samplePath?: string } = {}) {
   const [data, setData] = useState<CnvData | null>(null);
   const [catFilter, setCatFilter] = useState<string>('all');
   const [search, setSearch] = useState('');
+  const [showRegions, setShowRegions] = useState(false);
 
   useEffect(() => {
     fetch(`${samplePath}/cnv_homdel.json`).then((r) => r.json()).then(setData);
@@ -91,7 +91,6 @@ export default function CnvTable({ samplePath = '' }: { samplePath?: string } = 
       g.gene.toLowerCase().includes(search.toLowerCase()) ||
       g.chrom.toLowerCase().includes(search.toLowerCase()))
     .sort((a, b) => {
-      // Notable genes first, then by category priority, then chromosomal order
       const noteDiff = (NOTABLE[b.gene] ? 1 : 0) - (NOTABLE[a.gene] ? 1 : 0);
       if (noteDiff !== 0) return noteDiff;
       const catDiff = (PRIORITY[a.category] ?? 9) - (PRIORITY[b.category] ?? 9);
@@ -101,21 +100,21 @@ export default function CnvTable({ samplePath = '' }: { samplePath?: string } = 
 
   const bc = data.summary?.by_category ?? {};
 
+  // Build region lookup for gene table
+  const regionByChrom: Record<string, Region> = {};
+  for (const r of data.regions ?? []) regionByChrom[r.chrom] = r;
+
   return (
     <div className="space-y-4">
       {/* Coverage sensitivity banner */}
       {data.summary?.min_detectable_kb !== undefined && (
         <div className="bg-blue-50 border border-blue-200 text-blue-700 text-xs rounded-lg px-3 py-2">
-          ℹ️ At the sequencing depth of this sample, the minimum reliably detectable homozygous deletion is{' '}
-          <strong>
-            {data.summary.min_detectable_kb >= 1000
-              ? `${(data.summary.min_detectable_kb / 1000).toFixed(1)} Mb`
-              : `${data.summary.min_detectable_kb} kb`}
-          </strong>{' '}
-          (called at {data.summary.calling_resolution_kb} kb resolution).
-          Smaller events may be present but cannot be reliably detected.
+          ℹ️ At 2x mean coverage, the minimum detectable deletion is{' '}
+          <strong>{data.summary.min_detectable_kb} kb</strong> (called at {data.summary.calling_resolution_kb} kb resolution).
+          Zygosity cannot be reliably determined at this depth — see table below.
         </div>
       )}
+
       {/* Summary cards */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
@@ -136,17 +135,57 @@ export default function CnvTable({ samplePath = '' }: { samplePath?: string } = 
         </div>
       </div>
 
-      {data.summary?.note && (
-        <div className="bg-amber-50 border border-amber-200 text-amber-700 text-xs rounded-lg px-3 py-2">
-          ⚠️ {data.summary.note}
-        </div>
-      )}
-      <p className="text-xs text-gray-400">
-        Homozygous deletions at 10 kb resolution (depth &lt;15% of mean, ≥20 kb). Each gene classified
-        by highest-impact overlap: CDS &gt; 5&#39;UTR &gt; 3&#39;UTR &gt; intronic.
-      </p>
+      {/* Deletion regions table */}
+      <div>
+        <button
+          onClick={() => setShowRegions(v => !v)}
+          className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2 flex items-center gap-1 hover:text-gray-700"
+        >
+          <span>{showRegions ? '▾' : '▸'}</span> Deletion regions
+        </button>
+        {showRegions && (
+          <div className="overflow-x-auto mb-2">
+            <table className="w-full text-xs">
+              <thead>
+                <tr className="border-b border-gray-200 text-gray-500 text-left">
+                  <th className="py-2 pr-4 font-medium">Region</th>
+                  <th className="py-2 pr-4 font-medium">Size</th>
+                  <th className="py-2 pr-4 font-medium text-right">Observed reads</th>
+                  <th className="py-2 pr-4 font-medium text-right">Expected reads</th>
+                  <th className="py-2 pr-4 font-medium text-right">% of diploid</th>
+                  <th className="py-2 pr-4 font-medium text-right">% of het</th>
+                  <th className="py-2 font-medium">Zygosity</th>
+                </tr>
+              </thead>
+              <tbody>
+                {(data.regions ?? []).map((r) => {
+                  const zs = ZYG_STYLE[r.zygosity_call] ?? ZYG_STYLE.ambiguous;
+                  return (
+                    <tr key={regionKey(r)} className="border-b border-gray-50 hover:bg-gray-50">
+                      <td className="py-1.5 pr-4 font-mono text-gray-600">
+                        {r.chrom}:{(r.start / 1e6).toFixed(1)}–{(r.end / 1e6).toFixed(1)} Mb
+                      </td>
+                      <td className="py-1.5 pr-4 text-gray-500">{r.size}</td>
+                      <td className="py-1.5 pr-4 text-right font-semibold text-gray-800">{r.observed_reads.toLocaleString()}</td>
+                      <td className="py-1.5 pr-4 text-right text-gray-400">{r.expected_reads.toLocaleString()}</td>
+                      <td className="py-1.5 pr-4 text-right text-gray-600">{r.pct_diploid.toFixed(1)}%</td>
+                      <td className="py-1.5 pr-4 text-right text-gray-600">{r.pct_het.toFixed(1)}%</td>
+                      <td className="py-1.5">
+                        <span className={`px-1.5 py-0.5 rounded font-medium ${zs.cls}`}>{zs.label}</span>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        )}
+        {data.summary?.zygosity_note && (
+          <p className="text-[10px] text-gray-400 mt-1">{data.summary.zygosity_note}</p>
+        )}
+      </div>
 
-      {/* Filters */}
+      {/* Gene table filters */}
       <div className="flex flex-wrap gap-2 items-center">
         <input
           value={search}
@@ -173,7 +212,7 @@ export default function CnvTable({ samplePath = '' }: { samplePath?: string } = 
         </div>
       </div>
 
-      {/* Table */}
+      {/* Gene table */}
       <div className="overflow-x-auto">
         <table className="w-full text-xs">
           <thead>
@@ -182,12 +221,16 @@ export default function CnvTable({ samplePath = '' }: { samplePath?: string } = 
               <th className="py-2 pr-4 font-medium">Location</th>
               <th className="py-2 pr-4 font-medium">Del. size</th>
               <th className="py-2 pr-4 font-medium">Overlap</th>
+              <th className="py-2 pr-4 font-medium text-right">% of diploid</th>
+              <th className="py-2 pr-4 font-medium">Zygosity</th>
               <th className="py-2 font-medium">Notes</th>
             </tr>
           </thead>
           <tbody>
             {genes.map((g, i) => {
               const style = CAT_STYLE[g.category] ?? { label: g.category, cls: 'bg-gray-100 text-gray-600' };
+              const reg = regionByChrom[g.chrom];
+              const zs = reg ? (ZYG_STYLE[reg.zygosity_call] ?? ZYG_STYLE.ambiguous) : null;
               return (
                 <tr
                   key={i}
@@ -210,6 +253,12 @@ export default function CnvTable({ samplePath = '' }: { samplePath?: string } = 
                       {style.label}
                     </span>
                   </td>
+                  <td className="py-1.5 pr-4 text-right text-gray-600">
+                    {reg ? `${reg.pct_diploid.toFixed(1)}%` : '—'}
+                  </td>
+                  <td className="py-1.5 pr-4">
+                    {zs && <span className={`px-1.5 py-0.5 rounded font-medium ${zs.cls}`}>{zs.label}</span>}
+                  </td>
                   <td className="py-1.5 text-gray-400 max-w-xs truncate">
                     {NOTABLE[g.gene] ?? g.biotype}
                   </td>
@@ -222,6 +271,11 @@ export default function CnvTable({ samplePath = '' }: { samplePath?: string } = 
           <p className="text-gray-400 text-center py-6">No results</p>
         )}
       </div>
+
+      <p className="text-xs text-gray-400">
+        Large deletions called at 100 kb resolution (depth &lt;20% of genome mean 2.2×, merged ≥200 kb, MAPQ ≥20).
+        Zygosity inferred from read depth — unreliable at 2× coverage.
+      </p>
     </div>
   );
 }

@@ -6,7 +6,12 @@
       "end": 17300000,
       "size": "400kb",
       "mean_depth": 0.2509,
-      "norm": 0.1145
+      "norm": 0.1145,
+      "observed_reads": 749,
+      "expected_reads": 5867,
+      "pct_diploid": 12.8,
+      "pct_het": 25.5,
+      "zygosity_call": "likely_hom"
     },
     {
       "chrom": "chr13",
@@ -14,7 +19,12 @@
       "end": 13600000,
       "size": "200kb",
       "mean_depth": 0.3963,
-      "norm": 0.1808
+      "norm": 0.1808,
+      "observed_reads": 544,
+      "expected_reads": 2933,
+      "pct_diploid": 18.5,
+      "pct_het": 37.1,
+      "zygosity_call": "ambiguous"
     },
     {
       "chrom": "chr16",
@@ -22,7 +32,12 @@
       "end": 55400000,
       "size": "300kb",
       "mean_depth": 0.3247,
-      "norm": 0.1482
+      "norm": 0.1482,
+      "observed_reads": 675,
+      "expected_reads": 4400,
+      "pct_diploid": 15.3,
+      "pct_het": 30.7,
+      "zygosity_call": "ambiguous"
     },
     {
       "chrom": "chr19",
@@ -30,7 +45,12 @@
       "end": 20900000,
       "size": "200kb",
       "mean_depth": 0.1144,
-      "norm": 0.0522
+      "norm": 0.0522,
+      "observed_reads": 175,
+      "expected_reads": 2933,
+      "pct_diploid": 6.0,
+      "pct_het": 11.9,
+      "zygosity_call": "likely_hom"
     },
     {
       "chrom": "chr27",
@@ -38,7 +58,12 @@
       "end": 20500000,
       "size": "200kb",
       "mean_depth": 0.3202,
-      "norm": 0.1461
+      "norm": 0.1461,
+      "observed_reads": 791,
+      "expected_reads": 2933,
+      "pct_diploid": 27.0,
+      "pct_het": 53.9,
+      "zygosity_call": "ambiguous"
     }
   ],
   "disrupted_genes": [
@@ -99,8 +124,10 @@
       "EXON_NC": 0,
       "INTRONIC": 2
     },
-    "method": "100kb windows, depth <20% of autosomal mean (2.2x), merged \u2265200kb, min-mapq 20",
+    "method": "100kb windows, depth <20% of autosomal mean (2.2x), merged ≥200kb, min-mapq 20",
     "min_detectable_kb": 200,
-    "calling_resolution_kb": 100
+    "calling_resolution_kb": 100,
+    "zygosity_note": "At 2x mean depth, homozygous vs heterozygous deletion cannot be reliably distinguished. Zygosity is inferred from % of expected reads: <30% of het expectation = likely homozygous; 30–70% = ambiguous; >70% = likely heterozygous.",
+    "genome_mean_depth": 2.2
   }
 }

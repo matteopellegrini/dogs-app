@@ -1,133 +1,67 @@
 {
-  "regions": [
+  "regions": [],
+  "disrupted_genes": [],
+  "artefact_regions": [
     {
       "chrom": "chr2",
       "start": 16900000,
       "end": 17300000,
       "size": "400kb",
-      "mean_depth": 0.2509,
-      "norm": 0.1145,
-      "observed_reads": 749,
-      "expected_reads": 5867,
-      "pct_diploid": 12.8,
-      "pct_het": 25.5,
-      "zygosity_call": "likely_hom"
+      "cosmo_pct_flank": 13.0,
+      "nelk_pct_flank": 23.0,
+      "verdict": "mappability_artefact"
     },
     {
       "chrom": "chr13",
       "start": 13400000,
       "end": 13600000,
       "size": "200kb",
-      "mean_depth": 0.3963,
-      "norm": 0.1808,
-      "observed_reads": 544,
-      "expected_reads": 2933,
-      "pct_diploid": 18.5,
-      "pct_het": 37.1,
-      "zygosity_call": "ambiguous"
+      "cosmo_pct_flank": 22.0,
+      "nelk_pct_flank": 26.0,
+      "verdict": "mappability_artefact"
     },
     {
       "chrom": "chr16",
       "start": 55100000,
       "end": 55400000,
       "size": "300kb",
-      "mean_depth": 0.3247,
-      "norm": 0.1482,
-      "observed_reads": 675,
-      "expected_reads": 4400,
-      "pct_diploid": 15.3,
-      "pct_het": 30.7,
-      "zygosity_call": "ambiguous"
+      "cosmo_pct_flank": 13.0,
+      "nelk_pct_flank": 9.0,
+      "verdict": "mappability_artefact"
     },
     {
       "chrom": "chr19",
       "start": 20700000,
       "end": 20900000,
       "size": "200kb",
-      "mean_depth": 0.1144,
-      "norm": 0.0522,
-      "observed_reads": 175,
-      "expected_reads": 2933,
-      "pct_diploid": 6.0,
-      "pct_het": 11.9,
-      "zygosity_call": "likely_hom"
+      "cosmo_pct_flank": 4.0,
+      "nelk_pct_flank": 13.0,
+      "verdict": "mappability_artefact"
     },
     {
       "chrom": "chr27",
       "start": 20300000,
       "end": 20500000,
       "size": "200kb",
-      "mean_depth": 0.3202,
-      "norm": 0.1461,
-      "observed_reads": 791,
-      "expected_reads": 2933,
-      "pct_diploid": 27.0,
-      "pct_het": 53.9,
-      "zygosity_call": "ambiguous"
-    }
-  ],
-  "disrupted_genes": [
-    {
-      "chrom": "chr2",
-      "start": 17250000,
-      "end": 17290000,
-      "size": "400kb",
-      "gene": "ENSCAFG00845012582",
-      "biotype": "protein_coding",
-      "category": "INTRONIC"
-    },
-    {
-      "chrom": "chr13",
-      "start": 13490000,
-      "end": 13520000,
-      "size": "200kb",
-      "gene": "CSMD3",
-      "biotype": "protein_coding",
-      "category": "INTRONIC"
-    },
-    {
-      "chrom": "chr16",
-      "start": 55250000,
-      "end": 55300000,
-      "size": "300kb",
-      "gene": "VEGFC",
-      "biotype": "protein_coding",
-      "category": "CDS"
-    },
-    {
-      "chrom": "chr27",
-      "start": 20350000,
-      "end": 20420000,
-      "size": "200kb",
-      "gene": "SMCO2",
-      "biotype": "protein_coding",
-      "category": "CDS"
-    },
-    {
-      "chrom": "chr27",
-      "start": 20350000,
-      "end": 20420000,
-      "size": "200kb",
-      "gene": "PPFIBP1",
-      "biotype": "protein_coding",
-      "category": "5UTR"
+      "cosmo_pct_flank": 16.0,
+      "nelk_pct_flank": 18.0,
+      "verdict": "mappability_artefact"
     }
   ],
   "summary": {
-    "total_regions": 5,
-    "unique_genes": 5,
-    "protein_coding": 5,
+    "total_regions": 0,
+    "unique_genes": 0,
+    "protein_coding": 0,
     "by_category": {
-      "CDS": 2,
-      "5UTR": 1,
+      "CDS": 0,
+      "5UTR": 0,
       "3UTR": 0,
       "EXON_NC": 0,
-      "INTRONIC": 2
+      "INTRONIC": 0
     },
     "method": "100kb windows, depth <20% of autosomal mean (2.2x), merged ≥200kb, min-mapq 20",
     "min_detectable_kb": 200,
     "calling_resolution_kb": 100,
-    "zygosity_note": "At 2x mean depth, homozygous vs heterozygous deletion cannot be reliably distinguished. Zygosity is inferred from % of expected reads: <30% of het expectation = likely homozygous; 30–70% = ambiguous; >70% = likely heterozygous.",
-    "genome_mean_depth": 2.2
+    "artefact_note": "All 5 initially-called deletion regions were confirmed as mappability artefacts in the canFam4 reference assembly by comparison with NELK (28.7x coverage), which shows the same low-coverage pattern at each locus. No confident CNV deletions were detected in Cosmo."
   }
 }

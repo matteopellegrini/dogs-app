@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import CnvCoverage from './CnvCoverage';
 
 interface Region {
   chrom: string;
@@ -276,6 +277,8 @@ export default function CnvTable({ samplePath = '' }: { samplePath?: string } = 
         Large deletions called at 100 kb resolution (depth &lt;20% of genome mean 2.2×, merged ≥200 kb, MAPQ ≥20).
         Zygosity inferred from read depth — unreliable at 2× coverage.
       </p>
+
+      <CnvCoverage samplePath={samplePath} />
     </div>
   );
 }

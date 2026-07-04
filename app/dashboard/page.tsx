@@ -16,6 +16,7 @@ import QcPanel from '@/components/QcPanel';
 import MicrobiomePanel from '@/components/MicrobiomePanel';
 import DogNotes from '@/components/DogNotes';
 import VariantCallerComparison from '@/components/VariantCallerComparison';
+import FunctionalVariants from '@/components/FunctionalVariants';
 
 interface Upload {
   id: number;
@@ -548,6 +549,7 @@ export default function Dashboard() {
                 {/* ── Variant data ── */}
                 {tab === 'data' && (
                   <div>
+                    <FunctionalVariants samplePath={samplePath} />
                     <VariantCallerComparison samplePath={samplePath} />
                     {!hasData ? (
                       <p className="text-sm text-gray-400 mt-4">No data yet. Upload a SNPEff .genes.txt file to see results.</p>

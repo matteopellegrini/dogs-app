@@ -115,7 +115,7 @@ function ComparisonPlot({
   const GENE_H = nRows > 0 ? GENE_PAD_TOP + nRows * GENE_ROW_H + 12 : 0;
 
   const nelkCap  = nelkMean  * 2;
-  const cosmoCap = cosmoMean * 3;
+  const cosmoCap = cosmoMean * 2;
   const panelCap = panelMean * 2;
 
   const totalTracksH = numTracks * TRACK_H + (numTracks - 1) * TRACK_GAP;

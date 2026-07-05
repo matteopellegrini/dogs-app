@@ -90,9 +90,9 @@ function Track({
 }
 
 function ComparisonPlot({
-  region, nelkMean, cosmoMean, panelMean, genes,
+  region, cosmoMean, panelMean, genes,
 }: {
-  region: ComparisonRegion; nelkMean: number; cosmoMean: number; panelMean: number; genes: GeneModel[];
+  region: ComparisonRegion; cosmoMean: number; panelMean: number; genes: GeneModel[];
 }) {
   const W = 620;
   const PAD = { top: 8, right: 10, bottom: 6, left: 46 };
@@ -101,11 +101,11 @@ function ComparisonPlot({
   const GENE_ROW_H = 14;
   const GENE_PAD_TOP = 10;
 
-  const hasPanel = !region.artefact && Array.isArray(region.panel_depths);
-  const numTracks = hasPanel ? 3 : 2;
+  const hasPanel = Array.isArray(region.panel_depths);
+  const numTracks = hasPanel ? 2 : 1;
 
-  const { nelk_depths, cosmo_depths, panel_depths, del_start, del_end, plot_start, plot_end, chrom } = region;
-  const n = nelk_depths.length;
+  const { cosmo_depths, panel_depths, del_start, del_end, plot_start, plot_end, chrom } = region;
+  const n = cosmo_depths.length;
   const totalBp = plot_end - plot_start;
   const plotW = W - PAD.left - PAD.right;
   const binW = plotW / n;
@@ -114,7 +114,6 @@ function ComparisonPlot({
   const nRows = layout.length > 0 ? Math.max(...layout.map(l => l.row)) + 1 : 0;
   const GENE_H = nRows > 0 ? GENE_PAD_TOP + nRows * GENE_ROW_H + 12 : 0;
 
-  const nelkCap  = nelkMean  * 2;
   const cosmoCap = cosmoMean * 2;
   const panelCap = panelMean * 2;
 
@@ -126,9 +125,8 @@ function ComparisonPlot({
   const delX1 = xScale(del_start);
   const delX2 = xScale(del_end);
 
-  const nelkTop  = PAD.top;
-  const panelTop = hasPanel ? nelkTop + TRACK_H + TRACK_GAP : 0;
-  const cosmoTop = hasPanel ? panelTop + TRACK_H + TRACK_GAP : nelkTop + TRACK_H + TRACK_GAP;
+  const panelTop = PAD.top;
+  const cosmoTop = hasPanel ? panelTop + TRACK_H + TRACK_GAP : PAD.top;
   const axisY    = cosmoTop + TRACK_H;
   const geneAreaY = axisY + 16 + GENE_PAD_TOP;
 
@@ -154,10 +152,6 @@ function ComparisonPlot({
           )}
         </div>
         <div className="flex items-center gap-2 text-[10px] text-gray-500 flex-wrap">
-          <span className="flex items-center gap-1">
-            <span className="w-3 h-2 rounded-sm inline-block" style={{background:'#6366f1',opacity:0.6}} />
-            NELK {nelkMean}× ({region.nelk_del_pct}% in del)
-          </span>
           {hasPanel && (
             <span className="flex items-center gap-1">
               <span className="w-3 h-2 rounded-sm inline-block" style={{background:'#10b981',opacity:0.6}} />
@@ -180,16 +174,9 @@ function ComparisonPlot({
           <rect x={delX1} y={PAD.top} width={delX2 - delX1} height={totalTracksH + GENE_H + 16}
             fill="#ef444408" stroke="#ef4444" strokeWidth={0.5} strokeDasharray="3,2" />
 
-          <Track depths={nelk_depths} capY={nelkCap} trackTop={nelkTop} trackH={TRACK_H}
-            plotW={plotW} padLeft={PAD.left} n={n} binW={binW} color="#6366f1" label="NELK" inDelFn={inDel} />
-
           {hasPanel && panel_depths && (
-            <>
-              <line x1={PAD.left} x2={W - PAD.right} y1={panelTop - TRACK_GAP / 2} y2={panelTop - TRACK_GAP / 2}
-                stroke="#e5e7eb" strokeWidth={0.5} />
-              <Track depths={panel_depths} capY={panelCap} trackTop={panelTop} trackH={TRACK_H}
-                plotW={plotW} padLeft={PAD.left} n={n} binW={binW} color="#10b981" label="Panel" inDelFn={inDel} />
-            </>
+            <Track depths={panel_depths} capY={panelCap} trackTop={panelTop} trackH={TRACK_H}
+              plotW={plotW} padLeft={PAD.left} n={n} binW={binW} color="#10b981" label="Panel" inDelFn={inDel} />
           )}
 
           <line x1={PAD.left} x2={W - PAD.right} y1={cosmoTop - TRACK_GAP / 2} y2={cosmoTop - TRACK_GAP / 2}
@@ -281,38 +268,21 @@ export default function CnvCoverage({ samplePath = '' }: { samplePath?: string }
 
   if (!covData) return null;
 
-  const realRegions     = covData.regions.filter(r => !r.artefact);
-  const artefactRegions = covData.regions.filter(r => r.artefact);
+  const realRegions = covData.regions.filter(r => !r.artefact);
+
+  if (realRegions.length === 0) return null;
 
   return (
     <div className="space-y-3 mt-2">
-      {realRegions.length > 0 && (
-        <>
-          <h3 className="text-xs font-semibold uppercase tracking-wide text-gray-400">
-            Coverage profiles — confirmed deletions
-          </h3>
-          {realRegions.map(r => (
-            <ComparisonPlot key={r.chrom} region={r}
-              nelkMean={covData.nelk_mean} cosmoMean={covData.cosmo_mean}
-              panelMean={covData.panel_mean ?? 8.76}
-              genes={geneData?.[REGION_GENE_CHROM[r.chrom] ?? ''] ?? []} />
-          ))}
-        </>
-      )}
-
-      {artefactRegions.length > 0 && (
-        <>
-          <h3 className="text-xs font-semibold uppercase tracking-wide text-gray-400 mt-4">
-            Coverage profiles — artefact regions
-          </h3>
-          {artefactRegions.map(r => (
-            <ComparisonPlot key={r.chrom} region={r}
-              nelkMean={covData.nelk_mean} cosmoMean={covData.cosmo_mean}
-              panelMean={covData.panel_mean ?? 8.76}
-              genes={geneData?.[REGION_GENE_CHROM[r.chrom] ?? ''] ?? []} />
-          ))}
-        </>
-      )}
+      <h3 className="text-xs font-semibold uppercase tracking-wide text-gray-400">
+        Coverage profiles
+      </h3>
+      {realRegions.map(r => (
+        <ComparisonPlot key={r.chrom} region={r}
+          cosmoMean={covData.cosmo_mean}
+          panelMean={covData.panel_mean ?? 8.76}
+          genes={geneData?.[REGION_GENE_CHROM[r.chrom] ?? ''] ?? []} />
+      ))}
     </div>
   );
 }

@@ -154,47 +154,6 @@ export default function CnvTable({ samplePath = '' }: { samplePath?: string } = 
         </div>
       )}
 
-      {/* ── Artefact regions ── */}
-      {artefacts.length > 0 && (
-        <div>
-          <h3 className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-2">
-            Rejected regions — mappability artefacts
-          </h3>
-          <div className="overflow-x-auto">
-            <table className="w-full text-xs">
-              <thead>
-                <tr className="border-b border-gray-200 text-gray-500 text-left">
-                  <th className="py-2 pr-4 font-medium">Region</th>
-                  <th className="py-2 pr-4 font-medium">Size</th>
-                  <th className="py-2 pr-4 font-medium text-right">Cosmo % flank</th>
-                  <th className="py-2 pr-4 font-medium text-right">NELK % flank</th>
-                  <th className="py-2 font-medium">Verdict</th>
-                </tr>
-              </thead>
-              <tbody>
-                {artefacts.map((r, i) => (
-                  <tr key={i} className="border-b border-gray-50 hover:bg-gray-50">
-                    <td className="py-1.5 pr-4 font-mono text-gray-500">
-                      {r.chrom}:{(r.start/1e6).toFixed(1)}–{(r.end/1e6).toFixed(1)} Mb
-                    </td>
-                    <td className="py-1.5 pr-4 text-gray-400">{r.size}</td>
-                    <td className="py-1.5 pr-4 text-right text-gray-600">{r.cosmo_pct_flank}%</td>
-                    <td className="py-1.5 pr-4 text-right text-gray-600">{r.nelk_pct_flank}%</td>
-                    <td className="py-1.5">
-                      <span className="px-1.5 py-0.5 rounded text-[10px] font-medium bg-gray-100 text-gray-500">
-                        mappability artefact
-                      </span>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <p className="text-[10px] text-gray-400 mt-1">
-            Each region shows similarly low coverage in NELK (28.7× mean depth), confirming canFam4 reference assembly mappability issues rather than true copy-number variants.
-          </p>
-        </div>
-      )}
 
       <CnvCoverage samplePath={samplePath} />
     </div>

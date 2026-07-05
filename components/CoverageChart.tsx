@@ -8,6 +8,10 @@ interface ChromData {
   ratio:  number[];
 }
 
+interface Centromeres {
+  [chrom: string]: [number, number];  // [start_bp, end_bp]
+}
+
 interface CoverageData {
   [chrom: string]: ChromData;
 }
@@ -28,12 +32,92 @@ function chromUnusual(ratios: number[]) {
   return ratios.filter(r => r < DEL_THRESH || r > DUP_THRESH).length;
 }
 
+function ChromosomeSchematic({
+  chrom, nWindows, centromere,
+}: {
+  chrom: string;
+  nWindows: number;
+  centromere?: [number, number];
+}) {
+  const W = nWindows;           // viewBox units = Mb windows (1 unit = 1 Mb)
+  const H = 24;
+  const midY = H / 2;
+  const armH = 12;              // arm body height
+  const cenH = 6;               // centromere constriction height
+  const capR = armH / 2;
+
+  // Centromere position in Mb (divide bp by 1_000_000)
+  const cenStartMb = centromere ? centromere[0] / 1_000_000 : W * 0.45;
+  const cenEndMb   = centromere ? centromere[1] / 1_000_000 : W * 0.55;
+  const cenMid     = (cenStartMb + cenEndMb) / 2;
+
+  // Clamp to chromosome extent
+  const cs = Math.max(capR, Math.min(cenStartMb, W - capR));
+  const ce = Math.max(cs + 0.5, Math.min(cenEndMb, W - capR));
+
+  // p arm: from left telomere to centromere start
+  // outline path (top edge left→right, bottom edge right→left)
+  const pPath = [
+    `M ${capR},${midY - armH/2}`,
+    `A ${capR} ${capR} 0 0 0 ${capR},${midY + armH/2}`,   // left telomere arc
+    `L ${cs},${midY + armH/2}`,
+    `Q ${cenMid},${midY + cenH/2} ${ce},${midY + armH/2}`, // centromere bottom curve
+    `L ${ce},${midY - armH/2}`,
+    `Q ${cenMid},${midY - cenH/2} ${cs},${midY - armH/2}`, // centromere top curve
+    `Z`,
+  ].join(' ');
+
+  // q arm: from centromere end to right telomere
+  const qPath = [
+    `M ${ce},${midY - armH/2}`,
+    `Q ${cenMid},${midY - cenH/2} ${cs},${midY - armH/2}`, // centromere top curve
+    `L ${cs},${midY + armH/2}`,
+    `Q ${cenMid},${midY + cenH/2} ${ce},${midY + armH/2}`, // centromere bottom curve
+    `L ${W - capR},${midY + armH/2}`,
+    `A ${capR} ${capR} 0 0 0 ${W - capR},${midY - armH/2}`, // right telomere arc
+    `Z`,
+  ].join(' ');
+
+  const pMid = cs / 2;
+  const qMid = (ce + W) / 2;
+
+  return (
+    <svg
+      viewBox={`0 0 ${W} ${H}`}
+      className="w-full"
+      style={{ height: 36, display: 'block' }}
+      preserveAspectRatio="none"
+    >
+      {/* p arm */}
+      <path d={pPath} fill="#c7caf0" stroke="#3540CA" strokeWidth={0.4} />
+      {/* q arm */}
+      <path d={qPath} fill="#c7caf0" stroke="#3540CA" strokeWidth={0.4} />
+      {/* centromere ellipse */}
+      <ellipse
+        cx={cenMid} cy={midY}
+        rx={(ce - cs) / 2 + 0.5} ry={cenH / 2}
+        fill="#6366f1" stroke="#3540CA" strokeWidth={0.4}
+      />
+      {/* arm labels */}
+      {pMid > 3 && (
+        <text x={pMid} y={midY + 3} textAnchor="middle"
+          fontSize={Math.min(5, cs * 0.4)} fill="#3540CA" fontWeight="600" fontFamily="sans-serif">p</text>
+      )}
+      {(W - qMid) > 3 && (
+        <text x={qMid} y={midY + 3} textAnchor="middle"
+          fontSize={Math.min(5, (W - ce) * 0.4)} fill="#3540CA" fontWeight="600" fontFamily="sans-serif">q</text>
+      )}
+    </svg>
+  );
+}
+
 export default function CoverageChart({ samplePath = '' }: { samplePath?: string } = {}) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const chartRef  = useRef<unknown>(null);
-  const [data, setData]       = useState<CoverageData | null>(null);
-  const [selected, setSelected] = useState('chr1');
-  const [chartPad, setChartPad] = useState({ left: '0px', right: '0px' });
+  const [data, setData]           = useState<CoverageData | null>(null);
+  const [centromeres, setCentromeres] = useState<Centromeres>({});
+  const [selected, setSelected]   = useState('chr1');
+  const [chartPad, setChartPad]   = useState({ left: '0px', right: '0px' });
   const setPadRef  = useRef(setChartPad);
   const padDoneRef = useRef(false);
 
@@ -41,6 +125,10 @@ export default function CoverageChart({ samplePath = '' }: { samplePath?: string
     fetch(`${samplePath}/coverage_1mb.json`)
       .then(r => r.json())
       .then((d: CoverageData) => setData(d));
+    fetch('/cosmo/centromeres.json')
+      .then(r => r.ok ? r.json() : {})
+      .then((d: Centromeres) => setCentromeres(d))
+      .catch(() => {});
   }, [samplePath]);
 
   useEffect(() => {
@@ -275,23 +363,13 @@ export default function CoverageChart({ samplePath = '' }: { samplePath?: string
         style={{ paddingLeft: chartPad.left, paddingRight: chartPad.right }}
         title={`Schematic of ${selected}`}
       >
-        <svg viewBox="0 0 400 36" className="w-full" style={{ height: 36 }}>
-          <path
-            d="M10,8 Q6,8 6,18 Q6,28 10,28 L178,28 Q186,28 188,22 Q190,20 190,18 Q190,16 188,14 Q186,8 178,8 Z"
-            fill="#c7caf0" stroke="#3540CA" strokeWidth="1.2"
-          />
-          <path
-            d="M390,8 Q394,8 394,18 Q394,28 390,28 L222,28 Q214,28 212,22 Q210,20 210,18 Q210,16 212,14 Q214,8 222,8 Z"
-            fill="#c7caf0" stroke="#3540CA" strokeWidth="1.2"
-          />
-          <ellipse cx="200" cy="18" rx="12" ry="6" fill="#6366f1" stroke="#3540CA" strokeWidth="1.2" />
-          <text x="94"  y="21" textAnchor="middle" fontSize="9" fill="#3540CA" fontWeight="600" fontFamily="sans-serif">p</text>
-          <text x="306" y="21" textAnchor="middle" fontSize="9" fill="#3540CA" fontWeight="600" fontFamily="sans-serif">q</text>
-          <rect x="6"   y="10" width="4" height="16" rx="2" fill="#3540CA" opacity="0.4" />
-          <rect x="390" y="10" width="4" height="16" rx="2" fill="#3540CA" opacity="0.4" />
-        </svg>
-        <p className="text-center text-[10px] text-gray-400 -mt-1">
-          {selected} — bars show Cosmo/panel depth ratio along this chromosome
+        <ChromosomeSchematic
+          chrom={selected}
+          nWindows={ratio.length}
+          centromere={centromeres[selected]}
+        />
+        <p className="text-center text-[10px] text-gray-400 mt-0.5">
+          {selected} — bars above show Cosmo/panel depth ratio along this chromosome
         </p>
       </div>
 

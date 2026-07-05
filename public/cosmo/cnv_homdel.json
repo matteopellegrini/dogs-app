@@ -1,6 +1,38 @@
 {
-  "regions": [],
-  "disrupted_genes": [],
+  "regions": [
+    {
+      "chrom": "chr35",
+      "start": 670000,
+      "end": 770000,
+      "size": "100kb",
+      "cosmo_pct_mean": 22,
+      "nelk_pct_mean": 123,
+      "panel_pct_mean": 72,
+      "disrupted_genes": [
+        "DUSP22",
+        "IRF4"
+      ],
+      "verdict": "confident_deletion"
+    }
+  ],
+  "disrupted_genes": [
+    {
+      "gene": "DUSP22",
+      "biotype": "protein_coding",
+      "chrom": "chr35",
+      "start": 625022,
+      "end": 680993,
+      "overlap": "partial"
+    },
+    {
+      "gene": "IRF4",
+      "biotype": "protein_coding",
+      "chrom": "chr35",
+      "start": 714202,
+      "end": 738113,
+      "overlap": "full"
+    }
+  ],
   "artefact_regions": [
     {
       "chrom": "chr2",
@@ -49,19 +81,12 @@
     }
   ],
   "summary": {
-    "total_regions": 0,
-    "unique_genes": 0,
-    "protein_coding": 0,
-    "by_category": {
-      "CDS": 0,
-      "5UTR": 0,
-      "3UTR": 0,
-      "EXON_NC": 0,
-      "INTRONIC": 0
-    },
-    "method": "100kb windows, depth <20% of autosomal mean (2.2x), merged ≥200kb, min-mapq 20",
-    "min_detectable_kb": 200,
-    "calling_resolution_kb": 100,
-    "artefact_note": "All 5 initially-called deletion regions were confirmed as mappability artefacts in the canFam4 reference assembly by comparison with NELK (28.7x coverage), which shows the same low-coverage pattern at each locus. No confident CNV deletions were detected in Cosmo."
+    "total_regions": 1,
+    "unique_genes": 2,
+    "method": "10kb windows, depth normalised to 3-dog reference panel (8.8x mean), ratio<0.5 threshold, NELK (28.7x) used to exclude mappability artefacts",
+    "min_detectable_kb": 100,
+    "calling_resolution_kb": 10,
+    "panel_note": "3-dog reference panel (DOGS-Gen-2, Gen-3, Gen-30/47) aligned to canFam4. chr35 deletion confirmed real: Cosmo 22% of mean depth, NELK 123% of mean (normal), panel 72% of mean (normal).",
+    "artefact_note": "5 initially-called regions confirmed as canFam4 mappability artefacts by comparison with NELK (28.7x): both Cosmo and NELK show similarly low coverage at each locus."
   }
 }

@@ -83,10 +83,10 @@
   "summary": {
     "total_regions": 1,
     "unique_genes": 2,
-    "method": "10kb windows, depth normalised to 3-dog reference panel (8.8x mean), ratio<0.5 threshold, NELK (28.7x) used to exclude mappability artefacts",
+    "method": "10kb windows, depth normalised to 4-dog reference panel (8.8x mean), ratio<0.5 threshold, NELK (28.7x) used to exclude mappability artefacts",
     "min_detectable_kb": 100,
     "calling_resolution_kb": 10,
-    "panel_note": "3-dog reference panel (DOGS-Gen-2, Gen-3, Gen-30/47) aligned to canFam4. chr35 deletion confirmed real: Cosmo 22% of mean depth, NELK 123% of mean (normal), panel 72% of mean (normal).",
+    "panel_note": "4-dog reference panel (DOGS-Gen-2, Gen-3, Gen-30, Gen-47) aligned to canFam4. chr35 deletion confirmed real: Cosmo 22% of mean depth vs 72% in panel (normal).",
     "artefact_note": "5 initially-called regions confirmed as canFam4 mappability artefacts by comparison with NELK (28.7x): both Cosmo and NELK show similarly low coverage at each locus."
   }
 }

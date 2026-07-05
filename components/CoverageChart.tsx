@@ -2,58 +2,62 @@
 
 import { useEffect, useRef, useState } from 'react';
 
+interface ChromData {
+  cosmo:  number[];
+  panel:  number[];
+  ratio:  number[];
+}
+
 interface CoverageData {
-  [chrom: string]: number[];
+  [chrom: string]: ChromData;
 }
 
 const CHR_ORDER = [...Array(38).keys()].map((i) => `chr${i + 1}`).concat(['chrX']);
 
-function chromStats(depths: number[]) {
-  const n = depths.length;
-  const mean = depths.reduce((s, v) => s + v, 0) / n;
-  const sd = Math.sqrt(depths.reduce((s, v) => s + (v - mean) ** 2, 0) / n);
-  return { mean, sd };
+// Thresholds for flagging
+const DEL_THRESH = 0.65;   // below → likely deletion
+const DUP_THRESH = 1.35;   // above → likely duplication
+
+function barColor(r: number) {
+  if (r < DEL_THRESH) return '#E24B4A';
+  if (r > DUP_THRESH) return '#f97316';
+  return '#6366f1';
 }
 
-function barColor(v: number, mean: number, sd: number) {
-  if (v < mean - 3 * sd) return '#E24B4A';   // low — red
-  if (v > mean + 3 * sd) return '#f97316';   // high / spike — orange
-  return '#6366f1';                           // normal — indigo
+function chromUnusual(ratios: number[]) {
+  return ratios.filter(r => r < DEL_THRESH || r > DUP_THRESH).length;
 }
 
 export default function CoverageChart({ samplePath = '' }: { samplePath?: string } = {}) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const chartRef = useRef<unknown>(null);
-  const [data, setData] = useState<CoverageData | null>(null);
+  const chartRef  = useRef<unknown>(null);
+  const [data, setData]       = useState<CoverageData | null>(null);
   const [selected, setSelected] = useState('chr1');
-  const [stats, setStats] = useState({ mean: 0, sd: 0, low: 0, high: 0, total: 0, max: 0 });
   const [chartPad, setChartPad] = useState({ left: '0px', right: '0px' });
-  const setPadRef = useRef(setChartPad);
-  // Guards so the afterDraw plugin only fires setState once per chart instance
+  const setPadRef  = useRef(setChartPad);
   const padDoneRef = useRef(false);
 
   useEffect(() => {
     fetch(`${samplePath}/coverage_1mb.json`)
-      .then((r) => r.json())
+      .then(r => r.json())
       .then((d: CoverageData) => setData(d));
   }, [samplePath]);
 
   useEffect(() => {
     if (!data || !canvasRef.current) return;
-    const depths = data[selected];
-    if (!depths) return;
+    const chrom = data[selected];
+    if (!chrom) return;
 
-    const { mean, sd } = chromStats(depths);
-    const low  = depths.filter((v) => v < mean - 3 * sd).length;
-    const high = depths.filter((v) => v > mean + 3 * sd).length;
-    const max  = Math.max(...depths);
-    setStats({ mean: parseFloat(mean.toFixed(1)), sd: parseFloat(sd.toFixed(1)), low, high, total: depths.length, max: parseFloat(max.toFixed(1)) });
+    const { ratio, cosmo, panel } = chrom;
+    const low  = ratio.filter(r => r < DEL_THRESH).length;
+    const high = ratio.filter(r => r > DUP_THRESH).length;
+    const meanRatio = ratio.reduce((s, v) => s + v, 0) / ratio.length;
+    const isChrX = selected === 'chrX';
 
     import('chart.js').then(({ Chart, BarController, LineController, BarElement, PointElement, LineElement, LinearScale, CategoryScale, Tooltip }) => {
       Chart.register(BarController, LineController, BarElement, PointElement, LineElement, LinearScale, CategoryScale, Tooltip);
 
       if (chartRef.current) (chartRef.current as { destroy: () => void }).destroy();
-
       padDoneRef.current = false;
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -66,34 +70,32 @@ export default function CoverageChart({ samplePath = '' }: { samplePath?: string
           if (!ca || !cssWidth) return;
           padDoneRef.current = true;
           requestAnimationFrame(() => {
-            setPadRef.current({
-              left:  `${ca.left}px`,
-              right: `${cssWidth - ca.right}px`,
-            });
+            setPadRef.current({ left: `${ca.left}px`, right: `${cssWidth - ca.right}px` });
           });
         },
       };
 
-      const yMax = Math.ceil(max * 1.08);
+      const yMax = Math.min(2.2, Math.ceil(Math.max(...ratio) * 1.15 * 10) / 10);
 
       chartRef.current = new Chart(canvasRef.current!, {
         type: 'bar',
         plugins: [chromPadPlugin],
         data: {
-          labels: depths.map((_, i) => i),
+          labels: ratio.map((_, i) => i),
           datasets: [
             {
-              label: 'Depth',
-              data: depths,
-              backgroundColor: depths.map((v) => barColor(v, mean, sd)),
+              label: 'Ratio',
+              data: ratio,
+              backgroundColor: ratio.map(barColor),
               borderWidth: 0,
               borderRadius: 2,
               barPercentage: 0.95,
               categoryPercentage: 1.0,
             },
+            // diploid reference line at 1.0
             {
-              label: 'Chromosome mean',
-              data: Array(depths.length).fill(mean),
+              label: 'Diploid (1.0)',
+              data: Array(ratio.length).fill(1.0),
               type: 'line' as const,
               borderColor: '#f59e0b',
               borderWidth: 1.5,
@@ -101,21 +103,23 @@ export default function CoverageChart({ samplePath = '' }: { samplePath?: string
               pointRadius: 0,
               fill: false,
             },
+            // deletion threshold
             {
-              label: '+3 SD',
-              data: Array(depths.length).fill(mean + 3 * sd),
+              label: 'Del threshold',
+              data: Array(ratio.length).fill(DEL_THRESH),
               type: 'line' as const,
-              borderColor: '#f97316',
+              borderColor: '#E24B4A',
               borderWidth: 1,
               borderDash: [2, 4],
               pointRadius: 0,
               fill: false,
             },
+            // duplication threshold
             {
-              label: '−3 SD',
-              data: Array(depths.length).fill(Math.max(0, mean - 3 * sd)),
+              label: 'Dup threshold',
+              data: Array(ratio.length).fill(DUP_THRESH),
               type: 'line' as const,
-              borderColor: '#E24B4A',
+              borderColor: '#f97316',
               borderWidth: 1,
               borderDash: [2, 4],
               pointRadius: 0,
@@ -135,13 +139,18 @@ export default function CoverageChart({ samplePath = '' }: { samplePath?: string
                   `${selected}:${ctx[0].label}–${parseInt(String(ctx[0].label)) + 1} Mb`,
                 label: (ctx) => {
                   if (ctx.datasetIndex === 0) {
-                    const v = Number(ctx.raw);
-                    const tag = v < mean - 2 * sd ? ' ⬇ low' : v > mean + 2 * sd ? ' ⬆ high' : '';
-                    return `Depth: ${v.toFixed(1)}x${tag}`;
+                    const i = ctx.dataIndex;
+                    const r = ratio[i];
+                    const tag = r < DEL_THRESH ? ' ⬇ low' : r > DUP_THRESH ? ' ⬆ high' : '';
+                    return [
+                      `Ratio: ${r.toFixed(3)}${tag}`,
+                      `Cosmo: ${cosmo[i]?.toFixed(2)}×`,
+                      `Panel: ${panel[i]?.toFixed(2)}×`,
+                    ];
                   }
-                  if (ctx.datasetIndex === 1) return `Mean: ${mean.toFixed(1)}x`;
-                  if (ctx.datasetIndex === 2) return `+3 SD: ${(mean + 3 * sd).toFixed(1)}x`;
-                  return `−3 SD: ${Math.max(0, mean - 3 * sd).toFixed(1)}x`;
+                  if (ctx.datasetIndex === 1) return `Diploid expected: 1.000`;
+                  if (ctx.datasetIndex === 2) return `Deletion threshold: ${DEL_THRESH}`;
+                  return `Duplication threshold: ${DUP_THRESH}`;
                 },
               },
             },
@@ -161,13 +170,13 @@ export default function CoverageChart({ samplePath = '' }: { samplePath?: string
             y: {
               min: 0,
               max: yMax,
-              ticks: { callback: (v) => `${v}x`, font: { size: 10 }, color: '#9ca3af' },
+              ticks: { font: { size: 10 }, color: '#9ca3af',
+                callback: (v) => Number(v).toFixed(1) },
               grid: { color: 'rgba(156,163,175,0.2)' },
             },
           },
         },
       });
-
     });
 
     return () => {
@@ -183,34 +192,37 @@ export default function CoverageChart({ samplePath = '' }: { samplePath?: string
     );
   }
 
-  const hasUnusual = stats.low + stats.high > 0;
+  const chrom = data[selected];
+  const ratio = chrom?.ratio ?? [];
+  const low   = ratio.filter(r => r < DEL_THRESH).length;
+  const high  = ratio.filter(r => r > DUP_THRESH).length;
+  const meanR = ratio.length ? ratio.reduce((s, v) => s + v, 0) / ratio.length : 1;
+  const hasUnusual = low + high > 0;
+  const isChrX = selected === 'chrX';
 
   return (
     <div className="space-y-4">
       <div>
         <p className="text-sm text-gray-500 mb-3">
-          Mean sequencing depth per 1 Mb window. Y-axis auto-scaled per chromosome.
-          Coloured bars deviate more than 3 SD from the chromosome mean.
+          Cosmo depth normalised to the 4-dog reference panel per 1 Mb window.
+          Ratio 1.0 = diploid; 0.5 = hemizygous deletion; 1.5 = duplication.
         </p>
 
         {/* Chromosome selector */}
         <div className="flex flex-wrap gap-1.5 mb-4">
-          {CHR_ORDER.filter((c) => data[c]).map((c) => {
-            const d = data[c];
-            const { mean, sd } = chromStats(d);
-            const unusual = d.filter((v) => v < mean - 3 * sd || v > mean + 3 * sd).length;
+          {CHR_ORDER.filter(c => data[c]).map(c => {
+            const unusual = chromUnusual(data[c].ratio);
+            const isX = c === 'chrX';
             return (
               <button
                 key={c}
                 onClick={() => setSelected(c)}
                 className={`text-xs px-2 py-1 rounded-md font-medium transition-colors relative ${
-                  selected === c
-                    ? 'bg-[#3540CA] text-white'
-                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                  selected === c ? 'bg-[#3540CA] text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                 }`}
               >
                 {c.replace('chr', '')}
-                {unusual > 0 && selected !== c && (
+                {unusual > 0 && selected !== c && !isX && (
                   <span className="absolute -top-1 -right-1 w-1.5 h-1.5 rounded-full bg-orange-400" />
                 )}
               </button>
@@ -221,29 +233,33 @@ export default function CoverageChart({ samplePath = '' }: { samplePath?: string
         {/* Stats row */}
         <div className="grid grid-cols-4 gap-3 mb-4">
           <div className="bg-gray-50 rounded-lg p-3">
-            <p className="text-xs text-gray-400 mb-1">Mean depth</p>
-            <p className="text-lg font-semibold text-gray-800">{stats.mean}x</p>
+            <p className="text-xs text-gray-400 mb-1">Mean ratio</p>
+            <p className="text-lg font-semibold text-gray-800">{meanR.toFixed(3)}</p>
           </div>
           <div className="bg-gray-50 rounded-lg p-3">
-            <p className="text-xs text-gray-400 mb-1">Std dev</p>
-            <p className="text-lg font-semibold text-gray-800">±{stats.sd}x</p>
+            <p className="text-xs text-gray-400 mb-1">Windows</p>
+            <p className="text-lg font-semibold text-gray-800">{ratio.length}</p>
           </div>
           <div className="bg-gray-50 rounded-lg p-3">
-            <p className="text-xs text-gray-400 mb-1">Max depth</p>
-            <p className="text-lg font-semibold text-gray-800">{stats.max}x</p>
+            <p className="text-xs text-gray-400 mb-1">Low (&lt;{DEL_THRESH})</p>
+            <p className={`text-lg font-semibold ${low > 0 ? 'text-red-500' : 'text-gray-800'}`}>{low}</p>
           </div>
           <div className="bg-gray-50 rounded-lg p-3">
-            <p className="text-xs text-gray-400 mb-1">Unusual windows</p>
-            <p className={`text-lg font-semibold ${hasUnusual ? 'text-orange-500' : 'text-gray-800'}`}>
-              {stats.low + stats.high} / {stats.total}
-            </p>
+            <p className="text-xs text-gray-400 mb-1">High (&gt;{DUP_THRESH})</p>
+            <p className={`text-lg font-semibold ${high > 0 ? 'text-orange-500' : 'text-gray-800'}`}>{high}</p>
           </div>
         </div>
 
-        {hasUnusual && (
+        {isChrX && (
+          <div className="bg-blue-50 border border-blue-200 text-blue-700 text-xs rounded-lg px-3 py-2 mb-3">
+            chrX mean ratio {meanR.toFixed(2)} — consistent with male (hemizygous X vs panel average)
+          </div>
+        )}
+
+        {!isChrX && hasUnusual && (
           <div className="bg-amber-50 border border-amber-200 text-amber-700 text-xs rounded-lg px-3 py-2 mb-3 flex gap-4">
-            {stats.low  > 0 && <span>⬇ {stats.low}  window{stats.low  > 1 ? 's' : ''} below mean − 3 SD</span>}
-            {stats.high > 0 && <span>⬆ {stats.high} window{stats.high > 1 ? 's' : ''} above mean + 3 SD</span>}
+            {low  > 0 && <span>⬇ {low}  window{low  > 1 ? 's' : ''} below {DEL_THRESH} (possible deletion)</span>}
+            {high > 0 && <span>⬆ {high} window{high > 1 ? 's' : ''} above {DUP_THRESH} (possible duplication)</span>}
           </div>
         )}
       </div>
@@ -253,56 +269,49 @@ export default function CoverageChart({ samplePath = '' }: { samplePath?: string
         <canvas ref={canvasRef} />
       </div>
 
-      {/* Chromosome schematic — padded to match chart's inner plot area */}
+      {/* Chromosome schematic */}
       <div
         className="w-full"
         style={{ paddingLeft: chartPad.left, paddingRight: chartPad.right }}
-        title={`Schematic of ${selected} — bars above represent coverage along its length`}
+        title={`Schematic of ${selected}`}
       >
         <svg viewBox="0 0 400 36" className="w-full" style={{ height: 36 }}>
-          {/* p arm (left) */}
           <path
             d="M10,8 Q6,8 6,18 Q6,28 10,28 L178,28 Q186,28 188,22 Q190,20 190,18 Q190,16 188,14 Q186,8 178,8 Z"
             fill="#c7caf0" stroke="#3540CA" strokeWidth="1.2"
           />
-          {/* q arm (right) */}
           <path
             d="M390,8 Q394,8 394,18 Q394,28 390,28 L222,28 Q214,28 212,22 Q210,20 210,18 Q210,16 212,14 Q214,8 222,8 Z"
             fill="#c7caf0" stroke="#3540CA" strokeWidth="1.2"
           />
-          {/* centromere constriction */}
           <ellipse cx="200" cy="18" rx="12" ry="6" fill="#6366f1" stroke="#3540CA" strokeWidth="1.2" />
-          {/* arm labels */}
-          <text x="94" y="21" textAnchor="middle" fontSize="9" fill="#3540CA" fontWeight="600" fontFamily="sans-serif">p</text>
+          <text x="94"  y="21" textAnchor="middle" fontSize="9" fill="#3540CA" fontWeight="600" fontFamily="sans-serif">p</text>
           <text x="306" y="21" textAnchor="middle" fontSize="9" fill="#3540CA" fontWeight="600" fontFamily="sans-serif">q</text>
-          {/* telomere caps */}
-          <rect x="6" y="10" width="4" height="16" rx="2" fill="#3540CA" opacity="0.4" />
+          <rect x="6"   y="10" width="4" height="16" rx="2" fill="#3540CA" opacity="0.4" />
           <rect x="390" y="10" width="4" height="16" rx="2" fill="#3540CA" opacity="0.4" />
         </svg>
-        <p className="text-center text-[10px] text-gray-400 -mt-1">{selected} — bars above show sequencing depth along this chromosome</p>
+        <p className="text-center text-[10px] text-gray-400 -mt-1">
+          {selected} — bars show Cosmo/panel depth ratio along this chromosome
+        </p>
       </div>
 
       {/* Legend */}
       <div className="flex flex-wrap gap-4 text-xs text-gray-400">
         <span className="flex items-center gap-1.5">
           <span className="w-3 h-3 rounded-sm bg-[#6366f1] inline-block" />
-          Normal (within ±3 SD)
+          Normal ({DEL_THRESH}–{DUP_THRESH})
         </span>
         <span className="flex items-center gap-1.5">
           <span className="w-3 h-3 rounded-sm bg-red-500 inline-block" />
-          Low (&lt; mean − 3 SD)
+          Low (&lt;{DEL_THRESH}, possible deletion)
         </span>
         <span className="flex items-center gap-1.5">
           <span className="w-3 h-3 rounded-sm bg-orange-400 inline-block" />
-          High (&gt; mean + 3 SD)
+          High (&gt;{DUP_THRESH}, possible duplication)
         </span>
         <span className="flex items-center gap-1.5">
           <span className="w-6 border-t-2 border-dashed border-amber-400 inline-block" />
-          Chromosome mean
-        </span>
-        <span className="flex items-center gap-1.5">
-          <span className="w-6 border-t-2 border-dashed border-orange-400 inline-block" />
-          ±3 SD bounds
+          Diploid (1.0)
         </span>
       </div>
     </div>

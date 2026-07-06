@@ -20,6 +20,21 @@ interface GeneMap {
   [chrom: string]: { [mb: string]: string[] };
 }
 
+interface ZoomRegion {
+  chrom: string;
+  view_start: number; view_end: number;
+  flag_start: number; flag_end: number;
+  window_bp: number;
+  cosmo_depths: number[];
+  panel_depths: number[];
+  cosmo_mean: number;
+  panel_mean: number;
+}
+
+interface ZoomData {
+  [key: string]: ZoomRegion;
+}
+
 const CHR_ORDER = [...Array(38).keys()].map((i) => `chr${i + 1}`).concat(['chrX']);
 
 const DEL_THRESH = 0.65;
@@ -50,116 +65,114 @@ function groupOutliers(ratio: number[], gap = 2): OutlierRegion[] {
   return out;
 }
 
-function ZoomedChart({
-  chrom, ratio, region, cosmo, panel,
-}: {
-  chrom: string; ratio: number[]; region: OutlierRegion; cosmo: number[]; panel: number[];
-}) {
-  const vs = Math.max(0, region.startIdx - CONTEXT_WINDOWS);
-  const ve = Math.min(ratio.length - 1, region.endIdx + CONTEXT_WINDOWS);
-  const slice = ratio.slice(vs, ve + 1);
+function DualTrackPlot({ zoom }: { zoom: ZoomRegion }) {
+  const {
+    chrom, view_start, view_end, flag_start, flag_end,
+    window_bp, cosmo_depths, panel_depths, cosmo_mean, panel_mean,
+  } = zoom;
 
-  const W = 600, H = 150;
-  const PAD = { top: 14, right: 16, bottom: 26, left: 48 };
+  const W = 620;
+  const PAD = { top: 8, right: 10, bottom: 6, left: 46 };
+  const TRACK_H = 60;
+  const TRACK_GAP = 5;
+  const n = cosmo_depths.length;
+  const totalBp = view_end - view_start;
   const plotW = W - PAD.left - PAD.right;
-  const plotH = H - PAD.top - PAD.bottom;
-  const barW  = plotW / slice.length;
+  const binW  = plotW / n;
 
-  const yMax = Math.max(DUP_THRESH + 0.3, Math.max(...slice) * 1.05);
-  const yScale = (v: number) => PAD.top + plotH - (Math.min(v, yMax) / yMax) * plotH;
+  const cosmoCap = cosmo_mean * 2;
+  const panelCap = panel_mean * 2;
 
-  const refLines = [
-    { v: 1.0,        color: '#f59e0b', dash: '4,3' },
-    { v: DEL_THRESH, color: '#E24B4A', dash: '2,4' },
-    { v: DUP_THRESH, color: '#f97316', dash: '2,4' },
-  ];
+  const panelTop = PAD.top;
+  const cosmoTop = panelTop + TRACK_H + TRACK_GAP;
+  const axisY    = cosmoTop + TRACK_H;
+  const totalTracksH = 2 * TRACK_H + TRACK_GAP;
+  const H = PAD.top + totalTracksH + PAD.bottom + 20;
 
-  const yTicks = [0, 0.5, 1.0, 1.5, 2.0].filter(v => v <= yMax + 0.05);
+  const xBin   = (i: number) => PAD.left + (i / n) * plotW;
+  const xScale = (pos: number) => PAD.left + ((pos - view_start) / totalBp) * plotW;
+  const yVal   = (d: number, cap: number, top: number) =>
+    top + TRACK_H - (Math.min(d, cap) / cap) * TRACK_H;
 
-  // highlight box over flagged window indices within the slice
-  const hlStart = region.startIdx - vs;
-  const hlEnd   = region.endIdx   - vs;
+  const inFlag = (i: number) => {
+    const pos = view_start + i * window_bp;
+    return pos >= flag_start && pos < flag_end;
+  };
+
+  const delX1 = xScale(flag_start);
+  const delX2 = xScale(flag_end);
+
+  // x-axis ticks every 1 Mb
+  const tickBp = 1_000_000;
+  const xTicks: { x: number; label: string }[] = [];
+  const first = Math.ceil(view_start / tickBp) * tickBp;
+  for (let pos = first; pos <= view_end; pos += tickBp) {
+    xTicks.push({ x: xScale(pos), label: `${(pos / 1e6).toFixed(0)}` });
+  }
+
+  function Track({
+    depths, cap, top, color, label,
+  }: { depths: number[]; cap: number; top: number; color: string; label: string }) {
+    const ticks = [0, cap / 2, cap];
+    return (
+      <g>
+        <text x={PAD.left - 4} y={top + 7} textAnchor="end" fontSize={7} fontWeight="600" fill={color}>{label}</text>
+        {ticks.map(v => {
+          const y = yVal(v, cap, top);
+          return (
+            <g key={v}>
+              <line x1={PAD.left} x2={PAD.left + plotW} y1={y} y2={y}
+                stroke={v === 0 ? '#d1d5db' : '#f3f4f6'} strokeWidth={v === 0 ? 1 : 0.5} />
+              <text x={PAD.left - 3} y={y + 3} textAnchor="end" fontSize={6} fill="#9ca3af">{v.toFixed(0)}×</text>
+            </g>
+          );
+        })}
+        {/* mean dashed line */}
+        <line x1={PAD.left} x2={PAD.left + plotW}
+          y1={yVal(cap / 2, cap, top)} y2={yVal(cap / 2, cap, top)}
+          stroke={color} strokeWidth={0.8} strokeDasharray="3,2" opacity={0.35} />
+        {depths.map((d, i) => {
+          const bh = (Math.min(d, cap) / cap) * TRACK_H;
+          const flagged = inFlag(i);
+          return <rect key={i} x={xBin(i)} y={top + TRACK_H - bh} width={Math.max(binW, 0.5)} height={bh}
+            fill={flagged ? '#ef4444' : color} opacity={flagged ? 0.55 : 0.45} />;
+        })}
+      </g>
+    );
+  }
 
   return (
-    <svg width={W} height={H} viewBox={`0 0 ${W} ${H}`}
-      className="w-full overflow-visible" style={{ maxWidth: W, display: 'block' }}>
+    <div className="overflow-x-auto -mx-1">
+      <svg width={W} height={H} viewBox={`0 0 ${W} ${H}`} style={{ minWidth: W, display: 'block' }}>
+        {/* flagged region highlight */}
+        <rect x={delX1} y={PAD.top} width={delX2 - delX1} height={totalTracksH + 16}
+          fill="#ef444408" stroke="#ef4444" strokeWidth={0.5} strokeDasharray="3,2" />
 
-      {/* highlight band */}
-      <rect
-        x={PAD.left + hlStart * barW} y={PAD.top}
-        width={(hlEnd - hlStart + 1) * barW} height={plotH}
-        fill={ratio[region.startIdx] < DEL_THRESH ? '#E24B4A10' : '#f9731610'}
-        stroke={ratio[region.startIdx] < DEL_THRESH ? '#E24B4A' : '#f97316'}
-        strokeWidth={0.5} strokeDasharray="3,2"
-      />
+        <Track depths={panel_depths} cap={panelCap} top={panelTop} color="#10b981" label="Panel" />
+        <line x1={PAD.left} x2={W - PAD.right} y1={cosmoTop - TRACK_GAP / 2} y2={cosmoTop - TRACK_GAP / 2}
+          stroke="#e5e7eb" strokeWidth={0.5} />
+        <Track depths={cosmo_depths} cap={cosmoCap} top={cosmoTop} color="#f59e0b" label="Cosmo" />
 
-      {/* y grid + ticks */}
-      {yTicks.map(v => (
-        <g key={v}>
-          <line x1={PAD.left} x2={W - PAD.right} y1={yScale(v)} y2={yScale(v)}
-            stroke="#f3f4f6" strokeWidth={v === 0 ? 1 : 0.5} />
-          <text x={PAD.left - 5} y={yScale(v) + 3.5} textAnchor="end" fontSize={8} fill="#9ca3af">
-            {v.toFixed(1)}
-          </text>
-        </g>
-      ))}
-
-      {/* reference lines */}
-      {refLines.map(({ v, color, dash }) => (
-        <line key={v} x1={PAD.left} x2={W - PAD.right} y1={yScale(v)} y2={yScale(v)}
-          stroke={color} strokeWidth={1.2} strokeDasharray={dash} />
-      ))}
-
-      {/* bars */}
-      {slice.map((r, i) => {
-        const bh = (Math.min(r, yMax) / yMax) * plotH;
-        const x  = PAD.left + i * barW;
-        return (
-          <g key={i}>
-            <rect x={x + 0.5} y={yScale(r)} width={Math.max(barW - 1, 1)} height={bh}
-              fill={barColor(r)} opacity={0.8} rx={1} />
+        {/* x axis */}
+        <line x1={PAD.left} x2={W - PAD.right} y1={axisY} y2={axisY} stroke="#d1d5db" strokeWidth={1} />
+        {xTicks.map(({ x, label }) => (
+          <g key={label}>
+            <line x1={x} x2={x} y1={axisY} y2={axisY + 3} stroke="#9ca3af" strokeWidth={0.5} />
+            <text x={x} y={axisY + 9} textAnchor="middle" fontSize={7} fill="#9ca3af">{label}</text>
           </g>
-        );
-      })}
-
-      {/* x axis */}
-      <line x1={PAD.left} x2={W - PAD.right} y1={H - PAD.bottom} y2={H - PAD.bottom}
-        stroke="#d1d5db" strokeWidth={1} />
-      {slice.map((_, i) => {
-        const mbPos = vs + i;
-        const x = PAD.left + (i + 0.5) * barW;
-        const show = slice.length <= 12 || i % 2 === 0;
-        return show ? (
-          <g key={i}>
-            <line x1={x} x2={x} y1={H - PAD.bottom} y2={H - PAD.bottom + 3} stroke="#9ca3af" strokeWidth={0.5} />
-            <text x={x} y={H - PAD.bottom + 10} textAnchor="middle" fontSize={7.5} fill="#9ca3af">
-              {mbPos}Mb
-            </text>
-          </g>
-        ) : null;
-      })}
-
-      {/* y axis label */}
-      <text
-        x={10} y={PAD.top + plotH / 2} textAnchor="middle" fontSize={7.5} fill="#9ca3af"
-        transform={`rotate(-90, 10, ${PAD.top + plotH / 2})`}
-      >
-        Ratio
-      </text>
-
-      {/* region label */}
-      <text x={W - PAD.right} y={PAD.top - 3} textAnchor="end" fontSize={8} fill="#6b7280" fontWeight="600">
-        {chrom}:{region.startIdx}–{region.endIdx} Mb
-      </text>
-    </svg>
+        ))}
+        <text x={W - PAD.right} y={axisY + 9} textAnchor="end" fontSize={7} fill="#9ca3af">Mb</text>
+      </svg>
+    </div>
   );
 }
 
 function OutlierDetail({
-  chrom, ratio, cosmo, panel, geneMap,
+  chrom, ratio, geneMap, zoomData,
 }: {
-  chrom: string; ratio: number[]; cosmo: number[]; panel: number[];
+  chrom: string; ratio: number[];
   geneMap: { [mb: string]: string[] } | undefined;
+  zoomData: ZoomData;
 }) {
   const regions = groupOutliers(ratio);
   if (!regions.length) return null;
@@ -167,7 +180,7 @@ function OutlierDetail({
   return (
     <div className="mt-4 space-y-5">
       <h3 className="text-xs font-semibold uppercase tracking-wide text-gray-400">
-        Flagged regions — zoomed view
+        Flagged regions — zoomed view (10 kb bins)
       </h3>
 
       {regions.map((reg, ri) => {
@@ -176,7 +189,13 @@ function OutlierDetail({
           .slice(reg.startIdx, reg.endIdx + 1)
           .reduce((s, v) => s + v, 0) / (reg.endIdx - reg.startIdx + 1);
 
-        // Collect genes from all flagged windows in this region
+        // Look up pre-computed 10kb zoom for this region
+        const vs = Math.max(0, reg.startIdx - CONTEXT_WINDOWS) * 1_000_000;
+        const ve = (reg.endIdx + CONTEXT_WINDOWS + 1) * 1_000_000;
+        const zoomKey = `${chrom}:${vs}-${ve}`;
+        const zoom = zoomData[zoomKey];
+
+        // Collect genes from flagged Mb windows
         const geneSet = new Set<string>();
         for (let mb = reg.startIdx; mb <= reg.endIdx; mb++) {
           (geneMap?.[String(mb)] ?? []).forEach(g => geneSet.add(g));
@@ -197,13 +216,26 @@ function OutlierDetail({
                 {type === 'del' ? '⬇ possible deletion' : '⬆ possible duplication'}
               </span>
               <span className="text-[10px] text-gray-400">
-                {reg.endIdx - reg.startIdx + 1} window{reg.endIdx !== reg.startIdx ? 's' : ''} · mean ratio {meanRatio.toFixed(3)}
+                {reg.endIdx - reg.startIdx + 1} Mb window{reg.endIdx !== reg.startIdx ? 's' : ''} · mean ratio {meanRatio.toFixed(3)}
+              </span>
+              {/* track legend */}
+              <span className="ml-auto flex items-center gap-3 text-[10px] text-gray-400">
+                <span className="flex items-center gap-1">
+                  <span className="w-3 h-2 rounded-sm inline-block" style={{background:'#10b981',opacity:0.6}} />
+                  Panel (4-dog ref)
+                </span>
+                <span className="flex items-center gap-1">
+                  <span className="w-3 h-2 rounded-sm inline-block" style={{background:'#f59e0b',opacity:0.7}} />
+                  Cosmo
+                </span>
               </span>
             </div>
 
-            <div className="overflow-x-auto -mx-1">
-              <ZoomedChart chrom={chrom} ratio={ratio} region={reg} cosmo={cosmo} panel={panel} />
-            </div>
+            {zoom ? (
+              <DualTrackPlot zoom={zoom} />
+            ) : (
+              <p className="text-[10px] text-gray-400 py-4 text-center">10 kb data not available for this region.</p>
+            )}
 
             {genes.length > 0 && (
               <div className="mt-3">
@@ -322,6 +354,7 @@ export default function CoverageChart({ samplePath = '' }: { samplePath?: string
   const [data, setData]           = useState<CoverageData | null>(null);
   const [centromeres, setCentromeres] = useState<Centromeres>({});
   const [geneData, setGeneData]   = useState<GeneMap>({});
+  const [zoomData, setZoomData]   = useState<ZoomData>({});
   const [selected, setSelected]   = useState('chr1');
   const [chartPad, setChartPad]   = useState({ left: '0px', right: '0px' });
   const setPadRef  = useRef(setChartPad);
@@ -338,6 +371,10 @@ export default function CoverageChart({ samplePath = '' }: { samplePath?: string
     fetch('/cosmo/genes_1mb.json')
       .then(r => r.ok ? r.json() : {})
       .then((d: GeneMap) => setGeneData(d))
+      .catch(() => {});
+    fetch('/cosmo/karyotype_zoom.json')
+      .then(r => r.ok ? r.json() : {})
+      .then((d: ZoomData) => setZoomData(d))
       .catch(() => {});
   }, [samplePath]);
 
@@ -485,8 +522,6 @@ export default function CoverageChart({ samplePath = '' }: { samplePath?: string
 
   const chrom = data[selected];
   const ratio = chrom?.ratio ?? [];
-  const cosmo = chrom?.cosmo ?? [];
-  const panel = chrom?.panel ?? [];
   const low   = ratio.filter(r => r < DEL_THRESH).length;
   const high  = ratio.filter(r => r > DUP_THRESH).length;
   const meanR = ratio.length ? ratio.reduce((s, v) => s + v, 0) / ratio.length : 1;
@@ -603,9 +638,8 @@ export default function CoverageChart({ samplePath = '' }: { samplePath?: string
         <OutlierDetail
           chrom={selected}
           ratio={ratio}
-          cosmo={cosmo}
-          panel={panel}
           geneMap={geneData[selected]}
+          zoomData={zoomData}
         />
       )}
     </div>

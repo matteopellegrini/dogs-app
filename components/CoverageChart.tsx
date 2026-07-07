@@ -610,9 +610,36 @@ export default function CoverageChart({ samplePath = '' }: { samplePath?: string
           nWindows={ratio.length}
           centromere={centromeres[selected]}
         />
-        <p className="text-center text-[10px] text-gray-400 mt-0.5">
-          {selected} — bars above show Cosmo/panel depth ratio along this chromosome
-        </p>
+        {/* Chromosome schematic legend */}
+        <div className="flex flex-wrap items-center justify-center gap-4 mt-1.5 text-[10px] text-gray-400">
+          <span className="flex items-center gap-1.5">
+            <svg width="22" height="10" viewBox="0 0 22 10">
+              <path d="M3,1 A3 3 0 0 0 3,9 L19,9 A3 3 0 0 0 19,1 Z"
+                fill="#c7caf0" stroke="#3540CA" strokeWidth="0.8" />
+            </svg>
+            Chromosome arm
+          </span>
+          <span className="flex items-center gap-1.5">
+            <svg width="14" height="10" viewBox="0 0 14 10">
+              <ellipse cx="7" cy="5" rx="6" ry="4" fill="#6366f1" stroke="#3540CA" strokeWidth="0.8" />
+            </svg>
+            Centromere
+          </span>
+          <span className="flex items-center gap-1.5">
+            <svg width="14" height="10" viewBox="0 0 14 10">
+              <path d="M7,1 A6 4 0 0 0 7,9 A6 4 0 0 0 7,1"
+                fill="#c7caf0" stroke="#3540CA" strokeWidth="0.8" />
+            </svg>
+            Telomere (rounded cap)
+          </span>
+          <span className="flex items-center gap-1.5 font-semibold text-[#3540CA]">
+            p
+            <span className="font-normal text-gray-400">short arm</span>
+            ·
+            <span className="font-semibold text-[#3540CA]">q</span>
+            <span className="font-normal text-gray-400">long arm</span>
+          </span>
+        </div>
       </div>
 
       {/* Legend */}

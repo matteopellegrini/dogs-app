@@ -526,13 +526,15 @@ export default function CoverageChart({ samplePath = '' }: { samplePath?: string
   const high  = ratio.filter(r => r > DUP_THRESH).length;
   const meanR = ratio.length ? ratio.reduce((s, v) => s + v, 0) / ratio.length : 1;
   const hasUnusual = low + high > 0;
-  const isChrX = selected === 'chrX';
+  const isChrX     = selected === 'chrX';
 
   return (
     <div className="space-y-4">
       <div>
         <p className="text-sm text-gray-500 mb-3">
-          Cosmo depth normalised to the 4-dog reference panel per 1 Mb window.
+          Cosmo depth normalised to the reference panel per 1 Mb window.
+          Autosomes: 4-dog panel (Gen-2, Gen-3, Gen-30, Gen-47).
+          chrX: 3-male panel (Gen-6, Gen-9, Gen-47).
           Ratio 1.0 = diploid; 0.5 = hemizygous deletion; 1.5 = duplication.
         </p>
 
@@ -550,7 +552,7 @@ export default function CoverageChart({ samplePath = '' }: { samplePath?: string
                 }`}
               >
                 {c.replace('chr', '')}
-                {unusual > 0 && selected !== c && !isX && (
+                {unusual > 0 && selected !== c && (
                   <span className="absolute -top-1 -right-1 w-1.5 h-1.5 rounded-full bg-orange-400" />
                 )}
               </button>
@@ -580,11 +582,11 @@ export default function CoverageChart({ samplePath = '' }: { samplePath?: string
 
         {isChrX && (
           <div className="bg-blue-50 border border-blue-200 text-blue-700 text-xs rounded-lg px-3 py-2 mb-3">
-            chrX mean ratio {meanR.toFixed(2)} — consistent with male (hemizygous X vs panel average)
+            chrX normalised to 3-male reference panel (Gen-6, Gen-9, Gen-47) — ratio 1.0 confirms Cosmo has one intact X as expected for a male dog.
           </div>
         )}
 
-        {!isChrX && hasUnusual && (
+        {hasUnusual && (
           <div className="bg-amber-50 border border-amber-200 text-amber-700 text-xs rounded-lg px-3 py-2 mb-3 flex gap-4">
             {low  > 0 && <span>⬇ {low}  window{low  > 1 ? 's' : ''} below {DEL_THRESH} (possible deletion)</span>}
             {high > 0 && <span>⬆ {high} window{high > 1 ? 's' : ''} above {DUP_THRESH} (possible duplication)</span>}
@@ -634,7 +636,7 @@ export default function CoverageChart({ samplePath = '' }: { samplePath?: string
       </div>
 
       {/* Zoomed outlier regions + gene tables */}
-      {!isChrX && hasUnusual && (
+      {hasUnusual && (
         <OutlierDetail
           chrom={selected}
           ratio={ratio}

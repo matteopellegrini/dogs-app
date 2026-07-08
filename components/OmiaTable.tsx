@@ -81,6 +81,7 @@ const CONF_LABEL: Record<string, string> = {
 const SOURCE_LABEL: Record<string, string> = {
   'bam+glimpse2':              'BAM + GLIMPSE2 ✓',
   'bam+glimpse2_discordant':   'BAM / GLIMPSE2 ⚠',
+  'glimpse2_v2':               'GLIMPSE2 v2 ✓',
   'glimpse2_contradicts_bam':  'GLIMPSE2 contradicts BAM',
   'bam_only':                  'BAM only',
 };

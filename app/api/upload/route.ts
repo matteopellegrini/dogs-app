@@ -4,7 +4,7 @@ import { authOptions } from '@/lib/auth';
 import { writeFile, mkdir } from 'fs/promises';
 import { inflateRawSync, unzipSync } from 'zlib';
 import path from 'path';
-import { getDb } from '@/lib/db';
+import { getUserByEmail, createUpload } from '@/lib/db';
 
 // Pure-Node PDF text extractor — no worker, no bundling issues.
 // Handles FlateDecode streams and uncompressed content streams.
@@ -59,10 +59,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  const db = getDb();
-  const user = db.prepare('SELECT id FROM users WHERE email = ?').get(session.user.email) as
-    | { id: number }
-    | undefined;
+  const user = await getUserByEmail(session.user.email);
   if (!user) return NextResponse.json({ error: 'User not found' }, { status: 404 });
 
   const formData = await req.formData();
@@ -93,11 +90,7 @@ export async function POST(req: NextRequest) {
   const filePath = path.join(uploadsDir, safeName);
   await writeFile(filePath, buffer);
 
-  const result = db
-    .prepare(
-      'INSERT INTO uploads (user_id, filename, original_name, file_type, file_path, parsed_text, sample) VALUES (?, ?, ?, ?, ?, ?, ?)'
-    )
-    .run(user.id, safeName, file.name, 'pdf', filePath, parsedText || null, sample || null);
+  const uploadId = await createUpload(user.id, safeName, file.name, 'pdf', filePath, parsedText || null, sample || null);
 
-  return NextResponse.json({ ok: true, uploadId: result.lastInsertRowid, fileType: 'pdf' });
+  return NextResponse.json({ ok: true, uploadId, fileType: 'pdf' });
 }

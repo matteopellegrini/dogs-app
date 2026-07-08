@@ -12,6 +12,7 @@
     "@anthropic-ai/sdk": "^0.105.0",
     "@types/bcryptjs": "^2.4.6",
     "@types/better-sqlite3": "^7.6.13",
+    "@vercel/postgres": "^0.10.0",
     "bcryptjs": "^3.0.3",
     "better-sqlite3": "^12.11.1",
     "chart.js": "^4.5.1",

@@ -2,7 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import Anthropic from '@anthropic-ai/sdk';
-import { getDb } from '@/lib/db';
+import { getUserByEmail } from '@/lib/db';
+import { sql } from '@vercel/postgres';
 import fs from 'fs';
 import path from 'path';
 
@@ -16,10 +17,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  const db = getDb();
-  const user = db.prepare('SELECT id, name FROM users WHERE email = ?').get(session.user.email) as
-    | { id: number; name: string }
-    | undefined;
+  const user = await getUserByEmail(session.user.email);
   if (!user) return NextResponse.json({ error: 'User not found' }, { status: 404 });
 
   const { messages, samplePath = '' } = await req.json();
@@ -264,9 +262,8 @@ export async function POST(req: NextRequest) {
 
   // Append health notes from DogNotes (stored as JSON in dogs.notes)
   try {
-    const dog = db.prepare(
-      `SELECT name, breed, dob, notes FROM dogs WHERE user_id = ? ORDER BY id ASC LIMIT 1`
-    ).get(user.id) as { name: string; breed?: string; dob?: string; notes?: string } | undefined;
+    const { rows: dogRows } = await sql`SELECT name, breed, dob, notes FROM dogs WHERE user_id = ${user.id} ORDER BY id ASC LIMIT 1`;
+    const dog = dogRows[0] as { name: string; breed?: string; dob?: string; notes?: string } | undefined;
     if (dog?.notes) {
       const parsed = JSON.parse(dog.notes) as Record<string, string>;
       const LABELS: Record<string, string> = {
@@ -340,11 +337,13 @@ export async function POST(req: NextRequest) {
 
   // Append uploaded lab report text (PDFs parsed from Upload Data tab)
   try {
-    const uploads = db.prepare(
-      `SELECT original_name, parsed_text, created_at FROM uploads
-       WHERE user_id = ? AND parsed_text IS NOT NULL AND sample = ?
-       ORDER BY created_at DESC LIMIT 5`
-    ).all(user.id, samplePath.replace(/^\//, '')) as { original_name: string; parsed_text: string; created_at: string }[];
+    const sampleName = samplePath.replace(/^\//, '');
+    const { rows: uploads } = await sql`
+      SELECT original_name, parsed_text, created_at FROM uploads
+      WHERE user_id = ${user.id} AND parsed_text IS NOT NULL AND sample = ${sampleName}
+      ORDER BY created_at DESC LIMIT 5
+    `;
+    (uploads as { original_name: string; parsed_text: string; created_at: string }[]);
     if (uploads.length > 0) {
       genomicContext += `\n\n=== UPLOADED LAB REPORTS ===\n`;
       for (const u of uploads) {

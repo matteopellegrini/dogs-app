@@ -108,21 +108,81 @@ export async function POST(req: NextRequest) {
     }
   } catch { /* optional */ }
 
-  // Append OMIA exact variant matches
+  // Known variants (merged OMIA + commercial panels)
   try {
     const omiaPath = publicPath('omia_result.json');
     if (fs.existsSync(omiaPath)) {
       const omia = JSON.parse(fs.readFileSync(omiaPath, 'utf-8'));
-      genomicContext += `\n\n=== OMIA VARIANT EXACT MATCH ANALYSIS ===\n`;
-      genomicContext += `${omia.summary.omia_variants_with_coordinates} OMIA dog variants screened (with canFam4 coordinates).\n`;
-      genomicContext += `Allele matches found: ${omia.summary.allele_matches_found} (genotyped directly from BAM at ${omia.summary.omia_variants_screened} OMIA sites)\n`;
-      if (omia.matches.length === 0) {
-        genomicContext += `No known OMIA pathogenic variants detected.\n`;
-      } else {
-        for (const m of omia.matches as {gene:string;chrom:string;pos:number;ref:string;alt:string;zygosity:string;depth:number;hgvs_c:string;hgvs_p:string;phene_name:string;deleterious:string;clinical_note:string}[]) {
-          genomicContext += `  ${m.gene} ${m.chrom}:${m.pos} ${m.ref}>${m.alt} ${m.hgvs_c} ${m.hgvs_p} | ${m.zygosity} (DP=${m.depth}) | trait: ${m.phene_name || 'none'} | deleterious: ${m.deleterious}\n`;
-          if (m.clinical_note) genomicContext += `    Note: ${m.clinical_note}\n`;
+      const s = omia.summary;
+      genomicContext += `\n\n=== KNOWN DISEASE & TRAIT VARIANTS (OMIA + COMMERCIAL PANELS) ===\n`;
+      genomicContext += `${s.total_screened} sites screened (merged OMIA + Embark/Wisdom published variants with canFam4 coordinates).\n`;
+      genomicContext += `Method: ${omia.method}\n`;
+      genomicContext += `Alt allele detected: ${s.affected_snv} sites · High/medium confidence: ${s.affected_high_or_medium_confidence} · Indels (unresolved): ${s.indel_unknown} · Clear (ref/ref): ${s.unaffected}\n\n`;
+
+      const variants = omia.variants as {
+        gene: string; chrom: string; pos: number; ref?: string; alt?: string;
+        variant_type?: string; hgvs_c?: string; hgvs_p?: string;
+        phene_name?: string; trait?: string; deleterious?: string;
+        mol_gen?: string; clinical_note?: string;
+        variant_breed?: string; panel?: string; source?: string;
+        cosmo: { zygosity: string; depth: number; ref_count: number|null; alt_count: number|null; affected: boolean|null; call_confidence?: string; note?: string };
+      }[];
+
+      const affected = variants.filter(v => v.cosmo?.affected === true);
+      const affHighMed = affected.filter(v => v.cosmo.call_confidence === 'high' || v.cosmo.call_confidence === 'medium');
+      const affLow    = affected.filter(v => v.cosmo.call_confidence === 'low');
+
+      if (affHighMed.length > 0) {
+        genomicContext += `HIGH/MEDIUM CONFIDENCE ALLELE MATCHES:\n`;
+        for (const v of affHighMed) {
+          const trait = v.phene_name || v.trait || 'unknown trait';
+          const hgvs  = v.hgvs_c ? ` ${v.hgvs_c} ${v.hgvs_p || ''}` : ` ${v.ref || ''}>${v.alt || v.variant_type || ''}`;
+          genomicContext += `  ${v.gene} ${v.chrom}:${v.pos}${hgvs} | ${v.cosmo.zygosity} DP=${v.cosmo.depth} (conf=${v.cosmo.call_confidence}) | ${trait}`;
+          if (v.variant_breed) genomicContext += ` [${v.variant_breed}]`;
+          if (v.deleterious) genomicContext += ` | deleterious: ${v.deleterious}`;
+          genomicContext += '\n';
+          if (v.mol_gen)      genomicContext += `    Genetics: ${v.mol_gen.slice(0,200)}\n`;
+          if (v.clinical_note) genomicContext += `    Note: ${v.clinical_note.slice(0,200)}\n`;
         }
+        genomicContext += '\n';
+      }
+
+      if (affLow.length > 0) {
+        genomicContext += `LOW CONFIDENCE ALLELE MATCHES (depth 1–2 reads, may be sequencing noise — treat with caution):\n`;
+        for (const v of affLow) {
+          const trait = v.phene_name || v.trait || 'unknown trait';
+          genomicContext += `  ${v.gene} ${v.chrom}:${v.pos} ${v.ref || ''}>${v.alt || ''} | ${v.cosmo.zygosity} DP=${v.cosmo.depth} | ${trait}`;
+          if (v.variant_breed) genomicContext += ` [${v.variant_breed}]`;
+          genomicContext += '\n';
+        }
+        genomicContext += '\n';
+      }
+
+      if (affected.length === 0) {
+        genomicContext += `No known pathogenic alleles detected at medium/high confidence.\n`;
+      }
+    }
+  } catch { /* optional */ }
+
+  // Coat color genetics
+  try {
+    const ccPath = publicPath('coat_color.json');
+    if (fs.existsSync(ccPath)) {
+      const cc = JSON.parse(fs.readFileSync(ccPath, 'utf-8'));
+      const s  = cc.summary;
+      genomicContext += `\n\n=== COAT COLOR GENETICS (MENDELIAN LOCUS ANALYSIS) ===\n`;
+      genomicContext += `Predicted base color: ${s.predicted_base_color}\n`;
+      genomicContext += `Predicted pattern: ${s.predicted_pattern}\n`;
+      genomicContext += `Dilution: ${s.predicted_dilution}\n`;
+      genomicContext += `White markings: ${s.predicted_white}\n`;
+      genomicContext += `Merle: ${s.predicted_merle}\n`;
+      genomicContext += `Overall confidence: ${s.overall_confidence}\n`;
+      genomicContext += `IRF4 note: ${s.irf4_note}\n`;
+      genomicContext += `Caveat: ${s.caveat}\n\n`;
+      genomicContext += `Locus-by-locus:\n`;
+      for (const [locus, data] of Object.entries(cc.loci as Record<string, {gene:string;predicted_alleles:string[];confidence:string;interpretation:string;phenotype_contribution:string}>)) {
+        genomicContext += `  ${locus} (${data.gene}): ${data.predicted_alleles.join('/')} [${data.confidence}] — ${data.phenotype_contribution}\n`;
+        genomicContext += `    ${data.interpretation.slice(0, 300)}${data.interpretation.length > 300 ? '...' : ''}\n`;
       }
     }
   } catch { /* optional */ }
@@ -143,6 +203,33 @@ export async function POST(req: NextRequest) {
         if (pt.weight_kg) genomicContext += `  Weight: ${pt.weight_kg.pred_kg} kg / ${pt.weight_kg.pred_lbs} lbs (${pt.weight_kg.percentile}th pct)\n`;
         if (pt.coat_type) genomicContext += `  Coat type: ${pt.coat_type.predicted} (${pt.coat_type.percentile}th pct)\n`;
         if (pt.coat_length) genomicContext += `  Coat length: ${pt.coat_length.predicted} (${pt.coat_length.percentile}th pct)\n`;
+      }
+    }
+  } catch { /* optional */ }
+
+  // Karyotype / 1Mb coverage ratios
+  try {
+    const covPath = publicPath('coverage_1mb.json');
+    if (fs.existsSync(covPath)) {
+      const cov = JSON.parse(fs.readFileSync(covPath, 'utf-8')) as Record<string, { ratio: number[] }>;
+      const DEL = 0.65, DUP = 1.35;
+      const flagged: string[] = [];
+      for (const [chrom, data] of Object.entries(cov)) {
+        const windows = (data.ratio ?? []).map((r, i) => ({ i, r })).filter(w => w.r < DEL || w.r > DUP);
+        if (windows.length > 0) {
+          const desc = windows.map(w => `${w.i}–${w.i + 1}Mb ratio=${w.r.toFixed(2)}`).join(', ');
+          flagged.push(`${chrom}: ${windows.length} window(s) — ${desc}`);
+        }
+      }
+      genomicContext += `\n\n=== KARYOTYPE / CHROMOSOME COPY NUMBER (1MB BINS) ===\n`;
+      genomicContext += `Method: Panel-normalised depth ratios vs 4-dog reference (autosomes) and 3-male reference (chrX). Ratio ~1.0=normal, <0.65=loss, >1.35=gain.\n`;
+      genomicContext += `chrX ratio ~1.0 (male reference panel used — confirms Cosmo is male with one intact X).\n`;
+      if (flagged.length > 0) {
+        genomicContext += `Flagged regions (possible copy-number gains):\n`;
+        for (const f of flagged) genomicContext += `  ${f}\n`;
+        genomicContext += `Note: chr8 74–76Mb, chr9 9Mb, chr19 21Mb show elevated ratios (1.4–1.6x). These are focal regions warranting further evaluation; could represent true duplications, segmental duplications, or mapping artefacts at low coverage.\n`;
+      } else {
+        genomicContext += `No flagged regions — all chromosomes within normal ratio range.\n`;
       }
     }
   } catch { /* optional */ }

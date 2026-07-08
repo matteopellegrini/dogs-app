@@ -16,6 +16,7 @@ import QcPanel from '@/components/QcPanel';
 import MicrobiomePanel from '@/components/MicrobiomePanel';
 import DogNotes from '@/components/DogNotes';
 import FunctionalVariants from '@/components/FunctionalVariants';
+import CoatColorPanel from '@/components/CoatColorPanel';
 
 interface Upload {
   id: number;
@@ -61,6 +62,7 @@ const NAV_ITEMS = [
   { key: 'cnv',        label: 'Copy Number',        icon: '🔢' },
   { key: 'data',       label: 'Private Variants',   icon: '🔍' },
   { key: 'omia',       label: 'Known Variants',     icon: '💊' },
+  { key: 'coat',       label: 'Coat Color',         icon: '🎨' },
   { key: 'prs',        label: 'Trait Scores',       icon: '🌡️' },
   { key: 'inbreeding', label: 'Inbreeding',         icon: '👪' },
   { key: 'microbiome', label: 'Microbiome',         icon: '🦠' },
@@ -486,6 +488,7 @@ export default function Dashboard() {
                 {tab === 'breed'      && <BreedChart samplePath={samplePath} />}
                 {tab === 'inbreeding' && <InbreedingPanel samplePath={samplePath} />}
                 {tab === 'omia'       && <OmiaTable samplePath={samplePath} />}
+                {tab === 'coat'       && <CoatColorPanel samplePath={samplePath} />}
                 {tab === 'prs'        && <PrsPanel samplePath={samplePath} />}
                 {tab === 'qc'         && <QcPanel samplePath={samplePath} />}
                 {tab === 'microbiome' && <MicrobiomePanel samplePath={samplePath} />}

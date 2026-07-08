@@ -1,0 +1,249 @@
+{
+  "summary": {
+    "predicted_base_color": "Beige/cream (phaeomelanin dominant \u2014 source uncertain)",
+    "predicted_pattern": "Recessive yellow (e/e) OR sable (ay/ay) \u2014 cannot distinguish",
+    "predicted_dilution": "None (full pigment)",
+    "predicted_white": "Minor white markings possible (KIT het, MITF het)",
+    "predicted_merle": "Non-merle",
+    "overall_confidence": "low",
+    "caveat": "Two key loci \u2014 MC1R (E) and ASIP (A) \u2014 cannot be resolved from this dataset because the corresponding canFam4 reference regions are N-masked (hard-masked repetitive/low-complexity sequence). The Dog10K imputation panel does not contain the causal coat color SNPs at these loci. A dedicated commercial coat color test (Embark Dog DNA, Wisdom Panel, or Optimal Selection) uses specific diagnostic probes for these exact variants and would give a definitive result. The K, B, D, M loci are better supported.",
+    "irf4_note": "Cosmo carries a homozygous deletion of IRF4 (chr35:714,202\u2013738,113 kb). IRF4 is a transcription factor that regulates MITF expression and melanocyte differentiation. Loss of IRF4 in mice and dogs is associated with coat colour lightening independent of the classical E/K/A pathway. This deletion may contribute to Cosmo's beige/cream phenotype even if the MC1R/ASIP genotype is not e/e or ay/ay."
+  },
+  "loci": {
+    "E": {
+      "gene": "MC1R",
+      "chrom": "chr5",
+      "name": "Extension locus",
+      "role": "Controls whether eumelanin (black/brown) or phaeomelanin (red/yellow) is produced",
+      "alleles_reference": {
+        "E": "Wild-type, allows normal eumelanin production",
+        "Em": "Melanistic mask (black muzzle/face), dominant",
+        "e": "Recessive red/yellow \u2014 overrides A and K loci"
+      },
+      "observed_variants": [
+        {
+          "pos": 63685948,
+          "gt": "1|1",
+          "source": "Dog10K imputed"
+        },
+        {
+          "pos": 63688726,
+          "gt": "1/1",
+          "source": "Parker array"
+        }
+      ],
+      "interpretation": "The MC1R locus (E locus) cannot be reliably called from this dataset. The MC1R coding region at chr5:63,680,000\u201363,710,000 is N-masked in the canFam4 reference genome, making it impossible to detect SNPs from low-coverage WGS. The Dog10K imputation panel does not contain the canonical e allele variant (Arg306Cys, c.916C>T). Given that Cosmo is beige, e/e (recessive yellow) is the leading hypothesis \u2014 this is the most common cause of cream/yellow coat in dogs. However, this cannot be confirmed without a targeted diagnostic test (e.g. Embark, Wisdom Panel).",
+      "predicted_alleles": [
+        "e/?",
+        "e/?"
+      ],
+      "confidence": "low",
+      "phenotype_contribution": "e/e suspected (beige phenotype) \u2014 MC1R N-masked in canFam4, cannot confirm"
+    },
+    "K": {
+      "gene": "CBD103",
+      "chrom": "chr16",
+      "name": "Dominant black locus",
+      "role": "KB suppresses A-locus expression; ky/ky allows A-locus patterns to show",
+      "alleles_reference": {
+        "KB": "Dominant black (overrides A locus)",
+        "kbr": "Brindle",
+        "ky": "Wild-type; A-locus expressed"
+      },
+      "observed_variants": [
+        {
+          "pos": 57074438,
+          "gt": "hom_alt",
+          "effect": "splice_acceptor_variant",
+          "af": 0.386,
+          "source": "VEP functional, HIGH impact"
+        },
+        {
+          "pos": 57036106,
+          "gt": "1/1",
+          "source": "Parker array"
+        },
+        {
+          "pos": 57089357,
+          "gt": "1/1",
+          "source": "Parker array"
+        }
+      ],
+      "interpretation": "Hom_alt splice_acceptor_variant in CBD103. AF=0.39 suggests this may be a common population variant rather than KB. KB allele (signal peptide Cys3Tyr) not found. Provisional call: ky/ky \u2014 A locus expressed.",
+      "predicted_alleles": [
+        "ky",
+        "ky"
+      ],
+      "confidence": "medium",
+      "phenotype_contribution": "If ky/ky: A locus determines coat pattern"
+    },
+    "A": {
+      "gene": "ASIP",
+      "chrom": "chr24",
+      "name": "Agouti locus",
+      "role": "Controls pigment switching pattern when K locus allows (ky/ky)",
+      "alleles_reference": {
+        "ay": "Sable/fawn (dominant)",
+        "aw": "Wild-type agouti",
+        "at": "Tan points",
+        "a": "Recessive black"
+      },
+      "observed_variants": [
+        {
+          "pos": 23452617,
+          "gt": "1/1",
+          "source": "Parker array (4 reads, confident)"
+        },
+        {
+          "pos": 23574340,
+          "gt": "1/1",
+          "source": "Parker array"
+        }
+      ],
+      "interpretation": "The ASIP locus distinguishes ay (sable/fawn), at (tan points), and a (recessive black). The regulatory region driving ay expression is N-masked at the gene start in canFam4. Parker array markers across chr24:24,000,000\u201324,200,000 are all 0/0 (homozygous reference) in Cosmo, which tentatively argues against ay/ay if those markers tag the ay haplotype \u2014 but this is uncertain since the causal regulatory variants may not be represented. If E locus is E/- (not e/e), then the A locus phenotype would be visible: given the all-over beige colour, ay/ay (sable) would be more consistent than at/at (tan points) or a/a (recessive black).",
+      "predicted_alleles": [
+        "ay/?",
+        "ay/?"
+      ],
+      "confidence": "low",
+      "phenotype_contribution": "If ay: sable/fawn coat pattern (when ky/ky)"
+    },
+    "B": {
+      "gene": "TYRP1",
+      "chrom": "chr11",
+      "name": "Brown locus",
+      "role": "Converts black eumelanin to brown (chocolate/liver). Recessive.",
+      "alleles_reference": {
+        "B": "Black eumelanin (dominant)",
+        "b": "Brown/chocolate eumelanin"
+      },
+      "observed_variants": [
+        {
+          "pos": 33406080,
+          "gt": "0/1",
+          "source": "Parker array"
+        },
+        {
+          "pos": 33440938,
+          "gt": "0/1",
+          "source": "Parker array"
+        }
+      ],
+      "interpretation": "Heterozygous variants in TYRP1 flanking region. No hom_alt coding variants found. Consistent with B/b (carrier of chocolate) or B/B (non-chocolate). No chocolate predicted.",
+      "predicted_alleles": [
+        "B",
+        "B or b"
+      ],
+      "confidence": "medium",
+      "phenotype_contribution": "Black eumelanin (not chocolate)"
+    },
+    "D": {
+      "gene": "MLPH",
+      "chrom": "chr25",
+      "name": "Dilution locus",
+      "role": "Dilutes eumelanin or phaeomelanin. d/d gives blue (from black) or isabella (from brown).",
+      "alleles_reference": {
+        "D": "Full pigment (dominant)",
+        "d": "Dilute \u2014 d1 is splice-site variant"
+      },
+      "observed_variants": [
+        {
+          "pos": 48539056,
+          "gt": "het",
+          "effect": "missense_variant",
+          "af": 0.907,
+          "source": "VEP functional \u2014 very common, likely benign"
+        },
+        {
+          "pos": 48526810,
+          "gt": "0/1",
+          "source": "Parker array"
+        }
+      ],
+      "interpretation": "Heterozygous variants in MLPH. The AF=0.91 missense is almost certainly a benign population polymorphism. No known d1 (splice site) allele detected. Cosmo is NOT dilute.",
+      "predicted_alleles": [
+        "D",
+        "D"
+      ],
+      "confidence": "high",
+      "phenotype_contribution": "Full pigment intensity (not dilute/blue)"
+    },
+    "M": {
+      "gene": "PMEL",
+      "chrom": "chr10",
+      "name": "Merle locus",
+      "role": "SINE insertion causes merle pattern. Semi-dominant; double merle causes white/vision problems.",
+      "alleles_reference": {
+        "M": "Merle pattern (semi-dominant)",
+        "m": "Non-merle (wild-type)"
+      },
+      "observed_variants": [],
+      "interpretation": "Merle (PMEL SINE insertion) requires structural variant analysis not performed here. No merle pattern expected in poodle/cocker ancestry. Provisional: m/m.",
+      "predicted_alleles": [
+        "m",
+        "m"
+      ],
+      "confidence": "medium",
+      "phenotype_contribution": "Non-merle coat"
+    },
+    "S": {
+      "gene": "MITF",
+      "chrom": "chr20",
+      "name": "White spotting locus",
+      "role": "Controls white spotting/piebald. Regulatory SW allele upstream of MITF.",
+      "alleles_reference": {
+        "S": "Solid (no white spots)",
+        "sp": "Piebald (white spotting)"
+      },
+      "observed_variants": [
+        {
+          "pos": 21915011,
+          "gt": "het",
+          "effect": "missense_variant",
+          "af": 0.061,
+          "source": "VEP functional"
+        }
+      ],
+      "interpretation": "One rare MITF missense variant (het, AF=0.06). The SW allele associated with piebald spotting in dogs is a regulatory variant ~20kb upstream. Heterozygous rare missense may contribute to white spotting but is uncertain.",
+      "predicted_alleles": [
+        "S",
+        "sp?"
+      ],
+      "confidence": "low",
+      "phenotype_contribution": "Possibly minor white markings"
+    },
+    "W": {
+      "gene": "KIT",
+      "chrom": "chr13",
+      "name": "White locus",
+      "role": "KIT loss-of-function causes white spotting (pied) or flash markings in some breeds",
+      "alleles_reference": {
+        "W+": "Wild-type",
+        "W": "White/flash markings (dominant loss-of-function)"
+      },
+      "observed_variants": [
+        {
+          "pos": 47757113,
+          "gt": "het",
+          "effect": "stop_gained",
+          "af": 0.327,
+          "source": "VEP functional \u2014 het"
+        },
+        {
+          "pos": 47767024,
+          "gt": "hom_alt",
+          "effect": "missense_variant",
+          "af": 0.984,
+          "source": "VEP functional \u2014 nearly fixed in all dogs, benign"
+        }
+      ],
+      "interpretation": "Heterozygous KIT stop_gained (AF=0.33 \u2014 common in dog population, may be tolerated). The hom_alt KIT missense at AF=0.98 is nearly fixed across all dogs \u2014 benign background variant. KIT stop het may contribute to white flash/ticking.",
+      "predicted_alleles": [
+        "W+",
+        "W+/?"
+      ],
+      "confidence": "low",
+      "phenotype_contribution": "Possible minor white flash markings"
+    }
+  }
+}

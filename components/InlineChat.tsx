@@ -18,7 +18,7 @@ export default function InlineChat({ sample, samplePath, starterQuestions }: Inl
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [streaming, setStreaming] = useState(false);
-  const bottomRef = useRef<HTMLDivElement>(null);
+  const messagesRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
@@ -27,9 +27,11 @@ export default function InlineChat({ sample, samplePath, starterQuestions }: Inl
     setOpen(false);
   }, [sample]);
 
+  // Scroll within the messages container, never the page
   useEffect(() => {
-    if (open) bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages, open]);
+    const el = messagesRef.current;
+    if (el) el.scrollTop = el.scrollHeight;
+  }, [messages]);
 
   async function send(text: string) {
     if (!text.trim() || streaming) return;
@@ -135,7 +137,7 @@ export default function InlineChat({ sample, samplePath, starterQuestions }: Inl
 
           {/* Messages */}
           {messages.length > 0 && (
-            <div className="px-4 py-3 space-y-3 max-h-72 overflow-y-auto">
+            <div ref={messagesRef} className="px-4 py-3 space-y-3 max-h-72 overflow-y-auto">
               {messages.map((msg, i) => (
                 <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                   <div className={`max-w-[85%] rounded-2xl px-3 py-2 text-sm whitespace-pre-wrap ${
@@ -149,7 +151,6 @@ export default function InlineChat({ sample, samplePath, starterQuestions }: Inl
                   </div>
                 </div>
               ))}
-              <div ref={bottomRef} />
             </div>
           )}
 

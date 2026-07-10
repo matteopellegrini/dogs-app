@@ -297,6 +297,11 @@ export default function Dashboard() {
       'Are there any quality issues that could affect the accuracy of other results?',
       'What does the coverage depth mean for variant detection confidence?',
     ],
+    notes: [
+      'Summarise the health history based on the notes so far.',
+      'Are there any patterns or recurring issues across the health notes?',
+      'What follow-up steps would you recommend based on these notes?',
+    ],
     upload: [
       'Summarise the key findings from the uploaded lab reports.',
       'Are there any abnormal values in the uploaded results?',
@@ -488,6 +493,16 @@ export default function Dashboard() {
 
               <div className="p-6">
 
+                {/* ── AI Assistant (shown on all data tabs) ── */}
+                {TAB_QUESTIONS[tab] && (
+                  <InlineChat
+                    key={tab}
+                    sample={activeSample}
+                    samplePath={samplePath}
+                    starterQuestions={TAB_QUESTIONS[tab]!}
+                  />
+                )}
+
                 {/* ── Upload ── */}
                 {tab === 'upload' && (
                   <div>
@@ -535,16 +550,6 @@ export default function Dashboard() {
                       ) : null;
                     })()}
                   </div>
-                )}
-
-                {/* ── AI Assistant (shown on all data tabs) ── */}
-                {TAB_QUESTIONS[tab] && (
-                  <InlineChat
-                    key={tab}
-                    sample={activeSample}
-                    samplePath={samplePath}
-                    starterQuestions={TAB_QUESTIONS[tab]!}
-                  />
                 )}
 
                 {/* ── Variant data ── */}

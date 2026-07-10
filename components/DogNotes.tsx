@@ -33,13 +33,11 @@ function parseNotes(raw: string | undefined): NoteMap {
   return {};
 }
 
-export default function DogNotes({ dogs, sample }: { dogs: Dog[]; sample: string }) {
+export default function DogNotes({ dog }: { dog: Dog | null }) {
   const [notes, setNotes] = useState<NoteMap>({});
   const [activeSection, setActiveSection] = useState('general');
   const [saveState, setSaveState] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
   const saveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  const dog = dogs.find(d => d.name.toLowerCase() === sample.toLowerCase()) ?? null;
 
   useEffect(() => {
     setNotes(parseNotes(dog?.notes));
@@ -73,8 +71,7 @@ export default function DogNotes({ dogs, sample }: { dogs: Dog[]; sample: string
     return (
       <div className="text-center py-12 text-gray-400 text-sm space-y-2">
         <p className="text-2xl">🐾</p>
-        <p>No dog named <strong className="text-gray-600">{sample.toUpperCase()}</strong> found in your dogs list.</p>
-        <p>Add a dog with that name in the sidebar to keep health notes for this sample.</p>
+        <p>No dog selected. Add a dog in the sidebar to keep health notes.</p>
       </div>
     );
   }

@@ -496,7 +496,7 @@ export default function Dashboard() {
                 {tab === 'prs'        && <PrsPanel samplePath={samplePath} />}
                 {tab === 'qc'         && <QcPanel samplePath={samplePath} />}
                 {tab === 'microbiome' && <MicrobiomePanel samplePath={samplePath} />}
-                {tab === 'notes'      && <DogNotes dogs={dogs} sample={activeSample} />}
+                {tab === 'notes'      && <DogNotes dog={activeDog} />}
 
               </div>
 

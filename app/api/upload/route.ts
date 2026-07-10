@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
-import { writeFile, mkdir } from 'fs/promises';
 import { inflateRawSync, unzipSync } from 'zlib';
 import path from 'path';
 import { getUserByEmail, createUpload } from '@/lib/db';
@@ -83,14 +82,9 @@ export async function POST(req: NextRequest) {
     console.error('[upload] PDF parse error:', err);
   }
 
-  const timestamp = Date.now();
-  const safeName = `${timestamp}_${file.name.replace(/[^a-zA-Z0-9._-]/g, '_')}`;
-  const uploadsDir = path.join(process.cwd(), 'uploads');
-  await mkdir(uploadsDir, { recursive: true });
-  const filePath = path.join(uploadsDir, safeName);
-  await writeFile(filePath, buffer);
+  const safeName = `${Date.now()}_${file.name.replace(/[^a-zA-Z0-9._-]/g, '_')}`;
 
-  const uploadId = await createUpload(user.id, safeName, file.name, 'pdf', filePath, parsedText || null, sample || null);
+  const uploadId = await createUpload(user.id, safeName, file.name, 'pdf', safeName, parsedText || null, sample || null);
 
   return NextResponse.json({ ok: true, uploadId, fileType: 'pdf' });
 }

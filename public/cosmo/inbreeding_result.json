@@ -1,8 +1,251 @@
 {
-  "Froh": 0.0609,
-  "roh_total_mb": 133.92,
+  "Froh": 0.0123,
+  "roh_total_mb": 27.12,
   "roh_genome_mb": 2200.0,
-  "inbreeding_level": "Low",
-  "interpretation": "Genomic inbreeding is low, consistent with an outbred population.",
-  "method": "ROH from Parker 2017 SNP panel genotyped from BAM (window=30 SNPs, min=500kb, hom>=90%)"
+  "roh_count": 40,
+  "inbreeding_level": "Very Low",
+  "interpretation": "Genomic inbreeding is very low, consistent with a highly outbred individual.",
+  "method": "ROH from Dog10K GLIMPSE2-imputed panel (21.6M SNPs); window=50 SNPs, max_het=1, min_roh=500kb, max_gap=1000kb",
+  "roh_segments": [
+    {
+      "chrom": "chr1",
+      "start": 25542839,
+      "end": 26092889,
+      "length_mb": 0.55
+    },
+    {
+      "chrom": "chr1",
+      "start": 63487715,
+      "end": 64721535,
+      "length_mb": 1.234
+    },
+    {
+      "chrom": "chr2",
+      "start": 42668566,
+      "end": 43243700,
+      "length_mb": 0.575
+    },
+    {
+      "chrom": "chr3",
+      "start": 2256282,
+      "end": 2824092,
+      "length_mb": 0.568
+    },
+    {
+      "chrom": "chr3",
+      "start": 2884031,
+      "end": 3843720,
+      "length_mb": 0.96
+    },
+    {
+      "chrom": "chr3",
+      "start": 3843252,
+      "end": 4364958,
+      "length_mb": 0.522
+    },
+    {
+      "chrom": "chr3",
+      "start": 5784716,
+      "end": 6300628,
+      "length_mb": 0.516
+    },
+    {
+      "chrom": "chr3",
+      "start": 8308320,
+      "end": 8996055,
+      "length_mb": 0.688
+    },
+    {
+      "chrom": "chr4",
+      "start": 40722891,
+      "end": 41711889,
+      "length_mb": 0.989
+    },
+    {
+      "chrom": "chr4",
+      "start": 41776910,
+      "end": 42311989,
+      "length_mb": 0.535
+    },
+    {
+      "chrom": "chr7",
+      "start": 11060026,
+      "end": 11595711,
+      "length_mb": 0.536
+    },
+    {
+      "chrom": "chr7",
+      "start": 15899342,
+      "end": 16437434,
+      "length_mb": 0.538
+    },
+    {
+      "chrom": "chr9",
+      "start": 21136240,
+      "end": 21766894,
+      "length_mb": 0.631
+    },
+    {
+      "chrom": "chr11",
+      "start": 1540158,
+      "end": 2224747,
+      "length_mb": 0.685
+    },
+    {
+      "chrom": "chr11",
+      "start": 19701863,
+      "end": 20261912,
+      "length_mb": 0.56
+    },
+    {
+      "chrom": "chr13",
+      "start": 37407972,
+      "end": 38085028,
+      "length_mb": 0.677
+    },
+    {
+      "chrom": "chr13",
+      "start": 38084794,
+      "end": 38897327,
+      "length_mb": 0.813
+    },
+    {
+      "chrom": "chr15",
+      "start": 1809873,
+      "end": 2863315,
+      "length_mb": 1.053
+    },
+    {
+      "chrom": "chr15",
+      "start": 3517045,
+      "end": 4124912,
+      "length_mb": 0.608
+    },
+    {
+      "chrom": "chr16",
+      "start": 948244,
+      "end": 1628010,
+      "length_mb": 0.68
+    },
+    {
+      "chrom": "chr16",
+      "start": 1663332,
+      "end": 2274164,
+      "length_mb": 0.611
+    },
+    {
+      "chrom": "chr16",
+      "start": 2509250,
+      "end": 3651001,
+      "length_mb": 1.142
+    },
+    {
+      "chrom": "chr16",
+      "start": 4146302,
+      "end": 4729324,
+      "length_mb": 0.583
+    },
+    {
+      "chrom": "chr16",
+      "start": 5000554,
+      "end": 6174754,
+      "length_mb": 1.174
+    },
+    {
+      "chrom": "chr16",
+      "start": 6477304,
+      "end": 7082863,
+      "length_mb": 0.606
+    },
+    {
+      "chrom": "chr16",
+      "start": 8004461,
+      "end": 8738444,
+      "length_mb": 0.734
+    },
+    {
+      "chrom": "chr16",
+      "start": 9045377,
+      "end": 9559150,
+      "length_mb": 0.514
+    },
+    {
+      "chrom": "chr16",
+      "start": 9771659,
+      "end": 10351818,
+      "length_mb": 0.58
+    },
+    {
+      "chrom": "chr16",
+      "start": 15431848,
+      "end": 16000902,
+      "length_mb": 0.569
+    },
+    {
+      "chrom": "chr16",
+      "start": 16605238,
+      "end": 17168604,
+      "length_mb": 0.563
+    },
+    {
+      "chrom": "chr18",
+      "start": 43029800,
+      "end": 43573494,
+      "length_mb": 0.544
+    },
+    {
+      "chrom": "chr23",
+      "start": 4987965,
+      "end": 5648408,
+      "length_mb": 0.66
+    },
+    {
+      "chrom": "chr25",
+      "start": 3208389,
+      "end": 3770642,
+      "length_mb": 0.562
+    },
+    {
+      "chrom": "chr32",
+      "start": 1869335,
+      "end": 2455088,
+      "length_mb": 0.586
+    },
+    {
+      "chrom": "chr32",
+      "start": 2704454,
+      "end": 3395304,
+      "length_mb": 0.691
+    },
+    {
+      "chrom": "chr32",
+      "start": 5038254,
+      "end": 5582870,
+      "length_mb": 0.545
+    },
+    {
+      "chrom": "chr34",
+      "start": 13219087,
+      "end": 13743484,
+      "length_mb": 0.524
+    },
+    {
+      "chrom": "chr34",
+      "start": 14220054,
+      "end": 14792841,
+      "length_mb": 0.573
+    },
+    {
+      "chrom": "chr34",
+      "start": 16614518,
+      "end": 17465532,
+      "length_mb": 0.851
+    },
+    {
+      "chrom": "chr34",
+      "start": 18117469,
+      "end": 18713934,
+      "length_mb": 0.596
+    }
+  ]
 }

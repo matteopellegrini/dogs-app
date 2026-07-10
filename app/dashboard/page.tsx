@@ -74,10 +74,6 @@ const NAV_ITEMS = [
 
 type TabKey = typeof NAV_ITEMS[number]['key'];
 
-const SAMPLES = [
-  { id: 'nelk', label: 'NELK (Jamthund)', path: '' },
-  { id: 'cosmo', label: 'Cosmo', path: '/cosmo' },
-];
 
 interface LabRow { test: string; value: string; refRange: string; units: string; flags: string; prev: string[]; }
 interface LabSection { name: string; dates: string[]; rows: LabRow[]; }
@@ -239,15 +235,17 @@ export default function Dashboard() {
   const router = useRouter();
 
   const [tab, setTab] = useState<TabKey>('upload');
-  const [activeSample, setActiveSample] = useState('nelk');
+  const [activeDogId, setActiveDogId] = useState<number | null>(null);
   const [uploads, setUploads] = useState<Upload[]>([]);
   const [dogs, setDogs] = useState<Dog[]>([]);
   const [selectedUpload, setSelectedUpload] = useState<Upload | null>(null);
   const [showAddDog, setShowAddDog] = useState(false);
   const [newDog, setNewDog] = useState({ name: '', breed: '', dob: '', notes: '' });
 
-  const samplePath = SAMPLES.find(s => s.id === activeSample)?.path ?? '';
-  const activeSampleLabel = SAMPLES.find(s => s.id === activeSample)?.label ?? activeSample;
+  const activeDog = dogs.find(d => d.id === activeDogId) ?? dogs[0] ?? null;
+  const activeSample = activeDog?.name.toLowerCase() ?? '';
+  const samplePath = activeSample ? '/' + activeSample : '';
+  const activeSampleLabel = activeDog?.name ?? '';
 
   useEffect(() => {
     if (status === 'unauthenticated') router.push('/login');
@@ -255,7 +253,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     setSelectedUpload(null);
-  }, [activeSample]);
+  }, [activeDogId]);
 
   useEffect(() => {
     if (status === 'authenticated') {
@@ -274,7 +272,11 @@ export default function Dashboard() {
 
   async function fetchDogs() {
     const res = await fetch('/api/dogs');
-    if (res.ok) setDogs(await res.json());
+    if (res.ok) {
+      const fetched: Dog[] = await res.json();
+      setDogs(fetched);
+      setActiveDogId(id => id ?? fetched[0]?.id ?? null);
+    }
   }
 
   async function addDog() {
@@ -304,21 +306,23 @@ export default function Dashboard() {
       <header className="bg-white border-b border-gray-200 px-6 py-3 flex items-center justify-between shrink-0">
         <Image src="/prosper-k9-logo.png" alt="Prosper K9" width={140} height={60} priority />
         <div className="flex items-center gap-4">
-          {/* Sample selector */}
-          <div className="flex items-center gap-1 bg-gray-100 rounded-lg p-1">
-            {SAMPLES.map(s => (
-              <button
-                key={s.id}
-                onClick={() => setActiveSample(s.id)}
-                className="text-xs font-medium px-3 py-1.5 rounded-md transition-all"
-                style={activeSample === s.id
-                  ? { background: '#3540CA', color: '#fff' }
-                  : { color: '#6b7280' }}
-              >
-                {s.label}
-              </button>
-            ))}
-          </div>
+          {/* Dog selector — populated from the user's account */}
+          {dogs.length > 0 && (
+            <div className="flex items-center gap-1 bg-gray-100 rounded-lg p-1">
+              {dogs.map(d => (
+                <button
+                  key={d.id}
+                  onClick={() => setActiveDogId(d.id)}
+                  className="text-xs font-medium px-3 py-1.5 rounded-md transition-all"
+                  style={activeDog?.id === d.id
+                    ? { background: '#3540CA', color: '#fff' }
+                    : { color: '#6b7280' }}
+                >
+                  {d.name}{d.breed ? ` (${d.breed})` : ''}
+                </button>
+              ))}
+            </div>
+          )}
           <span className="text-sm font-medium text-gray-600">{session?.user?.name}</span>
           <button
             onClick={() => signOut({ callbackUrl: '/login' })}

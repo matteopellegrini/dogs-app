@@ -12,7 +12,7 @@ interface SampleGenotype {
   confidence_source?: string;
   glimpse2_gt?: string;
   glimpse2_af?: number;
-  glimpse2_gp?: number | null;
+  glimpse2_gp?: number[] | null;
   note?: string;
 }
 
@@ -313,8 +313,8 @@ function VariantRow({
                 {sg.glimpse2_af !== undefined && (
                   <span className="ml-1 text-gray-400">AF={sg.glimpse2_af.toFixed(4)}</span>
                 )}
-                {sg.glimpse2_gp !== null && sg.glimpse2_gp !== undefined && (
-                  <span className="ml-1 text-gray-400">GP={sg.glimpse2_gp.toFixed(3)}</span>
+                {Array.isArray(sg.glimpse2_gp) && (
+                  <span className="ml-1 text-gray-400">GP=[{sg.glimpse2_gp.map(p => p.toFixed(3)).join(', ')}]</span>
                 )}
               </div>
             )}

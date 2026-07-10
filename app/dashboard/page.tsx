@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import FileUpload from '@/components/FileUpload';
-import ChatInterface from '@/components/ChatInterface';
+import InlineChat from '@/components/InlineChat';
 import CoverageChart from '@/components/CoverageChart';
 import CnvTable from '@/components/CnvTable';
 import BreedChart from '@/components/BreedChart';
@@ -69,7 +69,6 @@ const NAV_ITEMS = [
   { key: 'qc',         label: 'Data Quality',       icon: '✅' },
   { key: 'notes',      label: 'Health Notes',       icon: '🩺' },
   { key: 'upload',     label: 'Upload Data',        icon: '📤' },
-  { key: 'chat',       label: 'AI Assistant',       icon: '🤖' },
 ] as const;
 
 type TabKey = typeof NAV_ITEMS[number]['key'];
@@ -246,6 +245,64 @@ export default function Dashboard() {
   const activeSample = activeDog?.name.toLowerCase() ?? '';
   const samplePath = activeSample ? '/' + activeSample : '';
   const activeSampleLabel = activeDog?.name ?? '';
+
+  const TAB_QUESTIONS: Partial<Record<string, string[]>> = {
+    breed: [
+      'What breeds make up my dog and what does that mean for health?',
+      'Are there any breed-specific conditions I should watch for?',
+      'How mixed is my dog compared to typical mixed breeds?',
+    ],
+    coverage: [
+      'Does the karyotype look normal?',
+      'Are there any chromosomes with unusual coverage that could indicate a deletion or duplication?',
+      'What would an abnormal karyotype mean for my dog?',
+    ],
+    cnv: [
+      'Which copy number variants are most likely to affect health?',
+      'Are any of these CNVs in known disease-associated regions?',
+      'How large are the duplications or deletions found?',
+    ],
+    data: [
+      'Which functional variants are most likely to affect my dog\'s health?',
+      'Are there any homozygous HIGH-impact variants I should be concerned about?',
+      'Which variants are rare in the Dog10K population?',
+    ],
+    omia: [
+      'Which known disease variants does my dog carry?',
+      'Are any of the variants present in both copies (homozygous)?',
+      'What do the HIGH-impact known variants mean clinically?',
+    ],
+    coat: [
+      'What coat color and pattern should my dog have based on the genetics?',
+      'Are there any coat-related health concerns from these variants?',
+      'How do these coat color genes interact with each other?',
+    ],
+    prs: [
+      'Which trait scores are most notable and what do they mean?',
+      'How do these scores compare to the reference population?',
+      'Are any of these traits linked to health conditions?',
+    ],
+    inbreeding: [
+      'What does this inbreeding level mean for my dog\'s health?',
+      'How does Cosmo compare to typical dogs of similar breed mix?',
+      'Are there specific health risks associated with this level of inbreeding?',
+    ],
+    microbiome: [
+      'How does my dog\'s microbiome compare to a healthy reference?',
+      'Are there any concerning patterns in the microbial composition?',
+      'What dietary or lifestyle changes could improve the microbiome?',
+    ],
+    qc: [
+      'Does the sequencing quality look sufficient for reliable results?',
+      'Are there any quality issues that could affect the accuracy of other results?',
+      'What does the coverage depth mean for variant detection confidence?',
+    ],
+    upload: [
+      'Summarise the key findings from the uploaded lab reports.',
+      'Are there any abnormal values in the uploaded results?',
+      'How do the lab values compare to normal reference ranges for dogs?',
+    ],
+  };
 
   useEffect(() => {
     if (status === 'unauthenticated') router.push('/login');
@@ -480,6 +537,16 @@ export default function Dashboard() {
                   </div>
                 )}
 
+                {/* ── AI Assistant (shown on all data tabs) ── */}
+                {TAB_QUESTIONS[tab] && (
+                  <InlineChat
+                    key={tab}
+                    sample={activeSample}
+                    samplePath={samplePath}
+                    starterQuestions={TAB_QUESTIONS[tab]!}
+                  />
+                )}
+
                 {/* ── Variant data ── */}
                 {tab === 'data' && (
                   <div>
@@ -499,8 +566,6 @@ export default function Dashboard() {
                 {tab === 'notes'      && <DogNotes dog={activeDog} />}
 
               </div>
-
-              {tab === 'chat' && <ChatInterface hasData={true} sample={activeSample} samplePath={samplePath} />}
             </div>
           </div>
         </main>

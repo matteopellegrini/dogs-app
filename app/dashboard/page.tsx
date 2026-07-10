@@ -474,10 +474,10 @@ export default function Dashboard() {
           <div className="max-w-5xl mx-auto">
 
             {/* Content card */}
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+            <div className="bg-white rounded-2xl shadow-sm border border-gray-100">
 
               {/* Tab title bar */}
-              <div className="px-6 py-4 border-b border-gray-100">
+              <div className="px-6 py-4 border-b border-gray-100 rounded-t-2xl overflow-hidden">
                 <h2 className="text-base font-bold" style={{ color: '#0E1B05', fontFamily: 'Montserrat, sans-serif' }}>
                   <span className="inline-flex items-center gap-1.5">
                     {CUSTOM_ICONS[tab] ?? NAV_ITEMS.find(n => n.key === tab)?.icon}{' '}

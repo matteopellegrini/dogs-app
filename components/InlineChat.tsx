@@ -85,7 +85,7 @@ export default function InlineChat({ sample, samplePath, starterQuestions }: Inl
   }
 
   return (
-    <div className="mb-4 border border-[#3540CA]/20 rounded-xl bg-[#F8F8FD] overflow-hidden">
+    <div className="mb-4 border border-[#3540CA]/20 rounded-xl bg-[#F8F8FD] overflow-hidden sticky top-0 z-10 shadow-md">
       {/* Header bar — always visible */}
       <div className="flex items-center justify-between px-4 py-2.5">
         <div className="flex items-center gap-2">

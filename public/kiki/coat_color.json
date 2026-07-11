@@ -1,0 +1,128 @@
+{
+  "summary": {
+    "predicted_base_color": "See individual loci",
+    "overall_confidence": "low",
+    "caveat": "Coat color prediction requires targeted SNP probes for E/A loci. Commercial tests (Embark, Wisdom Panel) give definitive results."
+  },
+  "loci": {
+    "E": {
+      "gene": "MC1R",
+      "chrom": "chr5",
+      "name": "Extension locus",
+      "role": "Controls eumelanin vs phaeomelanin production",
+      "observed_variants": [
+        {
+          "pos": 64186854,
+          "gt": "1|1",
+          "source": "Dog10K imputed",
+          "gp": "0,0,1"
+        }
+      ],
+      "confidence": "medium",
+      "interpretation": "Queried 2 key positions; 1 found in panel or BAM."
+    },
+    "K": {
+      "gene": "CBD103",
+      "chrom": "chr16",
+      "name": "Dominant black locus",
+      "role": "Dominant black (KB) or brindle (kbr) vs agouti (ky)",
+      "observed_variants": [
+        {
+          "pos": 57074438,
+          "gt": "0|0",
+          "source": "Dog10K imputed",
+          "gp": "1,0,0"
+        },
+        {
+          "pos": 57036106,
+          "gt": "1|0",
+          "source": "Dog10K imputed",
+          "gp": "0,1,0"
+        }
+      ],
+      "confidence": "medium",
+      "interpretation": "Queried 2 key positions; 2 found in panel or BAM."
+    },
+    "A": {
+      "gene": "ASIP",
+      "chrom": "chr24",
+      "name": "Agouti locus",
+      "role": "Controls agouti signaling (sable, tricolor, recessive black)",
+      "observed_variants": [],
+      "confidence": "low",
+      "interpretation": "Queried 2 key positions; 0 found in panel or BAM."
+    },
+    "B": {
+      "gene": "TYRP1",
+      "chrom": "chr11",
+      "name": "Brown locus",
+      "role": "B (black) vs b (brown/liver) pigment",
+      "observed_variants": [
+        {
+          "pos": 33376317,
+          "gt": "1|1",
+          "source": "Dog10K imputed",
+          "gp": "0,0.388,0.612"
+        },
+        {
+          "pos": 33440938,
+          "gt": "0|0",
+          "source": "Dog10K imputed",
+          "gp": "1,0,0"
+        }
+      ],
+      "confidence": "medium",
+      "interpretation": "Queried 2 key positions; 2 found in panel or BAM."
+    },
+    "D": {
+      "gene": "MLPH",
+      "chrom": "chr25",
+      "name": "Dilution locus",
+      "role": "D (full) vs d (dilute) pigment intensity",
+      "observed_variants": [
+        {
+          "pos": 48403161,
+          "gt": "0|0",
+          "source": "Dog10K imputed",
+          "gp": "1,0,0"
+        },
+        {
+          "pos": 48431759,
+          "gt": "0|0",
+          "source": "Dog10K imputed",
+          "gp": "1,0,0"
+        }
+      ],
+      "confidence": "medium",
+      "interpretation": "Queried 2 key positions; 2 found in panel or BAM."
+    },
+    "M": {
+      "gene": "PMEL",
+      "chrom": "chr10",
+      "name": "Merle locus",
+      "role": "Merle pattern (insertion in PMEL)",
+      "observed_variants": [],
+      "confidence": "low",
+      "interpretation": "Queried 0 key positions; 0 found in panel or BAM."
+    },
+    "S": {
+      "gene": "MITF",
+      "chrom": "chr20",
+      "name": "Spotting locus",
+      "role": "White spotting patterns",
+      "observed_variants": [],
+      "confidence": "low",
+      "interpretation": "Queried 1 key positions; 0 found in panel or BAM."
+    },
+    "W": {
+      "gene": "KIT",
+      "chrom": "chr13",
+      "name": "White locus",
+      "role": "Extreme white / piebald",
+      "observed_variants": [],
+      "confidence": "low",
+      "interpretation": "Queried 0 key positions; 0 found in panel or BAM."
+    }
+  },
+  "method": "Key positions queried from GLIMPSE2-imputed BCF and BAM pileup"
+}

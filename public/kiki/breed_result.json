@@ -1,12 +1,208 @@
 {
   "breed_composition": [
     {
+      "breed": "SPOO",
+      "proportion": 0.270938
+    },
+    {
+      "breed": "MPOO",
+      "proportion": 0.204487
+    },
+    {
+      "breed": "TPOO",
+      "proportion": 0.110263
+    },
+    {
+      "breed": "LAB",
+      "proportion": 0.041242
+    },
+    {
+      "breed": "ECKR",
+      "proportion": 0.027092
+    },
+    {
       "breed": "ACKR",
-      "proportion": 1.0
+      "proportion": 0.025996
+    },
+    {
+      "breed": "FCR",
+      "proportion": 0.022909
+    },
+    {
+      "breed": "BRIA",
+      "proportion": 0.021208
+    },
+    {
+      "breed": "GSHP",
+      "proportion": 0.020881
+    },
+    {
+      "breed": "BORD",
+      "proportion": 0.019421
+    },
+    {
+      "breed": "PULI",
+      "proportion": 0.018783
+    },
+    {
+      "breed": "TIBT",
+      "proportion": 0.016677
+    },
+    {
+      "breed": "CAIR",
+      "proportion": 0.013028
+    },
+    {
+      "breed": "GORD",
+      "proportion": 0.011495
+    },
+    {
+      "breed": "GSD",
+      "proportion": 0.010463
+    },
+    {
+      "breed": "CKCS",
+      "proportion": 0.010153
+    },
+    {
+      "breed": "GOLD",
+      "proportion": 0.00979
+    },
+    {
+      "breed": "NSDT",
+      "proportion": 0.009375
+    },
+    {
+      "breed": "BRIT",
+      "proportion": 0.009001
     },
     {
       "breed": "AESK",
-      "proportion": 0.0
+      "proportion": 0.007986
+    },
+    {
+      "breed": "KEES",
+      "proportion": 0.00795
+    },
+    {
+      "breed": "SSHP",
+      "proportion": 0.007698
+    },
+    {
+      "breed": "FIEL",
+      "proportion": 0.007098
+    },
+    {
+      "breed": "GPYR",
+      "proportion": 0.006573
+    },
+    {
+      "breed": "SCWT",
+      "proportion": 0.00655
+    },
+    {
+      "breed": "ITGY",
+      "proportion": 0.006412
+    },
+    {
+      "breed": "LVMD_Italy",
+      "proportion": 0.00592
+    },
+    {
+      "breed": "BICH",
+      "proportion": 0.005814
+    },
+    {
+      "breed": "COOK",
+      "proportion": 0.005479
+    },
+    {
+      "breed": "BORZ",
+      "proportion": 0.005255
+    },
+    {
+      "breed": "IWOF",
+      "proportion": 0.005195
+    },
+    {
+      "breed": "MAAB_Italy",
+      "proportion": 0.005031
+    },
+    {
+      "breed": "NEAP",
+      "proportion": 0.004881
+    },
+    {
+      "breed": "DACH",
+      "proportion": 0.004463
+    },
+    {
+      "breed": "PBGV",
+      "proportion": 0.003856
+    },
+    {
+      "breed": "PAPI",
+      "proportion": 0.003692
+    },
+    {
+      "breed": "IRIT",
+      "proportion": 0.003556
+    },
+    {
+      "breed": "NOWT",
+      "proportion": 0.00351
+    },
+    {
+      "breed": "JACK",
+      "proportion": 0.003329
+    },
+    {
+      "breed": "CIRN_Italy",
+      "proportion": 0.00307
+    },
+    {
+      "breed": "CPAT_Italy",
+      "proportion": 0.003008
+    },
+    {
+      "breed": "CHIH",
+      "proportion": 0.001944
+    },
+    {
+      "breed": "COTO",
+      "proportion": 0.00182
+    },
+    {
+      "breed": "AMAL",
+      "proportion": 0.001579
+    },
+    {
+      "breed": "BMD",
+      "proportion": 0.001347
+    },
+    {
+      "breed": "MAST",
+      "proportion": 0.001089
+    },
+    {
+      "breed": "ESET",
+      "proportion": 0.000982
+    },
+    {
+      "breed": "WHPG",
+      "proportion": 0.000637
+    },
+    {
+      "breed": "GWHP",
+      "proportion": 0.000537
+    },
+    {
+      "breed": "CARD",
+      "proportion": 0.000431
+    },
+    {
+      "breed": "SALU",
+      "proportion": 0.000106
     },
     {
       "breed": "AFGH",
@@ -22,10 +218,6 @@
     },
     {
       "breed": "AKIT",
-      "proportion": 0.0
-    },
-    {
-      "breed": "AMAL",
       "proportion": 0.0
     },
     {
@@ -73,10 +265,6 @@
       "proportion": 0.0
     },
     {
-      "breed": "BICH",
-      "proportion": 0.0
-    },
-    {
       "breed": "BLDH",
       "proportion": 0.0
     },
@@ -85,23 +273,11 @@
       "proportion": 0.0
     },
     {
-      "breed": "BMD",
-      "proportion": 0.0
-    },
-    {
       "breed": "BOER",
       "proportion": 0.0
     },
     {
-      "breed": "BORD",
-      "proportion": 0.0
-    },
-    {
       "breed": "BORT",
-      "proportion": 0.0
-    },
-    {
-      "breed": "BORZ",
       "proportion": 0.0
     },
     {
@@ -118,14 +294,6 @@
     },
     {
       "breed": "BPIC",
-      "proportion": 0.0
-    },
-    {
-      "breed": "BRIA",
-      "proportion": 0.0
-    },
-    {
-      "breed": "BRIT",
       "proportion": 0.0
     },
     {
@@ -153,10 +321,6 @@
       "proportion": 0.0
     },
     {
-      "breed": "CAIR",
-      "proportion": 0.0
-    },
-    {
       "breed": "CANE",
       "proportion": 0.0
     },
@@ -165,15 +329,7 @@
       "proportion": 0.0
     },
     {
-      "breed": "CARD",
-      "proportion": 0.0
-    },
-    {
       "breed": "CCRT",
-      "proportion": 0.0
-    },
-    {
-      "breed": "CHIH",
       "proportion": 0.0
     },
     {
@@ -185,35 +341,11 @@
       "proportion": 0.0
     },
     {
-      "breed": "CIRN_Italy",
-      "proportion": 0.0
-    },
-    {
-      "breed": "CKCS",
-      "proportion": 0.0
-    },
-    {
       "breed": "COLL",
       "proportion": 0.0
     },
     {
-      "breed": "COOK",
-      "proportion": 0.0
-    },
-    {
-      "breed": "COTO",
-      "proportion": 0.0
-    },
-    {
-      "breed": "CPAT_Italy",
-      "proportion": 0.0
-    },
-    {
       "breed": "CRES",
-      "proportion": 0.0
-    },
-    {
-      "breed": "DACH",
       "proportion": 0.0
     },
     {
@@ -237,14 +369,6 @@
       "proportion": 0.0
     },
     {
-      "breed": "ECKR",
-      "proportion": 0.0
-    },
-    {
-      "breed": "ESET",
-      "proportion": 0.0
-    },
-    {
       "breed": "ESSP",
       "proportion": 0.0
     },
@@ -254,14 +378,6 @@
     },
     {
       "breed": "FBUL",
-      "proportion": 0.0
-    },
-    {
-      "breed": "FCR",
-      "proportion": 0.0
-    },
-    {
-      "breed": "FIEL",
       "proportion": 0.0
     },
     {
@@ -281,18 +397,6 @@
       "proportion": 0.0
     },
     {
-      "breed": "GOLD",
-      "proportion": 0.0
-    },
-    {
-      "breed": "GORD",
-      "proportion": 0.0
-    },
-    {
-      "breed": "GPYR",
-      "proportion": 0.0
-    },
-    {
       "breed": "GREE",
       "proportion": 0.0
     },
@@ -301,23 +405,11 @@
       "proportion": 0.0
     },
     {
-      "breed": "GSD",
-      "proportion": 0.0
-    },
-    {
-      "breed": "GSHP",
-      "proportion": 0.0
-    },
-    {
       "breed": "GSMD",
       "proportion": 0.0
     },
     {
       "breed": "GSNZ",
-      "proportion": 0.0
-    },
-    {
-      "breed": "GWHP",
       "proportion": 0.0
     },
     {
@@ -341,31 +433,11 @@
       "proportion": 0.0
     },
     {
-      "breed": "IRIT",
-      "proportion": 0.0
-    },
-    {
       "breed": "ISET",
       "proportion": 0.0
     },
     {
-      "breed": "ITGY",
-      "proportion": 0.0
-    },
-    {
-      "breed": "IWOF",
-      "proportion": 0.0
-    },
-    {
       "breed": "IWSP",
-      "proportion": 0.0
-    },
-    {
-      "breed": "JACK",
-      "proportion": 0.0
-    },
-    {
-      "breed": "KEES",
       "proportion": 0.0
     },
     {
@@ -385,10 +457,6 @@
       "proportion": 0.0
     },
     {
-      "breed": "LAB",
-      "proportion": 0.0
-    },
-    {
       "breed": "LEON",
       "proportion": 0.0
     },
@@ -401,19 +469,7 @@
       "proportion": 0.0
     },
     {
-      "breed": "LVMD_Italy",
-      "proportion": 0.0
-    },
-    {
-      "breed": "MAAB_Italy",
-      "proportion": 0.0
-    },
-    {
       "breed": "MALT",
-      "proportion": 0.0
-    },
-    {
-      "breed": "MAST",
       "proportion": 0.0
     },
     {
@@ -429,19 +485,11 @@
       "proportion": 0.0
     },
     {
-      "breed": "MPOO",
-      "proportion": 0.0
-    },
-    {
       "breed": "MSNZ",
       "proportion": 0.0
     },
     {
       "breed": "MXOL",
-      "proportion": 0.0
-    },
-    {
-      "breed": "NEAP",
       "proportion": 0.0
     },
     {
@@ -457,14 +505,6 @@
       "proportion": 0.0
     },
     {
-      "breed": "NOWT",
-      "proportion": 0.0
-    },
-    {
-      "breed": "NSDT",
-      "proportion": 0.0
-    },
-    {
       "breed": "OES",
       "proportion": 0.0
     },
@@ -473,15 +513,7 @@
       "proportion": 0.0
     },
     {
-      "breed": "PAPI",
-      "proportion": 0.0
-    },
-    {
       "breed": "PARS",
-      "proportion": 0.0
-    },
-    {
-      "breed": "PBGV",
       "proportion": 0.0
     },
     {
@@ -509,10 +541,6 @@
       "proportion": 0.0
     },
     {
-      "breed": "PULI",
-      "proportion": 0.0
-    },
-    {
       "breed": "PUMI",
       "proportion": 0.0
     },
@@ -533,10 +561,6 @@
       "proportion": 0.0
     },
     {
-      "breed": "SALU",
-      "proportion": 0.0
-    },
-    {
       "breed": "SALU_ArabPen",
       "proportion": 0.0
     },
@@ -554,10 +578,6 @@
     },
     {
       "breed": "SCOT",
-      "proportion": 0.0
-    },
-    {
-      "breed": "SCWT",
       "proportion": 0.0
     },
     {
@@ -589,14 +609,6 @@
       "proportion": 0.0
     },
     {
-      "breed": "SPOO",
-      "proportion": 0.0
-    },
-    {
-      "breed": "SSHP",
-      "proportion": 0.0
-    },
-    {
       "breed": "SSNZ",
       "proportion": 0.0
     },
@@ -625,14 +637,6 @@
       "proportion": 0.0
     },
     {
-      "breed": "TIBT",
-      "proportion": 0.0
-    },
-    {
-      "breed": "TPOO",
-      "proportion": 0.0
-    },
-    {
       "breed": "TURV",
       "proportion": 0.0
     },
@@ -658,10 +662,6 @@
     },
     {
       "breed": "WHIP",
-      "proportion": 0.0
-    },
-    {
-      "breed": "WHPG",
       "proportion": 0.0
     },
     {
@@ -709,8 +709,8 @@
       "proportion": 0.0
     }
   ],
-  "snps_used": 0,
+  "snps_used": 85758,
   "k": 177,
-  "pct_parker_covered": 0.0,
+  "pct_parker_covered": 82.8,
   "method": "Supervised SCOPE NNLS projection onto Parker 2017 allele frequency matrix. P matrix: 103542 SNPs \u00d7 177 breeds. Dosages from GLIMPSE2 Dog10K imputed BCF (posterior GP-weighted)."
 }

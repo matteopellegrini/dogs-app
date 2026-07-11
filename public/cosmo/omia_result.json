@@ -2,8 +2,8 @@
   "summary": {
     "total_screened": 479,
     "affected_snv": 11,
-    "indel_unknown": 112,
-    "unaffected": 355,
+    "indel_unknown": 227,
+    "unaffected": 241,
     "affected_high_or_medium_confidence": 3
   },
   "method": "Merged: OMIA canFam4 positions + PublishedDogVariants_OMIA_and_Commercial.xlsx. SNVs called from BAM pileup (min_bq=20, min_mq=20). Indels: depth-only (zygosity not called). Sorted affected-first.",
@@ -6377,12 +6377,20 @@
         "affected": false
       },
       "cosmo": {
-        "zygosity": "no call",
+        "zygosity": "ref/ref",
         "depth": 2,
         "ref_count": 2,
         "alt_count": 0,
         "affected": false,
-        "call_confidence": "low"
+        "call_confidence": "high",
+        "glimpse2_gt": "0|0",
+        "glimpse2_af": 0.0,
+        "glimpse2_gp": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "confidence_source": "bam+glimpse2"
       },
       "source": "OMIA"
     },
@@ -8076,12 +8084,20 @@
         "affected": false
       },
       "cosmo": {
-        "zygosity": "no call",
+        "zygosity": "ref/ref",
         "depth": 2,
         "ref_count": 2,
         "alt_count": 0,
         "affected": false,
-        "call_confidence": "low"
+        "call_confidence": "high",
+        "glimpse2_gt": "0|0",
+        "glimpse2_af": 0.0,
+        "glimpse2_gp": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "confidence_source": "bam+glimpse2"
       },
       "source": "OMIA"
     },
@@ -8480,7 +8496,15 @@
         "ref_count": 2,
         "alt_count": 0,
         "affected": false,
-        "call_confidence": "low"
+        "call_confidence": "high",
+        "glimpse2_gt": "0|0",
+        "glimpse2_af": 0.0,
+        "glimpse2_gp": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "confidence_source": "bam+glimpse2"
       },
       "source": "Excel"
     },
@@ -8745,7 +8769,15 @@
         "ref_count": 2,
         "alt_count": 0,
         "affected": false,
-        "call_confidence": "low"
+        "call_confidence": "high",
+        "glimpse2_gt": "0|0",
+        "glimpse2_af": 0.0,
+        "glimpse2_gp": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "confidence_source": "bam+glimpse2"
       },
       "source": "Excel"
     },
@@ -10694,12 +10726,20 @@
       "panel": "Embark, Wisdom",
       "reference": "https://doi.org/10.1111/j.1538-7836.2006.02203.x",
       "cosmo": {
-        "zygosity": "no_coverage",
+        "zygosity": "ref/ref",
         "depth": 0,
         "ref_count": 0,
         "alt_count": 0,
         "affected": false,
-        "call_confidence": "no_coverage"
+        "call_confidence": "high",
+        "glimpse2_gt": "0|0",
+        "glimpse2_af": 0.0,
+        "glimpse2_gp": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "confidence_source": "bam+glimpse2"
       },
       "source": "Excel"
     },

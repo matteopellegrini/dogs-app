@@ -4,15 +4,12 @@ import { useEffect, useState } from 'react';
 
 interface SampleGenotype {
   zygosity: string;
-  depth: number;
-  ref_count: number | null;
-  alt_count: number | null;
-  affected: boolean | null;
-  call_confidence?: string;
-  confidence_source?: string;
+  affected: boolean;
+  call_confidence: string;
   glimpse2_gt?: string;
-  glimpse2_af?: number;
   glimpse2_gp?: number[] | null;
+  source?: string;
+  af_dog10k?: number | null;
   note?: string;
 }
 
@@ -36,8 +33,9 @@ interface Variant {
   panel?: string;
   reference?: string;
   source?: string;
-  cosmo: SampleGenotype;
-  nelk?: SampleGenotype;
+  kiki?: SampleGenotype;
+  // legacy field (other dogs)
+  cosmo?: SampleGenotype;
 }
 
 interface OmiaResult {
@@ -45,49 +43,35 @@ interface OmiaResult {
   summary: {
     total_screened: number;
     affected_snv?: number;
-    affected_high_or_medium_confidence?: number;
+    affected_high_confidence?: number;
+    in_dog10k_panel?: number;
   };
   method: string;
 }
 
 const ZYG_STYLE: Record<string, string> = {
-  'alt/alt':           'bg-red-100 text-red-700',
-  'het':               'bg-orange-100 text-orange-700',
-  'ref/alt':           'bg-orange-100 text-orange-700',
-  'ref/ref':           'bg-green-100 text-green-700',
-  'no_coverage':       'bg-gray-100 text-gray-400',
-  'indel_region':      'bg-purple-100 text-purple-700',
-  'indel_unresolved':  'bg-purple-100 text-purple-700',
+  'alt/alt':             'bg-red-100 text-red-700',
+  'het':                 'bg-orange-100 text-orange-700',
+  'ref/alt':             'bg-orange-100 text-orange-700',
+  'ref/ref':             'bg-green-100 text-green-700',
+  'low_gp_no_call':      'bg-gray-100 text-gray-400',
+  'no_coverage':         'bg-gray-100 text-gray-400',
+  'indel_region':        'bg-purple-100 text-purple-700',
+  'indel_unresolved':    'bg-purple-100 text-purple-700',
 };
 
 const CONF_STYLE: Record<string, string> = {
-  high:                   'bg-green-100 text-green-700',
-  medium:                 'bg-amber-100 text-amber-700',
-  low:                    'bg-gray-100 text-gray-500',
-  likely_false_positive:  'bg-red-100 text-red-600',
-  indel_unresolved:       'bg-purple-100 text-purple-600',
-  no_coverage:            'bg-gray-100 text-gray-400',
-};
-
-const CONF_LABEL: Record<string, string> = {
-  high:                   'high',
-  medium:                 'medium',
-  low:                    'low',
-  likely_false_positive:  'likely FP',
-  indel_unresolved:       'indel',
-  no_coverage:            'no coverage',
-};
-
-const SOURCE_LABEL: Record<string, string> = {
-  'bam+glimpse2':              'BAM + GLIMPSE2 ✓',
-  'bam+glimpse2_discordant':   'BAM / GLIMPSE2 ⚠',
-  'glimpse2_v2':               'GLIMPSE2 v2 ✓',
-  'glimpse2_contradicts_bam':  'GLIMPSE2 contradicts BAM',
-  'bam_only':                  'BAM only',
+  high:   'bg-green-100 text-green-700',
+  medium: 'bg-amber-100 text-amber-700',
+  low:    'bg-gray-100 text-gray-500',
 };
 
 function traitLabel(v: Variant) {
   return v.phene_name || v.trait || '';
+}
+
+function sampleGt(v: Variant): SampleGenotype | undefined {
+  return v.kiki ?? v.cosmo;
 }
 
 export default function OmiaTable({ samplePath = '' }: { samplePath?: string } = {}) {
@@ -101,17 +85,13 @@ export default function OmiaTable({ samplePath = '' }: { samplePath?: string } =
 
   if (!data) return <div className="text-gray-400 text-sm py-8 text-center">Loading variant data…</div>;
 
-  const variants = data.variants ?? [];
+  const allVariants = data.variants ?? [];
 
-  const affected     = variants.filter(v => v.cosmo?.affected === true);
-  const unaffected   = variants.filter(v => v.cosmo?.affected === false);
-  const indel        = variants.filter(v => v.cosmo?.affected === null);
-  const affHighMed   = affected.filter(v =>
-    v.cosmo?.call_confidence === 'high' || v.cosmo?.call_confidence === 'medium'
-  );
-  const affLow       = affected.filter(v => v.cosmo?.call_confidence === 'low');
-
-  const displayed = showAll ? variants : variants;
+  // Only show variants that were actually tested (have a genotype call)
+  const tested    = allVariants.filter(v => sampleGt(v) !== undefined);
+  const affected  = tested.filter(v => sampleGt(v)?.affected === true);
+  const cleared   = tested.filter(v => sampleGt(v)?.affected === false);
+  const notTested = allVariants.length - tested.length;
 
   return (
     <div className="space-y-4">
@@ -119,29 +99,29 @@ export default function OmiaTable({ samplePath = '' }: { samplePath?: string } =
       {/* Summary cards */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
-          <p className="text-xs text-gray-400 mb-1">Sites screened</p>
-          <p className="text-xl font-semibold text-gray-700">{variants.length}</p>
+          <p className="text-xs text-gray-400 mb-1">Screened</p>
+          <p className="text-xl font-semibold text-gray-700">{allVariants.length}</p>
           <p className="text-[10px] text-gray-400 mt-0.5">OMIA + commercial panel</p>
         </div>
-        <div className={`border rounded-lg p-3 ${affHighMed.length > 0 ? 'bg-amber-50 border-amber-200' : 'bg-green-50 border-green-100'}`}>
-          <p className={`text-xs mb-1 ${affHighMed.length > 0 ? 'text-amber-600' : 'text-green-500'}`}>
+        <div className="bg-blue-50 border border-blue-100 rounded-lg p-3">
+          <p className="text-xs text-blue-500 mb-1">In Dog10K panel</p>
+          <p className="text-xl font-semibold text-blue-700">{tested.length}</p>
+          <p className="text-[10px] text-blue-400 mt-0.5">{notTested} not in panel</p>
+        </div>
+        <div className={`border rounded-lg p-3 ${affected.length > 0 ? 'bg-amber-50 border-amber-200' : 'bg-green-50 border-green-100'}`}>
+          <p className={`text-xs mb-1 ${affected.length > 0 ? 'text-amber-600' : 'text-green-500'}`}>
             Alt allele detected
           </p>
-          <p className={`text-xl font-semibold ${affHighMed.length > 0 ? 'text-amber-700' : 'text-green-700'}`}>
+          <p className={`text-xl font-semibold ${affected.length > 0 ? 'text-amber-700' : 'text-green-700'}`}>
             {affected.length}
           </p>
-          <p className={`text-[10px] mt-0.5 ${affHighMed.length > 0 ? 'text-amber-500' : 'text-green-500'}`}>
-            {affHighMed.length} high/med conf
+          <p className={`text-[10px] mt-0.5 ${affected.length > 0 ? 'text-amber-500' : 'text-green-400'}`}>
+            high confidence
           </p>
-        </div>
-        <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
-          <p className="text-xs text-gray-400 mb-1">Indels (unresolved)</p>
-          <p className="text-xl font-semibold text-gray-700">{indel.length}</p>
-          <p className="text-[10px] text-gray-400 mt-0.5">depth only, no zygosity</p>
         </div>
         <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
           <p className="text-xs text-gray-400 mb-1">Clear (ref/ref)</p>
-          <p className="text-xl font-semibold text-gray-700">{unaffected.length}</p>
+          <p className="text-xl font-semibold text-gray-700">{cleared.length}</p>
         </div>
       </div>
 
@@ -150,64 +130,38 @@ export default function OmiaTable({ samplePath = '' }: { samplePath?: string } =
         <strong>Method:</strong> {data.method}
       </div>
 
-      {/* Confidence note */}
-      <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 text-xs text-amber-800">
-        <strong>Coverage note:</strong> At 2.5× WGS, most positions have 1–4 reads.
-        Calls with depth ≥5 are <span className="font-medium text-green-700">high confidence</span>,
-        depth 3–4 are <span className="font-medium text-amber-700">medium</span>, and
-        depth 1–2 are <span className="font-medium text-gray-600">low</span> (possible sequencing noise).
-        Alt alleles at low-confidence sites should be confirmed with a targeted panel.
-      </div>
-
-      {/* Affected section */}
+      {/* Affected — always shown at top */}
       {affected.length > 0 && (
-        <>
-          {affHighMed.length > 0 && (
-            <div className="flex items-center gap-2">
-              <span className="text-xs font-semibold text-amber-700 bg-amber-50 px-2 py-1 rounded border border-amber-200">
-                {affHighMed.length} variant{affHighMed.length > 1 ? 's' : ''} — medium/high confidence
-              </span>
-              <div className="flex-1 border-t border-amber-300" />
-            </div>
-          )}
-          <div className="space-y-2">
-            {affHighMed.map((v, i) => <VariantRow key={`hm-${i}`} v={v} idx={i} expanded={expanded} setExpanded={setExpanded} />)}
+        <div className="space-y-2">
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-semibold text-amber-700 bg-amber-50 px-2 py-1 rounded border border-amber-200">
+              {affected.length} variant{affected.length > 1 ? 's' : ''} detected
+            </span>
+            <div className="flex-1 border-t border-amber-300" />
           </div>
-
-          {affLow.length > 0 && (
-            <>
-              <div className="flex items-center gap-2">
-                <span className="text-xs font-semibold text-gray-500 bg-gray-100 px-2 py-1 rounded border border-gray-200">
-                  {affLow.length} variant{affLow.length > 1 ? 's' : ''} — low confidence (depth 1–2)
-                </span>
-                <div className="flex-1 border-t border-gray-200" />
-              </div>
-              <div className="space-y-2">
-                {affLow.map((v, i) => <VariantRow key={`lo-${i}`} v={v} idx={1000+i} expanded={expanded} setExpanded={setExpanded} />)}
-              </div>
-            </>
-          )}
-        </>
+          {affected.map((v, i) => (
+            <VariantRow key={`aff-${i}`} v={v} idx={i} expanded={expanded} setExpanded={setExpanded} />
+          ))}
+        </div>
       )}
 
-      {/* Divider */}
+      {/* Cleared — collapsible */}
       <div className="flex items-center gap-2">
         <div className="flex-1 border-t border-gray-200" />
-        <span className="text-[10px] text-gray-400">{unaffected.length + indel.length} sites — ref/ref or indel</span>
+        <span className="text-[10px] text-gray-400">{cleared.length} tested — clear</span>
         <div className="flex-1 border-t border-gray-200" />
       </div>
 
-      {/* Show all toggle */}
       {!showAll ? (
         <button onClick={() => setShowAll(true)}
           className="w-full py-2 text-xs text-gray-500 hover:text-gray-700 border border-dashed border-gray-200 rounded-lg hover:border-gray-300 transition-colors">
-          Show all {variants.length} screened sites
+          Show all {tested.length} tested variants
         </button>
       ) : (
         <>
           <div className="space-y-1.5">
-            {[...unaffected, ...indel].map((v, i) => (
-              <VariantRow key={`all-${i}`} v={v} idx={2000+i} expanded={expanded} setExpanded={setExpanded} compact />
+            {cleared.map((v, i) => (
+              <VariantRow key={`clr-${i}`} v={v} idx={1000 + i} expanded={expanded} setExpanded={setExpanded} compact />
             ))}
           </div>
           <button onClick={() => setShowAll(false)}
@@ -215,6 +169,12 @@ export default function OmiaTable({ samplePath = '' }: { samplePath?: string } =
             Collapse
           </button>
         </>
+      )}
+
+      {notTested > 0 && (
+        <p className="text-[10px] text-gray-400 text-center">
+          {notTested} of {allVariants.length} screened variants were not present in the Dog10K imputation panel and could not be genotyped.
+        </p>
       )}
     </div>
   );
@@ -229,11 +189,10 @@ function VariantRow({
   setExpanded: (n: number | null) => void;
   compact?: boolean;
 }) {
-  const sg      = v.cosmo;
-  const isAff   = sg?.affected === true;
-  const isIndel = sg?.zygosity === 'indel_region' || sg?.zygosity === 'indel_unresolved';
-  const conf    = sg?.call_confidence ?? 'no_coverage';
-  const label   = traitLabel(v);
+  const sg    = sampleGt(v);
+  const isAff = sg?.affected === true;
+  const conf  = sg?.call_confidence ?? '';
+  const label = traitLabel(v);
 
   return (
     <div className={`border rounded-lg overflow-hidden ${isAff ? 'border-amber-200' : 'border-gray-100'}`}>
@@ -251,31 +210,20 @@ function VariantRow({
             <div className="flex flex-wrap gap-1 mt-0.5">
               <span className="font-mono text-[10px] text-gray-400">
                 {v.chrom}:{v.pos?.toLocaleString()}
-                {v.ref && v.alt ? ` ${v.ref}>${v.alt}` : v.variant_type ? ` (${v.variant_type})` : ' (indel)'}
+                {v.ref && v.alt ? ` ${v.ref}>${v.alt}` : v.variant_type ? ` (${v.variant_type})` : ''}
               </span>
-              <span className={`px-1.5 py-0.5 rounded text-[10px] font-medium ${ZYG_STYLE[sg?.zygosity ?? ''] ?? 'bg-gray-100 text-gray-500'}`}>
-                {sg?.zygosity ?? '—'}
-              </span>
-              <span className="px-1.5 py-0.5 rounded text-[10px] bg-gray-100 text-gray-400">
-                DP={sg?.depth ?? 0}
-              </span>
-              {isAff && (
-                <span className={`px-1.5 py-0.5 rounded text-[10px] font-medium ${CONF_STYLE[conf]}`}>
-                  {CONF_LABEL[conf] ?? conf}
+              {sg && (
+                <span className={`px-1.5 py-0.5 rounded text-[10px] font-medium ${ZYG_STYLE[sg.zygosity] ?? 'bg-gray-100 text-gray-500'}`}>
+                  {sg.zygosity}
                 </span>
               )}
-              {sg?.glimpse2_gt && sg.glimpse2_gt !== sg.zygosity && (
-                <span className="px-1.5 py-0.5 rounded text-[10px] bg-blue-50 text-blue-600 font-medium">
-                  G2:{sg.glimpse2_gt}
+              {isAff && conf && (
+                <span className={`px-1.5 py-0.5 rounded text-[10px] font-medium ${CONF_STYLE[conf] ?? 'bg-gray-100 text-gray-500'}`}>
+                  {conf}
                 </span>
               )}
-              {sg?.confidence_source === 'bam+glimpse2' && (
-                <span className="px-1.5 py-0.5 rounded text-[10px] bg-green-50 text-green-600">
-                  GLIMPSE2 ✓
-                </span>
-              )}
-              {v.hgvs_c && !compact && (
-                <span className="font-mono text-[10px] text-gray-400">{v.hgvs_c}</span>
+              {v.hgvs_p && !compact && (
+                <span className="font-mono text-[10px] text-gray-400">{v.hgvs_p}</span>
               )}
             </div>
           </div>
@@ -294,47 +242,33 @@ function VariantRow({
 
       {expanded === idx && (
         <div className="px-4 py-3 border-t border-gray-100 bg-white space-y-2 text-xs text-gray-600">
-          <div className="flex gap-3 flex-wrap">
-            <div>
-              <span className="text-gray-400">BAM pileup: </span>
-              <span className={`px-1.5 py-0.5 rounded font-medium ${ZYG_STYLE[sg?.zygosity ?? ''] ?? 'bg-gray-100 text-gray-500'}`}>
-                {sg?.zygosity}
-              </span>
-              {sg?.ref_count !== null && sg?.ref_count !== undefined && (
-                <span className="ml-1 text-gray-400">({sg.ref_count}R / {sg.alt_count}A, depth={sg.depth})</span>
+          {sg && (
+            <div className="flex gap-3 flex-wrap">
+              <div>
+                <span className="text-gray-400">Genotype: </span>
+                <span className={`px-1.5 py-0.5 rounded font-medium ${ZYG_STYLE[sg.zygosity] ?? 'bg-gray-100 text-gray-500'}`}>
+                  {sg.zygosity}
+                </span>
+                {sg.glimpse2_gt && (
+                  <span className="ml-1 text-gray-400">({sg.glimpse2_gt})</span>
+                )}
+              </div>
+              {Array.isArray(sg.glimpse2_gp) && (
+                <div>
+                  <span className="text-gray-400">GP: </span>
+                  <span className="font-mono">[{sg.glimpse2_gp.map(p => p.toFixed(3)).join(', ')}]</span>
+                </div>
+              )}
+              {sg.af_dog10k !== undefined && sg.af_dog10k !== null && (
+                <div>
+                  <span className="text-gray-400">Dog10K AF: </span>
+                  <span>{(sg.af_dog10k * 100).toFixed(1)}%</span>
+                </div>
+              )}
+              {sg.note && (
+                <p className="text-gray-500 italic w-full">{sg.note}</p>
               )}
             </div>
-            {sg?.glimpse2_gt && (
-              <div>
-                <span className="text-gray-400">GLIMPSE2: </span>
-                <span className={`px-1.5 py-0.5 rounded font-medium ${ZYG_STYLE[sg.glimpse2_gt] ?? 'bg-gray-100 text-gray-500'}`}>
-                  {sg.glimpse2_gt}
-                </span>
-                {sg.glimpse2_af !== undefined && (
-                  <span className="ml-1 text-gray-400">AF={sg.glimpse2_af.toFixed(4)}</span>
-                )}
-                {Array.isArray(sg.glimpse2_gp) && (
-                  <span className="ml-1 text-gray-400">GP=[{sg.glimpse2_gp.map(p => p.toFixed(3)).join(', ')}]</span>
-                )}
-              </div>
-            )}
-          </div>
-          <div className="flex gap-3 flex-wrap">
-            <div>
-              <span className="text-gray-400">Confidence: </span>
-              <span className={`px-1.5 py-0.5 rounded font-medium ${CONF_STYLE[conf]}`}>
-                {CONF_LABEL[conf] ?? conf}
-              </span>
-            </div>
-            {sg?.confidence_source && (
-              <div>
-                <span className="text-gray-400">Source: </span>
-                <span className="text-gray-600">{SOURCE_LABEL[sg.confidence_source] ?? sg.confidence_source}</span>
-              </div>
-            )}
-          </div>
-          {sg?.note && (
-            <p className="text-gray-500 italic">{sg.note}</p>
           )}
           {v.omia_id && (
             <p><strong>OMIA ID:</strong> {v.omia_id}

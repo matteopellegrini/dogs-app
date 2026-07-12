@@ -31,6 +31,8 @@ interface QcResult {
   total_reads_raw?: number;
   total_reads_after_qc?: number;
   reads_mapped?: number;
+  duplication_rate_pct?: number;
+  fragment_size_mean_bp?: number;
   read_length_bp?: number;
   read_length_after_trimming_bp?: number;
   pct_q20_raw?: number;
@@ -145,11 +147,30 @@ export default function QcPanel({ samplePath = '' }: { samplePath?: string } = {
             {data.reads_mapped != null && (
               <div>
                 <p className="text-lg font-bold text-[#3540CA]">
-                  {data.total_reads_after_qc
-                    ? ((data.reads_mapped / data.total_reads_after_qc) * 100).toFixed(1)
-                    : ((data.reads_mapped / data.total_reads_raw) * 100).toFixed(1)}%
+                  {(data.reads_mapped / 1e6).toFixed(1)}M
                 </p>
-                <p className="text-xs text-gray-400">Mapping rate</p>
+                <p className="text-xs text-gray-400">
+                  Mapped reads&nbsp;
+                  <span className="text-gray-500">
+                    ({data.total_reads_after_qc
+                      ? ((data.reads_mapped / data.total_reads_after_qc) * 100).toFixed(1)
+                      : ((data.reads_mapped / (data.total_reads_raw ?? 1)) * 100).toFixed(1)}%)
+                  </span>
+                </p>
+              </div>
+            )}
+            {data.duplication_rate_pct != null && (
+              <div>
+                <p className={`text-lg font-bold ${data.duplication_rate_pct > 20 ? 'text-amber-600' : 'text-gray-800'}`}>
+                  {data.duplication_rate_pct}%
+                </p>
+                <p className="text-xs text-gray-400">Duplication rate</p>
+              </div>
+            )}
+            {data.fragment_size_mean_bp != null && (
+              <div>
+                <p className="text-lg font-bold text-gray-800">{data.fragment_size_mean_bp} bp</p>
+                <p className="text-xs text-gray-400">Mean fragment size</p>
               </div>
             )}
             {data.read_length_bp != null && (

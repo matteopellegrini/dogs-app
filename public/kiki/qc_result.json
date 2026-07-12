@@ -326,5 +326,12 @@
   "qc_status": "FAIL",
   "warning": "Only 0.0% of 1Mb bins have \u226515x coverage.",
   "assessment": "Mean genome coverage 2.3x across 2373 1Mb bins.",
-  "method": "samtools bedcov over 1Mb bins"
+  "method": "samtools bedcov over 1Mb bins",
+  "total_reads_raw": 61335754,
+  "total_reads_after_qc": 57714238,
+  "reads_mapped": 53354181,
+  "duplication_rate_pct": 4.6,
+  "fragment_size_mean_bp": 139,
+  "pct_q30_raw": 90.5,
+  "total_bases_raw_gb": 9.26
 }

@@ -301,7 +301,12 @@ export async function POST(req: NextRequest) {
 
   // Append health notes from DogNotes (stored as JSON in dogs.notes)
   try {
-    const { rows: dogRows } = await sql`SELECT name, breed, dob, notes FROM dogs WHERE user_id = ${user.id} ORDER BY id ASC LIMIT 1`;
+    const dogName = samplePath.replace(/^\//, '').split('/')[0];
+    const { rows: dogRows } = await sql`
+      SELECT name, breed, dob, notes FROM dogs
+      WHERE user_id = ${user.id} AND LOWER(name) = LOWER(${dogName})
+      LIMIT 1
+    `;
     const dog = dogRows[0] as { name: string; breed?: string; dob?: string; notes?: string } | undefined;
     if (dog?.notes) {
       const parsed = JSON.parse(dog.notes) as Record<string, string>;

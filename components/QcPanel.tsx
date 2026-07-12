@@ -258,7 +258,7 @@ export default function QcPanel({ samplePath = '' }: { samplePath?: string } = {
         <div className="space-y-1.5">
           {chroms.map(c => (
             <div key={c.chrom} className="flex items-center gap-2 text-xs">
-              <span className="w-10 font-mono text-gray-500 shrink-0">{c.chrom.replace('chr', 'chr ')}</span>
+              <span className="w-14 font-mono text-gray-500 shrink-0 whitespace-nowrap">{c.chrom.replace('chr', 'chr ')}</span>
               <div className="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
                 <div
                   className={`h-full rounded-full ${depthColor(c.mean_depth)}`}

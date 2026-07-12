@@ -42,12 +42,27 @@ const CONFIDENCE_STYLES: Record<string, string> = {
   low:    'bg-gray-100 text-gray-500',
 };
 
-// Coat color swatches for visual representation
-const COLOR_SWATCHES = [
-  { label: 'Base pigment',    color: '#2C2C2C', caption: 'Black eumelanin' },
-  { label: 'Pattern',         color: '#C8A468', caption: 'Sable/fawn possible' },
-  { label: 'Dilution',        color: '#2C2C2C', caption: 'Not dilute' },
-];
+function deriveSwatches(summary: CoatColorResult['summary'], loci: Record<string, LocusData>) {
+  const eAlleles = loci['E']?.predicted_alleles ?? [];
+  const bAlleles = loci['B']?.predicted_alleles ?? [];
+  const dAlleles = loci['D']?.predicted_alleles ?? [];
+  const isRecRed  = eAlleles[0] === 'e' && eAlleles[1] === 'e';
+  const isBrown   = bAlleles[0] === 'b' && bAlleles[1] === 'b';
+  const isDilute  = dAlleles[0] === 'd' && dAlleles[1] === 'd';
+
+  if (isRecRed) {
+    const baseColor = isDilute ? '#E8D5A3' : '#D4A855';
+    return [
+      { color: baseColor, caption: isDilute ? 'Cream (phaeomelanin, dilute)' : 'Yellow/cream (phaeomelanin)' },
+    ];
+  }
+  let eumeColor = isBrown ? '#7B4F2E' : '#2C2C2C';
+  if (isDilute) eumeColor = isBrown ? '#B8967A' : '#7A8FA6';
+  return [
+    { color: eumeColor, caption: `${isBrown ? 'Brown' : 'Black'} eumelanin${isDilute ? ' (dilute)' : ''}` },
+    { color: '#C8A468', caption: 'Phaeomelanin (tan/cream areas)' },
+  ];
+}
 
 function VariantBadge({ gt, af }: { gt?: string; af?: number }) {
   const isHom = gt === '1|1' || gt === '1/1' || gt === 'hom_alt';
@@ -77,6 +92,7 @@ export default function CoatColorPanel({ samplePath = '' }: { samplePath?: strin
   );
 
   const { summary, loci } = data;
+  const swatches = deriveSwatches(summary, loci);
 
   return (
     <div className="space-y-5">
@@ -93,23 +109,15 @@ export default function CoatColorPanel({ samplePath = '' }: { samplePath?: strin
           Predicted coat color — summary
         </h3>
         <div className="flex gap-4 flex-wrap">
-          {/* Color swatches */}
-          <div className="flex gap-2">
-            {COLOR_SWATCHES.map(s => (
-              <div key={s.label} className="text-center">
+          {/* Data-driven color swatches */}
+          <div className="flex gap-2 items-start">
+            {swatches.map(s => (
+              <div key={s.caption} className="text-center">
                 <div className="w-10 h-10 rounded-lg border border-gray-200 shadow-sm mb-1"
                   style={{ background: s.color }} />
-                <p className="text-[9px] text-gray-400 leading-tight">{s.caption}</p>
+                <p className="text-[9px] text-gray-400 leading-tight max-w-[48px]">{s.caption}</p>
               </div>
             ))}
-            {/* Sable overlay example */}
-            <div className="text-center">
-              <div className="w-10 h-10 rounded-lg border border-gray-200 shadow-sm mb-1 overflow-hidden">
-                <div className="w-full h-5" style={{ background: '#2C2C2C' }} />
-                <div className="w-full h-5" style={{ background: '#C8A468' }} />
-              </div>
-              <p className="text-[9px] text-gray-400 leading-tight">Sable overlay</p>
-            </div>
           </div>
 
           <div className="flex-1 min-w-48 space-y-1.5 text-xs">
@@ -135,7 +143,7 @@ export default function CoatColorPanel({ samplePath = '' }: { samplePath?: strin
             </div>
             <div className="flex justify-between">
               <span className="text-gray-400">Overall confidence</span>
-              <span className={`text-[10px] px-1.5 py-0.5 rounded font-medium ${CONFIDENCE_STYLES['low']}`}>
+              <span className={`text-[10px] px-1.5 py-0.5 rounded font-medium ${CONFIDENCE_STYLES[summary.overall_confidence] ?? CONFIDENCE_STYLES['low']}`}>
                 {summary.overall_confidence}
               </span>
             </div>

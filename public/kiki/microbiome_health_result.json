@@ -1,8 +1,4 @@
 {
-  "kiki_richness": 96,
-  "kiki_shannon": 3.1267,
-  "kiki_richness_matched": 14,
-  "kiki_shannon_matched": 1.3155,
   "richness_percentile": 100.0,
   "shannon_percentile": 99.4,
   "ref_richness_p25": 19,
@@ -51,5 +47,9 @@
       "color": "red",
       "association": "canine periodontitis"
     }
-  ]
+  ],
+  "cosmo_richness": 96,
+  "cosmo_shannon": 3.1267,
+  "cosmo_richness_matched": 14,
+  "cosmo_shannon_matched": 1.3155
 }

@@ -10,7 +10,7 @@
         "CSMD3"
       ],
       "verdict": "putative_deletion",
-      "sample_pct_mean": null
+      "sample_pct_mean": 15
     },
     {
       "chrom": "chr13",
@@ -22,7 +22,7 @@
         "CSMD3"
       ],
       "verdict": "putative_deletion",
-      "sample_pct_mean": null
+      "sample_pct_mean": 9
     },
     {
       "chrom": "chr16",
@@ -32,7 +32,7 @@
       "panel_pct_mean": 85,
       "disrupted_genes": [],
       "verdict": "putative_deletion",
-      "sample_pct_mean": null
+      "sample_pct_mean": 19
     },
     {
       "chrom": "chr16",
@@ -44,7 +44,7 @@
         "VEGFC"
       ],
       "verdict": "putative_deletion",
-      "sample_pct_mean": null
+      "sample_pct_mean": 14
     },
     {
       "chrom": "chr2",
@@ -56,7 +56,7 @@
         "ENSCAFG00845012582"
       ],
       "verdict": "putative_deletion",
-      "sample_pct_mean": null
+      "sample_pct_mean": 1
     },
     {
       "chrom": "chr27",
@@ -69,7 +69,7 @@
         "SMCO2"
       ],
       "verdict": "putative_deletion",
-      "sample_pct_mean": null
+      "sample_pct_mean": 14
     },
     {
       "chrom": "chr27",
@@ -83,7 +83,7 @@
         "ENSCAFG00845024620"
       ],
       "verdict": "putative_deletion",
-      "sample_pct_mean": null
+      "sample_pct_mean": 12
     },
     {
       "chrom": "chr27",
@@ -95,7 +95,7 @@
         "STK38L"
       ],
       "verdict": "putative_deletion",
-      "sample_pct_mean": null
+      "sample_pct_mean": 11
     },
     {
       "chrom": "chr30",
@@ -105,7 +105,7 @@
       "panel_pct_mean": 76,
       "disrupted_genes": [],
       "verdict": "putative_deletion",
-      "sample_pct_mean": null
+      "sample_pct_mean": 15
     },
     {
       "chrom": "chr8",
@@ -115,7 +115,7 @@
       "panel_pct_mean": 54,
       "disrupted_genes": [],
       "verdict": "putative_deletion",
-      "sample_pct_mean": null
+      "sample_pct_mean": 9
     },
     {
       "chrom": "chr8",
@@ -125,7 +125,7 @@
       "panel_pct_mean": 54,
       "disrupted_genes": [],
       "verdict": "putative_deletion",
-      "sample_pct_mean": null
+      "sample_pct_mean": 10
     },
     {
       "chrom": "chr8",
@@ -135,7 +135,7 @@
       "panel_pct_mean": 54,
       "disrupted_genes": [],
       "verdict": "putative_deletion",
-      "sample_pct_mean": null
+      "sample_pct_mean": 11
     },
     {
       "chrom": "chr8",
@@ -145,7 +145,7 @@
       "panel_pct_mean": 54,
       "disrupted_genes": [],
       "verdict": "putative_deletion",
-      "sample_pct_mean": null
+      "sample_pct_mean": 8
     },
     {
       "chrom": "chr8",
@@ -155,7 +155,7 @@
       "panel_pct_mean": 64,
       "disrupted_genes": [],
       "verdict": "putative_deletion",
-      "sample_pct_mean": null
+      "sample_pct_mean": 9
     },
     {
       "chrom": "chr8",
@@ -165,7 +165,7 @@
       "panel_pct_mean": 64,
       "disrupted_genes": [],
       "verdict": "putative_deletion",
-      "sample_pct_mean": null
+      "sample_pct_mean": 10
     },
     {
       "chrom": "chr8",
@@ -175,7 +175,7 @@
       "panel_pct_mean": 64,
       "disrupted_genes": [],
       "verdict": "putative_deletion",
-      "sample_pct_mean": null
+      "sample_pct_mean": 12
     },
     {
       "chrom": "chr8",
@@ -185,7 +185,7 @@
       "panel_pct_mean": 64,
       "disrupted_genes": [],
       "verdict": "putative_deletion",
-      "sample_pct_mean": null
+      "sample_pct_mean": 11
     }
   ],
   "disrupted_genes": [

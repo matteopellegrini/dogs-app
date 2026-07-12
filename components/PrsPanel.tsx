@@ -115,33 +115,33 @@ export default function PrsPanel({ samplePath = '' }: { samplePath?: string } = 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {/* Height */}
             {data.physical_traits.height_cm && (
-              <div className="bg-[#C4F9FF]/20 rounded-lg p-3 text-center">
-                <p className="text-2xl font-bold text-[#3540CA]">
-                  {data.physical_traits.height_cm.pred_cm} <span className="text-sm font-normal">cm</span>
+              <div className="bg-[#C4F9FF]/20 rounded-lg p-3">
+                <p className="text-xs font-medium text-[#3540CA] mb-1">Height</p>
+                <p className="text-xl font-bold text-[#3540CA]">
+                  {data.physical_traits.height_cm.percentile.toFixed(0)}<span className="text-sm font-normal">th pct</span>
                 </p>
-                <p className="text-xs text-[#3540CA] mt-0.5">Height (withers)</p>
+                <div className="mt-1.5 h-1.5 bg-[#C4F9FF]/60 rounded-full overflow-hidden">
+                  <div className="h-full rounded-full bg-[#3540CA]" style={{ width: `${data.physical_traits.height_cm.percentile}%` }} />
+                </div>
+                <p className="text-[10px] text-gray-400 mt-1">vs. reference breeds</p>
                 {data.physical_traits.height_cm.heritability && (
                   <p className="text-[10px] text-gray-400">h² = {data.physical_traits.height_cm.heritability.h2}</p>
-                )}
-                {data.physical_traits.height_cm.caveat && (
-                  <p className="text-[10px] text-amber-500 mt-0.5 leading-tight">{data.physical_traits.height_cm.caveat}</p>
                 )}
               </div>
             )}
             {/* Weight */}
             {data.physical_traits.weight_kg && (
-              <div className="bg-[#C4F9FF]/20 rounded-lg p-3 text-center">
-                <p className="text-2xl font-bold text-[#3540CA]">
-                  {data.physical_traits.weight_kg.pred_kg} <span className="text-sm font-normal">kg</span>
+              <div className="bg-[#C4F9FF]/20 rounded-lg p-3">
+                <p className="text-xs font-medium text-[#3540CA] mb-1">Weight</p>
+                <p className="text-xl font-bold text-[#3540CA]">
+                  {data.physical_traits.weight_kg.percentile.toFixed(0)}<span className="text-sm font-normal">th pct</span>
                 </p>
-                <p className="text-xs text-[#3540CA] mt-0.5">
-                  Weight <span className="text-gray-400">({data.physical_traits.weight_kg.pred_lbs} lbs)</span>
-                </p>
+                <div className="mt-1.5 h-1.5 bg-[#C4F9FF]/60 rounded-full overflow-hidden">
+                  <div className="h-full rounded-full bg-[#3540CA]" style={{ width: `${data.physical_traits.weight_kg.percentile}%` }} />
+                </div>
+                <p className="text-[10px] text-gray-400 mt-1">vs. reference breeds</p>
                 {data.physical_traits.weight_kg.heritability && (
                   <p className="text-[10px] text-gray-400">h² = {data.physical_traits.weight_kg.heritability.h2}</p>
-                )}
-                {data.physical_traits.weight_kg.caveat && (
-                  <p className="text-[10px] text-amber-500 mt-0.5 leading-tight">{data.physical_traits.weight_kg.caveat}</p>
                 )}
               </div>
             )}
@@ -172,8 +172,8 @@ export default function PrsPanel({ samplePath = '' }: { samplePath?: string } = 
           </div>
           {/* Size context */}
           <p className="text-[10px] text-gray-400 mt-3">
-            Predictions based on GWAS effect sizes from {(data.physical_traits.height_cm?.n_ref_samples ?? 0).toLocaleString()} reference dogs across {data.n_ref_breeds} breeds.
-            Height/weight reflect male midpoint AKC standards per breed. h² = SNP heritability from published GWAS studies.
+            Genomic size percentile based on {(data.physical_traits.height_cm?.n_ref_samples ?? 0).toLocaleString()} reference dogs across {data.n_ref_breeds} breeds.
+            Absolute height/weight predictions are omitted — they are unreliable for mixed-breed individuals due to the purebred reference panel. h² = SNP heritability from published GWAS studies.
           </p>
         </div>
       )}

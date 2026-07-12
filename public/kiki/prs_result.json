@@ -171,11 +171,10 @@
   },
   "physical_traits": {
     "height_cm": {
-      "pred_cm": 67.0,
       "prs_z": 1.113,
       "percentile": 88.4,
       "n_ref_samples": 23713,
-      "description": "Predicted adult height at withers.",
+      "description": "Genomic size percentile relative to Parker 2017 reference breeds. Absolute height prediction omitted \u2014 unreliable for mixed-breed individuals.",
       "heritability": {
         "h2": 0.62,
         "ci": "0.55\u20130.69",
@@ -183,12 +182,10 @@
       }
     },
     "weight_kg": {
-      "pred_kg": 46.8,
-      "pred_lbs": 103.1,
       "prs_z": 1.35,
       "percentile": 90.2,
       "n_ref_samples": 23713,
-      "description": "Predicted adult weight.",
+      "description": "Genomic weight percentile relative to reference breeds. Absolute weight prediction omitted \u2014 unreliable for mixed-breed individuals.",
       "heritability": {
         "h2": 0.6,
         "ci": "0.52\u20130.68",

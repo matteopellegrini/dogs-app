@@ -106,6 +106,18 @@ export async function POST(req: NextRequest) {
     }
   } catch { /* optional */ }
 
+  // Append Dog10K inbreeding distribution comparison
+  try {
+    const ibD10kPath = publicPath('inbreeding_froh_dog10k_result.json');
+    if (fs.existsSync(ibD10kPath)) {
+      const ib = JSON.parse(fs.readFileSync(ibD10kPath, 'utf-8'));
+      genomicContext += `\n=== INBREEDING vs. DOG10K PANEL (${ib.n_samples} dogs, 21M SNPs) ===\n`;
+      genomicContext += `F_ROH = ${(ib.sample_froh * 100).toFixed(1)}% — ${ib.sample_percentile}th percentile vs. panel\n`;
+      genomicContext += `Panel: mean=${(ib.ref_froh_mean * 100).toFixed(1)}%, median=${(ib.ref_froh_p50 * 100).toFixed(1)}%, IQR ${(ib.ref_froh_p25 * 100).toFixed(1)}–${(ib.ref_froh_p75 * 100).toFixed(1)}%\n`;
+      if (ib.note) genomicContext += `Note: ${ib.note}\n`;
+    }
+  } catch { /* optional */ }
+
   // Known variants (merged OMIA + commercial panels)
   try {
     const omiaPath = publicPath('omia_result.json');
@@ -221,7 +233,7 @@ export async function POST(req: NextRequest) {
       }
       genomicContext += `\n\n=== KARYOTYPE / CHROMOSOME COPY NUMBER (1MB BINS) ===\n`;
       genomicContext += `Method: Panel-normalised depth ratios vs 4-dog reference (autosomes) and 3-male reference (chrX). Ratio ~1.0=normal, <0.65=loss, >1.35=gain.\n`;
-      genomicContext += `chrX ratio ~1.0 (male reference panel used — confirms Cosmo is male with one intact X).\n`;
+      genomicContext += `chrX ratio reflects sex chromosome copy number relative to reference panel.\n`;
       if (flagged.length > 0) {
         genomicContext += `Flagged regions (possible copy-number gains):\n`;
         for (const f of flagged) genomicContext += `  ${f}\n`;
@@ -237,14 +249,26 @@ export async function POST(req: NextRequest) {
     const cnvPath = publicPath('cnv_homdel.json');
     if (fs.existsSync(cnvPath)) {
       const cnv = JSON.parse(fs.readFileSync(cnvPath, 'utf-8'));
-      const pcGenes = (cnv.disrupted_genes as {gene:string;biotype:string;chrom:string;start:number;size:string}[])
+      const pcGenes = (cnv.disrupted_genes as {gene:string;biotype:string;chrom:string;start:number;size?:string;end?:number}[])
         .filter((g) => g.biotype === 'protein_coding')
-        .map((g) => `${g.gene} (${g.chrom}:${(g.start/1e6).toFixed(1)}Mb, ${g.size})`)
+        .map((g) => `${g.gene} (${g.chrom}:${(g.start/1e6).toFixed(1)}Mb)`)
         .join(', ');
       genomicContext += `\n\n=== COPY NUMBER VARIANT ANALYSIS — HOMOZYGOUS DELETIONS ===\n`;
-      genomicContext += `Called at 10kb resolution (depth <15% of genome mean 28.7x, regions ≥20kb).\n`;
+      genomicContext += `${cnv.summary.method ?? 'Adaptive-window coverage normalisation, depth <15% of genome mean.'}\n`;
       genomicContext += `Total deletion regions: ${cnv.summary.total_regions}\n`;
-      genomicContext += `Disrupted protein-coding genes (${cnv.summary.protein_coding}): ${pcGenes}\n`;
+      if (cnv.summary.panel_note) genomicContext += `Note: ${cnv.summary.panel_note}\n`;
+      const nPc = (cnv.disrupted_genes as {biotype:string}[]).filter(g => g.biotype === 'protein_coding').length;
+      if (nPc > 0) genomicContext += `Disrupted protein-coding genes (${nPc}): ${pcGenes}\n`;
+      const regions = (cnv.regions as {chrom:string;start:number;end:number;size:string;panel_pct_mean:number;sample_pct_mean:number|null;disrupted_genes:string[]}[]);
+      const topRegions = regions.slice(0, 10);
+      if (topRegions.length > 0) {
+        genomicContext += `Deletion regions (up to 10):\n`;
+        for (const r of topRegions) {
+          const genes = r.disrupted_genes.length > 0 ? ` [${r.disrupted_genes.join(', ')}]` : '';
+          const samplePct = r.sample_pct_mean != null ? ` sample=${r.sample_pct_mean}%` : '';
+          genomicContext += `  ${r.chrom}:${(r.start/1e6).toFixed(1)}–${(r.end/1e6).toFixed(1)}Mb (${r.size}) panel=${r.panel_pct_mean}%${samplePct}${genes}\n`;
+        }
+      }
     }
   } catch { /* CNV file optional */ }
 
@@ -257,6 +281,21 @@ export async function POST(req: NextRequest) {
       genomicContext += `Mean depth: ${qc.genome_mean_depth}x · Median depth: ${qc.genome_median_depth}x · CV: ${qc.uniformity_cv}\n`;
       genomicContext += `% bins >10x: ${qc.pct_bins_gt10x}% · >15x: ${qc.pct_bins_gt15x}% · >20x: ${qc.pct_bins_gt20x}% · >30x: ${qc.pct_bins_gt30x}%\n`;
       genomicContext += `Low-coverage bins: ${qc.n_low_bins} of ${qc.n_total_bins} total\n`;
+      if (qc.total_reads_raw != null)
+        genomicContext += `Total reads: ${(qc.total_reads_raw / 1e6).toFixed(1)}M raw · ${qc.total_reads_after_qc != null ? (qc.total_reads_after_qc / 1e6).toFixed(1) + 'M after QC' : ''}\n`;
+      if (qc.reads_mapped != null)
+        genomicContext += `Mapped reads: ${(qc.reads_mapped / 1e6).toFixed(1)}M (${qc.total_reads_after_qc ? ((qc.reads_mapped / qc.total_reads_after_qc) * 100).toFixed(1) : '?'}%)\n`;
+      if (qc.duplication_rate_pct != null)
+        genomicContext += `Duplication rate: ${qc.duplication_rate_pct}%\n`;
+      if (qc.fragment_size_mean_bp != null)
+        genomicContext += `Mean fragment size: ${qc.fragment_size_mean_bp} bp (from paired-end insert size)\n`;
+      if (qc.read_length_bp != null)
+        genomicContext += `Read length: ${qc.read_length_bp} bp raw · ${qc.read_length_after_trimming_bp ?? '?'} bp after trimming\n`;
+      if (qc.pct_q30_raw != null)
+        genomicContext += `Q30 bases: ${qc.pct_q30_raw}%\n`;
+      if (qc.total_bases_raw_gb != null)
+        genomicContext += `Total bases: ${qc.total_bases_raw_gb} Gb\n`;
+      genomicContext += `QC status: ${qc.qc_status}${qc.warning ? ' — ' + qc.warning : ''}\n`;
     }
   } catch { /* optional */ }
 
@@ -310,7 +349,7 @@ export async function POST(req: NextRequest) {
     if (fs.existsSync(mbhPath)) {
       const mh = JSON.parse(fs.readFileSync(mbhPath, 'utf-8'));
       genomicContext += `\n=== MICROBIOME HEALTH METRICS ===\n`;
-      genomicContext += `Alpha diversity (on ${mh.n_matched_species} species shared with reference panel): richness=${mh.cosmo_richness_matched} (${mh.richness_percentile}th pct vs. ref median ${mh.ref_richness_p50}), Shannon=${mh.cosmo_shannon_matched.toFixed(2)} (${mh.shannon_percentile}th pct vs. ref median ${mh.ref_shannon_p50.toFixed(2)})\n`;
+      genomicContext += `Alpha diversity (on ${mh.n_matched_species} species shared with reference panel): richness=${mh.sample_richness_matched} (${mh.richness_percentile}th pct vs. ref median ${mh.ref_richness_p50}), Shannon=${(mh.sample_shannon_matched as number).toFixed(2)} (${mh.shannon_percentile}th pct vs. ref median ${(mh.ref_shannon_p50 as number).toFixed(2)})\n`;
       genomicContext += `Pathobiont burden: ${mh.pathobiont_burden_pct}% of bacterial reads (${mh.pathobiont_percentile}th pct; ref median ${mh.ref_pathobiont_median}%, 90th pct ${mh.ref_pathobiont_p90}%)\n`;
       genomicContext += `Dysbiosis index (log10 pathobiont/commensal): ${mh.dysbiosis_index}\n`;
       if (mh.pathobiont_hits?.length > 0) {
@@ -326,7 +365,7 @@ export async function POST(req: NextRequest) {
       const ma = JSON.parse(fs.readFileSync(mbAgePath, 'utf-8'));
       genomicContext += `\n=== MICROBIOME AGE PREDICTION ===\n`;
       genomicContext += `Predicted microbiome age: ${ma.predicted_age_years} years (model CV R²=${ma.cv_r2}, MAE±${ma.cv_mae_years} yrs)\n`;
-      genomicContext += `Model: ${ma.model} · trained on ${ma.n_training_samples} reference dogs · ${ma.n_cosmo_features_matched}/${ma.n_species_features} species matched\n`;
+      genomicContext += `Model: ${ma.model} · trained on ${ma.n_training_samples} reference dogs · ${ma.n_features_matched}/${ma.n_species_features} species matched\n`;
       if (ma.top_species?.length > 0) {
         const pos = ma.top_species.filter((s: {coefficient:number}) => s.coefficient > 0).slice(0,3).map((s: {name:string}) => s.name).join(', ');
         const neg = ma.top_species.filter((s: {coefficient:number}) => s.coefficient < 0).slice(0,3).map((s: {name:string}) => s.name).join(', ');

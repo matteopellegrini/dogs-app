@@ -71,7 +71,13 @@ function traitLabel(v: Variant) {
 }
 
 function sampleGt(v: Variant): SampleGenotype | undefined {
-  return v.kiki ?? v.cosmo;
+  // For kiki, only count variants actually genotyped from the Dog10K panel
+  if (v.kiki) {
+    const src = v.kiki.source ?? '';
+    if (src === 'dog10k_imputed') return v.kiki;
+    return undefined;
+  }
+  return v.cosmo;
 }
 
 export default function OmiaTable({ samplePath = '' }: { samplePath?: string } = {}) {

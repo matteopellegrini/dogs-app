@@ -151,7 +151,7 @@ function DualTrackPlot({ zoom }: { zoom: ZoomRegion }) {
         <Track depths={panel_depths} cap={panelCap} top={panelTop} color="#10b981" label="Panel" />
         <line x1={PAD.left} x2={W - PAD.right} y1={cosmoTop - TRACK_GAP / 2} y2={cosmoTop - TRACK_GAP / 2}
           stroke="#e5e7eb" strokeWidth={0.5} />
-        <Track depths={cosmo_depths} cap={cosmoCap} top={cosmoTop} color="#f59e0b" label="Cosmo" />
+        <Track depths={cosmo_depths} cap={cosmoCap} top={cosmoTop} color="#f59e0b" label="Sample" />
 
         {/* x axis */}
         <line x1={PAD.left} x2={W - PAD.right} y1={axisY} y2={axisY} stroke="#d1d5db" strokeWidth={1} />
@@ -226,7 +226,7 @@ function OutlierDetail({
                 </span>
                 <span className="flex items-center gap-1">
                   <span className="w-3 h-2 rounded-sm inline-block" style={{background:'#f59e0b',opacity:0.7}} />
-                  Cosmo
+                  Sample
                 </span>
               </span>
             </div>
@@ -364,15 +364,15 @@ export default function CoverageChart({ samplePath = '' }: { samplePath?: string
     fetch(`${samplePath}/coverage_1mb.json`)
       .then(r => r.json())
       .then((d: CoverageData) => setData(d));
-    fetch('/cosmo/centromeres.json')
+    fetch(`${samplePath}/centromeres.json`)
       .then(r => r.ok ? r.json() : {})
       .then((d: Centromeres) => setCentromeres(d))
       .catch(() => {});
-    fetch('/cosmo/genes_1mb.json')
+    fetch(`${samplePath}/genes_1mb.json`)
       .then(r => r.ok ? r.json() : {})
       .then((d: GeneMap) => setGeneData(d))
       .catch(() => {});
-    fetch('/cosmo/karyotype_zoom.json')
+    fetch(`${samplePath}/karyotype_zoom.json`)
       .then(r => r.ok ? r.json() : {})
       .then((d: ZoomData) => setZoomData(d))
       .catch(() => {});
@@ -472,7 +472,7 @@ export default function CoverageChart({ samplePath = '' }: { samplePath?: string
                     const tag = r < DEL_THRESH ? ' ⬇ low' : r > DUP_THRESH ? ' ⬆ high' : '';
                     return [
                       `Ratio: ${r.toFixed(3)}${tag}`,
-                      `Cosmo: ${cosmo[i]?.toFixed(2)}×`,
+                      `Sample: ${cosmo[i]?.toFixed(2)}×`,
                       `Panel: ${panel[i]?.toFixed(2)}×`,
                     ];
                   }
@@ -532,7 +532,7 @@ export default function CoverageChart({ samplePath = '' }: { samplePath?: string
     <div className="space-y-4">
       <div>
         <p className="text-sm text-gray-500 mb-3">
-          Cosmo depth normalised to the reference panel per 1 Mb window.
+          Sample depth normalised to the reference panel per 1 Mb window.
           Autosomes: 4-dog panel (Gen-2, Gen-3, Gen-30, Gen-47).
           chrX: 3-male panel (Gen-6, Gen-9, Gen-47).
           Ratio 1.0 = diploid; 0.5 = hemizygous deletion; 1.5 = duplication.
@@ -582,7 +582,7 @@ export default function CoverageChart({ samplePath = '' }: { samplePath?: string
 
         {isChrX && (
           <div className="bg-blue-50 border border-blue-200 text-blue-700 text-xs rounded-lg px-3 py-2 mb-3">
-            chrX normalised to 3-male reference panel (Gen-6, Gen-9, Gen-47) — ratio 1.0 confirms Cosmo has one intact X as expected for a male dog.
+            chrX normalised to 3-male reference panel (Gen-6, Gen-9, Gen-47) — ratio 1.0 confirms one intact X (expected for female; ~0.5 for male).
           </div>
         )}
 

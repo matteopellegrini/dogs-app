@@ -144,10 +144,17 @@ export default function CoatColorPanel({ samplePath = '' }: { samplePath?: strin
       </div>
 
       {/* IRF4 callout */}
-      <div className="bg-red-50 border border-red-200 rounded-lg px-3 py-2 text-xs">
-        <p className="font-semibold text-red-800 mb-0.5">IRF4 deletion — pigmentation modifier</p>
-        <p className="text-red-700">{summary.irf4_note}</p>
-      </div>
+      {(() => {
+        const hasIrf4 = !/^No IRF4/i.test(summary.irf4_note ?? '');
+        return (
+          <div className={`rounded-lg px-3 py-2 text-xs border ${hasIrf4 ? 'bg-red-50 border-red-200' : 'bg-green-50 border-green-200'}`}>
+            <p className={`font-semibold mb-0.5 ${hasIrf4 ? 'text-red-800' : 'text-green-800'}`}>
+              IRF4 deletion — pigmentation modifier
+            </p>
+            <p className={hasIrf4 ? 'text-red-700' : 'text-green-700'}>{summary.irf4_note}</p>
+          </div>
+        );
+      })()}
 
       {/* Locus-by-locus table */}
       <div>

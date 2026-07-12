@@ -42,7 +42,7 @@ function FrohDog10kHistogram({ result }: { result: FrohDog10kResult }) {
 
       <p className="text-xs text-[#3540CA]/80 bg-[#EEF0FB] border border-[#3540CA]/20 rounded-lg px-3 py-2 mt-2">
         <span className="font-semibold">Dog10K reference:</span> 1,929 dogs across 400+ breeds worldwide, phased at 21M SNPs.
-        {' '}Cosmo sits at the <span className="font-semibold">{result.cosmo_percentile}th percentile</span> — lower inbreeding than {(100 - result.cosmo_percentile).toFixed(0)}% of the panel.
+        {' '}This dog sits at the <span className="font-semibold">{result.cosmo_percentile}th percentile</span> — lower inbreeding than {(100 - result.cosmo_percentile).toFixed(0)}% of the panel.
         {' '}Note: all F values are elevated by the Wahlund effect (stratification across breeds); the relative position is what matters.
       </p>
 
@@ -69,7 +69,7 @@ function FrohDog10kHistogram({ result }: { result: FrohDog10kResult }) {
           style={{ left: `${Math.min(Math.max(cosmoLeftPct, 0), 100)}%` }}
         >
           <span className="absolute -top-5 left-1 text-[10px] font-semibold text-[#3540CA] whitespace-nowrap">
-            Cosmo
+            This dog
           </span>
         </div>
       </div>
@@ -93,7 +93,7 @@ function FrohDog10kHistogram({ result }: { result: FrohDog10kResult }) {
           <p className="font-semibold text-gray-700">{(result.ref_froh_mean * 100).toFixed(1)}%</p>
         </div>
         <div className="bg-[#3540CA]/5 border border-[#3540CA]/20 rounded-lg p-2">
-          <p className="text-[#3540CA]/70 mb-0.5">Cosmo</p>
+          <p className="text-[#3540CA]/70 mb-0.5">This dog</p>
           <p className="font-semibold text-[#3540CA]">{(cosmoF * 100).toFixed(1)}% · {result.cosmo_percentile}th pct</p>
         </div>
       </div>

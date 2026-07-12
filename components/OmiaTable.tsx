@@ -99,14 +99,14 @@ export default function OmiaTable({ samplePath = '' }: { samplePath?: string } =
       {/* Summary cards */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         <div className="bg-gray-50 border border-gray-200 rounded-lg p-3">
-          <p className="text-xs text-gray-400 mb-1">Screened</p>
-          <p className="text-xl font-semibold text-gray-700">{allVariants.length}</p>
-          <p className="text-[10px] text-gray-400 mt-0.5">OMIA + commercial panel</p>
+          <p className="text-xs text-gray-400 mb-1">Tested</p>
+          <p className="text-xl font-semibold text-gray-700">{tested.length}</p>
+          <p className="text-[10px] text-gray-400 mt-0.5">present in Dog10K panel</p>
         </div>
-        <div className="bg-blue-50 border border-blue-100 rounded-lg p-3">
-          <p className="text-xs text-blue-500 mb-1">In Dog10K panel</p>
-          <p className="text-xl font-semibold text-blue-700">{tested.length}</p>
-          <p className="text-[10px] text-blue-400 mt-0.5">{notTested} not in panel</p>
+        <div className="bg-gray-50 border border-gray-100 rounded-lg p-3">
+          <p className="text-xs text-gray-400 mb-1">Not in panel</p>
+          <p className="text-xl font-semibold text-gray-500">{notTested}</p>
+          <p className="text-[10px] text-gray-400 mt-0.5">of {allVariants.length} total known</p>
         </div>
         <div className={`border rounded-lg p-3 ${affected.length > 0 ? 'bg-amber-50 border-amber-200' : 'bg-green-50 border-green-100'}`}>
           <p className={`text-xs mb-1 ${affected.length > 0 ? 'text-amber-600' : 'text-green-500'}`}>

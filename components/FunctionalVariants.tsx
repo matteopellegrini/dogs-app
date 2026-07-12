@@ -97,26 +97,12 @@ export default function FunctionalVariants({ samplePath = '' }: { samplePath?: s
   const [page, setPage] = useState(0);
   const PAGE_SIZE = 50;
 
-  const [fetchDebug, setFetchDebug] = useState('');
-
   useEffect(() => {
     const base = samplePath.replace(/^\//, '');
-    const url = `/${base}/functional_variants.json`;
-    setFetchDebug(`fetching ${url}…`);
-    fetch(url)
-      .then(r => {
-        setFetchDebug(`${url} → status ${r.status}`);
-        return r.ok ? r.json() : null;
-      })
-      .then(d => {
-        if (d) {
-          setFetchDebug(`OK: high=${d.summary?.high_total} mod=${d.summary?.moderate_total}`);
-          setData(d);
-        } else {
-          setFetchDebug(`fetch returned null for ${url}`);
-        }
-      })
-      .catch(e => setFetchDebug(`error: ${String(e)}`));
+    fetch(`/${base}/functional_variants.json`)
+      .then(r => r.ok ? r.json() : null)
+      .then(d => d && setData(d))
+      .catch(() => {});
   }, [samplePath]);
 
   const filtered = useMemo(() => {
@@ -142,16 +128,11 @@ export default function FunctionalVariants({ samplePath = '' }: { samplePath?: s
 
   useEffect(() => { setPage(0); }, [filter, impactFilter, afFilter, search]);
 
-  if (!data) return (
-    <div className="text-xs text-gray-500 p-4 font-mono bg-gray-50 rounded">{fetchDebug || 'waiting…'}</div>
-  );
+  if (!data) return null;
   const { summary } = data;
 
   return (
     <div className="space-y-4 mb-6">
-      <div className="text-xs text-gray-400 font-mono">
-        {fetchDebug} | impact={impactFilter} filter={filter} af={afFilter} | high_variants={data.high_variants.length} filtered={filtered.length} page={page}
-      </div>
       <h2 className="text-sm font-semibold text-gray-700">Functional variant annotation</h2>
       <p className="text-xs text-gray-400">{data.source}</p>
 
@@ -170,14 +151,6 @@ export default function FunctionalVariants({ samplePath = '' }: { samplePath?: s
               <p className="text-[10px] text-gray-400 mb-1">Hom alt · rare in Dog10K</p>
               <div className="flex justify-between"><span className="text-orange-500">AF &lt; 5%</span><span className="font-bold text-orange-600">{summary.high_hom_rare_5pct}</span></div>
               <div className="flex justify-between"><span className="text-red-500">AF &lt; 1%</span><span className="font-bold text-red-600">{summary.high_hom_rare_1pct}</span></div>
-            </div>
-            <div className="border-t border-gray-100 pt-2 mt-2 space-y-1">
-              {Object.entries(data.high_effect_counts).map(([eff, n]) => (
-                <div key={eff} className="flex justify-between">
-                  <span className="text-gray-400">{EFFECT_LABELS[eff] ?? eff.replace(/_/g,' ')}</span>
-                  <span className="font-medium">{n.toLocaleString()}</span>
-                </div>
-              ))}
             </div>
           </div>
         </div>

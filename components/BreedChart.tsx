@@ -44,6 +44,7 @@ export default function BreedChart({ samplePath = '' }: { samplePath?: string } 
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const chartRef = useRef<unknown>(null);
   const [data, setData] = useState<BreedResult | null>(null);
+  const [otherExpanded, setOtherExpanded] = useState(false);
 
   useEffect(() => {
     fetch(`${samplePath}/breed_result.json`).then((r) => r.json()).then(setData);
@@ -111,6 +112,8 @@ export default function BreedChart({ samplePath = '' }: { samplePath?: string } 
   if (!data) return <div className="text-gray-400 text-sm py-8 text-center">Loading breed results…</div>;
 
   const breeds = buildDisplayBreeds(data.breed_composition);
+  const sorted = [...data.breed_composition].sort((a, b) => b.proportion - a.proportion);
+  const otherBreeds = sorted.slice(TOP_N);
 
   return (
     <div className="space-y-6">
@@ -135,9 +138,17 @@ export default function BreedChart({ samplePath = '' }: { samplePath?: string } 
             return (
               <div key={i}>
                 <div className="flex justify-between text-xs mb-0.5">
-                  <span className={`font-medium ${isOther ? 'text-gray-400 italic' : 'text-gray-700'}`}>
-                    {displayName(b)}
-                  </span>
+                  {isOther ? (
+                    <button
+                      onClick={() => setOtherExpanded(e => !e)}
+                      className="font-medium text-gray-400 italic hover:text-gray-600 flex items-center gap-1 transition-colors"
+                    >
+                      {displayName(b)}
+                      <span className="text-[10px]">{otherExpanded ? '▲' : '▼'}</span>
+                    </button>
+                  ) : (
+                    <span className="font-medium text-gray-700">{displayName(b)}</span>
+                  )}
                   <span className="text-gray-500">{(b.proportion * 100).toFixed(1)}%</span>
                 </div>
                 <div className="h-3 bg-gray-100 rounded-full overflow-hidden">
@@ -146,6 +157,16 @@ export default function BreedChart({ samplePath = '' }: { samplePath?: string } 
                     style={{ width: `${b.proportion * 100}%`, backgroundColor: color }}
                   />
                 </div>
+                {isOther && otherExpanded && (
+                  <div className="mt-1.5 ml-2 space-y-1 border-l-2 border-gray-100 pl-3">
+                    {otherBreeds.map((ob, j) => (
+                      <div key={j} className="flex justify-between text-[11px]">
+                        <span className="text-gray-400">{displayName(ob)}</span>
+                        <span className="text-gray-400">{(ob.proportion * 100).toFixed(1)}%</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             );
           })}

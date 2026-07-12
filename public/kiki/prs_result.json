@@ -171,10 +171,11 @@
   },
   "physical_traits": {
     "height_cm": {
-      "prs_z": 1.113,
-      "percentile": 88.4,
-      "n_ref_samples": 23713,
-      "description": "Genomic size percentile relative to Parker 2017 reference breeds. Absolute height prediction omitted \u2014 unreliable for mixed-breed individuals.",
+      "pred_cm": 34.4,
+      "prs_z": -0.884,
+      "percentile": 24.8,
+      "n_ref_samples": 8142,
+      "description": "Predicted adult height at withers.",
       "heritability": {
         "h2": 0.62,
         "ci": "0.55\u20130.69",
@@ -182,10 +183,12 @@
       }
     },
     "weight_kg": {
-      "prs_z": 1.35,
-      "percentile": 90.2,
-      "n_ref_samples": 23713,
-      "description": "Genomic weight percentile relative to reference breeds. Absolute weight prediction omitted \u2014 unreliable for mixed-breed individuals.",
+      "pred_kg": 9.3,
+      "pred_lbs": 20.6,
+      "prs_z": -0.857,
+      "percentile": 20.4,
+      "n_ref_samples": 8142,
+      "description": "Predicted adult weight.",
       "heritability": {
         "h2": 0.6,
         "ci": "0.52\u20130.68",
@@ -193,11 +196,10 @@
       }
     },
     "coat_type": {
-      "prs_z": 3.034,
-      "percentile": 96.9,
-      "predicted": "Smooth",
-      "pred_ordinal": 1.0,
-      "n_ref_samples": 23713,
+      "prs_z": 0.923,
+      "percentile": 90.1,
+      "predicted": "Silky",
+      "n_ref_samples": 8142,
       "description": "Predicted coat texture/type.",
       "heritability": {
         "h2": 0.32,
@@ -206,11 +208,11 @@
       }
     },
     "coat_length": {
-      "prs_z": -2.03,
-      "percentile": 4.0,
-      "predicted": "Short",
-      "pred_ordinal": 1.0,
-      "n_ref_samples": 23713,
+      "prs_z": 0.313,
+      "percentile": 62.8,
+      "predicted": "Medium",
+      "pred_ordinal": 2.0,
+      "n_ref_samples": 8142,
       "description": "Predicted coat length.",
       "heritability": {
         "h2": 0.63,

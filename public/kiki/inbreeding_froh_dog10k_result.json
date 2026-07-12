@@ -1,6 +1,4 @@
 {
-  "cosmo_froh": 0.1545,
-  "cosmo_percentile": 30.2,
   "n_samples": 1929,
   "ref_froh_mean": 0.2305,
   "ref_froh_p25": 0.1282,
@@ -92,5 +90,7 @@
     0.892912
   ],
   "metric": "genotype_F",
-  "note": "Genotype F from 25.1M autosomal SNPs vs Dog10K panel (1929 dogs)."
+  "note": "Genotype F from 25.1M autosomal SNPs vs Dog10K panel (1929 dogs).",
+  "sample_froh": 0.1545,
+  "sample_percentile": 30.2
 }

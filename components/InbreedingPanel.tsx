@@ -3,8 +3,8 @@
 import { useEffect, useState } from 'react';
 
 interface FrohDog10kResult {
-  cosmo_froh: number;
-  cosmo_percentile: number;
+  sample_froh: number;
+  sample_percentile: number;
   n_samples: number;
   ref_froh_mean: number;
   ref_froh_p50: number;
@@ -18,7 +18,7 @@ interface FrohDog10kResult {
 
 function FrohDog10kHistogram({ result }: { result: FrohDog10kResult }) {
   const maxCount = Math.max(...result.hist_counts);
-  const cosmoF = result.cosmo_froh;
+  const cosmoF = result.sample_froh;
   const edges = result.hist_edges;
   const range = edges[edges.length - 1] - edges[0];
   const cosmoLeftPct = ((cosmoF - edges[0]) / range) * 100;
@@ -36,13 +36,13 @@ function FrohDog10kHistogram({ result }: { result: FrohDog10kResult }) {
         </div>
         <div className="text-right">
           <p className="text-2xl font-bold text-gray-800">{(cosmoF * 100).toFixed(1)}%</p>
-          <p className="text-xs text-gray-400">{result.cosmo_percentile}th percentile</p>
+          <p className="text-xs text-gray-400">{result.sample_percentile}th percentile</p>
         </div>
       </div>
 
       <p className="text-xs text-[#3540CA]/80 bg-[#EEF0FB] border border-[#3540CA]/20 rounded-lg px-3 py-2 mt-2">
         <span className="font-semibold">Dog10K reference:</span> 1,929 dogs across 400+ breeds worldwide, phased at 21M SNPs.
-        {' '}This dog sits at the <span className="font-semibold">{result.cosmo_percentile}th percentile</span> — lower inbreeding than {(100 - result.cosmo_percentile).toFixed(0)}% of the panel.
+        {' '}This dog sits at the <span className="font-semibold">{result.sample_percentile}th percentile</span> — lower inbreeding than {(100 - result.sample_percentile).toFixed(0)}% of the panel.
         {' '}Note: all F values are elevated by the Wahlund effect (stratification across breeds); the relative position is what matters.
       </p>
 
@@ -94,7 +94,7 @@ function FrohDog10kHistogram({ result }: { result: FrohDog10kResult }) {
         </div>
         <div className="bg-[#3540CA]/5 border border-[#3540CA]/20 rounded-lg p-2">
           <p className="text-[#3540CA]/70 mb-0.5">This dog</p>
-          <p className="font-semibold text-[#3540CA]">{(cosmoF * 100).toFixed(1)}% · {result.cosmo_percentile}th pct</p>
+          <p className="font-semibold text-[#3540CA]">{(cosmoF * 100).toFixed(1)}% · {result.sample_percentile}th pct</p>
         </div>
       </div>
       {result.note && <p className="text-[10px] text-gray-400 mt-2">{result.note}</p>}

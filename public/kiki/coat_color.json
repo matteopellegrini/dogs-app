@@ -1,13 +1,13 @@
 {
   "summary": {
-    "predicted_base_color": "Phaeomelanin (yellow / red / cream)",
-    "predicted_pattern": "Solid phaeomelanin \u2014 e/e overrides all other loci",
-    "predicted_dilution": "Full pigment (D/D or D/d)",
+    "predicted_base_color": "Eumelanin \u2014 brown (chocolate)",
+    "predicted_pattern": "Solid brown (monochrome chocolate) \u2014 b/b with functional E allele; KB/ky consistent with solid pattern",
+    "predicted_dilution": "Full pigment (D/D) \u2014 non-dilute",
     "predicted_white": "Not detectable from SNP data",
     "predicted_merle": "Not detectable from SNP imputation \u2014 requires PCR",
     "overall_confidence": "medium",
     "irf4_note": "No IRF4 deletion detected in this sample.",
-    "caveat": "E, K, B, D loci called from Dog10K GLIMPSE2 imputed BCF (causal SNPs). A locus sable (ay/aw) requires structural variant analysis. M and W require PCR or long-read sequencing."
+    "caveat": "E locus imputation discordant with observed phenotype: imputed e/e at chr5:64186854 (RAF=0.71, T allele 29% in panel) conflicts with chocolate coat \u2014 this position tags a common haplotype, not necessarily the causal MC1R p.Arg306* allele. Summary corrected to chocolate using observed phenotype + confirmed b/b (TYRP1) + D/D (MLPH). B and D calls are high-confidence. A locus sable (ay/aw) requires structural variant analysis. M and W require PCR or long-read sequencing."
   },
   "loci": {
     "E": {
@@ -22,11 +22,11 @@
         "e": "Recessive red/yellow \u2014 two copies needed"
       },
       "predicted_alleles": [
-        "e",
-        "e"
+        "E",
+        "?"
       ],
-      "confidence": "high",
-      "interpretation": "Homozygous recessive red \u2014 all coat pigment is phaeomelanin (yellow/red/cream)",
+      "confidence": "low",
+      "interpretation": "Imputation called e/e at chr5:64186854 (GT=1|1, GP=1.0) but this conflicts with observed chocolate phenotype \u2014 Kiki expressed brown eumelanin, requiring at least one functional E allele. The T allele at this position (RAF=0.71 in Dog10K) likely tags a common haplotype rather than the causal MC1R p.Arg306* allele. True E locus genotype is E/e or E/E (phenotype-corrected).",
       "observed_variants": [
         {
           "pos": 64186854,

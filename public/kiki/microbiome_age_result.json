@@ -4,7 +4,6 @@
   "cv_mae_years": 1.67,
   "n_training_samples": 1045,
   "n_species_features": 125,
-  "n_kiki_features_matched": 14,
   "model": "RidgeCV (log10-transformed, prevalence>10%)",
   "top_species": [
     {
@@ -47,5 +46,6 @@
       "name": "Tessaracoccus sp OH4464 COT 324|t  SGB35144",
       "coefficient": 0.11939
     }
-  ]
+  ],
+  "n_cosmo_features_matched": 14
 }

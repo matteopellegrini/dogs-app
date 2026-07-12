@@ -66,6 +66,7 @@ function TaxonBar({ entry, max, color, pct }: { entry: TaxonEntry; max: number; 
 
 interface AgeResult {
   predicted_age_years: number;
+  actual_age_years?: number;
   cv_r2: number;
   cv_mae_years: number;
   n_training_samples: number;
@@ -159,10 +160,33 @@ export default function MicrobiomePanel({ samplePath }: { samplePath: string }) 
       {ageData && (
         <div className="bg-indigo-50 border border-indigo-200 rounded-xl p-5 flex flex-col gap-3">
           <p className="text-xs font-semibold text-indigo-400 uppercase tracking-wide">Microbiome Age Prediction</p>
-          <div className="flex items-end gap-3">
-            <span className="text-5xl font-bold text-indigo-700">{ageData.predicted_age_years.toFixed(1)}</span>
-            <span className="text-lg text-indigo-500 mb-1">years</span>
+          <div className="flex items-end gap-4 flex-wrap">
+            <div>
+              <p className="text-xs text-indigo-400 mb-0.5">Predicted</p>
+              <div className="flex items-end gap-1.5">
+                <span className="text-5xl font-bold text-indigo-700">{ageData.predicted_age_years.toFixed(1)}</span>
+                <span className="text-lg text-indigo-500 mb-1">yrs</span>
+              </div>
+            </div>
+            {ageData.actual_age_years != null && (
+              <div>
+                <p className="text-xs text-indigo-400 mb-0.5">Actual</p>
+                <div className="flex items-end gap-1.5">
+                  <span className="text-5xl font-bold text-indigo-300">{ageData.actual_age_years.toFixed(1)}</span>
+                  <span className="text-lg text-indigo-300 mb-1">yrs</span>
+                </div>
+              </div>
+            )}
           </div>
+          {ageData.actual_age_years != null && (
+            <p className="text-xs text-indigo-500 bg-indigo-100 rounded-lg px-3 py-1.5">
+              Microbiome predicts {Math.abs(ageData.actual_age_years - ageData.predicted_age_years).toFixed(1)} yrs{' '}
+              {ageData.predicted_age_years < ageData.actual_age_years ? 'younger' : 'older'} than chronological age
+              {ageData.predicted_age_years < ageData.actual_age_years
+                ? ' — oral microbiome composition resembles a younger dog.'
+                : ' — oral microbiome composition resembles an older dog.'}
+            </p>
+          )}
           <p className="text-sm text-indigo-600">
             Estimated from {ageData.n_cosmo_features_matched} matched bacterial species against {ageData.n_training_samples} reference dogs
             · model CV R²={ageData.cv_r2.toFixed(2)}, MAE±{ageData.cv_mae_years.toFixed(1)} yrs

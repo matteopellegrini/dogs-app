@@ -1,12 +1,12 @@
 {
-  "richness_percentile": 100.0,
-  "shannon_percentile": 99.4,
-  "ref_richness_p25": 19,
-  "ref_richness_p50": 29,
-  "ref_richness_p75": 40,
-  "ref_shannon_p25": 1.7756,
-  "ref_shannon_p50": 2.3083,
-  "ref_shannon_p75": 2.6313,
+  "richness_percentile": 99.0,
+  "shannon_percentile": 70.7,
+  "ref_richness_p25": 5,
+  "ref_richness_p50": 9,
+  "ref_richness_p75": 12,
+  "ref_shannon_p25": 0.941,
+  "ref_shannon_p50": 1.4688,
+  "ref_shannon_p75": 1.7745,
   "n_matched_species": 14,
   "pathobiont_burden_pct": 50.61,
   "pathobiont_percentile": 80.8,
@@ -51,5 +51,5 @@
   "cosmo_richness": 96,
   "cosmo_shannon": 3.1267,
   "cosmo_richness_matched": 14,
-  "cosmo_shannon_matched": 1.3155
+  "cosmo_shannon_matched": 1.7286
 }

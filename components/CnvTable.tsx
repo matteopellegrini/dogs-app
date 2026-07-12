@@ -8,8 +8,6 @@ interface RealRegion {
   start: number;
   end: number;
   size: string;
-  cosmo_pct_mean: number;
-  nelk_pct_mean: number;
   panel_pct_mean: number;
   disrupted_genes: string[];
   verdict: string;
@@ -29,8 +27,6 @@ interface ArtefactRegion {
   start: number;
   end: number;
   size: string;
-  cosmo_pct_flank: number;
-  nelk_pct_flank: number;
   verdict: string;
 }
 
@@ -84,9 +80,7 @@ export default function CnvTable({ samplePath = '' }: { samplePath?: string } = 
                 <tr className="border-b border-gray-200 text-gray-500 text-left">
                   <th className="py-2 pr-4 font-medium">Region</th>
                   <th className="py-2 pr-4 font-medium">Size</th>
-                  <th className="py-2 pr-3 font-medium text-right">Cosmo % mean</th>
                   <th className="py-2 pr-3 font-medium text-right">Panel % mean</th>
-                  <th className="py-2 pr-3 font-medium text-right">NELK % mean</th>
                   <th className="py-2 font-medium">Genes affected</th>
                 </tr>
               </thead>
@@ -97,9 +91,7 @@ export default function CnvTable({ samplePath = '' }: { samplePath?: string } = 
                       {r.chrom}:{(r.start/1e6).toFixed(2)}–{(r.end/1e6).toFixed(2)} Mb
                     </td>
                     <td className="py-1.5 pr-4 text-gray-400">{r.size}</td>
-                    <td className="py-1.5 pr-3 text-right font-semibold text-red-600">{r.cosmo_pct_mean}%</td>
-                    <td className="py-1.5 pr-3 text-right text-gray-500">{r.panel_pct_mean}%</td>
-                    <td className="py-1.5 pr-3 text-right text-gray-500">{r.nelk_pct_mean}%</td>
+                    <td className="py-1.5 pr-3 text-right font-semibold text-red-600">{r.panel_pct_mean}%</td>
                     <td className="py-1.5">
                       <span className="flex gap-1 flex-wrap">
                         {r.disrupted_genes.map(g => (

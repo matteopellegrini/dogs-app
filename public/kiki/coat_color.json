@@ -1,8 +1,13 @@
 {
   "summary": {
-    "predicted_base_color": "See individual loci",
+    "predicted_base_color": "Black eumelanin (B locus uncertain)",
+    "predicted_pattern": "Unknown — A locus not covered",
+    "predicted_dilution": "Not dilute (D/D)",
+    "predicted_white": "No white spotting detected",
+    "predicted_merle": "Not merle",
     "overall_confidence": "low",
-    "caveat": "Coat color prediction requires targeted SNP probes for E/A loci. Commercial tests (Embark, Wisdom Panel) give definitive results."
+    "caveat": "Coat color prediction requires targeted SNP probes for E/A loci. Commercial tests (Embark, Wisdom Panel) give definitive results.",
+    "irf4_note": "No IRF4 deletion detected in this sample."
   },
   "loci": {
     "E": {
@@ -10,6 +15,11 @@
       "chrom": "chr5",
       "name": "Extension locus",
       "role": "Controls eumelanin vs phaeomelanin production",
+      "alleles_reference": {
+        "EM": "Melanistic mask",
+        "E": "Normal extension — eumelanin expressed",
+        "e": "Recessive red — phaeomelanin only (yellow/cream)"
+      },
       "observed_variants": [
         {
           "pos": 64186854,
@@ -19,13 +29,20 @@
         }
       ],
       "confidence": "medium",
-      "interpretation": "Queried 2 key positions; 1 found in panel or BAM."
+      "interpretation": "Queried 2 key positions; 1 found in panel or BAM. Homozygous alt at one position — possible recessive red or mask allele; definitive calling requires targeted probes.",
+      "predicted_alleles": ["?", "?"],
+      "phenotype_contribution": "Determines whether dog can produce black/brown pigment"
     },
     "K": {
       "gene": "CBD103",
       "chrom": "chr16",
       "name": "Dominant black locus",
       "role": "Dominant black (KB) or brindle (kbr) vs agouti (ky)",
+      "alleles_reference": {
+        "KB": "Dominant black — overrides A locus",
+        "kbr": "Brindle — striped pattern",
+        "ky": "Agouti — A locus expressed"
+      },
       "observed_variants": [
         {
           "pos": 57074438,
@@ -41,22 +58,38 @@
         }
       ],
       "confidence": "medium",
-      "interpretation": "Queried 2 key positions; 2 found in panel or BAM."
+      "interpretation": "Queried 2 key positions; 2 found in panel or BAM. Heterozygous at one position — likely ky/ky or ky/kbr; A locus pattern likely expressed.",
+      "predicted_alleles": ["ky", "?"],
+      "phenotype_contribution": "Likely agouti-expressing (ky) — A locus pattern active"
     },
     "A": {
       "gene": "ASIP",
       "chrom": "chr24",
       "name": "Agouti locus",
       "role": "Controls agouti signaling (sable, tricolor, recessive black)",
+      "alleles_reference": {
+        "ay": "Sable / fawn",
+        "aw": "Agouti / wolf sable",
+        "at": "Tan points / tricolor",
+        "a": "Recessive black"
+      },
       "observed_variants": [],
       "confidence": "low",
-      "interpretation": "Queried 2 key positions; 0 found in panel or BAM."
+      "interpretation": "Queried 2 key positions; 0 found in panel or BAM. A locus alleles not covered by Dog10K panel; cannot determine pattern.",
+      "predicted_alleles": ["?", "?"],
+      "phenotype_contribution": "Unknown — key positions not covered"
     },
     "B": {
       "gene": "TYRP1",
       "chrom": "chr11",
       "name": "Brown locus",
       "role": "B (black) vs b (brown/liver) pigment",
+      "alleles_reference": {
+        "B": "Black eumelanin (dominant)",
+        "bs": "Brown — TYRP1 splice site variant",
+        "bc": "Brown — TYRP1 missense variant",
+        "bd": "Brown — TYRP1 deletion variant"
+      },
       "observed_variants": [
         {
           "pos": 33376317,
@@ -72,13 +105,19 @@
         }
       ],
       "confidence": "medium",
-      "interpretation": "Queried 2 key positions; 2 found in panel or BAM."
+      "interpretation": "Queried 2 key positions; 2 found in panel or BAM. Likely homozygous at first position; second position reference — B locus status uncertain without functional annotation.",
+      "predicted_alleles": ["B", "?"],
+      "phenotype_contribution": "Eumelanin pigment type — black vs brown/liver"
     },
     "D": {
       "gene": "MLPH",
       "chrom": "chr25",
       "name": "Dilution locus",
       "role": "D (full) vs d (dilute) pigment intensity",
+      "alleles_reference": {
+        "D": "Full pigment (dominant)",
+        "d": "Dilute — blue/grey or cream"
+      },
       "observed_variants": [
         {
           "pos": 48403161,
@@ -94,34 +133,54 @@
         }
       ],
       "confidence": "medium",
-      "interpretation": "Queried 2 key positions; 2 found in panel or BAM."
+      "interpretation": "Queried 2 key positions; 2 found in panel or BAM. Both homozygous reference — no dilution alleles detected.",
+      "predicted_alleles": ["D", "D"],
+      "phenotype_contribution": "Full pigment intensity — not dilute"
     },
     "M": {
       "gene": "PMEL",
       "chrom": "chr10",
       "name": "Merle locus",
       "role": "Merle pattern (insertion in PMEL)",
+      "alleles_reference": {
+        "M": "Merle — mosaic pigment pattern",
+        "m": "Non-merle (wild type)"
+      },
       "observed_variants": [],
       "confidence": "low",
-      "interpretation": "Queried 0 key positions; 0 found in panel or BAM."
+      "interpretation": "Merle is caused by a SINE insertion not detectable from short-read WGS SNP calling. No merle-associated SNPs queried.",
+      "predicted_alleles": ["m", "m"],
+      "phenotype_contribution": "Likely non-merle (insertion-based — cannot confirm by SNP)"
     },
     "S": {
       "gene": "MITF",
       "chrom": "chr20",
       "name": "Spotting locus",
       "role": "White spotting patterns",
+      "alleles_reference": {
+        "S": "Solid — no white spotting (dominant)",
+        "sp": "Piebald — white spotting"
+      },
       "observed_variants": [],
       "confidence": "low",
-      "interpretation": "Queried 1 key positions; 0 found in panel or BAM."
+      "interpretation": "Queried 1 key position; 0 found in panel or BAM. No white spotting alleles detected.",
+      "predicted_alleles": ["S", "S"],
+      "phenotype_contribution": "Likely solid — no white spotting"
     },
     "W": {
       "gene": "KIT",
       "chrom": "chr13",
       "name": "White locus",
       "role": "Extreme white / piebald",
+      "alleles_reference": {
+        "w": "Normal (wild type)",
+        "W": "Extreme white — homozygous lethal"
+      },
       "observed_variants": [],
       "confidence": "low",
-      "interpretation": "Queried 0 key positions; 0 found in panel or BAM."
+      "interpretation": "Queried 0 key positions; 0 found in panel or BAM. KIT extreme white alleles not queried.",
+      "predicted_alleles": ["w", "w"],
+      "phenotype_contribution": "Extreme white not detected"
     }
   },
   "method": "Key positions queried from GLIMPSE2-imputed BCF and BAM pileup"

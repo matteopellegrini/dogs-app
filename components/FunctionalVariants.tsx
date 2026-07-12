@@ -97,12 +97,26 @@ export default function FunctionalVariants({ samplePath = '' }: { samplePath?: s
   const [page, setPage] = useState(0);
   const PAGE_SIZE = 50;
 
+  const [fetchDebug, setFetchDebug] = useState('');
+
   useEffect(() => {
     const base = samplePath.replace(/^\//, '');
-    fetch(`/${base}/functional_variants.json`)
-      .then(r => r.ok ? r.json() : null)
-      .then(d => d && setData(d))
-      .catch(() => {});
+    const url = `/${base}/functional_variants.json`;
+    setFetchDebug(`fetching ${url}…`);
+    fetch(url)
+      .then(r => {
+        setFetchDebug(`${url} → status ${r.status}`);
+        return r.ok ? r.json() : null;
+      })
+      .then(d => {
+        if (d) {
+          setFetchDebug(`OK: high=${d.summary?.high_total} mod=${d.summary?.moderate_total}`);
+          setData(d);
+        } else {
+          setFetchDebug(`fetch returned null for ${url}`);
+        }
+      })
+      .catch(e => setFetchDebug(`error: ${String(e)}`));
   }, [samplePath]);
 
   const filtered = useMemo(() => {
@@ -128,11 +142,16 @@ export default function FunctionalVariants({ samplePath = '' }: { samplePath?: s
 
   useEffect(() => { setPage(0); }, [filter, impactFilter, afFilter, search]);
 
-  if (!data) return null;
+  if (!data) return (
+    <div className="text-xs text-gray-500 p-4 font-mono bg-gray-50 rounded">{fetchDebug || 'waiting…'}</div>
+  );
   const { summary } = data;
 
   return (
     <div className="space-y-4 mb-6">
+      <div className="text-xs text-gray-400 font-mono">
+        {fetchDebug} | impact={impactFilter} filter={filter} af={afFilter} | high_variants={data.high_variants.length} filtered={filtered.length} page={page}
+      </div>
       <h2 className="text-sm font-semibold text-gray-700">Functional variant annotation</h2>
       <p className="text-xs text-gray-400">{data.source}</p>
 

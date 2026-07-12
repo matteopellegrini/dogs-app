@@ -5,9 +5,7 @@
       "start": 13239246,
       "end": 13248037,
       "size": "8kb",
-      "cosmo_pct_mean": 15,
       "panel_pct_mean": 67,
-      "nelk_pct_mean": 0,
       "disrupted_genes": [
         "CSMD3"
       ],
@@ -18,9 +16,7 @@
       "start": 13494185,
       "end": 13511767,
       "size": "17kb",
-      "cosmo_pct_mean": 9,
       "panel_pct_mean": 67,
-      "nelk_pct_mean": 0,
       "disrupted_genes": [
         "CSMD3"
       ],
@@ -31,9 +27,7 @@
       "start": 1002174,
       "end": 1063711,
       "size": "61kb",
-      "cosmo_pct_mean": 9,
       "panel_pct_mean": 85,
-      "nelk_pct_mean": 0,
       "disrupted_genes": [],
       "verdict": "putative_deletion"
     },
@@ -42,9 +36,7 @@
       "start": 55198689,
       "end": 55207480,
       "size": "8kb",
-      "cosmo_pct_mean": 14,
       "panel_pct_mean": 81,
-      "nelk_pct_mean": 0,
       "disrupted_genes": [
         "VEGFC"
       ],
@@ -55,9 +47,7 @@
       "start": 17256733,
       "end": 17265524,
       "size": "8kb",
-      "cosmo_pct_mean": 1,
       "panel_pct_mean": 70,
-      "nelk_pct_mean": 0,
       "disrupted_genes": [
         "ENSCAFG00845012582"
       ],
@@ -68,9 +58,7 @@
       "start": 20351165,
       "end": 20421493,
       "size": "70kb",
-      "cosmo_pct_mean": 7,
       "panel_pct_mean": 71,
-      "nelk_pct_mean": 0,
       "disrupted_genes": [
         "PPFIBP1",
         "SMCO2"
@@ -82,9 +70,7 @@
       "start": 20474239,
       "end": 20500612,
       "size": "26kb",
-      "cosmo_pct_mean": 8,
       "panel_pct_mean": 71,
-      "nelk_pct_mean": 0,
       "disrupted_genes": [
         "ENSCAFG00845024548",
         "ENSCAFG00845024560",
@@ -97,9 +83,7 @@
       "start": 20694014,
       "end": 20702805,
       "size": "8kb",
-      "cosmo_pct_mean": 11,
       "panel_pct_mean": 71,
-      "nelk_pct_mean": 0,
       "disrupted_genes": [
         "STK38L"
       ],
@@ -110,9 +94,7 @@
       "start": 307685,
       "end": 386804,
       "size": "79kb",
-      "cosmo_pct_mean": 12,
       "panel_pct_mean": 76,
-      "nelk_pct_mean": 0,
       "disrupted_genes": [],
       "verdict": "putative_deletion"
     },
@@ -121,9 +103,7 @@
       "start": 74002638,
       "end": 74072966,
       "size": "70kb",
-      "cosmo_pct_mean": 9,
       "panel_pct_mean": 54,
-      "nelk_pct_mean": 0,
       "disrupted_genes": [],
       "verdict": "putative_deletion"
     },
@@ -132,9 +112,7 @@
       "start": 74196040,
       "end": 74319114,
       "size": "123kb",
-      "cosmo_pct_mean": 7,
       "panel_pct_mean": 54,
-      "nelk_pct_mean": 0,
       "disrupted_genes": [],
       "verdict": "putative_deletion"
     },
@@ -143,9 +121,7 @@
       "start": 74336696,
       "end": 74407024,
       "size": "70kb",
-      "cosmo_pct_mean": 10,
       "panel_pct_mean": 54,
-      "nelk_pct_mean": 0,
       "disrupted_genes": [],
       "verdict": "putative_deletion"
     },
@@ -154,9 +130,7 @@
       "start": 74679545,
       "end": 74820201,
       "size": "140kb",
-      "cosmo_pct_mean": 7,
       "panel_pct_mean": 54,
-      "nelk_pct_mean": 0,
       "disrupted_genes": [],
       "verdict": "putative_deletion"
     },
@@ -165,9 +139,7 @@
       "start": 75286124,
       "end": 75338870,
       "size": "52kb",
-      "cosmo_pct_mean": 9,
       "panel_pct_mean": 64,
-      "nelk_pct_mean": 0,
       "disrupted_genes": [],
       "verdict": "putative_deletion"
     },
@@ -176,9 +148,7 @@
       "start": 75365243,
       "end": 75426780,
       "size": "61kb",
-      "cosmo_pct_mean": 9,
       "panel_pct_mean": 64,
-      "nelk_pct_mean": 0,
       "disrupted_genes": [],
       "verdict": "putative_deletion"
     },
@@ -187,9 +157,7 @@
       "start": 75708092,
       "end": 75822375,
       "size": "114kb",
-      "cosmo_pct_mean": 8,
       "panel_pct_mean": 64,
-      "nelk_pct_mean": 0,
       "disrupted_genes": [],
       "verdict": "putative_deletion"
     },
@@ -198,9 +166,7 @@
       "start": 75875121,
       "end": 75945449,
       "size": "70kb",
-      "cosmo_pct_mean": 7,
       "panel_pct_mean": 64,
-      "nelk_pct_mean": 0,
       "disrupted_genes": [],
       "verdict": "putative_deletion"
     }

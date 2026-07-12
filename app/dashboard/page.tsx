@@ -284,7 +284,7 @@ export default function Dashboard() {
     ],
     inbreeding: [
       'What does this inbreeding level mean for my dog\'s health?',
-      'How does Cosmo compare to typical dogs of similar breed mix?',
+      'How does this dog compare to typical dogs of similar breed mix?',
       'Are there specific health risks associated with this level of inbreeding?',
     ],
     microbiome: [

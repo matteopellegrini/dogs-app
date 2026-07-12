@@ -71,16 +71,16 @@ interface AgeResult {
   cv_mae_years: number;
   n_training_samples: number;
   n_species_features: number;
-  n_cosmo_features_matched: number;
+  n_features_matched: number;
   model: string;
   top_species: { name: string; coefficient: number }[];
 }
 
 interface HealthResult {
-  cosmo_richness: number;
-  cosmo_shannon: number;
-  cosmo_richness_matched: number;
-  cosmo_shannon_matched: number;
+  sample_richness: number;
+  sample_shannon: number;
+  sample_richness_matched: number;
+  sample_shannon_matched: number;
   richness_percentile: number;
   shannon_percentile: number;
   ref_richness_p25: number;
@@ -188,7 +188,7 @@ export default function MicrobiomePanel({ samplePath }: { samplePath: string }) 
             </p>
           )}
           <p className="text-sm text-indigo-600">
-            Estimated from {ageData.n_cosmo_features_matched} matched bacterial species against {ageData.n_training_samples} reference dogs
+            Estimated from {ageData.n_features_matched} matched bacterial species against {ageData.n_training_samples} reference dogs
             · model CV R²={ageData.cv_r2.toFixed(2)}, MAE±{ageData.cv_mae_years.toFixed(1)} yrs
           </p>
           <div>
@@ -221,19 +221,19 @@ export default function MicrobiomePanel({ samplePath }: { samplePath: string }) 
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <p className="text-xs text-emerald-400 mb-0.5">Species Richness</p>
-                <p className="text-3xl font-bold text-emerald-700">{healthData.cosmo_richness_matched}</p>
+                <p className="text-3xl font-bold text-emerald-700">{healthData.sample_richness_matched}</p>
                 <p className="text-xs text-emerald-500">{healthData.richness_percentile}th percentile</p>
               </div>
               <div>
                 <p className="text-xs text-emerald-400 mb-0.5">Shannon Index</p>
-                <p className="text-3xl font-bold text-emerald-700">{healthData.cosmo_shannon_matched.toFixed(2)}</p>
+                <p className="text-3xl font-bold text-emerald-700">{healthData.sample_shannon_matched.toFixed(2)}</p>
                 <p className="text-xs text-emerald-500">{healthData.shannon_percentile}th percentile</p>
               </div>
             </div>
             <div className="space-y-1">
               <p className="text-xs text-emerald-400 uppercase tracking-wide">vs. reference (n=1,045 dogs)</p>
-              <PercentileBar label="Richness" value={healthData.cosmo_richness_matched} p25={healthData.ref_richness_p25} p50={healthData.ref_richness_p50} p75={healthData.ref_richness_p75} color="#10b981" />
-              <PercentileBar label="Shannon" value={healthData.cosmo_shannon_matched} p25={healthData.ref_shannon_p25} p50={healthData.ref_shannon_p50} p75={healthData.ref_shannon_p75} color="#10b981" />
+              <PercentileBar label="Richness" value={healthData.sample_richness_matched} p25={healthData.ref_richness_p25} p50={healthData.ref_richness_p50} p75={healthData.ref_richness_p75} color="#10b981" />
+              <PercentileBar label="Shannon" value={healthData.sample_shannon_matched} p25={healthData.ref_shannon_p25} p50={healthData.ref_shannon_p50} p75={healthData.ref_shannon_p75} color="#10b981" />
             </div>
             <p className="text-xs text-emerald-500">
               Computed on {healthData.n_matched_species} species shared with the reference panel.

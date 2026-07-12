@@ -48,8 +48,8 @@
       "association": "canine periodontitis"
     }
   ],
-  "cosmo_richness": 96,
-  "cosmo_shannon": 3.1267,
-  "cosmo_richness_matched": 14,
-  "cosmo_shannon_matched": 1.7286
+  "sample_richness": 96,
+  "sample_shannon": 3.1267,
+  "sample_richness_matched": 14,
+  "sample_shannon_matched": 1.7286
 }

@@ -47,6 +47,6 @@
       "coefficient": 0.11939
     }
   ],
-  "n_cosmo_features_matched": 14,
-  "actual_age_years": 10
+  "actual_age_years": 10,
+  "n_features_matched": 14
 }

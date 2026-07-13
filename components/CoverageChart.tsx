@@ -12,8 +12,14 @@ interface Centromeres {
   [chrom: string]: [number, number];
 }
 
+interface CoverageMeta {
+  predicted_sex: 'male' | 'female';
+  chrx_auto_ratio: number;
+}
+
 interface CoverageData {
   [chrom: string]: ChromData;
+  _meta?: CoverageMeta;
 }
 
 interface GeneMap {
@@ -520,6 +526,8 @@ export default function CoverageChart({ samplePath = '' }: { samplePath?: string
     );
   }
 
+  const meta  = data._meta;
+  const predictedSex = meta?.predicted_sex ?? null;
   const chrom = data[selected];
   const ratio = chrom?.ratio ?? [];
   const low   = ratio.filter(r => r < DEL_THRESH).length;
@@ -531,12 +539,23 @@ export default function CoverageChart({ samplePath = '' }: { samplePath?: string
   return (
     <div className="space-y-4">
       <div>
-        <p className="text-sm text-gray-500 mb-3">
-          Sample depth normalised to the reference panel per 1 Mb window.
-          Autosomes: 4-dog panel (Gen-2, Gen-3, Gen-30, Gen-47).
-          chrX: 3-male panel (Gen-6, Gen-9, Gen-47).
-          Ratio 1.0 = diploid; 0.5 = hemizygous deletion; 1.5 = duplication.
-        </p>
+        <div className="flex items-start justify-between gap-3 mb-3">
+          <p className="text-sm text-gray-500">
+            Sample depth normalised to the reference panel per 1 Mb window.
+            Autosomes: 4-dog panel (Gen-2, Gen-3, Gen-30, Gen-47).
+            chrX: 3-male panel (Gen-6, Gen-9, Gen-47), sex-normalised so ratio 1.0 = expected for this sex.
+            Ratio 1.0 = normal; &lt;{DEL_THRESH} = possible deletion; &gt;{DUP_THRESH} = possible duplication.
+          </p>
+          {predictedSex && (
+            <span className={`shrink-0 text-xs font-semibold px-2 py-1 rounded-full ${
+              predictedSex === 'male'
+                ? 'bg-blue-100 text-blue-700'
+                : 'bg-pink-100 text-pink-700'
+            }`}>
+              {predictedSex === 'male' ? '♂ Male' : '♀ Female'}
+            </span>
+          )}
+        </div>
 
         {/* Chromosome selector */}
         <div className="flex flex-wrap gap-1.5 mb-4">
@@ -582,7 +601,15 @@ export default function CoverageChart({ samplePath = '' }: { samplePath?: string
 
         {isChrX && (
           <div className="bg-blue-50 border border-blue-200 text-blue-700 text-xs rounded-lg px-3 py-2 mb-3">
-            chrX normalised to 3-male reference panel (Gen-6, Gen-9, Gen-47) — ratio 1.0 confirms one intact X (expected for female; ~0.5 for male).
+            {predictedSex === 'male'
+              ? `chrX sex-normalised for male (÷0.5 of autosomal baseline) — ratio 1.0 confirms one intact X chromosome (hemizygous, expected for male). Reference: 3-male panel (Gen-6, Gen-9, Gen-47).`
+              : predictedSex === 'female'
+              ? `chrX normalised to 3-male reference panel (Gen-6, Gen-9, Gen-47) — for a female two X copies raise the ratio to ~2.0 relative to the male panel. Ratio near 1.0 would indicate one X (monosomy X / Turner syndrome).`
+              : `chrX normalised to 3-male reference panel (Gen-6, Gen-9, Gen-47) — ratio 1.0 confirms one intact X (expected for male; ~2.0 for female relative to male panel).`
+            }
+            {meta?.chrx_auto_ratio !== undefined && (
+              <span className="ml-2 opacity-70">(chrX/auto depth ratio: {meta.chrx_auto_ratio.toFixed(3)})</span>
+            )}
           </div>
         )}
 

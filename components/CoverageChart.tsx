@@ -19,7 +19,6 @@ interface CoverageMeta {
 
 interface CoverageData {
   [chrom: string]: ChromData;
-  _meta?: CoverageMeta;
 }
 
 interface GeneMap {
@@ -526,7 +525,7 @@ export default function CoverageChart({ samplePath = '' }: { samplePath?: string
     );
   }
 
-  const meta  = data._meta;
+  const meta  = (data as unknown as Record<string, CoverageMeta | undefined>)._meta;
   const predictedSex = meta?.predicted_sex ?? null;
   const chrom = data[selected];
   const ratio = chrom?.ratio ?? [];

@@ -32,7 +32,7 @@
     },
     {
       "breed": "CKCS",
-      "breed_name": "CKCS",
+      "breed_name": "Cavalier King Charles Spaniel",
       "proportion": 0.020793
     },
     {
@@ -72,7 +72,7 @@
     },
     {
       "breed": "LEON",
-      "breed_name": "LEON",
+      "breed_name": "Leonberger",
       "proportion": 0.011552
     },
     {
@@ -97,12 +97,12 @@
     },
     {
       "breed": "LVMD_Italy",
-      "breed_name": "LVMD_Italy",
+      "breed_name": "Levriero Meridionale (Italy)",
       "proportion": 0.007997
     },
     {
       "breed": "PEMB",
-      "breed_name": "PEMB",
+      "breed_name": "Pembroke Welsh Corgi",
       "proportion": 0.007954
     },
     {
@@ -112,7 +112,7 @@
     },
     {
       "breed": "CPAT_Italy",
-      "breed_name": "CPAT_Italy",
+      "breed_name": "Cane Pastore Abruzzese",
       "proportion": 0.00639
     },
     {
@@ -127,12 +127,12 @@
     },
     {
       "breed": "EURA",
-      "breed_name": "EURA",
+      "breed_name": "Eurasier",
       "proportion": 0.005448
     },
     {
       "breed": "CARD",
-      "breed_name": "CARD",
+      "breed_name": "Cardigan Welsh Corgi",
       "proportion": 0.005428
     },
     {
@@ -142,7 +142,7 @@
     },
     {
       "breed": "TURV",
-      "breed_name": "TURV",
+      "breed_name": "Belgian Tervuren",
       "proportion": 0.004369
     },
     {
@@ -157,12 +157,12 @@
     },
     {
       "breed": "MSNZ",
-      "breed_name": "MSNZ",
+      "breed_name": "Miniature Schnauzer",
       "proportion": 0.003419
     },
     {
       "breed": "GSMD",
-      "breed_name": "GSMD",
+      "breed_name": "Greater Swiss Mountain Dog",
       "proportion": 0.00327
     },
     {
@@ -177,17 +177,17 @@
     },
     {
       "breed": "RATT",
-      "breed_name": "RATT",
+      "breed_name": "Rat Terrier",
       "proportion": 0.002458
     },
     {
       "breed": "IWSP",
-      "breed_name": "IWSP",
+      "breed_name": "Irish Water Spaniel",
       "proportion": 0.002444
     },
     {
       "breed": "SSHP",
-      "breed_name": "SSHP",
+      "breed_name": "Smooth Collie",
       "proportion": 0.002325
     },
     {
@@ -197,7 +197,7 @@
     },
     {
       "breed": "KELP",
-      "breed_name": "KELP",
+      "breed_name": "Australian Kelpie",
       "proportion": 0.002207
     },
     {
@@ -207,17 +207,17 @@
     },
     {
       "breed": "STBD",
-      "breed_name": "STBD",
+      "breed_name": "Saint Bernard",
       "proportion": 0.001867
     },
     {
       "breed": "NEAP",
-      "breed_name": "NEAP",
+      "breed_name": "Neapolitan Mastiff",
       "proportion": 0.001648
     },
     {
       "breed": "LMUN",
-      "breed_name": "LMUN",
+      "breed_name": "Large Munsterlander",
       "proportion": 0.001599
     },
     {
@@ -227,7 +227,7 @@
     },
     {
       "breed": "GWHP",
-      "breed_name": "GWHP",
+      "breed_name": "German Wirehaired Pointer",
       "proportion": 0.001387
     },
     {
@@ -237,12 +237,12 @@
     },
     {
       "breed": "PBGV",
-      "breed_name": "PBGV",
+      "breed_name": "Petit Basset Griffon Vend\u00e9en",
       "proportion": 0.000695
     },
     {
       "breed": "WOLF-India",
-      "breed_name": "WOLF-India",
+      "breed_name": "Gray Wolf (India)",
       "proportion": 0.000673
     },
     {
@@ -252,7 +252,7 @@
     },
     {
       "breed": "AESK",
-      "breed_name": "AESK",
+      "breed_name": "American Eskimo Dog",
       "proportion": 0.0
     },
     {
@@ -292,17 +292,17 @@
     },
     {
       "breed": "AUCD",
-      "breed_name": "AUCD",
+      "breed_name": "Australian Cattle Dog",
       "proportion": 0.0
     },
     {
       "breed": "AUSS",
-      "breed_name": "AUSS",
+      "breed_name": "Australian Shepherd",
       "proportion": 0.0
     },
     {
       "breed": "AZWK_Mali",
-      "breed_name": "AZWK_Mali",
+      "breed_name": "Azawakh (Mali)",
       "proportion": 0.0
     },
     {
@@ -317,7 +317,7 @@
     },
     {
       "breed": "BEDT",
-      "breed_name": "BEDT",
+      "breed_name": "Bedlington Terrier",
       "proportion": 0.0
     },
     {
@@ -327,27 +327,27 @@
     },
     {
       "breed": "BERD",
-      "breed_name": "BERD",
+      "breed_name": "Bergamasco Shepherd",
       "proportion": 0.0
     },
     {
       "breed": "BLDH",
-      "breed_name": "BLDH",
+      "breed_name": "Bloodhound",
       "proportion": 0.0
     },
     {
       "breed": "BMAL",
-      "breed_name": "BMAL",
+      "breed_name": "Belgian Malinois",
       "proportion": 0.0
     },
     {
       "breed": "BMD",
-      "breed_name": "BMD",
+      "breed_name": "Bernese Mountain Dog",
       "proportion": 0.0
     },
     {
       "breed": "BOER",
-      "breed_name": "BOER",
+      "breed_name": "Boerboel",
       "proportion": 0.0
     },
     {
@@ -357,7 +357,7 @@
     },
     {
       "breed": "BORT",
-      "breed_name": "BORT",
+      "breed_name": "Border Terrier",
       "proportion": 0.0
     },
     {
@@ -372,22 +372,22 @@
     },
     {
       "breed": "BOUV",
-      "breed_name": "BOUV",
+      "breed_name": "Bouvier des Flandres",
       "proportion": 0.0
     },
     {
       "breed": "BOX",
-      "breed_name": "BOX",
+      "breed_name": "Boxer",
       "proportion": 0.0
     },
     {
       "breed": "BPIC",
-      "breed_name": "BPIC",
+      "breed_name": "Berger Picard",
       "proportion": 0.0
     },
     {
       "breed": "BRTR",
-      "breed_name": "BRTR",
+      "breed_name": "Brittany",
       "proportion": 0.0
     },
     {
@@ -397,22 +397,22 @@
     },
     {
       "breed": "BSJI",
-      "breed_name": "BSJI",
+      "breed_name": "Basenji",
       "proportion": 0.0
     },
     {
       "breed": "BULD",
-      "breed_name": "BULD",
+      "breed_name": "Bulldog",
       "proportion": 0.0
     },
     {
       "breed": "BULM",
-      "breed_name": "BULM",
+      "breed_name": "Bullmastiff",
       "proportion": 0.0
     },
     {
       "breed": "BULT",
-      "breed_name": "BULT",
+      "breed_name": "Bull Terrier",
       "proportion": 0.0
     },
     {
@@ -427,12 +427,12 @@
     },
     {
       "breed": "CANE_Italy",
-      "breed_name": "CANE_Italy",
+      "breed_name": "Cane Corso (Italy)",
       "proportion": 0.0
     },
     {
       "breed": "CCRT",
-      "breed_name": "CCRT",
+      "breed_name": "Curly-Coated Retriever",
       "proportion": 0.0
     },
     {
@@ -447,7 +447,7 @@
     },
     {
       "breed": "CIRN_Italy",
-      "breed_name": "CIRN_Italy",
+      "breed_name": "Cirneco dell'Etna",
       "proportion": 0.0
     },
     {
@@ -457,12 +457,12 @@
     },
     {
       "breed": "COTO",
-      "breed_name": "COTO",
+      "breed_name": "Coton de Tul\u00e9ar",
       "proportion": 0.0
     },
     {
       "breed": "CRES",
-      "breed_name": "CRES",
+      "breed_name": "Chinese Crested",
       "proportion": 0.0
     },
     {
@@ -472,17 +472,17 @@
     },
     {
       "breed": "DANE",
-      "breed_name": "DANE",
+      "breed_name": "Great Dane",
       "proportion": 0.0
     },
     {
       "breed": "DDBX",
-      "breed_name": "DDBX",
+      "breed_name": "Dogue de Bordeaux",
       "proportion": 0.0
     },
     {
       "breed": "DEER",
-      "breed_name": "DEER",
+      "breed_name": "Scottish Deerhound",
       "proportion": 0.0
     },
     {
@@ -502,37 +502,37 @@
     },
     {
       "breed": "FIEL",
-      "breed_name": "FIEL",
+      "breed_name": "Field Spaniel",
       "proportion": 0.0
     },
     {
       "breed": "FINS",
-      "breed_name": "FINS",
+      "breed_name": "Finnish Spitz",
       "proportion": 0.0
     },
     {
       "breed": "GDJK",
-      "breed_name": "GDJK",
+      "breed_name": "Grand Basset Griffon Vend\u00e9en",
       "proportion": 0.0
     },
     {
       "breed": "GLEN",
-      "breed_name": "GLEN",
+      "breed_name": "Glen of Imaal Terrier",
       "proportion": 0.0
     },
     {
       "breed": "GPYR",
-      "breed_name": "GPYR",
+      "breed_name": "Great Pyrenees",
       "proportion": 0.0
     },
     {
       "breed": "GREE",
-      "breed_name": "GREE",
+      "breed_name": "Greenland Dog",
       "proportion": 0.0
     },
     {
       "breed": "GSD",
-      "breed_name": "GSD",
+      "breed_name": "German Shepherd Dog",
       "proportion": 0.0
     },
     {
@@ -542,12 +542,12 @@
     },
     {
       "breed": "GSNZ",
-      "breed_name": "GSNZ",
+      "breed_name": "Giant Schnauzer",
       "proportion": 0.0
     },
     {
       "breed": "HUSK",
-      "breed_name": "HUSK",
+      "breed_name": "Siberian Husky",
       "proportion": 0.0
     },
     {
@@ -557,17 +557,17 @@
     },
     {
       "breed": "ICES",
-      "breed_name": "ICES",
+      "breed_name": "Icelandic Sheepdog",
       "proportion": 0.0
     },
     {
       "breed": "INCA",
-      "breed_name": "INCA",
+      "breed_name": "Peruvian Hairless Dog",
       "proportion": 0.0
     },
     {
       "breed": "IRIT",
-      "breed_name": "IRIT",
+      "breed_name": "Irish Terrier",
       "proportion": 0.0
     },
     {
@@ -577,12 +577,12 @@
     },
     {
       "breed": "ITGY",
-      "breed_name": "ITGY",
+      "breed_name": "Italian Greyhound",
       "proportion": 0.0
     },
     {
       "breed": "IWOF",
-      "breed_name": "IWOF",
+      "breed_name": "Irish Wolfhound",
       "proportion": 0.0
     },
     {
@@ -592,7 +592,7 @@
     },
     {
       "breed": "KERY",
-      "breed_name": "KERY",
+      "breed_name": "Kerry Blue Terrier",
       "proportion": 0.0
     },
     {
@@ -602,12 +602,12 @@
     },
     {
       "breed": "LHSA",
-      "breed_name": "LHSA",
+      "breed_name": "Lhasa Apso",
       "proportion": 0.0
     },
     {
       "breed": "MAAB_Italy",
-      "breed_name": "MAAB_Italy",
+      "breed_name": "Maremma Abruzzese Sheepdog",
       "proportion": 0.0
     },
     {
@@ -617,52 +617,52 @@
     },
     {
       "breed": "MBLT",
-      "breed_name": "MBLT",
+      "breed_name": "Miniature Bull Terrier",
       "proportion": 0.0
     },
     {
       "breed": "MNTY",
-      "breed_name": "MNTY",
+      "breed_name": "Montenegrin Mountain Hound",
       "proportion": 0.0
     },
     {
       "breed": "MXOL",
-      "breed_name": "MXOL",
+      "breed_name": "Mexican Hairless Dog",
       "proportion": 0.0
     },
     {
       "breed": "NELK",
-      "breed_name": "NELK",
+      "breed_name": "Norrbottenspets",
       "proportion": 0.0
     },
     {
       "breed": "NEWF",
-      "breed_name": "NEWF",
+      "breed_name": "Newfoundland",
       "proportion": 0.0
     },
     {
       "breed": "NORF",
-      "breed_name": "NORF",
+      "breed_name": "Norfolk Terrier",
       "proportion": 0.0
     },
     {
       "breed": "NOWT",
-      "breed_name": "NOWT",
+      "breed_name": "Norwich Terrier",
       "proportion": 0.0
     },
     {
       "breed": "NSDT",
-      "breed_name": "NSDT",
+      "breed_name": "Nova Scotia Duck Tolling Retriever",
       "proportion": 0.0
     },
     {
       "breed": "OES",
-      "breed_name": "OES",
+      "breed_name": "Old English Sheepdog",
       "proportion": 0.0
     },
     {
       "breed": "OTTR",
-      "breed_name": "OTTR",
+      "breed_name": "Otterhound",
       "proportion": 0.0
     },
     {
@@ -672,7 +672,7 @@
     },
     {
       "breed": "PARS",
-      "breed_name": "PARS",
+      "breed_name": "Parson Russell Terrier",
       "proportion": 0.0
     },
     {
@@ -682,12 +682,12 @@
     },
     {
       "breed": "POM",
-      "breed_name": "POM",
+      "breed_name": "Pomeranian",
       "proportion": 0.0
     },
     {
       "breed": "PTWD",
-      "breed_name": "PTWD",
+      "breed_name": "Portuguese Water Dog",
       "proportion": 0.0
     },
     {
@@ -697,17 +697,17 @@
     },
     {
       "breed": "PUMI",
-      "breed_name": "PUMI",
+      "breed_name": "Pumi",
       "proportion": 0.0
     },
     {
       "breed": "REDB",
-      "breed_name": "REDB",
+      "breed_name": "Redbone Coonhound",
       "proportion": 0.0
     },
     {
       "breed": "RHOD",
-      "breed_name": "RHOD",
+      "breed_name": "Rhodesian Ridgeback",
       "proportion": 0.0
     },
     {
@@ -722,17 +722,17 @@
     },
     {
       "breed": "SALU_ArabPen",
-      "breed_name": "SALU_ArabPen",
+      "breed_name": "Saluki (Arabian Peninsula)",
       "proportion": 0.0
     },
     {
       "breed": "SALU_CentAsia",
-      "breed_name": "SALU_CentAsia",
+      "breed_name": "Saluki (Central Asia)",
       "proportion": 0.0
     },
     {
       "breed": "SALU_Tribal",
-      "breed_name": "SALU_Tribal",
+      "breed_name": "Saluki (Tribal)",
       "proportion": 0.0
     },
     {
@@ -742,7 +742,7 @@
     },
     {
       "breed": "SCWT",
-      "breed_name": "SCWT",
+      "breed_name": "Soft Coated Wheaten Terrier",
       "proportion": 0.0
     },
     {
@@ -767,22 +767,22 @@
     },
     {
       "breed": "SKIP",
-      "breed_name": "SKIP",
+      "breed_name": "Schipperke",
       "proportion": 0.0
     },
     {
       "breed": "SLOU_NAfrica",
-      "breed_name": "SLOU_NAfrica",
+      "breed_name": "Sloughi (North Africa)",
       "proportion": 0.0
     },
     {
       "breed": "SPIN",
-      "breed_name": "SPIN",
+      "breed_name": "Spinone Italiano",
       "proportion": 0.0
     },
     {
       "breed": "SSNZ",
-      "breed_name": "SSNZ",
+      "breed_name": "Standard Schnauzer",
       "proportion": 0.0
     },
     {
@@ -792,32 +792,32 @@
     },
     {
       "breed": "SVAL",
-      "breed_name": "SVAL",
+      "breed_name": "Swedish Vallhund",
       "proportion": 0.0
     },
     {
       "breed": "TIBM",
-      "breed_name": "TIBM",
+      "breed_name": "Tibetan Mastiff",
       "proportion": 0.0
     },
     {
       "breed": "TIBM_China",
-      "breed_name": "TIBM_China",
+      "breed_name": "Tibetan Mastiff (China)",
       "proportion": 0.0
     },
     {
       "breed": "TYFX",
-      "breed_name": "TYFX",
+      "breed_name": "Toy Fox Terrier",
       "proportion": 0.0
     },
     {
       "breed": "VIZS",
-      "breed_name": "VIZS",
+      "breed_name": "Vizsla",
       "proportion": 0.0
     },
     {
       "breed": "VPIN_Italy",
-      "breed_name": "VPIN_Italy",
+      "breed_name": "Volpino Italiano",
       "proportion": 0.0
     },
     {
@@ -832,47 +832,47 @@
     },
     {
       "breed": "WHPG",
-      "breed_name": "WHPG",
+      "breed_name": "Wirehaired Pointing Griffon",
       "proportion": 0.0
     },
     {
       "breed": "WHWT",
-      "breed_name": "WHWT",
+      "breed_name": "West Highland White Terrier",
       "proportion": 0.0
     },
     {
       "breed": "WOLF-China",
-      "breed_name": "WOLF-China",
+      "breed_name": "Gray Wolf (China)",
       "proportion": 0.0
     },
     {
       "breed": "WOLF-Croatia",
-      "breed_name": "WOLF-Croatia",
+      "breed_name": "Gray Wolf (Croatia)",
       "proportion": 0.0
     },
     {
       "breed": "WOLF-Israel",
-      "breed_name": "WOLF-Israel",
+      "breed_name": "Gray Wolf (Israel)",
       "proportion": 0.0
     },
     {
       "breed": "WOLF-Italy",
-      "breed_name": "WOLF-Italy",
+      "breed_name": "Gray Wolf (Italy)",
       "proportion": 0.0
     },
     {
       "breed": "WOLF-Portugal",
-      "breed_name": "WOLF-Portugal",
+      "breed_name": "Gray Wolf (Portugal)",
       "proportion": 0.0
     },
     {
       "breed": "WOLF-Yellowstone",
-      "breed_name": "WOLF-Yellowstone",
+      "breed_name": "Gray Wolf (Yellowstone)",
       "proportion": 0.0
     },
     {
       "breed": "XIGO_China",
-      "breed_name": "XIGO_China",
+      "breed_name": "Xigou (China)",
       "proportion": 0.0
     },
     {

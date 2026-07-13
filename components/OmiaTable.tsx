@@ -43,6 +43,8 @@ interface OmiaResult {
     affected_snv?: number;
     affected_high_confidence?: number;
     in_dog10k_panel?: number;
+    not_callable?: number;
+    indel_unknown?: number;
   };
   method: string;
 }
@@ -71,11 +73,8 @@ function traitLabel(v: Variant) {
 function sampleGt(v: Variant, dogKey: string): SampleGenotype | undefined {
   const gt = v[dogKey] as SampleGenotype | undefined;
   if (!gt) return undefined;
-  // For kiki, only count variants actually genotyped from the Dog10K panel
-  if (dogKey === 'kiki') {
-    return (gt.source ?? '') === 'dog10k_imputed' ? gt : undefined;
-  }
-  return gt;
+  // Only count variants actually genotyped from the Dog10K panel
+  return (gt.source ?? '') === 'dog10k_imputed' ? gt : undefined;
 }
 
 export default function OmiaTable({ samplePath = '' }: { samplePath?: string } = {}) {
@@ -180,7 +179,13 @@ export default function OmiaTable({ samplePath = '' }: { samplePath?: string } =
 
       {notTested > 0 && (
         <p className="text-[10px] text-gray-400 text-center">
-          {notTested} of {allVariants.length} screened variants were not present in the Dog10K imputation panel and could not be genotyped.
+          {tested.length} of {allVariants.length} screened variants were genotyped via the Dog10K imputation panel.
+          {data.summary.indel_unknown != null && data.summary.indel_unknown > 0 && (
+            <> {data.summary.indel_unknown} are indels (not callable by imputation);</>
+          )}
+          {data.summary.not_callable != null && data.summary.not_callable > 0 && (
+            <> {data.summary.not_callable} SNPs were absent from the panel.</>
+          )}
         </p>
       )}
     </div>

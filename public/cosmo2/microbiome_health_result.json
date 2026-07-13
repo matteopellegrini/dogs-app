@@ -14,13 +14,13 @@
   "n_matched_genera": 17,
   "diversity_note": "Genus-level comparison (ref: MetaPhlAn 3.18; sample: MetaPhlAn4 Jan25)",
   "pathobiont_burden_pct": 26.868,
-  "pathobiont_percentile": 100.0,
+  "pathobiont_percentile": 59.7,
   "commensal_pct": 73.132,
   "dysbiosis_index": 0.367,
-  "ref_pathobiont_mean": 0.24,
-  "ref_pathobiont_median": 0.17,
-  "ref_pathobiont_p75": 0.44,
-  "ref_pathobiont_p90": 0.59,
+  "ref_pathobiont_mean": 23.87,
+  "ref_pathobiont_median": 16.95,
+  "ref_pathobiont_p75": 43.53,
+  "ref_pathobiont_p90": 58.79,
   "pathobiont_hits": [
     {
       "name": "Porphyromonas cangingivalis",

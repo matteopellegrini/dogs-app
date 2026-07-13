@@ -89,7 +89,9 @@ interface HealthResult {
   ref_shannon_p25: number;
   ref_shannon_p50: number;
   ref_shannon_p75: number;
-  n_matched_species: number;
+  n_matched_genera?: number;
+  n_matched_species?: number;
+  diversity_note?: string;
   pathobiont_burden_pct: number;
   pathobiont_percentile: number;
   commensal_pct: number;
@@ -220,7 +222,7 @@ export default function MicrobiomePanel({ samplePath }: { samplePath: string }) 
             <p className="text-xs font-semibold text-emerald-500 uppercase tracking-wide">Alpha Diversity</p>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <p className="text-xs text-emerald-400 mb-0.5">Species Richness</p>
+                <p className="text-xs text-emerald-400 mb-0.5">Genus Richness</p>
                 <p className="text-3xl font-bold text-emerald-700">{healthData.sample_richness_matched}</p>
                 <p className="text-xs text-emerald-500">{healthData.richness_percentile}th percentile</p>
               </div>
@@ -236,8 +238,9 @@ export default function MicrobiomePanel({ samplePath }: { samplePath: string }) 
               <PercentileBar label="Shannon" value={healthData.sample_shannon_matched} p25={healthData.ref_shannon_p25} p50={healthData.ref_shannon_p50} p75={healthData.ref_shannon_p75} color="#10b981" />
             </div>
             <p className="text-xs text-emerald-500">
-              Computed on {healthData.n_matched_species} species shared with the reference panel.
+              Computed on {healthData.n_matched_genera ?? healthData.n_matched_species} genera shared with the reference panel.
               Higher diversity indicates a more resilient oral microbiome.
+              {healthData.diversity_note && <span className="block text-emerald-400 mt-0.5">{healthData.diversity_note}</span>}
             </p>
           </div>
 

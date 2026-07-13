@@ -1,25 +1,30 @@
 {
-  "richness_percentile": 99.0,
-  "shannon_percentile": 70.7,
-  "ref_richness_p25": 5,
-  "ref_richness_p50": 9,
-  "ref_richness_p75": 12,
-  "ref_shannon_p25": 0.941,
-  "ref_shannon_p50": 1.4688,
-  "ref_shannon_p75": 1.7745,
-  "n_matched_species": 14,
+  "sample_richness": 96,
+  "sample_shannon": 3.1267,
+  "sample_richness_matched": 21,
+  "sample_shannon_matched": 1.2695,
+  "richness_percentile": 98.8,
+  "shannon_percentile": 31.3,
+  "ref_richness_p25": 10,
+  "ref_richness_p50": 15,
+  "ref_richness_p75": 18,
+  "ref_shannon_p25": 1.1508,
+  "ref_shannon_p50": 1.5413,
+  "ref_shannon_p75": 1.8518,
+  "n_matched_genera": 21,
+  "diversity_note": "Genus-level comparison (ref: MetaPhlAn 3.18; sample: MetaPhlAn4 Jan25)",
   "pathobiont_burden_pct": 50.61,
-  "pathobiont_percentile": 80.8,
-  "commensal_pct": 0,
-  "dysbiosis_index": 51.611,
-  "ref_pathobiont_mean": 23.98,
-  "ref_pathobiont_median": 16.97,
-  "ref_pathobiont_p75": 43.65,
-  "ref_pathobiont_p90": 59.44,
+  "pathobiont_percentile": 80.7,
+  "commensal_pct": 49.39,
+  "dysbiosis_index": 1.025,
+  "ref_pathobiont_mean": 23.87,
+  "ref_pathobiont_median": 16.95,
+  "ref_pathobiont_p75": 43.53,
+  "ref_pathobiont_p90": 58.79,
   "pathobiont_hits": [
     {
       "name": "Porphyromonas gulae",
-      "pct": 21.95,
+      "pct": 21.949,
       "color": "red",
       "association": "canine periodontal disease"
     },
@@ -31,25 +36,21 @@
     },
     {
       "name": "Porphyromonas cangingivalis",
-      "pct": 9.43,
+      "pct": 9.432,
       "color": "red",
       "association": "canine periodontitis"
     },
     {
       "name": "Porphyromonas canoris",
-      "pct": 7.27,
+      "pct": 7.267,
       "color": "orange",
       "association": "canine oral disease"
     },
     {
       "name": "Porphyromonas gingivicanis",
-      "pct": 1.06,
+      "pct": 1.062,
       "color": "red",
       "association": "canine periodontitis"
     }
-  ],
-  "sample_richness": 96,
-  "sample_shannon": 3.1267,
-  "sample_richness_matched": 14,
-  "sample_shannon_matched": 1.7286
+  ]
 }

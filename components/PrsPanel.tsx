@@ -193,20 +193,19 @@ export default function PrsPanel({ samplePath = '' }: { samplePath?: string } = 
                 </span>
               </div>
 
-              {/* Score bar */}
+              {/* Percentile bar — more discriminating than 1-5 score (avoids ceiling effect) */}
               <div className="mb-1">
                 <div className="flex justify-between text-[10px] text-gray-400 mb-0.5">
-                  <span>Genomic prediction</span>
-                  <span>{res.predicted_score.toFixed(1)} / 5</span>
+                  <span>Population percentile</span>
+                  <span className="font-medium text-gray-600">{res.percentile.toFixed(0)}<span className="text-gray-400">th</span> · score {res.predicted_score.toFixed(1)}/5</span>
                 </div>
                 <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
                   <div
                     className={`h-full rounded-full ${col.bar}`}
-                    style={{ width: `${(res.predicted_score / 5) * 100}%` }}
+                    style={{ width: `${res.percentile}%` }}
                   />
                 </div>
               </div>
-
 
               {/* Expanded detail */}
               {isOpen && (
@@ -220,7 +219,6 @@ export default function PrsPanel({ samplePath = '' }: { samplePath?: string } = 
                       <span className="text-gray-400"> (95% CI {res.heritability.ci}) · {res.heritability.source}</span>
                     </p>
                   )}
-                  <p className="text-gray-400">Percentile rank among reference dogs based on genomic profile</p>
                 </div>
               )}
             </div>

@@ -1,0 +1,51 @@
+{
+  "predicted_age_years": 4.19,
+  "cv_r2": 0.492,
+  "cv_mae_years": 1.693,
+  "n_training_samples": 1045,
+  "n_species_features": 62,
+  "n_features_matched": 10,
+  "model": "RidgeCV (log10-transformed, prevalence>10%)",
+  "top_species": [
+    {
+      "name": "Corynebacterium canis",
+      "coefficient": 0.5159
+    },
+    {
+      "name": "Treponema sp OMZ 798",
+      "coefficient": 0.4367
+    },
+    {
+      "name": "Bacteroides pyogenes",
+      "coefficient": 0.34287
+    },
+    {
+      "name": "Tessaracoccus sp OH4464 COT 324",
+      "coefficient": 0.34282
+    },
+    {
+      "name": "Franklinella schreckenbergeri",
+      "coefficient": 0.30709
+    },
+    {
+      "name": "Canicola haemoglobinophilus",
+      "coefficient": -0.26586
+    },
+    {
+      "name": "Canibacter oris",
+      "coefficient": -0.26076
+    },
+    {
+      "name": "GGB76988 SGB104625",
+      "coefficient": 0.25932
+    },
+    {
+      "name": "Capnocytophaga cynodegmi",
+      "coefficient": 0.23635
+    },
+    {
+      "name": "Buchananella hordeovulneris",
+      "coefficient": 0.22806
+    }
+  ]
+}

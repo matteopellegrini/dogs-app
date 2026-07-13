@@ -1,0 +1,55 @@
+{
+  "sample_richness": 71,
+  "sample_shannon": 3.4264,
+  "sample_richness_matched": 10,
+  "sample_shannon_matched": 1.8974,
+  "richness_percentile": 90.6,
+  "shannon_percentile": 94.8,
+  "ref_richness_p25": 4,
+  "ref_richness_p50": 7,
+  "ref_richness_p75": 9,
+  "ref_shannon_p25": 0.6446,
+  "ref_shannon_p50": 1.2623,
+  "ref_shannon_p75": 1.653,
+  "n_matched_species": 10,
+  "pathobiont_burden_pct": 26.868,
+  "pathobiont_percentile": 100.0,
+  "commensal_pct": 73.132,
+  "dysbiosis_index": 0.367,
+  "ref_pathobiont_mean": 0.24,
+  "ref_pathobiont_median": 0.17,
+  "ref_pathobiont_p75": 0.44,
+  "ref_pathobiont_p90": 0.59,
+  "pathobiont_hits": [
+    {
+      "name": "Porphyromonas cangingivalis",
+      "pct": 7.856,
+      "color": "red",
+      "association": "canine periodontitis"
+    },
+    {
+      "name": "Porphyromonas gingivicanis",
+      "pct": 6.618,
+      "color": "red",
+      "association": "canine periodontitis"
+    },
+    {
+      "name": "Porphyromonas canoris",
+      "pct": 6.481,
+      "color": "orange",
+      "association": "canine oral disease"
+    },
+    {
+      "name": "Porphyromonas gulae",
+      "pct": 4.196,
+      "color": "red",
+      "association": "canine periodontal disease"
+    },
+    {
+      "name": "Tannerella forsythia",
+      "pct": 1.717,
+      "color": "red",
+      "association": "periodontal disease"
+    }
+  ]
+}

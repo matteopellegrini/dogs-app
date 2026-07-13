@@ -1,0 +1,229 @@
+{
+  "traits": {
+    "Affectionate With Family": {
+      "prs_z": 0.617,
+      "percentile": 68.6,
+      "predicted_score": 5.0,
+      "n_ref_samples": 22663,
+      "description": "GWAS prediction for affectionate with family",
+      "heritability": {
+        "h2": 0.26,
+        "ci": "0.14\u20130.38",
+        "source": "Ilska 2017 (Sci Rep)"
+      }
+    },
+    "Good With Young Children": {
+      "prs_z": 0.735,
+      "percentile": 70.7,
+      "predicted_score": 4.61,
+      "n_ref_samples": 22663,
+      "description": "GWAS prediction for good with young children",
+      "heritability": {
+        "h2": 0.2,
+        "ci": "0.10\u20130.32",
+        "source": "Ilska 2017"
+      }
+    },
+    "Good With Other Dogs": {
+      "prs_z": 0.482,
+      "percentile": 72.7,
+      "predicted_score": 3.85,
+      "n_ref_samples": 22663,
+      "description": "GWAS prediction for good with other dogs",
+      "heritability": {
+        "h2": 0.14,
+        "ci": "0.06\u20130.26",
+        "source": "Ilska 2017"
+      }
+    },
+    "Shedding Level": {
+      "prs_z": -1.102,
+      "percentile": 16.3,
+      "predicted_score": 1.53,
+      "n_ref_samples": 22663,
+      "description": "GWAS prediction for shedding level",
+      "heritability": {
+        "h2": 0.63,
+        "ci": "0.55\u20130.71",
+        "source": "Parker 2017 (Science)"
+      }
+    },
+    "Coat Grooming Frequency": {
+      "prs_z": 1.34,
+      "percentile": 91.9,
+      "predicted_score": 3.64,
+      "n_ref_samples": 22663,
+      "description": "GWAS prediction for coat grooming frequency",
+      "heritability": {
+        "h2": 0.4,
+        "ci": "0.30\u20130.50",
+        "source": "Parker 2017"
+      }
+    },
+    "Drooling Level": {
+      "prs_z": -0.495,
+      "percentile": 35.9,
+      "predicted_score": 1.31,
+      "n_ref_samples": 22663,
+      "description": "GWAS prediction for drooling level",
+      "heritability": {
+        "h2": 0.32,
+        "ci": "0.20\u20130.44",
+        "source": "Parker 2017"
+      }
+    },
+    "Openness To Strangers": {
+      "prs_z": 0.74,
+      "percentile": 78.2,
+      "predicted_score": 4.16,
+      "n_ref_samples": 22663,
+      "description": "GWAS prediction for openness to strangers",
+      "heritability": {
+        "h2": 0.25,
+        "ci": "0.13\u20130.38",
+        "source": "Ilska 2017"
+      }
+    },
+    "Playfulness Level": {
+      "prs_z": 0.912,
+      "percentile": 84.6,
+      "predicted_score": 4.36,
+      "n_ref_samples": 22663,
+      "description": "GWAS prediction for playfulness level",
+      "heritability": {
+        "h2": 0.3,
+        "ci": "0.18\u20130.42",
+        "source": "Ilska 2017"
+      }
+    },
+    "Watchdog/Protective Nature": {
+      "prs_z": 0.356,
+      "percentile": 63.9,
+      "predicted_score": 4.12,
+      "n_ref_samples": 22663,
+      "description": "GWAS prediction for watchdog/protective nature",
+      "heritability": {
+        "h2": 0.18,
+        "ci": "0.08\u20130.30",
+        "source": "Ilska 2017"
+      }
+    },
+    "Adaptability Level": {
+      "prs_z": 0.681,
+      "percentile": 80.0,
+      "predicted_score": 4.21,
+      "n_ref_samples": 22663,
+      "description": "GWAS prediction for adaptability level",
+      "heritability": {
+        "h2": 0.22,
+        "ci": "0.10\u20130.34",
+        "source": "Ilska 2017"
+      }
+    },
+    "Trainability Level": {
+      "prs_z": 0.802,
+      "percentile": 76.9,
+      "predicted_score": 4.55,
+      "n_ref_samples": 22663,
+      "description": "GWAS prediction for trainability level",
+      "heritability": {
+        "h2": 0.35,
+        "ci": "0.22\u20130.48",
+        "source": "Ilska 2017"
+      }
+    },
+    "Energy Level": {
+      "prs_z": 0.531,
+      "percentile": 76.2,
+      "predicted_score": 4.15,
+      "n_ref_samples": 22663,
+      "description": "GWAS prediction for energy level",
+      "heritability": {
+        "h2": 0.35,
+        "ci": "0.22\u20130.48",
+        "source": "Ilska 2017"
+      }
+    },
+    "Barking Level": {
+      "prs_z": 0.704,
+      "percentile": 76.8,
+      "predicted_score": 3.81,
+      "n_ref_samples": 22663,
+      "description": "GWAS prediction for barking level",
+      "heritability": {
+        "h2": 0.22,
+        "ci": "0.10\u20130.34",
+        "source": "Ilska 2017"
+      }
+    },
+    "Mental Stimulation Needs": {
+      "prs_z": 1.185,
+      "percentile": 89.8,
+      "predicted_score": 4.59,
+      "n_ref_samples": 22663,
+      "description": "GWAS prediction for mental stimulation needs",
+      "heritability": {
+        "h2": 0.28,
+        "ci": "0.16\u20130.40",
+        "source": "Ilska 2017"
+      }
+    }
+  },
+  "physical_traits": {
+    "height_cm": {
+      "pred_cm": 41.4,
+      "prs_z": -0.557,
+      "percentile": 32.4,
+      "n_ref_samples": 22663,
+      "description": "Predicted adult height at withers.",
+      "heritability": {
+        "h2": 0.62,
+        "ci": "0.55\u20130.69",
+        "source": "Hayward 2016 (Nat Gen)"
+      }
+    },
+    "weight_kg": {
+      "pred_kg": 11.2,
+      "pred_lbs": 24.7,
+      "prs_z": -0.782,
+      "percentile": 25.3,
+      "n_ref_samples": 22663,
+      "description": "Predicted adult weight.",
+      "heritability": {
+        "h2": 0.6,
+        "ci": "0.52\u20130.68",
+        "source": "Hayward 2016 (Nat Gen)"
+      }
+    },
+    "coat_type": {
+      "predicted": "Curly",
+      "prs_z": 2.529,
+      "percentile": 94.6,
+      "n_ref_samples": 22663,
+      "description": "Predicted coat texture/type.",
+      "heritability": {
+        "h2": 0.32,
+        "ci": "0.18\u20130.46",
+        "source": "Parker 2017 (Science)"
+      }
+    },
+    "coat_length": {
+      "predicted": "Long",
+      "pred_ordinal": 2.59,
+      "prs_z": 1.13,
+      "percentile": 89.9,
+      "n_ref_samples": 22663,
+      "description": "Predicted coat length.",
+      "heritability": {
+        "h2": 0.63,
+        "ci": "0.52\u20130.74",
+        "source": "Parker 2017 (Science)"
+      }
+    }
+  },
+  "method": "GWAS-based PRS using GLIMPSE2-imputed posterior dosages. Parker et al. 2017 reference panel (143933 SNPs, 178 breeds). 118049 Parker positions covered.",
+  "reference": "AKC breed trait scores (kkakey/dog_traits_AKC)",
+  "snps": 143933,
+  "snps_imputed": 118049,
+  "n_ref_breeds": 178
+}

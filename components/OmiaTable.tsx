@@ -33,9 +33,7 @@ interface Variant {
   panel?: string;
   reference?: string;
   source?: string;
-  kiki?: SampleGenotype;
-  // legacy field (other dogs)
-  cosmo?: SampleGenotype;
+  [key: string]: SampleGenotype | string | number | boolean | undefined;
 }
 
 interface OmiaResult {
@@ -70,20 +68,23 @@ function traitLabel(v: Variant) {
   return v.phene_name || v.trait || '';
 }
 
-function sampleGt(v: Variant): SampleGenotype | undefined {
+function sampleGt(v: Variant, dogKey: string): SampleGenotype | undefined {
+  const gt = v[dogKey] as SampleGenotype | undefined;
+  if (!gt) return undefined;
   // For kiki, only count variants actually genotyped from the Dog10K panel
-  if (v.kiki) {
-    const src = v.kiki.source ?? '';
-    if (src === 'dog10k_imputed') return v.kiki;
-    return undefined;
+  if (dogKey === 'kiki') {
+    return (gt.source ?? '') === 'dog10k_imputed' ? gt : undefined;
   }
-  return v.cosmo;
+  return gt;
 }
 
 export default function OmiaTable({ samplePath = '' }: { samplePath?: string } = {}) {
   const [data, setData]         = useState<OmiaResult | null>(null);
   const [expanded, setExpanded] = useState<number | null>(null);
   const [showAll, setShowAll]   = useState(false);
+
+  // Derive the per-dog key used in omia_result.json from the samplePath (e.g. '/cosmo2' → 'cosmo2')
+  const dogKey = samplePath.replace(/^\//, '').split('/')[0] || 'cosmo';
 
   useEffect(() => {
     fetch(`${samplePath}/omia_result.json`).then(r => r.json()).then(setData);
@@ -94,9 +95,9 @@ export default function OmiaTable({ samplePath = '' }: { samplePath?: string } =
   const allVariants = data.variants ?? [];
 
   // Only show variants that were actually tested (have a genotype call)
-  const tested    = allVariants.filter(v => sampleGt(v) !== undefined);
-  const affected  = tested.filter(v => sampleGt(v)?.affected === true);
-  const cleared   = tested.filter(v => sampleGt(v)?.affected === false);
+  const tested    = allVariants.filter(v => sampleGt(v, dogKey) !== undefined);
+  const affected  = tested.filter(v => sampleGt(v, dogKey)?.affected === true);
+  const cleared   = tested.filter(v => sampleGt(v, dogKey)?.affected === false);
   const notTested = allVariants.length - tested.length;
 
   return (
@@ -146,7 +147,7 @@ export default function OmiaTable({ samplePath = '' }: { samplePath?: string } =
             <div className="flex-1 border-t border-amber-300" />
           </div>
           {affected.map((v, i) => (
-            <VariantRow key={`aff-${i}`} v={v} idx={i} expanded={expanded} setExpanded={setExpanded} />
+            <VariantRow key={`aff-${i}`} v={v} idx={i} expanded={expanded} setExpanded={setExpanded} dogKey={dogKey} />
           ))}
         </div>
       )}
@@ -167,7 +168,7 @@ export default function OmiaTable({ samplePath = '' }: { samplePath?: string } =
         <>
           <div className="space-y-1.5">
             {cleared.map((v, i) => (
-              <VariantRow key={`clr-${i}`} v={v} idx={1000 + i} expanded={expanded} setExpanded={setExpanded} compact />
+              <VariantRow key={`clr-${i}`} v={v} idx={1000 + i} expanded={expanded} setExpanded={setExpanded} compact dogKey={dogKey} />
             ))}
           </div>
           <button onClick={() => setShowAll(false)}
@@ -187,15 +188,16 @@ export default function OmiaTable({ samplePath = '' }: { samplePath?: string } =
 }
 
 function VariantRow({
-  v, idx, expanded, setExpanded, compact = false,
+  v, idx, expanded, setExpanded, compact = false, dogKey,
 }: {
   v: Variant;
   idx: number;
   expanded: number | null;
   setExpanded: (n: number | null) => void;
   compact?: boolean;
+  dogKey: string;
 }) {
-  const sg    = sampleGt(v);
+  const sg    = sampleGt(v, dogKey);
   const isAff = sg?.affected === true;
   const conf  = sg?.call_confidence ?? '';
   const label = traitLabel(v);

@@ -7,7 +7,7 @@
       "size": "100kb",
       "cosmo_pct_mean": 22,
       "nelk_pct_mean": 123,
-      "panel_pct_mean": 72,
+      "panel_pct_mean": null,
       "disrupted_genes": [
         "DUSP22",
         "IRF4"

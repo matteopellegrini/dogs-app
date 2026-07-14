@@ -9,7 +9,7 @@ interface RealRegion {
   end: number;
   size: string;
   sample_pct_mean?: number;
-  panel_pct_mean: number;
+  panel_pct_mean: number | null;
   disrupted_genes: string[];
   verdict: string;
 }
@@ -96,7 +96,9 @@ export default function CnvTable({ samplePath = '' }: { samplePath?: string } = 
                     <td className="py-1.5 pr-3 text-right font-semibold text-red-600">
                       {r.sample_pct_mean != null ? `${r.sample_pct_mean}%` : '—'}
                     </td>
-                    <td className="py-1.5 pr-3 text-right text-gray-500">{r.panel_pct_mean}%</td>
+                    <td className="py-1.5 pr-3 text-right text-gray-500">
+                      {r.panel_pct_mean != null ? `${r.panel_pct_mean}%` : <span className="text-gray-300">N/A</span>}
+                    </td>
                     <td className="py-1.5">
                       <span className="flex gap-1 flex-wrap">
                         {r.disrupted_genes.map(g => (

@@ -9,7 +9,7 @@ interface RealRegion {
   end: number;
   size: string;
   sample_pct_mean?: number;
-  panel_pct_mean: number | null;
+  ref_depth_pct: number | null;
   disrupted_genes: string[];
   verdict: string;
 }
@@ -29,6 +29,9 @@ interface ArtefactRegion {
   end: number;
   size: string;
   verdict: string;
+  sample_pct_mean?: number;
+  ref_depth_pct?: number | null;
+  disrupted_genes?: string[];
 }
 
 interface CnvData {
@@ -82,7 +85,7 @@ export default function CnvTable({ samplePath = '' }: { samplePath?: string } = 
                   <th className="py-2 pr-4 font-medium">Region</th>
                   <th className="py-2 pr-4 font-medium">Size</th>
                   <th className="py-2 pr-3 font-medium text-right">Sample %</th>
-                  <th className="py-2 pr-3 font-medium text-right">Panel %</th>
+                  <th className="py-2 pr-3 font-medium text-right" title="Median normalized depth in reference dogs at this region (100% = normal coverage in refs → sample-specific deletion)">Ref depth %</th>
                   <th className="py-2 font-medium">Genes affected</th>
                 </tr>
               </thead>
@@ -97,7 +100,7 @@ export default function CnvTable({ samplePath = '' }: { samplePath?: string } = 
                       {r.sample_pct_mean != null ? `${r.sample_pct_mean}%` : '—'}
                     </td>
                     <td className="py-1.5 pr-3 text-right text-gray-500">
-                      {r.panel_pct_mean != null ? `${r.panel_pct_mean}%` : <span className="text-gray-300">N/A</span>}
+                      {r.ref_depth_pct != null ? `${r.ref_depth_pct}%` : <span className="text-gray-300">N/A</span>}
                     </td>
                     <td className="py-1.5">
                       <span className="flex gap-1 flex-wrap">
@@ -153,6 +156,38 @@ export default function CnvTable({ samplePath = '' }: { samplePath?: string } = 
         </div>
       )}
 
+      {/* ── Mappability artefacts (collapsible) ── */}
+      {artefacts.length > 0 && (
+        <details className="text-xs">
+          <summary className="cursor-pointer text-gray-400 hover:text-gray-600 select-none">
+            {artefacts.length} mappability artefact{artefacts.length > 1 ? 's' : ''} excluded (low coverage in reference panel too)
+          </summary>
+          <div className="mt-2 overflow-x-auto">
+            <table className="w-full text-xs">
+              <thead>
+                <tr className="border-b border-gray-100 text-gray-400 text-left">
+                  <th className="py-1.5 pr-4 font-medium">Region</th>
+                  <th className="py-1.5 pr-4 font-medium">Size</th>
+                  <th className="py-1.5 pr-3 font-medium text-right">Sample %</th>
+                  <th className="py-1.5 pr-3 font-medium text-right">Ref depth %</th>
+                  <th className="py-1.5 font-medium">Genes</th>
+                </tr>
+              </thead>
+              <tbody>
+                {artefacts.map((r, i) => (
+                  <tr key={i} className="border-b border-gray-50 text-gray-400">
+                    <td className="py-1 pr-4 font-mono">{r.chrom}:{(r.start/1e6).toFixed(2)}–{(r.end/1e6).toFixed(2)} Mb</td>
+                    <td className="py-1 pr-4">{r.size}</td>
+                    <td className="py-1 pr-3 text-right">{r.sample_pct_mean != null ? `${r.sample_pct_mean}%` : '—'}</td>
+                    <td className="py-1 pr-3 text-right">{r.ref_depth_pct != null ? `${r.ref_depth_pct}%` : 'N/A'}</td>
+                    <td className="py-1">{r.disrupted_genes?.join(', ') || '—'}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </details>
+      )}
 
       <CnvCoverage samplePath={samplePath} />
     </div>

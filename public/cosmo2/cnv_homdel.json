@@ -1,141 +1,12 @@
 {
   "regions": [
     {
-      "chrom": "chr13",
-      "start": 13234900,
-      "end": 13243965,
-      "size": "9kb",
-      "sample_pct_mean": 12,
-      "panel_pct_mean": null,
-      "disrupted_genes": [
-        "CSMD3"
-      ],
-      "verdict": "putative_deletion"
-    },
-    {
-      "chrom": "chr13",
-      "start": 13488720,
-      "end": 13497785,
-      "size": "9kb",
-      "sample_pct_mean": 7,
-      "panel_pct_mean": null,
-      "disrupted_genes": [
-        "CSMD3"
-      ],
-      "verdict": "putative_deletion"
-    },
-    {
-      "chrom": "chr13",
-      "start": 13515915,
-      "end": 13524980,
-      "size": "9kb",
-      "sample_pct_mean": 12,
-      "panel_pct_mean": null,
-      "disrupted_genes": [
-        "CSMD3"
-      ],
-      "verdict": "putative_deletion"
-    },
-    {
-      "chrom": "chr15",
-      "start": 61524155,
-      "end": 61578545,
-      "size": "54kb",
-      "sample_pct_mean": 14,
-      "panel_pct_mean": null,
-      "disrupted_genes": [],
-      "verdict": "putative_deletion"
-    },
-    {
-      "chrom": "chr2",
-      "start": 16996875,
-      "end": 17015005,
-      "size": "18kb",
-      "sample_pct_mean": 1,
-      "panel_pct_mean": null,
-      "disrupted_genes": [
-        "U3",
-        "ENSCAFG00845012517"
-      ],
-      "verdict": "putative_deletion"
-    },
-    {
-      "chrom": "chr2",
-      "start": 17051265,
-      "end": 17060330,
-      "size": "9kb",
-      "sample_pct_mean": 7,
-      "panel_pct_mean": null,
-      "disrupted_genes": [
-        "ENSCAFG00845012530"
-      ],
-      "verdict": "putative_deletion"
-    },
-    {
-      "chrom": "chr2",
-      "start": 17259760,
-      "end": 17268825,
-      "size": "9kb",
-      "sample_pct_mean": 2,
-      "panel_pct_mean": null,
-      "disrupted_genes": [
-        "ENSCAFG00845012582"
-      ],
-      "verdict": "putative_deletion"
-    },
-    {
-      "chrom": "chr27",
-      "start": 20296535,
-      "end": 20314665,
-      "size": "18kb",
-      "sample_pct_mean": 6,
-      "panel_pct_mean": null,
-      "disrupted_genes": [
-        "PPFIBP1"
-      ],
-      "verdict": "putative_deletion"
-    },
-    {
-      "chrom": "chr27",
-      "start": 20405315,
-      "end": 20423445,
-      "size": "18kb",
-      "sample_pct_mean": 2,
-      "panel_pct_mean": null,
-      "disrupted_genes": [
-        "SMCO2"
-      ],
-      "verdict": "putative_deletion"
-    },
-    {
-      "chrom": "chr27",
-      "start": 20695395,
-      "end": 20704460,
-      "size": "9kb",
-      "sample_pct_mean": 12,
-      "panel_pct_mean": null,
-      "disrupted_genes": [
-        "STK38L"
-      ],
-      "verdict": "putative_deletion"
-    },
-    {
-      "chrom": "chr30",
-      "start": 308210,
-      "end": 380730,
-      "size": "72kb",
-      "sample_pct_mean": 8,
-      "panel_pct_mean": null,
-      "disrupted_genes": [],
-      "verdict": "putative_deletion"
-    },
-    {
       "chrom": "chr35",
       "start": 670810,
       "end": 679875,
       "size": "9kb",
       "sample_pct_mean": 12,
-      "panel_pct_mean": null,
+      "ref_depth_pct": 113,
       "disrupted_genes": [
         "DUSP22",
         "ENSCAFG00845015866"
@@ -148,20 +19,10 @@
       "end": 815850,
       "size": "9kb",
       "sample_pct_mean": 15,
-      "panel_pct_mean": null,
+      "ref_depth_pct": 113,
       "disrupted_genes": [
         "EXOC2"
       ],
-      "verdict": "putative_deletion"
-    },
-    {
-      "chrom": "chr38",
-      "start": 21810390,
-      "end": 21873845,
-      "size": "63kb",
-      "sample_pct_mean": 8,
-      "panel_pct_mean": null,
-      "disrupted_genes": [],
       "verdict": "putative_deletion"
     },
     {
@@ -170,86 +31,12 @@
       "end": 10016825,
       "size": "72kb",
       "sample_pct_mean": 6,
-      "panel_pct_mean": null,
-      "disrupted_genes": [],
-      "verdict": "putative_deletion"
-    },
-    {
-      "chrom": "chrX",
-      "start": 99660610,
-      "end": 99724065,
-      "size": "63kb",
-      "sample_pct_mean": 10,
-      "panel_pct_mean": null,
+      "ref_depth_pct": 105,
       "disrupted_genes": [],
       "verdict": "putative_deletion"
     }
   ],
   "disrupted_genes": [
-    {
-      "gene": "CSMD3",
-      "biotype": "protein_coding",
-      "chrom": "chr13",
-      "start": 12686848,
-      "end": 13856949,
-      "overlap": "partial"
-    },
-    {
-      "gene": "U3",
-      "biotype": "snoRNA",
-      "chrom": "chr2",
-      "start": 16996922,
-      "end": 16997031,
-      "overlap": "full"
-    },
-    {
-      "gene": "ENSCAFG00845012517",
-      "biotype": "miRNA",
-      "chrom": "chr2",
-      "start": 16996986,
-      "end": 16997031,
-      "overlap": "full"
-    },
-    {
-      "gene": "ENSCAFG00845012530",
-      "biotype": "protein_coding",
-      "chrom": "chr2",
-      "start": 17039412,
-      "end": 17054353,
-      "overlap": "partial"
-    },
-    {
-      "gene": "ENSCAFG00845012582",
-      "biotype": "protein_coding",
-      "chrom": "chr2",
-      "start": 17130969,
-      "end": 17346739,
-      "overlap": "partial"
-    },
-    {
-      "gene": "PPFIBP1",
-      "biotype": "protein_coding",
-      "chrom": "chr27",
-      "start": 20224794,
-      "end": 20391976,
-      "overlap": "partial"
-    },
-    {
-      "gene": "SMCO2",
-      "biotype": "protein_coding",
-      "chrom": "chr27",
-      "start": 20412477,
-      "end": 20442338,
-      "overlap": "partial"
-    },
-    {
-      "gene": "STK38L",
-      "biotype": "protein_coding",
-      "chrom": "chr27",
-      "start": 20621810,
-      "end": 20704996,
-      "overlap": "partial"
-    },
     {
       "gene": "DUSP22",
       "biotype": "protein_coding",
@@ -275,14 +62,124 @@
       "overlap": "partial"
     }
   ],
-  "artefact_regions": [],
+  "artefact_regions": [
+    {
+      "chrom": "chr13",
+      "start": 13234900,
+      "end": 13243965,
+      "size": "9kb",
+      "sample_pct_mean": 12,
+      "ref_depth_pct": 64,
+      "disrupted_genes": [
+        "CSMD3"
+      ],
+      "verdict": "mappability_artefact"
+    },
+    {
+      "chrom": "chr13",
+      "start": 13488720,
+      "end": 13497785,
+      "size": "9kb",
+      "sample_pct_mean": 7,
+      "ref_depth_pct": 64,
+      "disrupted_genes": [
+        "CSMD3"
+      ],
+      "verdict": "mappability_artefact"
+    },
+    {
+      "chrom": "chr13",
+      "start": 13515915,
+      "end": 13524980,
+      "size": "9kb",
+      "sample_pct_mean": 12,
+      "ref_depth_pct": 64,
+      "disrupted_genes": [
+        "CSMD3"
+      ],
+      "verdict": "mappability_artefact"
+    },
+    {
+      "chrom": "chr2",
+      "start": 16996875,
+      "end": 17015005,
+      "size": "18kb",
+      "sample_pct_mean": 1,
+      "ref_depth_pct": 65,
+      "disrupted_genes": [
+        "U3",
+        "ENSCAFG00845012517"
+      ],
+      "verdict": "mappability_artefact"
+    },
+    {
+      "chrom": "chr2",
+      "start": 17051265,
+      "end": 17060330,
+      "size": "9kb",
+      "sample_pct_mean": 7,
+      "ref_depth_pct": 68,
+      "disrupted_genes": [
+        "ENSCAFG00845012530"
+      ],
+      "verdict": "mappability_artefact"
+    },
+    {
+      "chrom": "chr2",
+      "start": 17259760,
+      "end": 17268825,
+      "size": "9kb",
+      "sample_pct_mean": 2,
+      "ref_depth_pct": 68,
+      "disrupted_genes": [
+        "ENSCAFG00845012582"
+      ],
+      "verdict": "mappability_artefact"
+    },
+    {
+      "chrom": "chr27",
+      "start": 20296535,
+      "end": 20314665,
+      "size": "18kb",
+      "sample_pct_mean": 6,
+      "ref_depth_pct": 62,
+      "disrupted_genes": [
+        "PPFIBP1"
+      ],
+      "verdict": "mappability_artefact"
+    },
+    {
+      "chrom": "chr27",
+      "start": 20405315,
+      "end": 20423445,
+      "size": "18kb",
+      "sample_pct_mean": 2,
+      "ref_depth_pct": 62,
+      "disrupted_genes": [
+        "SMCO2"
+      ],
+      "verdict": "mappability_artefact"
+    },
+    {
+      "chrom": "chr27",
+      "start": 20695395,
+      "end": 20704460,
+      "size": "9kb",
+      "sample_pct_mean": 12,
+      "ref_depth_pct": 62,
+      "disrupted_genes": [
+        "STK38L"
+      ],
+      "verdict": "mappability_artefact"
+    }
+  ],
   "summary": {
-    "total_regions": 16,
-    "unique_genes": 11,
-    "method": "Adaptive CNV window (9.1kb), depth normalised to Dog10K panel mean. Ratio<0.15 threshold for homozygous deletion calling.",
-    "min_detectable_kb": 18,
-    "calling_resolution_kb": 9.1,
-    "panel_note": "16 putative deletion region(s) from normalized coverage. No NELK artefact-control sample \u2014 mappability artefacts may be present.",
-    "artefact_note": "No NELK artefact control; artefact filtering not applied."
+    "total_regions": 3,
+    "unique_genes": 3,
+    "method": "Adaptive CNV window (5.0kb), depth normalised to genome-wide mean. Ratio<0.15 threshold for homozygous deletion. Ref depth from pooled reference panel (6 dogs); regions with ref_depth_pct<80% classified as mappability artefacts.",
+    "min_detectable_kb": 10,
+    "calling_resolution_kb": 5.0,
+    "panel_note": "3 putative deletion region(s) after artefact filtering (9 artefact region(s) excluded). Ref depth = normalised coverage in 6-dog reference panel.",
+    "artefact_note": "9 region(s) with ref_depth_pct<80% are canFam4 mappability artefacts (low coverage in the reference panel too)."
   }
 }

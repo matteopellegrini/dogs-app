@@ -1,0 +1,45 @@
+{
+  "regions": [
+    {
+      "chrom": "chr8",
+      "start": 74230310,
+      "end": 74301480,
+      "size": "71kb",
+      "sample_pct_mean": 5,
+      "panel_pct_mean": 0,
+      "disrupted_genes": [],
+      "verdict": "putative_deletion"
+    },
+    {
+      "chrom": "chr8",
+      "start": 74712325,
+      "end": 74789965,
+      "size": "77kb",
+      "sample_pct_mean": 5,
+      "panel_pct_mean": 0,
+      "disrupted_genes": [],
+      "verdict": "putative_deletion"
+    },
+    {
+      "chrom": "chr8",
+      "start": 74796435,
+      "end": 74854665,
+      "size": "58kb",
+      "sample_pct_mean": 6,
+      "panel_pct_mean": 0,
+      "disrupted_genes": [],
+      "verdict": "putative_deletion"
+    }
+  ],
+  "disrupted_genes": [],
+  "artefact_regions": [],
+  "summary": {
+    "total_regions": 3,
+    "unique_genes": 0,
+    "method": "Adaptive CNV window (3.2kb), depth normalised to Dog10K panel mean. Ratio<0.15 threshold for homozygous deletion calling.",
+    "min_detectable_kb": 6,
+    "calling_resolution_kb": 3.2,
+    "panel_note": "3 putative deletion region(s) from normalized coverage. No NELK artefact-control sample \u2014 mappability artefacts may be present.",
+    "artefact_note": "No NELK artefact control; artefact filtering not applied."
+  }
+}

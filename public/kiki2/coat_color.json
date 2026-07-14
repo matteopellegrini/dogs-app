@@ -1,0 +1,290 @@
+{
+  "summary": {
+    "predicted_base_color": "Phaeomelanin (yellow / red / cream)",
+    "predicted_pattern": "Solid phaeomelanin \u2014 e/e overrides all other loci",
+    "predicted_dilution": "Full pigment (D/D or D/d)",
+    "predicted_white": "Not detectable from SNP data (S locus limited; W requires structural variant)",
+    "predicted_merle": "Not detectable from SNP imputation \u2014 requires PCR or long-read sequencing",
+    "overall_confidence": "medium",
+    "caveat": "E, K, B, D loci called from Dog10K GLIMPSE2 imputed BCF (causal SNPs). A locus sable (ay/aw) requires structural variant analysis not available here. Merle (M) and extreme white (W) require PCR or long-read. Commercial tests (Embark, Wisdom Panel) cover additional alleles.",
+    "irf4_note": "No IRF4 deletion detected in this sample."
+  },
+  "loci": {
+    "E": {
+      "gene": "MC1R",
+      "chrom": "chr5",
+      "name": "Extension locus",
+      "role": "Master pigment switch: eumelanin (black/brown) vs phaeomelanin (yellow/red)",
+      "phenotype_contribution": "e/e \u2192 all coat pigment is yellow/red regardless of other loci",
+      "alleles_reference": {
+        "Em": "Melanistic mask (dominant)",
+        "E": "Wild type extension",
+        "e": "Recessive red/yellow \u2014 two copies needed"
+      },
+      "predicted_alleles": [
+        "e",
+        "e"
+      ],
+      "confidence": "high",
+      "interpretation": "Homozygous recessive red \u2014 all coat pigment is phaeomelanin (yellow/red/cream)",
+      "observed_variants": [
+        {
+          "pos": 64186854,
+          "source": "Dog10K imputed",
+          "effect": "MC1R p.Arg306* \u2014 recessive red/yellow (nonsense)",
+          "gt": "1|1",
+          "n_alt": 2,
+          "ref": "C",
+          "alt": "T",
+          "gp": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "max_gp": 1.0,
+          "af": 0.2859
+        }
+      ]
+    },
+    "K": {
+      "gene": "CBD103",
+      "chrom": "chr16",
+      "name": "Dominant black locus",
+      "role": "KB locks melanocytes in eumelanin production, overriding the A locus",
+      "phenotype_contribution": "KB/- \u2192 solid eumelanin; ky/ky \u2192 A locus controls patterning",
+      "alleles_reference": {
+        "KB": "Dominant black \u2014 one copy = solid black",
+        "kbr": "Brindle (incompletely dominant)",
+        "ky": "Non-black/agouti \u2014 A locus determines pattern"
+      },
+      "predicted_alleles": [
+        "KB",
+        "ky"
+      ],
+      "confidence": "high",
+      "interpretation": "Dominant black carrier (KB/ky) \u2014 KB overrides A locus",
+      "observed_variants": [
+        {
+          "pos": 57074438,
+          "source": "Dog10K imputed",
+          "effect": "CBD103 p.Lys43Arg \u2014 dominant black",
+          "gt": "0|0",
+          "n_alt": 0,
+          "ref": "T",
+          "alt": "C",
+          "gp": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "max_gp": 1.0,
+          "af": 0.6138
+        },
+        {
+          "pos": 57036106,
+          "source": "Dog10K imputed",
+          "effect": "CBD103 \u2014 dominant black tagging SNP 2",
+          "gt": "0|1",
+          "n_alt": 1,
+          "ref": "C",
+          "alt": "T",
+          "gp": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "max_gp": 1.0,
+          "af": 0.7789
+        }
+      ]
+    },
+    "A": {
+      "gene": "ASIP",
+      "chrom": "chr24",
+      "name": "Agouti locus",
+      "role": "Controls eumelanin/phaeomelanin switching within the hair shaft",
+      "phenotype_contribution": "Only expressed when ky/ky at K locus; determines sable/tan-points/solid pattern",
+      "alleles_reference": {
+        "ay": "Sable/fawn (dominant, regulatory variant)",
+        "aw": "Wild type agouti",
+        "at": "Tan points / tricolor (recessive)",
+        "a": "Recessive black (recessive)"
+      },
+      "predicted_alleles": [
+        "?",
+        "?"
+      ],
+      "confidence": "low",
+      "interpretation": "ASIP coding positions not found; ay/aw require structural variant analysis",
+      "observed_variants": []
+    },
+    "B": {
+      "gene": "TYRP1",
+      "chrom": "chr11",
+      "name": "Brown locus",
+      "role": "Modifies eumelanin color: B \u2192 black, b/b \u2192 brown/liver/chocolate",
+      "phenotype_contribution": "b/b converts all black pigment to brown; no effect on phaeomelanin",
+      "alleles_reference": {
+        "B": "Black eumelanin (dominant)",
+        "b": "Brown/liver eumelanin \u2014 two copies needed"
+      },
+      "predicted_alleles": [
+        "B",
+        "b"
+      ],
+      "confidence": "high",
+      "interpretation": "Carrier for brown (B/b) \u2014 black eumelanin expressed",
+      "observed_variants": [
+        {
+          "pos": 33376317,
+          "source": "Dog10K imputed",
+          "effect": "TYRP1 p.Arg345Cys (b1) \u2014 brown/liver",
+          "gt": "0|1",
+          "n_alt": 1,
+          "ref": "T",
+          "alt": "A",
+          "gp": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "max_gp": 1.0,
+          "af": 0.923
+        },
+        {
+          "pos": 33440938,
+          "source": "Dog10K imputed",
+          "effect": "TYRP1 p.Gln354* (b2) \u2014 brown/liver",
+          "gt": "0|0",
+          "n_alt": 0,
+          "ref": "C",
+          "alt": "T",
+          "gp": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "max_gp": 1.0,
+          "af": 0.5301
+        }
+      ]
+    },
+    "D": {
+      "gene": "MLPH",
+      "chrom": "chr25",
+      "name": "Dilution locus",
+      "role": "Melanosome transport: d/d dilutes pigment (black \u2192 blue, brown \u2192 isabella)",
+      "phenotype_contribution": "d/d lightens all eumelanin; phaeomelanin unaffected",
+      "alleles_reference": {
+        "D": "Full pigment (dominant)",
+        "d": "Dilute/blue \u2014 two copies needed"
+      },
+      "predicted_alleles": [
+        "D",
+        "D"
+      ],
+      "confidence": "high",
+      "interpretation": "No dilute alleles detected (D/D) \u2014 full pigment",
+      "observed_variants": [
+        {
+          "pos": 48403161,
+          "source": "Dog10K imputed",
+          "effect": "MLPH c.123+1G>A splice site \u2014 dilute (blue/isabella)",
+          "gt": "0|0",
+          "n_alt": 0,
+          "ref": "G",
+          "alt": "A",
+          "gp": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "max_gp": 1.0,
+          "af": 0.9585
+        },
+        {
+          "pos": 48431759,
+          "source": "Dog10K imputed",
+          "effect": "MLPH \u2014 dilute tagging SNP 2",
+          "gt": "0|0",
+          "n_alt": 0,
+          "ref": "G",
+          "alt": "C",
+          "gp": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "max_gp": 1.0,
+          "af": 0.9964
+        }
+      ]
+    },
+    "M": {
+      "gene": "PMEL",
+      "chrom": "chr10",
+      "name": "Merle locus",
+      "role": "SINE insertion causes mosaic pigment dilution producing merle pattern",
+      "phenotype_contribution": "Not detectable from SNP imputation \u2014 requires PCR or long-read",
+      "alleles_reference": {
+        "M": "Merle (dominant, PMEL SINE insertion \u2014 not detectable from SNP data)",
+        "m": "Non-merle (assumed)"
+      },
+      "predicted_alleles": [
+        "m",
+        "m"
+      ],
+      "confidence": "low",
+      "interpretation": "Merle (PMEL SINE insertion) not detectable from SNP imputation \u2014 PCR required",
+      "observed_variants": []
+    },
+    "S": {
+      "gene": "MITF",
+      "chrom": "chr20",
+      "name": "Spotting locus",
+      "role": "Controls melanocyte migration extent \u2192 white spotting area",
+      "phenotype_contribution": "sp/sp \u2192 piebald; limited resolution from single SNP",
+      "alleles_reference": {
+        "S": "Solid / minimal white",
+        "sp": "Piebald spotting (recessive)",
+        "sw": "Extreme white (recessive)"
+      },
+      "predicted_alleles": [
+        "S",
+        "S"
+      ],
+      "confidence": "medium",
+      "interpretation": "No piebald allele at MITF queried position",
+      "observed_variants": [
+        {
+          "pos": 5711695,
+          "source": "BAM pileup (6 reads)",
+          "effect": "MITF \u2014 piebald white spotting",
+          "bam_counts": {
+            "G": 6
+          },
+          "depth": 6
+        }
+      ]
+    },
+    "W": {
+      "gene": "KIT",
+      "chrom": "chr13",
+      "name": "White locus",
+      "role": "Extreme white spotting; dominant W linked to deafness risk",
+      "phenotype_contribution": "Not detectable from short-read SNP data",
+      "alleles_reference": {
+        "w": "Non-white",
+        "W": "Extreme white (dominant, KIT structural \u2014 not detectable from SNP data)"
+      },
+      "predicted_alleles": [
+        "w",
+        "w"
+      ],
+      "confidence": "low",
+      "interpretation": "KIT extreme white (structural variant) not detectable from SNP data",
+      "observed_variants": []
+    }
+  },
+  "method": "Coat color genotyping from GLIMPSE2 Dog10K imputed BCF (min GP=0.8). Causal SNPs queried at known canFam4 positions; BAM pileup fallback for sites not in panel. Compound heterozygosity handled for B (b1/b2) and D (d1/d2) loci."
+}

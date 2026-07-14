@@ -1,0 +1,371 @@
+{
+  "f_roh": 0.0785,
+  "f_roh_pct": 7.85,
+  "roh_total_mb": 172.73,
+  "roh_n_segments": 60,
+  "level": "Moderate",
+  "autosomal_genome_mb": 2200.0,
+  "roh_segments": [
+    {
+      "chrom": "chr1",
+      "start": 22669851,
+      "end": 25689592,
+      "length_mb": 3.02
+    },
+    {
+      "chrom": "chr1",
+      "start": 43303284,
+      "end": 47046907,
+      "length_mb": 3.744
+    },
+    {
+      "chrom": "chr1",
+      "start": 70151945,
+      "end": 82135542,
+      "length_mb": 11.984
+    },
+    {
+      "chrom": "chr1",
+      "start": 86628607,
+      "end": 87134046,
+      "length_mb": 0.505
+    },
+    {
+      "chrom": "chr1",
+      "start": 91627662,
+      "end": 94927812,
+      "length_mb": 3.3
+    },
+    {
+      "chrom": "chr2",
+      "start": 25021183,
+      "end": 28037231,
+      "length_mb": 3.016
+    },
+    {
+      "chrom": "chr2",
+      "start": 35019249,
+      "end": 39163041,
+      "length_mb": 4.144
+    },
+    {
+      "chrom": "chr2",
+      "start": 42599567,
+      "end": 43132867,
+      "length_mb": 0.533
+    },
+    {
+      "chrom": "chr2",
+      "start": 46611310,
+      "end": 50754197,
+      "length_mb": 4.143
+    },
+    {
+      "chrom": "chr2",
+      "start": 65547656,
+      "end": 68828058,
+      "length_mb": 3.28
+    },
+    {
+      "chrom": "chr2",
+      "start": 73268242,
+      "end": 76323160,
+      "length_mb": 3.055
+    },
+    {
+      "chrom": "chr3",
+      "start": 3019863,
+      "end": 3555854,
+      "length_mb": 0.536
+    },
+    {
+      "chrom": "chr3",
+      "start": 18372993,
+      "end": 18877660,
+      "length_mb": 0.505
+    },
+    {
+      "chrom": "chr3",
+      "start": 21651594,
+      "end": 27849945,
+      "length_mb": 6.198
+    },
+    {
+      "chrom": "chr3",
+      "start": 36962155,
+      "end": 37490207,
+      "length_mb": 0.528
+    },
+    {
+      "chrom": "chr3",
+      "start": 40687412,
+      "end": 41319550,
+      "length_mb": 0.632
+    },
+    {
+      "chrom": "chr3",
+      "start": 45344140,
+      "end": 48349498,
+      "length_mb": 3.005
+    },
+    {
+      "chrom": "chr5",
+      "start": 29836957,
+      "end": 33698039,
+      "length_mb": 3.861
+    },
+    {
+      "chrom": "chr6",
+      "start": 19624952,
+      "end": 22632870,
+      "length_mb": 3.008
+    },
+    {
+      "chrom": "chr7",
+      "start": 61968229,
+      "end": 64988977,
+      "length_mb": 3.021
+    },
+    {
+      "chrom": "chr8",
+      "start": 10942666,
+      "end": 11877711,
+      "length_mb": 0.935
+    },
+    {
+      "chrom": "chr8",
+      "start": 51273441,
+      "end": 54415016,
+      "length_mb": 3.142
+    },
+    {
+      "chrom": "chr9",
+      "start": 21746169,
+      "end": 26275911,
+      "length_mb": 4.53
+    },
+    {
+      "chrom": "chr9",
+      "start": 35734087,
+      "end": 36277840,
+      "length_mb": 0.544
+    },
+    {
+      "chrom": "chr11",
+      "start": 37034690,
+      "end": 38343519,
+      "length_mb": 1.309
+    },
+    {
+      "chrom": "chr11",
+      "start": 43645383,
+      "end": 47052369,
+      "length_mb": 3.407
+    },
+    {
+      "chrom": "chr11",
+      "start": 50840590,
+      "end": 51341355,
+      "length_mb": 0.501
+    },
+    {
+      "chrom": "chr12",
+      "start": 11540138,
+      "end": 12230893,
+      "length_mb": 0.691
+    },
+    {
+      "chrom": "chr12",
+      "start": 24517485,
+      "end": 25176386,
+      "length_mb": 0.659
+    },
+    {
+      "chrom": "chr12",
+      "start": 29359784,
+      "end": 35594969,
+      "length_mb": 6.235
+    },
+    {
+      "chrom": "chr13",
+      "start": 14814368,
+      "end": 17825883,
+      "length_mb": 3.012
+    },
+    {
+      "chrom": "chr13",
+      "start": 52588979,
+      "end": 55641004,
+      "length_mb": 3.052
+    },
+    {
+      "chrom": "chr14",
+      "start": 33465483,
+      "end": 33993481,
+      "length_mb": 0.528
+    },
+    {
+      "chrom": "chr15",
+      "start": 24261722,
+      "end": 32400165,
+      "length_mb": 8.138
+    },
+    {
+      "chrom": "chr15",
+      "start": 45357420,
+      "end": 48533033,
+      "length_mb": 3.176
+    },
+    {
+      "chrom": "chr16",
+      "start": 7877965,
+      "end": 9729845,
+      "length_mb": 1.852
+    },
+    {
+      "chrom": "chr17",
+      "start": 32266286,
+      "end": 35296008,
+      "length_mb": 3.03
+    },
+    {
+      "chrom": "chr18",
+      "start": 31927366,
+      "end": 34966227,
+      "length_mb": 3.039
+    },
+    {
+      "chrom": "chr18",
+      "start": 47468558,
+      "end": 52997165,
+      "length_mb": 5.529
+    },
+    {
+      "chrom": "chr19",
+      "start": 48960362,
+      "end": 51968546,
+      "length_mb": 3.008
+    },
+    {
+      "chrom": "chr20",
+      "start": 5025271,
+      "end": 8990485,
+      "length_mb": 3.965
+    },
+    {
+      "chrom": "chr20",
+      "start": 28488179,
+      "end": 29004514,
+      "length_mb": 0.516
+    },
+    {
+      "chrom": "chr20",
+      "start": 36703351,
+      "end": 37909431,
+      "length_mb": 1.206
+    },
+    {
+      "chrom": "chr21",
+      "start": 34800692,
+      "end": 35303719,
+      "length_mb": 0.503
+    },
+    {
+      "chrom": "chr22",
+      "start": 12542545,
+      "end": 16294714,
+      "length_mb": 3.752
+    },
+    {
+      "chrom": "chr23",
+      "start": 13581138,
+      "end": 17168942,
+      "length_mb": 3.588
+    },
+    {
+      "chrom": "chr23",
+      "start": 30356010,
+      "end": 34238188,
+      "length_mb": 3.882
+    },
+    {
+      "chrom": "chr23",
+      "start": 38702024,
+      "end": 41935754,
+      "length_mb": 3.234
+    },
+    {
+      "chrom": "chr24",
+      "start": 23327378,
+      "end": 27427036,
+      "length_mb": 4.1
+    },
+    {
+      "chrom": "chr24",
+      "start": 41953280,
+      "end": 44964276,
+      "length_mb": 3.011
+    },
+    {
+      "chrom": "chr25",
+      "start": 11256126,
+      "end": 11828314,
+      "length_mb": 0.572
+    },
+    {
+      "chrom": "chr26",
+      "start": 25407605,
+      "end": 25924011,
+      "length_mb": 0.516
+    },
+    {
+      "chrom": "chr27",
+      "start": 24497882,
+      "end": 27806804,
+      "length_mb": 3.309
+    },
+    {
+      "chrom": "chr29",
+      "start": 14722806,
+      "end": 15641579,
+      "length_mb": 0.919
+    },
+    {
+      "chrom": "chr29",
+      "start": 30836247,
+      "end": 33842591,
+      "length_mb": 3.006
+    },
+    {
+      "chrom": "chr32",
+      "start": 30749273,
+      "end": 33761119,
+      "length_mb": 3.012
+    },
+    {
+      "chrom": "chr33",
+      "start": 20104446,
+      "end": 25971195,
+      "length_mb": 5.867
+    },
+    {
+      "chrom": "chr34",
+      "start": 4413139,
+      "end": 7461947,
+      "length_mb": 3.049
+    },
+    {
+      "chrom": "chr34",
+      "start": 35705310,
+      "end": 38762879,
+      "length_mb": 3.058
+    },
+    {
+      "chrom": "chr36",
+      "start": 11729758,
+      "end": 15061603,
+      "length_mb": 3.332
+    }
+  ],
+  "method": "ROH from Dog10K GLIMPSE2-imputed panel; window=50 SNPs, max_het=1, min_roh=500kb"
+}

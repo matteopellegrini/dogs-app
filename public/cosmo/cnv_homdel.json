@@ -21,7 +21,8 @@
       "chrom": "chr35",
       "start": 625022,
       "end": 680993,
-      "overlap": "partial"
+      "overlap": "partial",
+      "exon_overlap": "exonic"
     },
     {
       "gene": "IRF4",
@@ -29,7 +30,8 @@
       "chrom": "chr35",
       "start": 714202,
       "end": 738113,
-      "overlap": "full"
+      "overlap": "full",
+      "exon_overlap": "exonic"
     }
   ],
   "artefact_regions": [

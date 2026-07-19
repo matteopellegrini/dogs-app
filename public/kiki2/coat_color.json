@@ -26,7 +26,8 @@
         "?"
       ],
       "confidence": "low",
-      "interpretation": "Dog10K proxy SNP (chr5:64186854, CPNE7 intron) called e/e, but this position is NOT the causal MC1R p.Arg306* coding variant. BAM pileup at the actual MC1R coding position (chr5:63922309) shows 3 reads, all reference \u2014 no e allele detected. Best estimate from BAM pileup: at least one functional E allele (E/E or E/e). Dog10K GLIMPSE2 imputed genotype at proxy SNP is unreliable for this locus and is overridden.",
+      "interpretation": "Dog10K proxy SNP (chr5:64186854, CPNE7 intron) called e/e, but this position is NOT the causal MC1R p.Arg306* coding variant. BAM pileup at the actual MC1R coding position (chr5:63922309) shows 3 reads, all reference \u2014 no e allele detected. If the proxy call is a false positive, the coat would be chocolate based on K (KB/ky) and B (B/b) loci \u2014 however B/b is a carrier (not b/b), so the false-positive prediction is actually solid black. The proxy is overridden here: true genotype is E/? (at least one functional E allele).",
+      "proxy_false_positive_prediction": "black",
       "observed_variants": [
         {
           "pos": 63922309,

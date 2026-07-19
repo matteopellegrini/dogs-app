@@ -26,7 +26,8 @@
         "e"
       ],
       "confidence": "low",
-      "interpretation": "e/e inferred from phenotype and K locus: cream coat with KB/KB at the K locus can only arise from e/e (ASIP cannot produce phaeomelanin when KB is homozygous). The Dog10K proxy SNP (chr5:64186854, CPNE7 intron) independently supports e/e. However, BAM pileup at the p.Arg306* position (chr5:63922309) shows 2 reads all reference \u2014 this dog does NOT carry the common p.Arg306* allele. The causative e allele is a different MC1R loss-of-function mutation (e.g. p.His44Pro, p.Trp145Gln, or other) that is in LD with the proxy SNP in the Dog10K panel but absent from the positions queried here. Sanger sequencing of the full MC1R CDS would identify the specific allele.",
+      "interpretation": "Homozygous e/e from proxy SNP only (chr5:64186854, CPNE7 intron, alt allele freq \u224829%). The actual MC1R p.Arg306* coding position (chr5:63922309) is not in the Dog10K panel; BAM pileup shows 2 reads, all reference \u2014 this dog does NOT carry p.Arg306*. The causative e allele is a different MC1R loss-of-function mutation in LD with the proxy SNP. If the proxy call is a false positive, the coat would be chocolate based on K (KB/KB) and B (b/b) loci. Phenotype confirmation is required to distinguish e/e (cream/yellow) from chocolate.",
+      "proxy_false_positive_prediction": "chocolate",
       "observed_variants": [
         {
           "pos": 64186854,

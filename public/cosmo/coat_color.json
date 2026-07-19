@@ -6,7 +6,7 @@
     "predicted_white": "Minor white markings possible (KIT het, MITF het)",
     "predicted_merle": "Non-merle",
     "overall_confidence": "low",
-    "caveat": "Two key loci \u2014 MC1R (E) and ASIP (A) \u2014 cannot be resolved from this dataset because the corresponding canFam4 reference regions are N-masked (hard-masked repetitive/low-complexity sequence). The Dog10K imputation panel does not contain the causal coat color SNPs at these loci. A dedicated commercial coat color test (Embark Dog DNA, Wisdom Panel, or Optimal Selection) uses specific diagnostic probes for these exact variants and would give a definitive result. The K, B, D, M loci are better supported.",
+    "caveat": "MC1R (E locus) cannot be resolved from this dataset \u2014 COSMO was processed from Parker array data rather than GLIMPSE2 WGS imputation, and the actual p.Arg306* coding position (chr5:63922309) has insufficient BAM coverage. ASIP (A locus) sable/agouti requires structural variant analysis. A dedicated commercial coat color test (Embark, Wisdom Panel, or Optimal Selection) uses specific diagnostic probes for these variants and would give definitive results. The K, B, D, M loci are better supported.",
     "irf4_note": "Cosmo carries a homozygous deletion of IRF4 (chr35:714,202\u2013738,113 kb). IRF4 is a transcription factor that regulates MITF expression and melanocyte differentiation. Loss of IRF4 in mice and dogs is associated with coat colour lightening independent of the classical E/K/A pathway. This deletion may contribute to Cosmo's beige/cream phenotype even if the MC1R/ASIP genotype is not e/e or ay/ay."
   },
   "loci": {
@@ -32,13 +32,13 @@
           "source": "Parker array"
         }
       ],
-      "interpretation": "The MC1R locus (E locus) cannot be reliably called from this dataset. The MC1R coding region at chr5:63,680,000\u201363,710,000 is N-masked in the canFam4 reference genome, making it impossible to detect SNPs from low-coverage WGS. The Dog10K imputation panel does not contain the canonical e allele variant (Arg306Cys, c.916C>T). Given that Cosmo is beige, e/e (recessive yellow) is the leading hypothesis \u2014 this is the most common cause of cream/yellow coat in dogs. However, this cannot be confirmed without a targeted diagnostic test (e.g. Embark, Wisdom Panel).",
+      "interpretation": "MC1R (E locus) cannot be reliably called from this dataset. The actual MC1R p.Arg306* coding position in canFam4 is chr5:63,922,309 (gene chr5:63,922,271\u201363,923,224, minus strand) \u2014 this position is not N-masked but has insufficient BAM coverage in this sample (2 reads, no alt allele detected). The Dog10K imputation panel does not include this position; COSMO was processed from Parker array data rather than GLIMPSE2 WGS imputation. The two observed variants (chr5:63685948 and chr5:63688726) are near-MC1R array positions of uncertain biological relevance. Given that Cosmo is beige/cream, e/e (recessive yellow) remains the leading hypothesis. A dedicated commercial test (Embark, Wisdom Panel) with targeted diagnostic probes would give a definitive result.",
       "predicted_alleles": [
         "e/?",
         "e/?"
       ],
       "confidence": "low",
-      "phenotype_contribution": "e/e suspected (beige phenotype) \u2014 MC1R N-masked in canFam4, cannot confirm"
+      "phenotype_contribution": "e/e suspected (beige phenotype) \u2014 actual MC1R p.Arg306* coding position (chr5:63922309) has insufficient coverage to confirm"
     },
     "K": {
       "gene": "CBD103",

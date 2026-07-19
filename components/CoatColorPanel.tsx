@@ -23,6 +23,7 @@ interface CoatColorResult {
     predicted_white: string;
     predicted_merle: string;
     overall_confidence: string;
+    validation_warning?: string;
     caveat: string;
     irf4_note: string;
   };
@@ -150,6 +151,14 @@ export default function CoatColorPanel({ samplePath = '' }: { samplePath?: strin
           </div>
         </div>
       </div>
+
+      {/* Validation warning (e.g. tagging SNP miscall) */}
+      {summary.validation_warning && (
+        <div className="rounded-lg px-3 py-2 text-xs border bg-amber-50 border-amber-300">
+          <p className="font-semibold text-amber-800 mb-0.5">⚠ E locus validation warning</p>
+          <p className="text-amber-700">{summary.validation_warning}</p>
+        </div>
+      )}
 
       {/* IRF4 callout */}
       {(() => {

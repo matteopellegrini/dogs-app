@@ -1,13 +1,12 @@
 {
   "summary": {
-    "predicted_base_color": "Phaeomelanin (yellow / red / cream)",
-    "predicted_pattern": "Solid phaeomelanin \u2014 e/e overrides all other loci",
-    "predicted_dilution": "Full pigment (D/D or D/d)",
+    "predicted_base_color": "Eumelanin \u2014 chocolate/brown (KB/KB with functional E allele; b/b compound het b1+b2)",
+    "predicted_pattern": "Solid chocolate \u2014 KB/KB overrides A locus; b/b gives brown eumelanin",
+    "predicted_dilution": "Full pigment (D/D)",
     "predicted_white": "Not detectable from SNP data (S locus limited; W requires structural variant)",
     "predicted_merle": "Not detectable from SNP imputation \u2014 requires PCR or long-read sequencing",
     "overall_confidence": "low",
-    "validation_warning": "E locus e/e called from proxy SNP (chr5:64186854, CPNE7 intron) only. The actual causal MC1R p.Arg306* position (chr5:63922309) is absent from the Dog10K panel and has insufficient BAM coverage (2 reads) to confirm the allele. No alt reads detected at the coding position. If this dog shows black or brown eumelanin pigmentation, the true E-locus genotype is likely E/e or E/E.",
-    "caveat": "E, K, B, D loci called from Dog10K GLIMPSE2 imputed BCF (causal SNPs). A locus sable (ay/aw) requires structural variant analysis not available here. Merle (M) and extreme white (W) require PCR or long-read. Commercial tests (Embark, Wisdom Panel) cover additional alleles.",
+    "caveat": "E locus called from BAM pileup at the actual MC1R coding position (chr5:63922309): 2 reads, all reference, no e allele detected. Dog10K GLIMPSE2 imputed e/e at proxy SNP (chr5:64186854, CPNE7 intron) overridden \u2014 that position is NOT the causal MC1R p.Arg306* coding variant. A locus sable (ay/aw) requires structural variant analysis. Merle (M) and extreme white (W) require PCR or long-read.",
     "irf4_note": "No IRF4 deletion detected in this sample."
   },
   "loci": {
@@ -23,25 +22,31 @@
         "e": "Recessive red/yellow \u2014 two copies needed"
       },
       "predicted_alleles": [
-        "e",
-        "e"
+        "E",
+        "?"
       ],
       "confidence": "low",
-      "interpretation": "Homozygous e/e from proxy SNP only (chr5:64186854, CPNE7 intron, alt allele freq \u224829%). The actual MC1R p.Arg306* coding position (chr5:63922309) is not in the Dog10K panel and BAM depth is insufficient to confirm the causal allele (2 reads, no alt). Treat this E-locus call as uncertain \u2014 if this dog shows eumelanin pigment, the true genotype is likely E/e or E/E.",
+      "interpretation": "Dog10K proxy SNP (chr5:64186854, CPNE7 intron) called e/e, but this position is NOT the causal MC1R p.Arg306* coding variant. BAM pileup at the actual MC1R coding position (chr5:63922309) shows 2 reads, all reference \u2014 no e allele detected. Best estimate from BAM pileup: at least one functional E allele (E/E or E/e). Dog10K GLIMPSE2 imputed genotype at proxy SNP is unreliable for this locus and is overridden.",
       "observed_variants": [
         {
+          "pos": 63922309,
+          "source": "BAM pileup (2 reads, q\u226520)",
+          "effect": "MC1R p.Arg306* \u2014 actual causal e allele position (canFam4 chr5:63922309, NOT in Dog10K panel)",
+          "bam_counts": {"T": 2},
+          "depth": 2,
+          "n_alt": 0,
+          "ref": "T",
+          "alt": "A"
+        },
+        {
           "pos": 64186854,
-          "source": "Dog10K imputed",
-          "effect": "e haplotype proxy SNP (CPNE7 intron, NOT the causal MC1R p.Arg306* coding variant)",
+          "source": "Dog10K imputed (overridden \u2014 proxy only)",
+          "effect": "e haplotype proxy SNP (CPNE7 intron, NOT the causal MC1R p.Arg306* coding variant) \u2014 call overridden by BAM pileup at actual coding position",
           "gt": "1|1",
           "n_alt": 2,
           "ref": "C",
           "alt": "T",
-          "gp": [
-            0.0,
-            0.0,
-            1.0
-          ],
+          "gp": [0.0, 0.0, 1.0],
           "max_gp": 1.0,
           "af": 0.2859
         }

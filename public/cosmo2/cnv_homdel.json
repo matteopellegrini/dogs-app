@@ -8,7 +8,8 @@
       "sample_pct_mean": 8,
       "ref_depth_pct": 82,
       "disrupted_genes": [],
-      "verdict": "putative_deletion"
+      "verdict": "putative_deletion",
+      "disrupted_gene_details": []
     },
     {
       "chrom": "chr16",
@@ -18,7 +19,8 @@
       "sample_pct_mean": 10,
       "ref_depth_pct": 90,
       "disrupted_genes": [],
-      "verdict": "putative_deletion"
+      "verdict": "putative_deletion",
+      "disrupted_gene_details": []
     },
     {
       "chrom": "chr17",
@@ -28,7 +30,8 @@
       "sample_pct_mean": 11,
       "ref_depth_pct": 82,
       "disrupted_genes": [],
-      "verdict": "putative_deletion"
+      "verdict": "putative_deletion",
+      "disrupted_gene_details": []
     },
     {
       "chrom": "chrX",
@@ -38,7 +41,8 @@
       "sample_pct_mean": 6,
       "ref_depth_pct": 105,
       "disrupted_genes": [],
-      "verdict": "putative_deletion"
+      "verdict": "putative_deletion",
+      "disrupted_gene_details": []
     }
   ],
   "disrupted_genes": [],
@@ -54,7 +58,27 @@
         "U3",
         "ENSCAFG00845012517"
       ],
-      "verdict": "mappability_artefact"
+      "verdict": "mappability_artefact",
+      "disrupted_gene_details": [
+        {
+          "gene": "U3",
+          "biotype": "snoRNA",
+          "chrom": "chr2",
+          "start": 16996922,
+          "end": 16997031,
+          "overlap": "full",
+          "exon_overlap": "exonic"
+        },
+        {
+          "gene": "ENSCAFG00845012517",
+          "biotype": "miRNA",
+          "chrom": "chr2",
+          "start": 16996986,
+          "end": 16997031,
+          "overlap": "full",
+          "exon_overlap": "exonic"
+        }
+      ]
     },
     {
       "chrom": "chrX",
@@ -64,7 +88,8 @@
       "sample_pct_mean": 12,
       "ref_depth_pct": 78,
       "disrupted_genes": [],
-      "verdict": "mappability_artefact"
+      "verdict": "mappability_artefact",
+      "disrupted_gene_details": []
     }
   ],
   "summary": {

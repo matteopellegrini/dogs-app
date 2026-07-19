@@ -13,7 +13,27 @@
         "U3",
         "ENSCAFG00845012517"
       ],
-      "verdict": "mappability_artefact"
+      "verdict": "mappability_artefact",
+      "disrupted_gene_details": [
+        {
+          "gene": "U3",
+          "biotype": "snoRNA",
+          "chrom": "chr2",
+          "start": 16996922,
+          "end": 16997031,
+          "overlap": "full",
+          "exon_overlap": "exonic"
+        },
+        {
+          "gene": "ENSCAFG00845012517",
+          "biotype": "miRNA",
+          "chrom": "chr2",
+          "start": 16996986,
+          "end": 16997031,
+          "overlap": "full",
+          "exon_overlap": "exonic"
+        }
+      ]
     },
     {
       "chrom": "chr2",
@@ -25,7 +45,18 @@
       "disrupted_genes": [
         "ENSCAFG00845012582"
       ],
-      "verdict": "mappability_artefact"
+      "verdict": "mappability_artefact",
+      "disrupted_gene_details": [
+        {
+          "gene": "ENSCAFG00845012582",
+          "biotype": "protein_coding",
+          "chrom": "chr2",
+          "start": 17130969,
+          "end": 17346739,
+          "overlap": "partial",
+          "exon_overlap": "intronic"
+        }
+      ]
     },
     {
       "chrom": "chr27",
@@ -37,7 +68,18 @@
       "disrupted_genes": [
         "SMCO2"
       ],
-      "verdict": "mappability_artefact"
+      "verdict": "mappability_artefact",
+      "disrupted_gene_details": [
+        {
+          "gene": "SMCO2",
+          "biotype": "protein_coding",
+          "chrom": "chr27",
+          "start": 20412477,
+          "end": 20442338,
+          "overlap": "partial",
+          "exon_overlap": "exonic"
+        }
+      ]
     },
     {
       "chrom": "chr27",
@@ -51,7 +93,36 @@
         "ENSCAFG00845024560",
         "ENSCAFG00845024620"
       ],
-      "verdict": "mappability_artefact"
+      "verdict": "mappability_artefact",
+      "disrupted_gene_details": [
+        {
+          "gene": "ENSCAFG00845024548",
+          "biotype": "lncRNA",
+          "chrom": "chr27",
+          "start": 20496902,
+          "end": 20497962,
+          "overlap": "full",
+          "exon_overlap": "exonic"
+        },
+        {
+          "gene": "ENSCAFG00845024560",
+          "biotype": "lncRNA",
+          "chrom": "chr27",
+          "start": 20497195,
+          "end": 20499684,
+          "overlap": "full",
+          "exon_overlap": "exonic"
+        },
+        {
+          "gene": "ENSCAFG00845024620",
+          "biotype": "protein_coding",
+          "chrom": "chr27",
+          "start": 20500348,
+          "end": 20615153,
+          "overlap": "partial",
+          "exon_overlap": "exonic"
+        }
+      ]
     },
     {
       "chrom": "chr27",
@@ -63,7 +134,18 @@
       "disrupted_genes": [
         "STK38L"
       ],
-      "verdict": "mappability_artefact"
+      "verdict": "mappability_artefact",
+      "disrupted_gene_details": [
+        {
+          "gene": "STK38L",
+          "biotype": "protein_coding",
+          "chrom": "chr27",
+          "start": 20621810,
+          "end": 20704996,
+          "overlap": "partial",
+          "exon_overlap": "intronic"
+        }
+      ]
     },
     {
       "chrom": "chr8",
@@ -73,7 +155,8 @@
       "sample_pct_mean": 7,
       "ref_depth_pct": 55,
       "disrupted_genes": [],
-      "verdict": "mappability_artefact"
+      "verdict": "mappability_artefact",
+      "disrupted_gene_details": []
     },
     {
       "chrom": "chr8",
@@ -83,7 +166,8 @@
       "sample_pct_mean": 8,
       "ref_depth_pct": 55,
       "disrupted_genes": [],
-      "verdict": "mappability_artefact"
+      "verdict": "mappability_artefact",
+      "disrupted_gene_details": []
     },
     {
       "chrom": "chr8",
@@ -93,7 +177,8 @@
       "sample_pct_mean": 9,
       "ref_depth_pct": 55,
       "disrupted_genes": [],
-      "verdict": "mappability_artefact"
+      "verdict": "mappability_artefact",
+      "disrupted_gene_details": []
     },
     {
       "chrom": "chr8",
@@ -103,7 +188,8 @@
       "sample_pct_mean": 7,
       "ref_depth_pct": 55,
       "disrupted_genes": [],
-      "verdict": "mappability_artefact"
+      "verdict": "mappability_artefact",
+      "disrupted_gene_details": []
     },
     {
       "chrom": "chr8",
@@ -113,7 +199,8 @@
       "sample_pct_mean": 11,
       "ref_depth_pct": 64,
       "disrupted_genes": [],
-      "verdict": "mappability_artefact"
+      "verdict": "mappability_artefact",
+      "disrupted_gene_details": []
     },
     {
       "chrom": "chr8",
@@ -123,7 +210,8 @@
       "sample_pct_mean": 10,
       "ref_depth_pct": 64,
       "disrupted_genes": [],
-      "verdict": "mappability_artefact"
+      "verdict": "mappability_artefact",
+      "disrupted_gene_details": []
     }
   ],
   "summary": {

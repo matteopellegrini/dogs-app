@@ -33,6 +33,7 @@ interface ArtefactRegion {
   sample_pct_mean?: number;
   ref_depth_pct?: number | null;
   disrupted_genes?: string[];
+  disrupted_gene_details?: DisruptedGene[];
 }
 
 interface CnvData {
@@ -185,19 +186,49 @@ export default function CnvTable({ samplePath = '' }: { samplePath?: string } = 
                   <th className="py-1.5 pr-4 font-medium">Size</th>
                   <th className="py-1.5 pr-3 font-medium text-right">Sample %</th>
                   <th className="py-1.5 pr-3 font-medium text-right">Ref depth %</th>
-                  <th className="py-1.5 font-medium">Genes</th>
+                  <th className="py-1.5 pr-4 font-medium">Gene</th>
+                  <th className="py-1.5 pr-4 font-medium">Overlap</th>
+                  <th className="py-1.5 font-medium">Exon overlap</th>
                 </tr>
               </thead>
               <tbody>
-                {artefacts.map((r, i) => (
-                  <tr key={i} className="border-b border-gray-50 text-gray-400">
-                    <td className="py-1 pr-4 font-mono">{r.chrom}:{(r.start/1e6).toFixed(2)}–{(r.end/1e6).toFixed(2)} Mb</td>
-                    <td className="py-1 pr-4">{r.size}</td>
-                    <td className="py-1 pr-3 text-right">{r.sample_pct_mean != null ? `${r.sample_pct_mean}%` : '—'}</td>
-                    <td className="py-1 pr-3 text-right">{r.ref_depth_pct != null ? `${r.ref_depth_pct}%` : 'N/A'}</td>
-                    <td className="py-1">{r.disrupted_genes?.join(', ') || '—'}</td>
-                  </tr>
-                ))}
+                {artefacts.map((r, i) => {
+                  const details = r.disrupted_gene_details ?? [];
+                  if (details.length === 0) return (
+                    <tr key={i} className="border-b border-gray-50 text-gray-400">
+                      <td className="py-1 pr-4 font-mono">{r.chrom}:{(r.start/1e6).toFixed(2)}–{(r.end/1e6).toFixed(2)} Mb</td>
+                      <td className="py-1 pr-4">{r.size}</td>
+                      <td className="py-1 pr-3 text-right">{r.sample_pct_mean != null ? `${r.sample_pct_mean}%` : '—'}</td>
+                      <td className="py-1 pr-3 text-right">{r.ref_depth_pct != null ? `${r.ref_depth_pct}%` : 'N/A'}</td>
+                      <td className="py-1 pr-4 text-gray-300">—</td>
+                      <td className="py-1 pr-4 text-gray-300">—</td>
+                      <td className="py-1 text-gray-300">—</td>
+                    </tr>
+                  );
+                  return details.map((g, gi) => (
+                    <tr key={`${i}-${gi}`} className="border-b border-gray-50 text-gray-400">
+                      {gi === 0 && <>
+                        <td className="py-1 pr-4 font-mono" rowSpan={details.length}>{r.chrom}:{(r.start/1e6).toFixed(2)}–{(r.end/1e6).toFixed(2)} Mb</td>
+                        <td className="py-1 pr-4" rowSpan={details.length}>{r.size}</td>
+                        <td className="py-1 pr-3 text-right" rowSpan={details.length}>{r.sample_pct_mean != null ? `${r.sample_pct_mean}%` : '—'}</td>
+                        <td className="py-1 pr-3 text-right" rowSpan={details.length}>{r.ref_depth_pct != null ? `${r.ref_depth_pct}%` : 'N/A'}</td>
+                      </>}
+                      <td className="py-1 pr-4 font-semibold text-gray-500">{g.gene}</td>
+                      <td className="py-1 pr-4">
+                        <span className={`px-1.5 py-0.5 rounded text-[10px] font-medium ${OVERLAP_COLORS[g.overlap] ?? 'bg-gray-100 text-gray-500'}`}>
+                          {g.overlap}
+                        </span>
+                      </td>
+                      <td className="py-1">
+                        <span className={`px-1.5 py-0.5 rounded text-[10px] font-medium ${
+                          g.exon_overlap === 'exonic' ? 'bg-red-100 text-red-700' : 'bg-gray-100 text-gray-500'
+                        }`}>
+                          {g.exon_overlap ?? '—'}
+                        </span>
+                      </td>
+                    </tr>
+                  ));
+                })}
               </tbody>
             </table>
           </div>

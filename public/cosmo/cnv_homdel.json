@@ -11,7 +11,36 @@
       ],
       "verdict": "confident_deletion",
       "sample_pct_mean": 22,
-      "ref_depth_pct": 113
+      "ref_depth_pct": 113,
+      "disrupted_gene_details": [
+        {
+          "gene": "DUSP22",
+          "biotype": "protein_coding",
+          "chrom": "chr35",
+          "start": 625022,
+          "end": 680993,
+          "overlap": "partial",
+          "exon_overlap": "exonic"
+        },
+        {
+          "gene": "ENSCAFG00845015866",
+          "biotype": "protein_coding",
+          "chrom": "chr35",
+          "start": 672106,
+          "end": 673540,
+          "overlap": "full",
+          "exon_overlap": "exonic"
+        },
+        {
+          "gene": "IRF4",
+          "biotype": "protein_coding",
+          "chrom": "chr35",
+          "start": 714202,
+          "end": 738113,
+          "overlap": "full",
+          "exon_overlap": "exonic"
+        }
+      ]
     }
   ],
   "disrupted_genes": [
@@ -42,7 +71,81 @@
       "size": "400kb",
       "cosmo_pct_flank": 13.0,
       "nelk_pct_flank": 23.0,
-      "verdict": "mappability_artefact"
+      "verdict": "mappability_artefact",
+      "disrupted_gene_details": [
+        {
+          "gene": "RAB18",
+          "biotype": "protein_coding",
+          "chrom": "chr2",
+          "start": 16750761,
+          "end": 16991653,
+          "overlap": "partial",
+          "exon_overlap": "exonic"
+        },
+        {
+          "gene": "U3",
+          "biotype": "snoRNA",
+          "chrom": "chr2",
+          "start": 16996922,
+          "end": 16997031,
+          "overlap": "full",
+          "exon_overlap": "exonic"
+        },
+        {
+          "gene": "ENSCAFG00845012517",
+          "biotype": "miRNA",
+          "chrom": "chr2",
+          "start": 16996986,
+          "end": 16997031,
+          "overlap": "full",
+          "exon_overlap": "exonic"
+        },
+        {
+          "gene": "ENSCAFG00845012530",
+          "biotype": "protein_coding",
+          "chrom": "chr2",
+          "start": 17039412,
+          "end": 17054353,
+          "overlap": "full",
+          "exon_overlap": "exonic"
+        },
+        {
+          "gene": "ENSCAFG00845012554",
+          "biotype": "lncRNA",
+          "chrom": "chr2",
+          "start": 17121875,
+          "end": 17123680,
+          "overlap": "full",
+          "exon_overlap": "exonic"
+        },
+        {
+          "gene": "ENSCAFG00845012582",
+          "biotype": "protein_coding",
+          "chrom": "chr2",
+          "start": 17130969,
+          "end": 17346739,
+          "overlap": "partial",
+          "exon_overlap": "exonic"
+        },
+        {
+          "gene": "ENSCAFG00845012663",
+          "biotype": "protein_coding",
+          "chrom": "chr2",
+          "start": 17241141,
+          "end": 17246621,
+          "overlap": "full",
+          "exon_overlap": "exonic"
+        },
+        {
+          "gene": "ENSCAFG00845012697",
+          "biotype": "pseudogene",
+          "chrom": "chr2",
+          "start": 17279409,
+          "end": 17280360,
+          "overlap": "full",
+          "exon_overlap": "exonic"
+        }
+      ]
     },
     {
       "chrom": "chr13",
@@ -51,7 +154,18 @@
       "size": "200kb",
       "cosmo_pct_flank": 22.0,
       "nelk_pct_flank": 26.0,
-      "verdict": "mappability_artefact"
+      "verdict": "mappability_artefact",
+      "disrupted_gene_details": [
+        {
+          "gene": "CSMD3",
+          "biotype": "protein_coding",
+          "chrom": "chr13",
+          "start": 12686848,
+          "end": 13856949,
+          "overlap": "partial",
+          "exon_overlap": "exonic"
+        }
+      ]
     },
     {
       "chrom": "chr16",
@@ -60,7 +174,63 @@
       "size": "300kb",
       "cosmo_pct_flank": 13.0,
       "nelk_pct_flank": 9.0,
-      "verdict": "mappability_artefact"
+      "verdict": "mappability_artefact",
+      "disrupted_gene_details": [
+        {
+          "gene": "ENSCAFG00845018706",
+          "biotype": "lncRNA",
+          "chrom": "chr16",
+          "start": 55102379,
+          "end": 55104923,
+          "overlap": "full",
+          "exon_overlap": "exonic"
+        },
+        {
+          "gene": "ENSCAFG00845018717",
+          "biotype": "lncRNA",
+          "chrom": "chr16",
+          "start": 55103675,
+          "end": 55192027,
+          "overlap": "full",
+          "exon_overlap": "exonic"
+        },
+        {
+          "gene": "ENSCAFG00845018756",
+          "biotype": "lncRNA",
+          "chrom": "chr16",
+          "start": 55128949,
+          "end": 55129967,
+          "overlap": "full",
+          "exon_overlap": "exonic"
+        },
+        {
+          "gene": "ENSCAFG00845018769",
+          "biotype": "lncRNA",
+          "chrom": "chr16",
+          "start": 55165509,
+          "end": 55167907,
+          "overlap": "full",
+          "exon_overlap": "exonic"
+        },
+        {
+          "gene": "ENSCAFG00845018780",
+          "biotype": "lncRNA",
+          "chrom": "chr16",
+          "start": 55174188,
+          "end": 55175580,
+          "overlap": "full",
+          "exon_overlap": "exonic"
+        },
+        {
+          "gene": "VEGFC",
+          "biotype": "protein_coding",
+          "chrom": "chr16",
+          "start": 55195409,
+          "end": 55300821,
+          "overlap": "full",
+          "exon_overlap": "exonic"
+        }
+      ]
     },
     {
       "chrom": "chr19",
@@ -69,7 +239,8 @@
       "size": "200kb",
       "cosmo_pct_flank": 4.0,
       "nelk_pct_flank": 13.0,
-      "verdict": "mappability_artefact"
+      "verdict": "mappability_artefact",
+      "disrupted_gene_details": []
     },
     {
       "chrom": "chr27",
@@ -78,7 +249,54 @@
       "size": "200kb",
       "cosmo_pct_flank": 16.0,
       "nelk_pct_flank": 18.0,
-      "verdict": "mappability_artefact"
+      "verdict": "mappability_artefact",
+      "disrupted_gene_details": [
+        {
+          "gene": "PPFIBP1",
+          "biotype": "protein_coding",
+          "chrom": "chr27",
+          "start": 20224794,
+          "end": 20391976,
+          "overlap": "partial",
+          "exon_overlap": "exonic"
+        },
+        {
+          "gene": "C27H12orf71",
+          "biotype": "protein_coding",
+          "chrom": "chr27",
+          "start": 20317493,
+          "end": 20320161,
+          "overlap": "full",
+          "exon_overlap": "exonic"
+        },
+        {
+          "gene": "SMCO2",
+          "biotype": "protein_coding",
+          "chrom": "chr27",
+          "start": 20412477,
+          "end": 20442338,
+          "overlap": "full",
+          "exon_overlap": "exonic"
+        },
+        {
+          "gene": "ENSCAFG00845024548",
+          "biotype": "lncRNA",
+          "chrom": "chr27",
+          "start": 20496902,
+          "end": 20497962,
+          "overlap": "full",
+          "exon_overlap": "exonic"
+        },
+        {
+          "gene": "ENSCAFG00845024560",
+          "biotype": "lncRNA",
+          "chrom": "chr27",
+          "start": 20497195,
+          "end": 20499684,
+          "overlap": "full",
+          "exon_overlap": "exonic"
+        }
+      ]
     }
   ],
   "summary": {

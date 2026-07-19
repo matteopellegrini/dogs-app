@@ -1,12 +1,12 @@
 {
   "summary": {
-    "predicted_base_color": "Phaeomelanin (yellow / red / cream) \u2014 e/e suspected",
-    "predicted_pattern": "Solid phaeomelanin \u2014 e/e overrides all other loci (low confidence)",
+    "predicted_base_color": "Phaeomelanin (yellow / red / cream) \u2014 e/e required by phenotype and K locus",
+    "predicted_pattern": "Solid phaeomelanin \u2014 e/e overrides KB/KB; specific MC1R mutation unknown",
     "predicted_dilution": "Full pigment (D/D)",
     "predicted_white": "Not detectable from SNP data (S locus limited; W requires structural variant)",
     "predicted_merle": "Not detectable from SNP imputation \u2014 requires PCR or long-read sequencing",
     "overall_confidence": "low",
-    "caveat": "E locus called from proxy SNP (chr5:64186854, CPNE7 intron) \u2014 NOT the causal MC1R p.Arg306* coding variant. The actual coding position (chr5:63922309) is absent from the Dog10K panel; BAM pileup shows only 2 reads (all reference), insufficient coverage to confirm or exclude the causal allele. e/e call is plausible given cream phenotype but unconfirmed. A locus sable (ay/aw) requires structural variant analysis. Merle (M) and extreme white (W) require PCR or long-read.",
+    "caveat": "e/e is required by the cream phenotype combined with KB/KB at the K locus (ASIP cannot produce cream when KB is homozygous). However, BAM pileup at the p.Arg306* coding position (chr5:63922309) shows 2 reads all reference \u2014 this dog does NOT carry the common p.Arg306* MC1R allele. The e allele is a different MC1R loss-of-function mutation not captured by the Dog10K panel. The proxy SNP (chr5:64186854, CPNE7 intron) correctly tags the e haplotype but cannot identify the specific causative variant. Sanger sequencing of MC1R would be required to identify the exact allele.",
     "irf4_note": "No IRF4 deletion detected in this sample."
   },
   "loci": {
@@ -26,7 +26,7 @@
         "e"
       ],
       "confidence": "low",
-      "interpretation": "Homozygous e/e from proxy SNP only (chr5:64186854, CPNE7 intron, alt allele freq \u224829%). The actual MC1R p.Arg306* coding position (chr5:63922309) is not in the Dog10K panel; BAM pileup shows 2 reads, all reference \u2014 insufficient coverage to confirm or exclude the causal allele. e/e is plausible given cream phenotype, but unconfirmed at the coding level.",
+      "interpretation": "e/e inferred from phenotype and K locus: cream coat with KB/KB at the K locus can only arise from e/e (ASIP cannot produce phaeomelanin when KB is homozygous). The Dog10K proxy SNP (chr5:64186854, CPNE7 intron) independently supports e/e. However, BAM pileup at the p.Arg306* position (chr5:63922309) shows 2 reads all reference \u2014 this dog does NOT carry the common p.Arg306* allele. The causative e allele is a different MC1R loss-of-function mutation (e.g. p.His44Pro, p.Trp145Gln, or other) that is in LD with the proxy SNP in the Dog10K panel but absent from the positions queried here. Sanger sequencing of the full MC1R CDS would identify the specific allele.",
       "observed_variants": [
         {
           "pos": 64186854,

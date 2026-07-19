@@ -40,6 +40,16 @@ interface ZoomData {
   [key: string]: ZoomRegion;
 }
 
+interface CnvArtefact {
+  chrom: string;
+  start: number;
+  end: number;
+}
+
+interface CnvHodelData {
+  artefact_regions?: CnvArtefact[];
+}
+
 const CHR_ORDER = [...Array(38).keys()].map((i) => `chr${i + 1}`).concat(['chrX']);
 
 const DEL_THRESH = 0.65;
@@ -173,11 +183,12 @@ function DualTrackPlot({ zoom }: { zoom: ZoomRegion }) {
 }
 
 function OutlierDetail({
-  chrom, ratio, geneMap, zoomData,
+  chrom, ratio, geneMap, zoomData, artefacts,
 }: {
   chrom: string; ratio: number[];
   geneMap: { [mb: string]: string[] } | undefined;
   zoomData: ZoomData;
+  artefacts: CnvArtefact[];
 }) {
   const regions = groupOutliers(ratio);
   if (!regions.length) return null;
@@ -194,6 +205,13 @@ function OutlierDetail({
           .slice(reg.startIdx, reg.endIdx + 1)
           .reduce((s, v) => s + v, 0) / (reg.endIdx - reg.startIdx + 1);
 
+        // Check if this region overlaps any CNV mappability artefact
+        const regStart = reg.startIdx * 1_000_000;
+        const regEnd   = (reg.endIdx + 1) * 1_000_000;
+        const isArtefact = artefacts.some(
+          a => a.chrom === chrom && a.end > regStart && a.start < regEnd
+        );
+
         // Look up pre-computed 10kb zoom for this region
         const vs = Math.max(0, reg.startIdx - CONTEXT_WINDOWS) * 1_000_000;
         const ve = (reg.endIdx + CONTEXT_WINDOWS + 1) * 1_000_000;
@@ -209,16 +227,20 @@ function OutlierDetail({
 
         return (
           <div key={ri} className={`border rounded-xl p-3 ${
-            type === 'del' ? 'bg-red-50/30 border-red-200' : 'bg-orange-50/30 border-orange-200'
+            isArtefact
+              ? 'bg-gray-50 border-gray-200'
+              : type === 'del' ? 'bg-red-50/30 border-red-200' : 'bg-orange-50/30 border-orange-200'
           }`}>
             <div className="flex items-center gap-2 mb-2 flex-wrap">
-              <span className={`text-xs font-semibold ${type === 'del' ? 'text-red-700' : 'text-orange-700'}`}>
+              <span className={`text-xs font-semibold ${isArtefact ? 'text-gray-500' : type === 'del' ? 'text-red-700' : 'text-orange-700'}`}>
                 {chrom}:{reg.startIdx}–{reg.endIdx + 1} Mb
               </span>
               <span className={`text-[10px] px-1.5 py-0.5 rounded font-medium ${
-                type === 'del' ? 'bg-red-100 text-red-700' : 'bg-orange-100 text-orange-700'
+                isArtefact
+                  ? 'bg-gray-100 text-gray-500'
+                  : type === 'del' ? 'bg-red-100 text-red-700' : 'bg-orange-100 text-orange-700'
               }`}>
-                {type === 'del' ? '⬇ possible deletion' : '⬆ possible duplication'}
+                {isArtefact ? '⬇ mappability artefact' : type === 'del' ? '⬇ possible deletion' : '⬆ possible duplication'}
               </span>
               <span className="text-[10px] text-gray-400">
                 {reg.endIdx - reg.startIdx + 1} Mb window{reg.endIdx !== reg.startIdx ? 's' : ''} · mean ratio {meanRatio.toFixed(3)}
@@ -275,6 +297,11 @@ function OutlierDetail({
             )}
             {genes.length === 0 && (
               <p className="text-[10px] text-gray-400 mt-2">No annotated genes in flagged windows.</p>
+            )}
+            {isArtefact && (
+              <p className="text-[10px] text-gray-400 mt-2">
+                Low coverage also seen in the reference panel — classified as a mappability artefact in canFam4, not a sample-specific deletion.
+              </p>
             )}
           </div>
         );
@@ -360,6 +387,7 @@ export default function CoverageChart({ samplePath = '' }: { samplePath?: string
   const [centromeres, setCentromeres] = useState<Centromeres>({});
   const [geneData, setGeneData]   = useState<GeneMap>({});
   const [zoomData, setZoomData]   = useState<ZoomData>({});
+  const [artefacts, setArtefacts] = useState<CnvArtefact[]>([]);
   const [selected, setSelected]   = useState('chr1');
   const [chartPad, setChartPad]   = useState({ left: '0px', right: '0px' });
   const setPadRef  = useRef(setChartPad);
@@ -380,6 +408,10 @@ export default function CoverageChart({ samplePath = '' }: { samplePath?: string
     fetch(`${samplePath}/karyotype_zoom.json`)
       .then(r => r.ok ? r.json() : {})
       .then((d: ZoomData) => setZoomData(d))
+      .catch(() => {});
+    fetch(`${samplePath}/cnv_homdel.json`)
+      .then(r => r.ok ? r.json() : {})
+      .then((d: CnvHodelData) => setArtefacts(d.artefact_regions ?? []))
       .catch(() => {});
   }, [samplePath]);
 
@@ -695,6 +727,7 @@ export default function CoverageChart({ samplePath = '' }: { samplePath?: string
           ratio={ratio}
           geneMap={geneData[selected]}
           zoomData={zoomData}
+          artefacts={artefacts}
         />
       )}
     </div>

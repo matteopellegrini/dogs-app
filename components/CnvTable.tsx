@@ -23,6 +23,16 @@ interface DisruptedGene {
   overlap: string;
 }
 
+interface GeneModel {
+  name: string;
+  start: number;
+  end: number;
+  exons: [number, number][];
+  cds: [number, number][];
+}
+
+type GeneData = Record<string, GeneModel[]>;
+
 interface ArtefactRegion {
   chrom: string;
   start: number;
@@ -53,11 +63,31 @@ const OVERLAP_COLORS: Record<string, string> = {
   partial: 'bg-orange-100 text-orange-700',
 };
 
+function exonOverlapLabel(
+  gene: DisruptedGene,
+  delStart: number,
+  delEnd: number,
+  geneData: GeneData,
+): 'exonic' | 'intronic' | null {
+  const chromNum = gene.chrom.replace('chr', '');
+  const models = geneData[chromNum];
+  if (!models) return null;
+  const model = models.find(m => m.name === gene.gene);
+  if (!model) return null;
+  const hitsExon = model.exons.some(([es, ee]) => es < delEnd && ee > delStart);
+  return hitsExon ? 'exonic' : 'intronic';
+}
+
 export default function CnvTable({ samplePath = '' }: { samplePath?: string } = {}) {
   const [data, setData] = useState<CnvData | null>(null);
+  const [geneData, setGeneData] = useState<GeneData>({});
 
   useEffect(() => {
     fetch(`${samplePath}/cnv_homdel.json`).then(r => r.json()).then(setData);
+    fetch(`${samplePath}/cnv_genes.json`)
+      .then(r => r.ok ? r.json() : {})
+      .then((d: GeneData) => setGeneData(d))
+      .catch(() => {});
   }, [samplePath]);
 
   if (!data) return <div className="text-gray-400 text-sm py-8 text-center">Loading CNV data…</div>;
@@ -125,24 +155,44 @@ export default function CnvTable({ samplePath = '' }: { samplePath?: string } = 
                       <th className="py-2 pr-4 font-medium">Gene</th>
                       <th className="py-2 pr-4 font-medium">Location</th>
                       <th className="py-2 pr-4 font-medium">Biotype</th>
-                      <th className="py-2 font-medium">Overlap</th>
+                      <th className="py-2 pr-4 font-medium">Overlap</th>
+                      <th className="py-2 font-medium" title="Whether the deleted region covers exons or only intronic sequence">Exon overlap</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {data.disrupted_genes.map((g, i) => (
-                      <tr key={i} className="border-b border-gray-50 hover:bg-gray-50">
-                        <td className="py-1.5 pr-4 font-semibold text-gray-700">{g.gene}</td>
-                        <td className="py-1.5 pr-4 font-mono text-gray-400 text-[10px]">
-                          {g.chrom}:{(g.start/1e6).toFixed(2)}–{(g.end/1e6).toFixed(2)} Mb
-                        </td>
-                        <td className="py-1.5 pr-4 text-gray-500">{g.biotype.replace('_',' ')}</td>
-                        <td className="py-1.5">
-                          <span className={`px-1.5 py-0.5 rounded text-[10px] font-medium ${OVERLAP_COLORS[g.overlap] ?? 'bg-gray-100 text-gray-500'}`}>
-                            {g.overlap}
-                          </span>
-                        </td>
-                      </tr>
-                    ))}
+                    {data.disrupted_genes.map((g, i) => {
+                      const delRegion = data.regions.find(r => r.disrupted_genes.includes(g.gene));
+                      const exonLabel = delRegion
+                        ? exonOverlapLabel(g, delRegion.start, delRegion.end, geneData)
+                        : null;
+                      return (
+                        <tr key={i} className="border-b border-gray-50 hover:bg-gray-50">
+                          <td className="py-1.5 pr-4 font-semibold text-gray-700">{g.gene}</td>
+                          <td className="py-1.5 pr-4 font-mono text-gray-400 text-[10px]">
+                            {g.chrom}:{(g.start/1e6).toFixed(2)}–{(g.end/1e6).toFixed(2)} Mb
+                          </td>
+                          <td className="py-1.5 pr-4 text-gray-500">{g.biotype.replace('_',' ')}</td>
+                          <td className="py-1.5 pr-4">
+                            <span className={`px-1.5 py-0.5 rounded text-[10px] font-medium ${OVERLAP_COLORS[g.overlap] ?? 'bg-gray-100 text-gray-500'}`}>
+                              {g.overlap}
+                            </span>
+                          </td>
+                          <td className="py-1.5">
+                            {exonLabel ? (
+                              <span className={`px-1.5 py-0.5 rounded text-[10px] font-medium ${
+                                exonLabel === 'exonic'
+                                  ? 'bg-red-100 text-red-700'
+                                  : 'bg-gray-100 text-gray-500'
+                              }`}>
+                                {exonLabel}
+                              </span>
+                            ) : (
+                              <span className="text-gray-300 text-[10px]">—</span>
+                            )}
+                          </td>
+                        </tr>
+                      );
+                    })}
                   </tbody>
                 </table>
               </div>

@@ -1,12 +1,12 @@
 {
   "summary": {
-    "predicted_base_color": "Eumelanin \u2014 chocolate/brown (KB/KB with functional E allele; b/b compound het b1+b2)",
-    "predicted_pattern": "Solid chocolate \u2014 KB/KB overrides A locus; b/b gives brown eumelanin",
+    "predicted_base_color": "Phaeomelanin (yellow / red / cream) \u2014 e/e suspected",
+    "predicted_pattern": "Solid phaeomelanin \u2014 e/e overrides all other loci (low confidence)",
     "predicted_dilution": "Full pigment (D/D)",
     "predicted_white": "Not detectable from SNP data (S locus limited; W requires structural variant)",
     "predicted_merle": "Not detectable from SNP imputation \u2014 requires PCR or long-read sequencing",
     "overall_confidence": "low",
-    "caveat": "E locus called from BAM pileup at the actual MC1R coding position (chr5:63922309): 2 reads, all reference, no e allele detected. Dog10K GLIMPSE2 imputed e/e at proxy SNP (chr5:64186854, CPNE7 intron) overridden \u2014 that position is NOT the causal MC1R p.Arg306* coding variant. A locus sable (ay/aw) requires structural variant analysis. Merle (M) and extreme white (W) require PCR or long-read.",
+    "caveat": "E locus called from proxy SNP (chr5:64186854, CPNE7 intron) \u2014 NOT the causal MC1R p.Arg306* coding variant. The actual coding position (chr5:63922309) is absent from the Dog10K panel; BAM pileup shows only 2 reads (all reference), insufficient coverage to confirm or exclude the causal allele. e/e call is plausible given cream phenotype but unconfirmed. A locus sable (ay/aw) requires structural variant analysis. Merle (M) and extreme white (W) require PCR or long-read.",
     "irf4_note": "No IRF4 deletion detected in this sample."
   },
   "loci": {
@@ -22,26 +22,16 @@
         "e": "Recessive red/yellow \u2014 two copies needed"
       },
       "predicted_alleles": [
-        "E",
-        "?"
+        "e",
+        "e"
       ],
       "confidence": "low",
-      "interpretation": "Dog10K proxy SNP (chr5:64186854, CPNE7 intron) called e/e, but this position is NOT the causal MC1R p.Arg306* coding variant. BAM pileup at the actual MC1R coding position (chr5:63922309) shows 2 reads, all reference \u2014 no e allele detected. Best estimate from BAM pileup: at least one functional E allele (E/E or E/e). Dog10K GLIMPSE2 imputed genotype at proxy SNP is unreliable for this locus and is overridden.",
+      "interpretation": "Homozygous e/e from proxy SNP only (chr5:64186854, CPNE7 intron, alt allele freq \u224829%). The actual MC1R p.Arg306* coding position (chr5:63922309) is not in the Dog10K panel; BAM pileup shows 2 reads, all reference \u2014 insufficient coverage to confirm or exclude the causal allele. e/e is plausible given cream phenotype, but unconfirmed at the coding level.",
       "observed_variants": [
         {
-          "pos": 63922309,
-          "source": "BAM pileup (2 reads, q\u226520)",
-          "effect": "MC1R p.Arg306* \u2014 actual causal e allele position (canFam4 chr5:63922309, NOT in Dog10K panel)",
-          "bam_counts": {"T": 2},
-          "depth": 2,
-          "n_alt": 0,
-          "ref": "T",
-          "alt": "A"
-        },
-        {
           "pos": 64186854,
-          "source": "Dog10K imputed (overridden \u2014 proxy only)",
-          "effect": "e haplotype proxy SNP (CPNE7 intron, NOT the causal MC1R p.Arg306* coding variant) \u2014 call overridden by BAM pileup at actual coding position",
+          "source": "Dog10K imputed",
+          "effect": "e haplotype proxy SNP (CPNE7 intron, NOT the causal MC1R p.Arg306* coding variant)",
           "gt": "1|1",
           "n_alt": 2,
           "ref": "C",
@@ -49,6 +39,16 @@
           "gp": [0.0, 0.0, 1.0],
           "max_gp": 1.0,
           "af": 0.2859
+        },
+        {
+          "pos": 63922309,
+          "source": "BAM pileup (2 reads, q\u226520) \u2014 insufficient coverage",
+          "effect": "MC1R p.Arg306* \u2014 actual causal e allele position (canFam4 chr5:63922309, NOT in Dog10K panel)",
+          "bam_counts": {"T": 2},
+          "depth": 2,
+          "n_alt": 0,
+          "ref": "T",
+          "alt": "A"
         }
       ]
     },

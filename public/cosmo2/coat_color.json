@@ -1,8 +1,8 @@
 {
   "summary": {
-    "predicted_base_color": "Phaeomelanin (yellow / red / cream) \u2014 e/e required by phenotype and K locus",
-    "predicted_pattern": "Solid phaeomelanin \u2014 e/e overrides KB/KB; specific MC1R mutation unknown",
-    "predicted_dilution": "Full pigment (D/D)",
+    "predicted_base_color": "Phaeomelanin \u2014 cream/yellow/red (e/e; liver/brown nose and pads from B/D loci)",
+    "predicted_pattern": "Solid phaeomelanin \u2014 no eumelanin in coat; liver/brown nose and pads.",
+    "predicted_dilution": "Not applicable to coat (phaeomelanin unaffected by D locus)",
     "predicted_white": "Not detectable from SNP data (S locus limited; W requires structural variant)",
     "predicted_merle": "Not detectable from SNP imputation \u2014 requires PCR or long-read sequencing",
     "overall_confidence": "low",

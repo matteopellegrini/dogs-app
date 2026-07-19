@@ -1,7 +1,7 @@
 {
   "summary": {
-    "predicted_base_color": "Eumelanin \u2014 black (dominant black KB/ky with functional E allele; B/b carrier)",
-    "predicted_pattern": "Solid black \u2014 KB/ky overrides A locus; B/b carrier (not chocolate)",
+    "predicted_base_color": "Eumelanin \u2014 solid black",
+    "predicted_pattern": "Solid black \u2014 KB suppresses A locus. Black nose and pads.",
     "predicted_dilution": "Full pigment (D/D)",
     "predicted_white": "Not detectable from SNP data (S locus limited; W requires structural variant)",
     "predicted_merle": "Not detectable from SNP imputation \u2014 requires PCR or long-read sequencing",

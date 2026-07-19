@@ -1,7 +1,7 @@
 {
   "summary": {
-    "predicted_base_color": "Eumelanin \u2014 solid black",
-    "predicted_pattern": "Solid black \u2014 KB suppresses A locus. Black nose and pads.",
+    "predicted_base_color": "Eumelanin \u2014 chocolate (b/b inferred from phenotype; second b allele not in Dog10K panel)",
+    "predicted_pattern": "Solid chocolate \u2014 KB suppresses A locus. Liver/brown nose and pads.",
     "predicted_dilution": "Full pigment (D/D)",
     "predicted_white": "Not detectable from SNP data (S locus limited; W requires structural variant)",
     "predicted_merle": "Not detectable from SNP imputation \u2014 requires PCR or long-read sequencing",
@@ -136,11 +136,11 @@
         "b": "Brown/liver eumelanin \u2014 two copies needed"
       },
       "predicted_alleles": [
-        "B",
-        "b"
+        "b",
+        "?"
       ],
-      "confidence": "high",
-      "interpretation": "Carrier for brown (B/b) \u2014 black eumelanin expressed",
+      "confidence": "low",
+      "interpretation": "One b allele detected (b1, p.Arg345Cys at chr11:33376317, GT=0|1, GP=1.0). The b2 allele (p.Gln354*, chr11:33440938) is absent. Phenotype is chocolate, which requires b/b \u2014 the second b allele is likely a different TYRP1 variant (b3, b4, or other) not present in the Dog10K panel. Compound heterozygous b1/b? is the most probable genotype.",
       "observed_variants": [
         {
           "pos": 33376317,

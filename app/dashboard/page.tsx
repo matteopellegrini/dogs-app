@@ -237,7 +237,7 @@ export default function Dashboard() {
 
   const [tab, setTab] = useState<TabKey>('upload');
   const [activeDogId, setActiveDogId] = useState<number | null>(null);
-  const [assistantMessages, setAssistantMessages] = useState<ChatMessage[]>([]);
+  const [assistantMessagesByDog, setAssistantMessagesByDog] = useState<Record<number, ChatMessage[]>>({});
   const [uploads, setUploads] = useState<Upload[]>([]);
   const [dogs, setDogs] = useState<Dog[]>([]);
   const [selectedUpload, setSelectedUpload] = useState<Upload | null>(null);
@@ -572,10 +572,15 @@ export default function Dashboard() {
                 {tab === 'qc'         && <QcPanel samplePath={samplePath} />}
                 {tab === 'microbiome' && <MicrobiomePanel samplePath={samplePath} />}
                 {tab === 'notes'      && <DogNotes dog={activeDog} />}
-                {tab === 'assistant'  && (
+                {tab === 'assistant'  && activeDog && (
                   <GeneralChat
-                    messages={assistantMessages}
-                    setMessages={setAssistantMessages}
+                    messages={assistantMessagesByDog[activeDog.id] ?? []}
+                    setMessages={msgs => setAssistantMessagesByDog(prev => ({
+                      ...prev,
+                      [activeDog.id]: typeof msgs === 'function'
+                        ? msgs(prev[activeDog.id] ?? [])
+                        : msgs,
+                    }))}
                     sample={activeSample}
                     samplePath={samplePath}
                   />

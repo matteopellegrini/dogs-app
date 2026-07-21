@@ -17,6 +17,7 @@ import MicrobiomePanel from '@/components/MicrobiomePanel';
 import DogNotes from '@/components/DogNotes';
 import FunctionalVariants from '@/components/FunctionalVariants';
 import CoatColorPanel from '@/components/CoatColorPanel';
+import GeneralChat, { type ChatMessage } from '@/components/GeneralChat';
 
 interface Upload {
   id: number;
@@ -69,6 +70,7 @@ const NAV_ITEMS = [
   { key: 'qc',         label: 'Data Quality',       icon: '✅' },
   { key: 'notes',      label: 'Health Notes',       icon: '🩺' },
   { key: 'upload',     label: 'Upload Data',        icon: '📤' },
+  { key: 'assistant',  label: 'AI Assistant',       icon: '🤖' },
 ] as const;
 
 type TabKey = typeof NAV_ITEMS[number]['key'];
@@ -235,6 +237,7 @@ export default function Dashboard() {
 
   const [tab, setTab] = useState<TabKey>('upload');
   const [activeDogId, setActiveDogId] = useState<number | null>(null);
+  const [assistantMessages, setAssistantMessages] = useState<ChatMessage[]>([]);
   const [uploads, setUploads] = useState<Upload[]>([]);
   const [dogs, setDogs] = useState<Dog[]>([]);
   const [selectedUpload, setSelectedUpload] = useState<Upload | null>(null);
@@ -569,6 +572,14 @@ export default function Dashboard() {
                 {tab === 'qc'         && <QcPanel samplePath={samplePath} />}
                 {tab === 'microbiome' && <MicrobiomePanel samplePath={samplePath} />}
                 {tab === 'notes'      && <DogNotes dog={activeDog} />}
+                {tab === 'assistant'  && (
+                  <GeneralChat
+                    messages={assistantMessages}
+                    setMessages={setAssistantMessages}
+                    sample={activeSample}
+                    samplePath={samplePath}
+                  />
+                )}
 
               </div>
             </div>

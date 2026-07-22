@@ -1,0 +1,2211 @@
+{
+  "sample": "ferdl",
+  "run_date": "2026-07-21",
+  "db_version": "mpa_vJan25_CHOCOPhlAnSGB_202503",
+  "total_classified_pct": 92.8746,
+  "kingdom": [
+    {
+      "clade": "k__Bacteria",
+      "rank": "k",
+      "name": "Bacteria",
+      "relative_abundance": 86.256958,
+      "estimated_reads": null
+    }
+  ],
+  "phyla": [
+    {
+      "clade": "k__Bacteria|p__Bacteroidota",
+      "rank": "p",
+      "name": "Bacteroidota",
+      "relative_abundance": 57.653618,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota",
+      "rank": "p",
+      "name": "Pseudomonadota",
+      "relative_abundance": 8.833209,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes",
+      "rank": "p",
+      "name": "Firmicutes",
+      "relative_abundance": 6.104719,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Actinomycetota",
+      "rank": "p",
+      "name": "Actinomycetota",
+      "relative_abundance": 2.865657,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Thermodesulfobacteriota",
+      "rank": "p",
+      "name": "Thermodesulfobacteriota",
+      "relative_abundance": 2.25812,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Ignavibacteriota",
+      "rank": "p",
+      "name": "Ignavibacteriota",
+      "relative_abundance": 1.903358,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Campylobacterota",
+      "rank": "p",
+      "name": "Campylobacterota",
+      "relative_abundance": 1.835885,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Candidatus_Absconditibacteriota",
+      "rank": "p",
+      "name": "Candidatus Absconditibacteriota",
+      "relative_abundance": 1.784007,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Candidatus_Saccharibacteria",
+      "rank": "p",
+      "name": "Candidatus Saccharibacteria",
+      "relative_abundance": 1.752717,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Synergistota",
+      "rank": "p",
+      "name": "Synergistota",
+      "relative_abundance": 0.548623,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Chloroflexota",
+      "rank": "p",
+      "name": "Chloroflexota",
+      "relative_abundance": 0.298184,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Fusobacteriota",
+      "rank": "p",
+      "name": "Fusobacteriota",
+      "relative_abundance": 0.225243,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Mycoplasmatota",
+      "rank": "p",
+      "name": "Mycoplasmatota",
+      "relative_abundance": 0.142604,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Spirochaetota",
+      "rank": "p",
+      "name": "Spirochaetota",
+      "relative_abundance": 0.051011,
+      "estimated_reads": null
+    }
+  ],
+  "classes": [
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__Bacteroidia",
+      "rank": "c",
+      "name": "Bacteroidia",
+      "relative_abundance": 55.657018,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__Betaproteobacteria",
+      "rank": "c",
+      "name": "Betaproteobacteria",
+      "relative_abundance": 6.371409,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Actinomycetota|c__Actinomycetes",
+      "rank": "c",
+      "name": "Actinomycetes",
+      "relative_abundance": 2.828558,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__Gammaproteobacteria",
+      "rank": "c",
+      "name": "Gammaproteobacteria",
+      "relative_abundance": 2.438485,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Ignavibacteriota|c__CFGB84716",
+      "rank": "c",
+      "name": "CFGB84716",
+      "relative_abundance": 1.903358,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Thermodesulfobacteriota|c__Desulfovibrionia",
+      "rank": "c",
+      "name": "Desulfovibrionia",
+      "relative_abundance": 1.841085,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Campylobacterota|c__Epsilonproteobacteria",
+      "rank": "c",
+      "name": "Epsilonproteobacteria",
+      "relative_abundance": 1.835885,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Candidatus_Absconditibacteriota|c__CFGB1860",
+      "rank": "c",
+      "name": "CFGB1860",
+      "relative_abundance": 1.784007,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__Clostridia",
+      "rank": "c",
+      "name": "Clostridia",
+      "relative_abundance": 1.408278,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__Erysipelotrichia",
+      "rank": "c",
+      "name": "Erysipelotrichia",
+      "relative_abundance": 1.305091,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__Flavobacteriia",
+      "rank": "c",
+      "name": "Flavobacteriia",
+      "relative_abundance": 0.96317,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Candidatus_Saccharibacteria|c__CFGB12783",
+      "rank": "c",
+      "name": "CFGB12783",
+      "relative_abundance": 0.860528,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB84425",
+      "rank": "c",
+      "name": "CFGB84425",
+      "relative_abundance": 0.85546,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Candidatus_Saccharibacteria|c__Candidatus_Saccharibacteria_unclassified",
+      "rank": "c",
+      "name": "Candidatus Saccharibacteria unclassified",
+      "relative_abundance": 0.853832,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB84152",
+      "rank": "c",
+      "name": "CFGB84152",
+      "relative_abundance": 0.843962,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB84608",
+      "rank": "c",
+      "name": "CFGB84608",
+      "relative_abundance": 0.67621,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__CFGB87836",
+      "rank": "c",
+      "name": "CFGB87836",
+      "relative_abundance": 0.658078,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Synergistota|c__Synergistia",
+      "rank": "c",
+      "name": "Synergistia",
+      "relative_abundance": 0.548623,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Thermodesulfobacteriota|c__CFGB79384",
+      "rank": "c",
+      "name": "CFGB79384",
+      "relative_abundance": 0.417035,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__CFGB651",
+      "rank": "c",
+      "name": "CFGB651",
+      "relative_abundance": 0.372728,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Chloroflexota|c__Anaerolineae",
+      "rank": "c",
+      "name": "Anaerolineae",
+      "relative_abundance": 0.298184,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB1762",
+      "rank": "c",
+      "name": "CFGB1762",
+      "relative_abundance": 0.27384,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Fusobacteriota|c__Fusobacteriia",
+      "rank": "c",
+      "name": "Fusobacteriia",
+      "relative_abundance": 0.225243,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__Bacilli",
+      "rank": "c",
+      "name": "Bacilli",
+      "relative_abundance": 0.156767,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB84178",
+      "rank": "c",
+      "name": "CFGB84178",
+      "relative_abundance": 0.145502,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Mycoplasmatota|c__CFGB83914",
+      "rank": "c",
+      "name": "CFGB83914",
+      "relative_abundance": 0.142604,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB84491",
+      "rank": "c",
+      "name": "CFGB84491",
+      "relative_abundance": 0.136435,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB84139",
+      "rank": "c",
+      "name": "CFGB84139",
+      "relative_abundance": 0.11637,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB79103",
+      "rank": "c",
+      "name": "CFGB79103",
+      "relative_abundance": 0.089526,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Spirochaetota|c__Spirochaetia",
+      "rank": "c",
+      "name": "Spirochaetia",
+      "relative_abundance": 0.051011,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB1394",
+      "rank": "c",
+      "name": "CFGB1394",
+      "relative_abundance": 0.049288,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB33129",
+      "rank": "c",
+      "name": "CFGB33129",
+      "relative_abundance": 0.047992,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Actinomycetota|c__CFGB84691",
+      "rank": "c",
+      "name": "CFGB84691",
+      "relative_abundance": 0.037099,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Candidatus_Saccharibacteria|c__CFGB7382",
+      "rank": "c",
+      "name": "CFGB7382",
+      "relative_abundance": 0.035579,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__CFGB84033",
+      "rank": "c",
+      "name": "CFGB84033",
+      "relative_abundance": 0.016875,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__CFGB73473",
+      "rank": "c",
+      "name": "CFGB73473",
+      "relative_abundance": 0.006441,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Candidatus_Saccharibacteria|c__CFGB991",
+      "rank": "c",
+      "name": "CFGB991",
+      "relative_abundance": 0.002778,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__CFGB72559",
+      "rank": "c",
+      "name": "CFGB72559",
+      "relative_abundance": 0.002624,
+      "estimated_reads": null
+    }
+  ],
+  "orders": [
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__Bacteroidia|o__Bacteroidales",
+      "rank": "o",
+      "name": "Bacteroidales",
+      "relative_abundance": 55.657018,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__Betaproteobacteria|o__Neisseriales",
+      "rank": "o",
+      "name": "Neisseriales",
+      "relative_abundance": 3.207331,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__Betaproteobacteria|o__Burkholderiales",
+      "rank": "o",
+      "name": "Burkholderiales",
+      "relative_abundance": 3.164078,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Ignavibacteriota|c__CFGB84716|o__OFGB84716",
+      "rank": "o",
+      "name": "OFGB84716",
+      "relative_abundance": 1.903358,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Thermodesulfobacteriota|c__Desulfovibrionia|o__Desulfovibrionales",
+      "rank": "o",
+      "name": "Desulfovibrionales",
+      "relative_abundance": 1.841085,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Campylobacterota|c__Epsilonproteobacteria|o__Campylobacterales",
+      "rank": "o",
+      "name": "Campylobacterales",
+      "relative_abundance": 1.835885,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Actinomycetota|c__Actinomycetes|o__Actinomycetales",
+      "rank": "o",
+      "name": "Actinomycetales",
+      "relative_abundance": 1.792065,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Candidatus_Absconditibacteriota|c__CFGB1860|o__OFGB1860",
+      "rank": "o",
+      "name": "OFGB1860",
+      "relative_abundance": 1.784007,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__Clostridia|o__Eubacteriales",
+      "rank": "o",
+      "name": "Eubacteriales",
+      "relative_abundance": 1.356202,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__Erysipelotrichia|o__Erysipelotrichales",
+      "rank": "o",
+      "name": "Erysipelotrichales",
+      "relative_abundance": 1.305091,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__Gammaproteobacteria|o__Moraxellales",
+      "rank": "o",
+      "name": "Moraxellales",
+      "relative_abundance": 1.162311,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__Gammaproteobacteria|o__Pasteurellales",
+      "rank": "o",
+      "name": "Pasteurellales",
+      "relative_abundance": 1.155038,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__Flavobacteriia|o__Flavobacteriales",
+      "rank": "o",
+      "name": "Flavobacteriales",
+      "relative_abundance": 0.96317,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Candidatus_Saccharibacteria|c__CFGB12783|o__OFGB12783",
+      "rank": "o",
+      "name": "OFGB12783",
+      "relative_abundance": 0.860528,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB84425|o__OFGB84425",
+      "rank": "o",
+      "name": "OFGB84425",
+      "relative_abundance": 0.85546,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Candidatus_Saccharibacteria|c__Candidatus_Saccharibacteria_unclassified|o__Candidatus_Saccharibacteria_unclassified",
+      "rank": "o",
+      "name": "Candidatus Saccharibacteria unclassified",
+      "relative_abundance": 0.853832,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB84152|o__OFGB84152",
+      "rank": "o",
+      "name": "OFGB84152",
+      "relative_abundance": 0.843962,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Actinomycetota|c__Actinomycetes|o__Propionibacteriales",
+      "rank": "o",
+      "name": "Propionibacteriales",
+      "relative_abundance": 0.808976,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB84608|o__OFGB84608",
+      "rank": "o",
+      "name": "OFGB84608",
+      "relative_abundance": 0.67621,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__CFGB87836|o__OFGB87836",
+      "rank": "o",
+      "name": "OFGB87836",
+      "relative_abundance": 0.658078,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Synergistota|c__Synergistia|o__Synergistales",
+      "rank": "o",
+      "name": "Synergistales",
+      "relative_abundance": 0.548623,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Thermodesulfobacteriota|c__CFGB79384|o__OFGB79384",
+      "rank": "o",
+      "name": "OFGB79384",
+      "relative_abundance": 0.417035,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__CFGB651|o__OFGB651",
+      "rank": "o",
+      "name": "OFGB651",
+      "relative_abundance": 0.372728,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Chloroflexota|c__Anaerolineae|o__Anaerolineales",
+      "rank": "o",
+      "name": "Anaerolineales",
+      "relative_abundance": 0.298184,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB1762|o__OFGB1762",
+      "rank": "o",
+      "name": "OFGB1762",
+      "relative_abundance": 0.27384,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Fusobacteriota|c__Fusobacteriia|o__Fusobacteriales",
+      "rank": "o",
+      "name": "Fusobacteriales",
+      "relative_abundance": 0.225243,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__Bacilli|o__Bacillales",
+      "rank": "o",
+      "name": "Bacillales",
+      "relative_abundance": 0.156767,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Actinomycetota|c__Actinomycetes|o__Mycobacteriales",
+      "rank": "o",
+      "name": "Mycobacteriales",
+      "relative_abundance": 0.152775,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB84178|o__OFGB84178",
+      "rank": "o",
+      "name": "OFGB84178",
+      "relative_abundance": 0.145502,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Mycoplasmatota|c__CFGB83914|o__OFGB83914",
+      "rank": "o",
+      "name": "OFGB83914",
+      "relative_abundance": 0.142604,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB84491|o__OFGB84491",
+      "rank": "o",
+      "name": "OFGB84491",
+      "relative_abundance": 0.136435,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__Gammaproteobacteria|o__Cardiobacteriales",
+      "rank": "o",
+      "name": "Cardiobacteriales",
+      "relative_abundance": 0.119573,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB84139|o__OFGB84139",
+      "rank": "o",
+      "name": "OFGB84139",
+      "relative_abundance": 0.11637,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB79103|o__OFGB79103",
+      "rank": "o",
+      "name": "OFGB79103",
+      "relative_abundance": 0.089526,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Actinomycetota|c__Actinomycetes|o__Micrococcales",
+      "rank": "o",
+      "name": "Micrococcales",
+      "relative_abundance": 0.074742,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__Clostridia|o__Peptostreptococcales",
+      "rank": "o",
+      "name": "Peptostreptococcales",
+      "relative_abundance": 0.052077,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Spirochaetota|c__Spirochaetia|o__Spirochaetales",
+      "rank": "o",
+      "name": "Spirochaetales",
+      "relative_abundance": 0.051011,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB1394|o__OFGB1394",
+      "rank": "o",
+      "name": "OFGB1394",
+      "relative_abundance": 0.049288,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB33129|o__OFGB33129",
+      "rank": "o",
+      "name": "OFGB33129",
+      "relative_abundance": 0.047992,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Actinomycetota|c__CFGB84691|o__OFGB84691",
+      "rank": "o",
+      "name": "OFGB84691",
+      "relative_abundance": 0.037099,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Candidatus_Saccharibacteria|c__CFGB7382|o__OFGB7382",
+      "rank": "o",
+      "name": "OFGB7382",
+      "relative_abundance": 0.035579,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__CFGB84033|o__OFGB84033",
+      "rank": "o",
+      "name": "OFGB84033",
+      "relative_abundance": 0.016875,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__CFGB73473|o__OFGB73473",
+      "rank": "o",
+      "name": "OFGB73473",
+      "relative_abundance": 0.006441,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Candidatus_Saccharibacteria|c__CFGB991|o__OFGB991",
+      "rank": "o",
+      "name": "OFGB991",
+      "relative_abundance": 0.002778,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__CFGB72559|o__OFGB72559",
+      "rank": "o",
+      "name": "OFGB72559",
+      "relative_abundance": 0.002624,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__Gammaproteobacteria|o__Lysobacterales",
+      "rank": "o",
+      "name": "Lysobacterales",
+      "relative_abundance": 0.001562,
+      "estimated_reads": null
+    }
+  ],
+  "families": [
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__Bacteroidia|o__Bacteroidales|f__Porphyromonadaceae",
+      "rank": "f",
+      "name": "Porphyromonadaceae",
+      "relative_abundance": 40.158811,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__Bacteroidia|o__Bacteroidales|f__Prevotellaceae",
+      "rank": "f",
+      "name": "Prevotellaceae",
+      "relative_abundance": 13.651482,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__Betaproteobacteria|o__Neisseriales|f__Neisseriaceae",
+      "rank": "f",
+      "name": "Neisseriaceae",
+      "relative_abundance": 3.207331,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__Betaproteobacteria|o__Burkholderiales|f__Comamonadaceae",
+      "rank": "f",
+      "name": "Comamonadaceae",
+      "relative_abundance": 2.987332,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Ignavibacteriota|c__CFGB84716|o__OFGB84716|f__FGB84716",
+      "rank": "f",
+      "name": "FGB84716",
+      "relative_abundance": 1.903358,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Thermodesulfobacteriota|c__Desulfovibrionia|o__Desulfovibrionales|f__Desulfomicrobiaceae",
+      "rank": "f",
+      "name": "Desulfomicrobiaceae",
+      "relative_abundance": 1.841085,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__Bacteroidia|o__Bacteroidales|f__Tannerellaceae",
+      "rank": "f",
+      "name": "Tannerellaceae",
+      "relative_abundance": 1.817609,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Actinomycetota|c__Actinomycetes|o__Actinomycetales|f__Actinomycetaceae",
+      "rank": "f",
+      "name": "Actinomycetaceae",
+      "relative_abundance": 1.792065,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Candidatus_Absconditibacteriota|c__CFGB1860|o__OFGB1860|f__FGB1860",
+      "rank": "f",
+      "name": "FGB1860",
+      "relative_abundance": 1.784007,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Campylobacterota|c__Epsilonproteobacteria|o__Campylobacterales|f__Campylobacteraceae",
+      "rank": "f",
+      "name": "Campylobacteraceae",
+      "relative_abundance": 1.689055,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__Clostridia|o__Eubacteriales|f__Eubacteriales_unclassified",
+      "rank": "f",
+      "name": "Eubacteriales unclassified",
+      "relative_abundance": 1.356202,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__Erysipelotrichia|o__Erysipelotrichales|f__Erysipelotrichaceae",
+      "rank": "f",
+      "name": "Erysipelotrichaceae",
+      "relative_abundance": 1.305091,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__Gammaproteobacteria|o__Moraxellales|f__Moraxellaceae",
+      "rank": "f",
+      "name": "Moraxellaceae",
+      "relative_abundance": 1.162311,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__Gammaproteobacteria|o__Pasteurellales|f__Pasteurellaceae",
+      "rank": "f",
+      "name": "Pasteurellaceae",
+      "relative_abundance": 1.155038,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__Flavobacteriia|o__Flavobacteriales|f__Flavobacteriaceae",
+      "rank": "f",
+      "name": "Flavobacteriaceae",
+      "relative_abundance": 0.952225,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Candidatus_Saccharibacteria|c__CFGB12783|o__OFGB12783|f__FGB12783",
+      "rank": "f",
+      "name": "FGB12783",
+      "relative_abundance": 0.860528,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB84425|o__OFGB84425|f__FGB84425",
+      "rank": "f",
+      "name": "FGB84425",
+      "relative_abundance": 0.85546,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Candidatus_Saccharibacteria|c__Candidatus_Saccharibacteria_unclassified|o__Candidatus_Saccharibacteria_unclassified|f__Candidatus_Saccharibacteria_unclassified",
+      "rank": "f",
+      "name": "Candidatus Saccharibacteria unclassified",
+      "relative_abundance": 0.853832,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB84152|o__OFGB84152|f__FGB84152",
+      "rank": "f",
+      "name": "FGB84152",
+      "relative_abundance": 0.843962,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Actinomycetota|c__Actinomycetes|o__Propionibacteriales|f__Propionibacteriaceae",
+      "rank": "f",
+      "name": "Propionibacteriaceae",
+      "relative_abundance": 0.808976,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB84608|o__OFGB84608|f__FGB84608",
+      "rank": "f",
+      "name": "FGB84608",
+      "relative_abundance": 0.67621,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__CFGB87836|o__OFGB87836|f__FGB87836",
+      "rank": "f",
+      "name": "FGB87836",
+      "relative_abundance": 0.658078,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Synergistota|c__Synergistia|o__Synergistales|f__Aminobacteriaceae",
+      "rank": "f",
+      "name": "Aminobacteriaceae",
+      "relative_abundance": 0.548623,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Thermodesulfobacteriota|c__CFGB79384|o__OFGB79384|f__FGB79384",
+      "rank": "f",
+      "name": "FGB79384",
+      "relative_abundance": 0.417035,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__CFGB651|o__OFGB651|f__FGB651",
+      "rank": "f",
+      "name": "FGB651",
+      "relative_abundance": 0.372728,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Chloroflexota|c__Anaerolineae|o__Anaerolineales|f__Anaerolineaceae",
+      "rank": "f",
+      "name": "Anaerolineaceae",
+      "relative_abundance": 0.298184,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB1762|o__OFGB1762|f__FGB1762",
+      "rank": "f",
+      "name": "FGB1762",
+      "relative_abundance": 0.27384,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Fusobacteriota|c__Fusobacteriia|o__Fusobacteriales|f__Fusobacteriaceae",
+      "rank": "f",
+      "name": "Fusobacteriaceae",
+      "relative_abundance": 0.225243,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__Betaproteobacteria|o__Burkholderiales|f__Burkholderiaceae",
+      "rank": "f",
+      "name": "Burkholderiaceae",
+      "relative_abundance": 0.176746,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__Bacilli|o__Bacillales|f__Gemellaceae",
+      "rank": "f",
+      "name": "Gemellaceae",
+      "relative_abundance": 0.156767,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Actinomycetota|c__Actinomycetes|o__Mycobacteriales|f__Corynebacteriaceae",
+      "rank": "f",
+      "name": "Corynebacteriaceae",
+      "relative_abundance": 0.152775,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Campylobacterota|c__Epsilonproteobacteria|o__Campylobacterales|f__Helicobacteraceae",
+      "rank": "f",
+      "name": "Helicobacteraceae",
+      "relative_abundance": 0.14683,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB84178|o__OFGB84178|f__FGB84178",
+      "rank": "f",
+      "name": "FGB84178",
+      "relative_abundance": 0.145502,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Mycoplasmatota|c__CFGB83914|o__OFGB83914|f__FGB83914",
+      "rank": "f",
+      "name": "FGB83914",
+      "relative_abundance": 0.142604,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB84491|o__OFGB84491|f__FGB84491",
+      "rank": "f",
+      "name": "FGB84491",
+      "relative_abundance": 0.136435,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__Gammaproteobacteria|o__Cardiobacteriales|f__Cardiobacteriaceae",
+      "rank": "f",
+      "name": "Cardiobacteriaceae",
+      "relative_abundance": 0.119573,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB84139|o__OFGB84139|f__FGB84139",
+      "rank": "f",
+      "name": "FGB84139",
+      "relative_abundance": 0.11637,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB79103|o__OFGB79103|f__FGB79103",
+      "rank": "f",
+      "name": "FGB79103",
+      "relative_abundance": 0.089526,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Actinomycetota|c__Actinomycetes|o__Micrococcales|f__Microbacteriaceae",
+      "rank": "f",
+      "name": "Microbacteriaceae",
+      "relative_abundance": 0.074742,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__Clostridia|o__Peptostreptococcales|f__Filifactoraceae",
+      "rank": "f",
+      "name": "Filifactoraceae",
+      "relative_abundance": 0.052077,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Spirochaetota|c__Spirochaetia|o__Spirochaetales|f__Treponemataceae",
+      "rank": "f",
+      "name": "Treponemataceae",
+      "relative_abundance": 0.051011,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB1394|o__OFGB1394|f__FGB1394",
+      "rank": "f",
+      "name": "FGB1394",
+      "relative_abundance": 0.049288,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB33129|o__OFGB33129|f__FGB33129",
+      "rank": "f",
+      "name": "FGB33129",
+      "relative_abundance": 0.047992,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Actinomycetota|c__CFGB84691|o__OFGB84691|f__FGB84691",
+      "rank": "f",
+      "name": "FGB84691",
+      "relative_abundance": 0.037099,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Candidatus_Saccharibacteria|c__CFGB7382|o__OFGB7382|f__FGB7382",
+      "rank": "f",
+      "name": "FGB7382",
+      "relative_abundance": 0.035579,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__Bacteroidia|o__Bacteroidales|f__Bacteroidaceae",
+      "rank": "f",
+      "name": "Bacteroidaceae",
+      "relative_abundance": 0.029114,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__CFGB84033|o__OFGB84033|f__FGB84033",
+      "rank": "f",
+      "name": "FGB84033",
+      "relative_abundance": 0.016875,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__Flavobacteriia|o__Flavobacteriales|f__Weeksellaceae",
+      "rank": "f",
+      "name": "Weeksellaceae",
+      "relative_abundance": 0.010945,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__CFGB73473|o__OFGB73473|f__FGB73473",
+      "rank": "f",
+      "name": "FGB73473",
+      "relative_abundance": 0.006441,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Candidatus_Saccharibacteria|c__CFGB991|o__OFGB991|f__FGB991",
+      "rank": "f",
+      "name": "FGB991",
+      "relative_abundance": 0.002778,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__CFGB72559|o__OFGB72559|f__FGB72559",
+      "rank": "f",
+      "name": "FGB72559",
+      "relative_abundance": 0.002624,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__Gammaproteobacteria|o__Lysobacterales|f__Lysobacteraceae",
+      "rank": "f",
+      "name": "Lysobacteraceae",
+      "relative_abundance": 0.001562,
+      "estimated_reads": null
+    }
+  ],
+  "genera": [
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__Bacteroidia|o__Bacteroidales|f__Porphyromonadaceae|g__Porphyromonas",
+      "rank": "g",
+      "name": "Porphyromonas",
+      "relative_abundance": 39.791174,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__Bacteroidia|o__Bacteroidales|f__Prevotellaceae|g__GGB102544",
+      "rank": "g",
+      "name": "GGB102544",
+      "relative_abundance": 7.020798,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__Bacteroidia|o__Bacteroidales|f__Prevotellaceae|g__Alloprevotella",
+      "rank": "g",
+      "name": "Alloprevotella",
+      "relative_abundance": 6.120319,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__Betaproteobacteria|o__Neisseriales|f__Neisseriaceae|g__Neisseria",
+      "rank": "g",
+      "name": "Neisseria",
+      "relative_abundance": 2.372241,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Ignavibacteriota|c__CFGB84716|o__OFGB84716|f__FGB84716|g__GGB101314",
+      "rank": "g",
+      "name": "GGB101314",
+      "relative_abundance": 1.903358,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Thermodesulfobacteriota|c__Desulfovibrionia|o__Desulfovibrionales|f__Desulfomicrobiaceae|g__Desulfomicrobium",
+      "rank": "g",
+      "name": "Desulfomicrobium",
+      "relative_abundance": 1.841085,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__Bacteroidia|o__Bacteroidales|f__Tannerellaceae|g__Tannerella",
+      "rank": "g",
+      "name": "Tannerella",
+      "relative_abundance": 1.729616,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Candidatus_Absconditibacteriota|c__CFGB1860|o__OFGB1860|f__FGB1860|g__GGB101873",
+      "rank": "g",
+      "name": "GGB101873",
+      "relative_abundance": 1.716095,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Campylobacterota|c__Epsilonproteobacteria|o__Campylobacterales|f__Campylobacteraceae|g__Campylobacter",
+      "rank": "g",
+      "name": "Campylobacter",
+      "relative_abundance": 1.689055,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__Betaproteobacteria|o__Burkholderiales|f__Comamonadaceae|g__Allofranklinella",
+      "rank": "g",
+      "name": "Allofranklinella",
+      "relative_abundance": 1.587586,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__Betaproteobacteria|o__Burkholderiales|f__Comamonadaceae|g__GGB101004",
+      "rank": "g",
+      "name": "GGB101004",
+      "relative_abundance": 1.364988,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__Erysipelotrichia|o__Erysipelotrichales|f__Erysipelotrichaceae|g__Erysipelotrichaceae_unclassified",
+      "rank": "g",
+      "name": "Erysipelotrichaceae unclassified",
+      "relative_abundance": 1.305091,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__Clostridia|o__Eubacteriales|f__Eubacteriales_unclassified|g__GGB102377",
+      "rank": "g",
+      "name": "GGB102377",
+      "relative_abundance": 1.223055,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__Gammaproteobacteria|o__Moraxellales|f__Moraxellaceae|g__Moraxella",
+      "rank": "g",
+      "name": "Moraxella",
+      "relative_abundance": 1.162311,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__Flavobacteriia|o__Flavobacteriales|f__Flavobacteriaceae|g__Capnocytophaga",
+      "rank": "g",
+      "name": "Capnocytophaga",
+      "relative_abundance": 0.952225,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Candidatus_Saccharibacteria|c__CFGB12783|o__OFGB12783|f__FGB12783|g__GGB99786",
+      "rank": "g",
+      "name": "GGB99786",
+      "relative_abundance": 0.860528,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Candidatus_Saccharibacteria|c__Candidatus_Saccharibacteria_unclassified|o__Candidatus_Saccharibacteria_unclassified|f__Candidatus_Saccharibacteria_unclassified|g__GGB99760",
+      "rank": "g",
+      "name": "GGB99760",
+      "relative_abundance": 0.850339,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB84152|o__OFGB84152|f__FGB84152|g__GGB101757",
+      "rank": "g",
+      "name": "GGB101757",
+      "relative_abundance": 0.843962,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__Betaproteobacteria|o__Neisseriales|f__Neisseriaceae|g__Conchiformibius",
+      "rank": "g",
+      "name": "Conchiformibius",
+      "relative_abundance": 0.835091,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Actinomycetota|c__Actinomycetes|o__Propionibacteriales|f__Propionibacteriaceae|g__GGB102533",
+      "rank": "g",
+      "name": "GGB102533",
+      "relative_abundance": 0.808976,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__Gammaproteobacteria|o__Pasteurellales|f__Pasteurellaceae|g__Canicola",
+      "rank": "g",
+      "name": "Canicola",
+      "relative_abundance": 0.780477,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB84608|o__OFGB84608|f__FGB84608|g__GGB100340",
+      "rank": "g",
+      "name": "GGB100340",
+      "relative_abundance": 0.67621,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__CFGB87836|o__OFGB87836|f__FGB87836|g__GGB102469",
+      "rank": "g",
+      "name": "GGB102469",
+      "relative_abundance": 0.658078,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Actinomycetota|c__Actinomycetes|o__Actinomycetales|f__Actinomycetaceae|g__GGB101823",
+      "rank": "g",
+      "name": "GGB101823",
+      "relative_abundance": 0.65083,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Synergistota|c__Synergistia|o__Synergistales|f__Aminobacteriaceae|g__Fretibacterium",
+      "rank": "g",
+      "name": "Fretibacterium",
+      "relative_abundance": 0.548623,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__Bacteroidia|o__Bacteroidales|f__Prevotellaceae|g__GGB102545",
+      "rank": "g",
+      "name": "GGB102545",
+      "relative_abundance": 0.510366,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB84425|o__OFGB84425|f__FGB84425|g__GGB102336",
+      "rank": "g",
+      "name": "GGB102336",
+      "relative_abundance": 0.461297,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Thermodesulfobacteriota|c__CFGB79384|o__OFGB79384|f__FGB79384|g__GGB87594",
+      "rank": "g",
+      "name": "GGB87594",
+      "relative_abundance": 0.417035,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Actinomycetota|c__Actinomycetes|o__Actinomycetales|f__Actinomycetaceae|g__GGB101822",
+      "rank": "g",
+      "name": "GGB101822",
+      "relative_abundance": 0.40023,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB84425|o__OFGB84425|f__FGB84425|g__GGB102335",
+      "rank": "g",
+      "name": "GGB102335",
+      "relative_abundance": 0.394163,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__CFGB651|o__OFGB651|f__FGB651|g__GGB101910",
+      "rank": "g",
+      "name": "GGB101910",
+      "relative_abundance": 0.372728,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Actinomycetota|c__Actinomycetes|o__Actinomycetales|f__Actinomycetaceae|g__GGB101788",
+      "rank": "g",
+      "name": "GGB101788",
+      "relative_abundance": 0.348981,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Chloroflexota|c__Anaerolineae|o__Anaerolineales|f__Anaerolineaceae|g__GGB101399",
+      "rank": "g",
+      "name": "GGB101399",
+      "relative_abundance": 0.298184,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__Gammaproteobacteria|o__Pasteurellales|f__Pasteurellaceae|g__GGB102483",
+      "rank": "g",
+      "name": "GGB102483",
+      "relative_abundance": 0.296708,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB1762|o__OFGB1762|f__FGB1762|g__GGB101092",
+      "rank": "g",
+      "name": "GGB101092",
+      "relative_abundance": 0.27384,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Fusobacteriota|c__Fusobacteriia|o__Fusobacteriales|f__Fusobacteriaceae|g__Fusobacterium",
+      "rank": "g",
+      "name": "Fusobacterium",
+      "relative_abundance": 0.225243,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__Bacteroidia|o__Bacteroidales|f__Porphyromonadaceae|g__Porphyromonadaceae_unclassified",
+      "rank": "g",
+      "name": "Porphyromonadaceae unclassified",
+      "relative_abundance": 0.202657,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Actinomycetota|c__Actinomycetes|o__Actinomycetales|f__Actinomycetaceae|g__GGB101827",
+      "rank": "g",
+      "name": "GGB101827",
+      "relative_abundance": 0.201082,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Actinomycetota|c__Actinomycetes|o__Actinomycetales|f__Actinomycetaceae|g__Schaalia",
+      "rank": "g",
+      "name": "Schaalia",
+      "relative_abundance": 0.190943,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__Betaproteobacteria|o__Burkholderiales|f__Burkholderiaceae|g__GGB99609",
+      "rank": "g",
+      "name": "GGB99609",
+      "relative_abundance": 0.176746,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__Bacteroidia|o__Bacteroidales|f__Porphyromonadaceae|g__GGB102512",
+      "rank": "g",
+      "name": "GGB102512",
+      "relative_abundance": 0.16498,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__Bacilli|o__Bacillales|f__Gemellaceae|g__Gemelliphila",
+      "rank": "g",
+      "name": "Gemelliphila",
+      "relative_abundance": 0.156767,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Actinomycetota|c__Actinomycetes|o__Mycobacteriales|f__Corynebacteriaceae|g__Corynebacterium",
+      "rank": "g",
+      "name": "Corynebacterium",
+      "relative_abundance": 0.152775,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Campylobacterota|c__Epsilonproteobacteria|o__Campylobacterales|f__Helicobacteraceae|g__GGB102148",
+      "rank": "g",
+      "name": "GGB102148",
+      "relative_abundance": 0.14683,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB84178|o__OFGB84178|f__FGB84178|g__GGB99979",
+      "rank": "g",
+      "name": "GGB99979",
+      "relative_abundance": 0.145502,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Mycoplasmatota|c__CFGB83914|o__OFGB83914|f__FGB83914|g__GGB101288",
+      "rank": "g",
+      "name": "GGB101288",
+      "relative_abundance": 0.142604,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB84491|o__OFGB84491|f__FGB84491|g__GGB102668",
+      "rank": "g",
+      "name": "GGB102668",
+      "relative_abundance": 0.136435,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__Clostridia|o__Eubacteriales|f__Eubacteriales_unclassified|g__Eubacteriales_unclassified",
+      "rank": "g",
+      "name": "Eubacteriales unclassified",
+      "relative_abundance": 0.133146,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__Gammaproteobacteria|o__Cardiobacteriales|f__Cardiobacteriaceae|g__GGB100740",
+      "rank": "g",
+      "name": "GGB100740",
+      "relative_abundance": 0.119573,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB84139|o__OFGB84139|f__FGB84139|g__GGB101712",
+      "rank": "g",
+      "name": "GGB101712",
+      "relative_abundance": 0.11637,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB79103|o__OFGB79103|f__FGB79103|g__GGB101338",
+      "rank": "g",
+      "name": "GGB101338",
+      "relative_abundance": 0.089526,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__Bacteroidia|o__Bacteroidales|f__Tannerellaceae|g__GGB100822",
+      "rank": "g",
+      "name": "GGB100822",
+      "relative_abundance": 0.087993,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Actinomycetota|c__Actinomycetes|o__Micrococcales|f__Microbacteriaceae|g__Leucobacter",
+      "rank": "g",
+      "name": "Leucobacter",
+      "relative_abundance": 0.074742,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Candidatus_Absconditibacteriota|c__CFGB1860|o__OFGB1860|f__FGB1860|g__GGB101875",
+      "rank": "g",
+      "name": "GGB101875",
+      "relative_abundance": 0.067913,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__Gammaproteobacteria|o__Pasteurellales|f__Pasteurellaceae|g__Pasteurella",
+      "rank": "g",
+      "name": "Pasteurella",
+      "relative_abundance": 0.06735,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__Clostridia|o__Peptostreptococcales|f__Filifactoraceae|g__GGB100597",
+      "rank": "g",
+      "name": "GGB100597",
+      "relative_abundance": 0.052077,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Spirochaetota|c__Spirochaetia|o__Spirochaetales|f__Treponemataceae|g__GGB2674",
+      "rank": "g",
+      "name": "GGB2674",
+      "relative_abundance": 0.051011,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB1394|o__OFGB1394|f__FGB1394|g__GGB102207",
+      "rank": "g",
+      "name": "GGB102207",
+      "relative_abundance": 0.049288,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB33129|o__OFGB33129|f__FGB33129|g__GGB102497",
+      "rank": "g",
+      "name": "GGB102497",
+      "relative_abundance": 0.047992,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Candidatus_Saccharibacteria|c__CFGB7382|o__OFGB7382|f__FGB7382|g__GGB49949",
+      "rank": "g",
+      "name": "GGB49949",
+      "relative_abundance": 0.035579,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__Betaproteobacteria|o__Burkholderiales|f__Comamonadaceae|g__Vandammella",
+      "rank": "g",
+      "name": "Vandammella",
+      "relative_abundance": 0.034758,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Actinomycetota|c__CFGB84691|o__OFGB84691|f__FGB84691|g__GGB102420",
+      "rank": "g",
+      "name": "GGB102420",
+      "relative_abundance": 0.030524,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__Bacteroidia|o__Bacteroidales|f__Bacteroidaceae|g__Bacteroides",
+      "rank": "g",
+      "name": "Bacteroides",
+      "relative_abundance": 0.029114,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__CFGB84033|o__OFGB84033|f__FGB84033|g__GGB100857",
+      "rank": "g",
+      "name": "GGB100857",
+      "relative_abundance": 0.016875,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__Gammaproteobacteria|o__Pasteurellales|f__Pasteurellaceae|g__Frederiksenia",
+      "rank": "g",
+      "name": "Frederiksenia",
+      "relative_abundance": 0.010503,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__Flavobacteriia|o__Flavobacteriales|f__Weeksellaceae|g__GGB101492",
+      "rank": "g",
+      "name": "GGB101492",
+      "relative_abundance": 0.008416,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Actinomycetota|c__CFGB84691|o__OFGB84691|f__FGB84691|g__GGB102421",
+      "rank": "g",
+      "name": "GGB102421",
+      "relative_abundance": 0.006575,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__CFGB73473|o__OFGB73473|f__FGB73473|g__GGB6673",
+      "rank": "g",
+      "name": "GGB6673",
+      "relative_abundance": 0.006441,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Candidatus_Saccharibacteria|c__Candidatus_Saccharibacteria_unclassified|o__Candidatus_Saccharibacteria_unclassified|f__Candidatus_Saccharibacteria_unclassified|g__Candidatus_Saccharibacteria_unclassified",
+      "rank": "g",
+      "name": "Candidatus Saccharibacteria unclassified",
+      "relative_abundance": 0.003493,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Candidatus_Saccharibacteria|c__CFGB991|o__OFGB991|f__FGB991|g__GGB101852",
+      "rank": "g",
+      "name": "GGB101852",
+      "relative_abundance": 0.002778,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__CFGB72559|o__OFGB72559|f__FGB72559|g__GGB76988",
+      "rank": "g",
+      "name": "GGB76988",
+      "relative_abundance": 0.002624,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__Flavobacteriia|o__Flavobacteriales|f__Weeksellaceae|g__Bergeyella",
+      "rank": "g",
+      "name": "Bergeyella",
+      "relative_abundance": 0.002529,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__Gammaproteobacteria|o__Lysobacterales|f__Lysobacteraceae|g__Lysobacteraceae_unclassified",
+      "rank": "g",
+      "name": "Lysobacteraceae unclassified",
+      "relative_abundance": 0.001562,
+      "estimated_reads": null
+    }
+  ],
+  "species": [
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__Bacteroidia|o__Bacteroidales|f__Porphyromonadaceae|g__Porphyromonas|s__Porphyromonas_gulae",
+      "rank": "s",
+      "name": "Porphyromonas gulae",
+      "relative_abundance": 17.62478,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__Bacteroidia|o__Bacteroidales|f__Porphyromonadaceae|g__Porphyromonas|s__Porphyromonas_cangingivalis",
+      "rank": "s",
+      "name": "Porphyromonas cangingivalis",
+      "relative_abundance": 9.556469,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__Bacteroidia|o__Bacteroidales|f__Prevotellaceae|g__GGB102544|s__GGB102544_SGB141906",
+      "rank": "s",
+      "name": "GGB102544 SGB141906",
+      "relative_abundance": 7.020798,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__Bacteroidia|o__Bacteroidales|f__Prevotellaceae|g__Alloprevotella|s__Alloprevotella_sp_OH1205_COT_284",
+      "rank": "s",
+      "name": "Alloprevotella sp OH1205 COT 284",
+      "relative_abundance": 6.120319,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__Bacteroidia|o__Bacteroidales|f__Porphyromonadaceae|g__Porphyromonas|s__Porphyromonas_sp_COT_290_OH3588",
+      "rank": "s",
+      "name": "Porphyromonas sp COT 290 OH3588",
+      "relative_abundance": 6.015617,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__Bacteroidia|o__Bacteroidales|f__Porphyromonadaceae|g__Porphyromonas|s__Porphyromonas_canoris",
+      "rank": "s",
+      "name": "Porphyromonas canoris",
+      "relative_abundance": 4.711761,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Ignavibacteriota|c__CFGB84716|o__OFGB84716|f__FGB84716|g__GGB101314|s__GGB101314_SGB140770",
+      "rank": "s",
+      "name": "GGB101314 SGB140770",
+      "relative_abundance": 1.903358,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Thermodesulfobacteriota|c__Desulfovibrionia|o__Desulfovibrionales|f__Desulfomicrobiaceae|g__Desulfomicrobium|s__Desulfomicrobium_SGB142800",
+      "rank": "s",
+      "name": "Desulfomicrobium SGB142800",
+      "relative_abundance": 1.841085,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__Bacteroidia|o__Bacteroidales|f__Tannerellaceae|g__Tannerella|s__Tannerella_forsythia",
+      "rank": "s",
+      "name": "Tannerella forsythia",
+      "relative_abundance": 1.729616,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Candidatus_Absconditibacteriota|c__CFGB1860|o__OFGB1860|f__FGB1860|g__GGB101873|s__GGB101873_SGB145682",
+      "rank": "s",
+      "name": "GGB101873 SGB145682",
+      "relative_abundance": 1.716095,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__Bacteroidia|o__Bacteroidales|f__Porphyromonadaceae|g__Porphyromonas|s__Porphyromonas_gingivicanis",
+      "rank": "s",
+      "name": "Porphyromonas gingivicanis",
+      "relative_abundance": 1.715438,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__Betaproteobacteria|o__Burkholderiales|f__Comamonadaceae|g__Allofranklinella|s__Allofranklinella_schreckenbergeri",
+      "rank": "s",
+      "name": "Allofranklinella schreckenbergeri",
+      "relative_abundance": 1.587586,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__Betaproteobacteria|o__Burkholderiales|f__Comamonadaceae|g__GGB101004|s__GGB101004_SGB142674",
+      "rank": "s",
+      "name": "GGB101004 SGB142674",
+      "relative_abundance": 1.364988,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__Erysipelotrichia|o__Erysipelotrichales|f__Erysipelotrichaceae|g__Erysipelotrichaceae_unclassified|s__Erysipelotrichaceae_bacterium_OH741_COT_311",
+      "rank": "s",
+      "name": "Erysipelotrichaceae bacterium OH741 COT 311",
+      "relative_abundance": 1.305091,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__Clostridia|o__Eubacteriales|f__Eubacteriales_unclassified|g__GGB102377|s__GGB102377_SGB143634",
+      "rank": "s",
+      "name": "GGB102377 SGB143634",
+      "relative_abundance": 1.223055,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Campylobacterota|c__Epsilonproteobacteria|o__Campylobacterales|f__Campylobacteraceae|g__Campylobacter|s__Campylobacter_sp_CCUG_57310",
+      "rank": "s",
+      "name": "Campylobacter sp CCUG 57310",
+      "relative_abundance": 1.111742,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__Gammaproteobacteria|o__Moraxellales|f__Moraxellaceae|g__Moraxella|s__Moraxella_sp_VT_16_12",
+      "rank": "s",
+      "name": "Moraxella sp VT 16 12",
+      "relative_abundance": 1.070399,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__Betaproteobacteria|o__Neisseriales|f__Neisseriaceae|g__Neisseria|s__Neisseria_dumasiana",
+      "rank": "s",
+      "name": "Neisseria dumasiana",
+      "relative_abundance": 0.978586,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__Betaproteobacteria|o__Neisseriales|f__Neisseriaceae|g__Neisseria|s__Neisseria_shayeganii",
+      "rank": "s",
+      "name": "Neisseria shayeganii",
+      "relative_abundance": 0.947662,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Candidatus_Saccharibacteria|c__CFGB12783|o__OFGB12783|f__FGB12783|g__GGB99786|s__GGB99786_SGB141377",
+      "rank": "s",
+      "name": "GGB99786 SGB141377",
+      "relative_abundance": 0.860528,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Candidatus_Saccharibacteria|c__Candidatus_Saccharibacteria_unclassified|o__Candidatus_Saccharibacteria_unclassified|f__Candidatus_Saccharibacteria_unclassified|g__GGB99760|s__GGB99760_SGB141355",
+      "rank": "s",
+      "name": "GGB99760 SGB141355",
+      "relative_abundance": 0.850339,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB84152|o__OFGB84152|f__FGB84152|g__GGB101757|s__GGB101757_SGB145433",
+      "rank": "s",
+      "name": "GGB101757 SGB145433",
+      "relative_abundance": 0.843962,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Actinomycetota|c__Actinomycetes|o__Propionibacteriales|f__Propionibacteriaceae|g__GGB102533|s__GGB102533_SGB142920",
+      "rank": "s",
+      "name": "GGB102533 SGB142920",
+      "relative_abundance": 0.808976,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__Gammaproteobacteria|o__Pasteurellales|f__Pasteurellaceae|g__Canicola|s__Canicola_haemoglobinophilus",
+      "rank": "s",
+      "name": "Canicola haemoglobinophilus",
+      "relative_abundance": 0.780477,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB84608|o__OFGB84608|f__FGB84608|g__GGB100340|s__GGB100340_SGB145359",
+      "rank": "s",
+      "name": "GGB100340 SGB145359",
+      "relative_abundance": 0.67621,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__CFGB87836|o__OFGB87836|f__FGB87836|g__GGB102469|s__GGB102469_SGB141917",
+      "rank": "s",
+      "name": "GGB102469 SGB141917",
+      "relative_abundance": 0.658078,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Actinomycetota|c__Actinomycetes|o__Actinomycetales|f__Actinomycetaceae|g__GGB101823|s__GGB101823_SGB142942",
+      "rank": "s",
+      "name": "GGB101823 SGB142942",
+      "relative_abundance": 0.65083,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__Flavobacteriia|o__Flavobacteriales|f__Flavobacteriaceae|g__Capnocytophaga|s__Capnocytophaga_cynodegmi",
+      "rank": "s",
+      "name": "Capnocytophaga cynodegmi",
+      "relative_abundance": 0.610831,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Campylobacterota|c__Epsilonproteobacteria|o__Campylobacterales|f__Campylobacteraceae|g__Campylobacter|s__Campylobacter_sp_RM16187",
+      "rank": "s",
+      "name": "Campylobacter sp RM16187",
+      "relative_abundance": 0.577313,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__Bacteroidia|o__Bacteroidales|f__Prevotellaceae|g__GGB102545|s__GGB102545_SGB141907",
+      "rank": "s",
+      "name": "GGB102545 SGB141907",
+      "relative_abundance": 0.510366,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__Betaproteobacteria|o__Neisseriales|f__Neisseriaceae|g__Conchiformibius|s__Conchiformibius_SGB142589",
+      "rank": "s",
+      "name": "Conchiformibius SGB142589",
+      "relative_abundance": 0.490756,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Synergistota|c__Synergistia|o__Synergistales|f__Aminobacteriaceae|g__Fretibacterium|s__Fretibacterium_sp_OH1220_COT_178",
+      "rank": "s",
+      "name": "Fretibacterium sp OH1220 COT 178",
+      "relative_abundance": 0.487791,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB84425|o__OFGB84425|f__FGB84425|g__GGB102336|s__GGB102336_SGB145427",
+      "rank": "s",
+      "name": "GGB102336 SGB145427",
+      "relative_abundance": 0.461297,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__Betaproteobacteria|o__Neisseriales|f__Neisseriaceae|g__Neisseria|s__Neisseria_weaveri",
+      "rank": "s",
+      "name": "Neisseria weaveri",
+      "relative_abundance": 0.445993,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Thermodesulfobacteriota|c__CFGB79384|o__OFGB79384|f__FGB79384|g__GGB87594|s__GGB87594_SGB145481",
+      "rank": "s",
+      "name": "GGB87594 SGB145481",
+      "relative_abundance": 0.417035,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Actinomycetota|c__Actinomycetes|o__Actinomycetales|f__Actinomycetaceae|g__GGB101822|s__GGB101822_SGB142939",
+      "rank": "s",
+      "name": "GGB101822 SGB142939",
+      "relative_abundance": 0.40023,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB84425|o__OFGB84425|f__FGB84425|g__GGB102335|s__GGB102335_SGB145428",
+      "rank": "s",
+      "name": "GGB102335 SGB145428",
+      "relative_abundance": 0.394163,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__CFGB651|o__OFGB651|f__FGB651|g__GGB101910|s__GGB101910_SGB141518",
+      "rank": "s",
+      "name": "GGB101910 SGB141518",
+      "relative_abundance": 0.372728,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Actinomycetota|c__Actinomycetes|o__Actinomycetales|f__Actinomycetaceae|g__GGB101788|s__GGB101788_SGB142892",
+      "rank": "s",
+      "name": "GGB101788 SGB142892",
+      "relative_abundance": 0.348981,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__Betaproteobacteria|o__Neisseriales|f__Neisseriaceae|g__Conchiformibius|s__Conchiformibius_steedae",
+      "rank": "s",
+      "name": "Conchiformibius steedae",
+      "relative_abundance": 0.344335,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Chloroflexota|c__Anaerolineae|o__Anaerolineales|f__Anaerolineaceae|g__GGB101399|s__GGB101399_SGB142196",
+      "rank": "s",
+      "name": "GGB101399 SGB142196",
+      "relative_abundance": 0.298184,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__Gammaproteobacteria|o__Pasteurellales|f__Pasteurellaceae|g__GGB102483|s__GGB102483_SGB145550",
+      "rank": "s",
+      "name": "GGB102483 SGB145550",
+      "relative_abundance": 0.296708,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB1762|o__OFGB1762|f__FGB1762|g__GGB101092|s__GGB101092_SGB146498",
+      "rank": "s",
+      "name": "GGB101092 SGB146498",
+      "relative_abundance": 0.27384,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Fusobacteriota|c__Fusobacteriia|o__Fusobacteriales|f__Fusobacteriaceae|g__Fusobacterium|s__Fusobacterium_SGB146266",
+      "rank": "s",
+      "name": "Fusobacterium SGB146266",
+      "relative_abundance": 0.225243,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__Bacteroidia|o__Bacteroidales|f__Porphyromonadaceae|g__Porphyromonadaceae_unclassified|s__Porphyromonadaceae_bacterium_H1",
+      "rank": "s",
+      "name": "Porphyromonadaceae bacterium H1",
+      "relative_abundance": 0.202657,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Actinomycetota|c__Actinomycetes|o__Actinomycetales|f__Actinomycetaceae|g__GGB101827|s__GGB101827_SGB142932",
+      "rank": "s",
+      "name": "GGB101827 SGB142932",
+      "relative_abundance": 0.201082,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__Flavobacteriia|o__Flavobacteriales|f__Flavobacteriaceae|g__Capnocytophaga|s__Capnocytophaga_canis",
+      "rank": "s",
+      "name": "Capnocytophaga canis",
+      "relative_abundance": 0.19162,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Actinomycetota|c__Actinomycetes|o__Actinomycetales|f__Actinomycetaceae|g__Schaalia|s__Schaalia_canis",
+      "rank": "s",
+      "name": "Schaalia canis",
+      "relative_abundance": 0.190943,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__Betaproteobacteria|o__Burkholderiales|f__Burkholderiaceae|g__GGB99609|s__GGB99609_SGB142663",
+      "rank": "s",
+      "name": "GGB99609 SGB142663",
+      "relative_abundance": 0.176746,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__Bacteroidia|o__Bacteroidales|f__Porphyromonadaceae|g__GGB102512|s__GGB102512_SGB141914",
+      "rank": "s",
+      "name": "GGB102512 SGB141914",
+      "relative_abundance": 0.16498,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__Bacilli|o__Bacillales|f__Gemellaceae|g__Gemelliphila|s__Gemelliphila_palaticanis",
+      "rank": "s",
+      "name": "Gemelliphila palaticanis",
+      "relative_abundance": 0.156767,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Actinomycetota|c__Actinomycetes|o__Mycobacteriales|f__Corynebacteriaceae|g__Corynebacterium|s__Corynebacterium_SGB142947",
+      "rank": "s",
+      "name": "Corynebacterium SGB142947",
+      "relative_abundance": 0.152775,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__Flavobacteriia|o__Flavobacteriales|f__Flavobacteriaceae|g__Capnocytophaga|s__Capnocytophaga_canimorsus",
+      "rank": "s",
+      "name": "Capnocytophaga canimorsus",
+      "relative_abundance": 0.149774,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Campylobacterota|c__Epsilonproteobacteria|o__Campylobacterales|f__Helicobacteraceae|g__GGB102148|s__GGB102148_SGB145498",
+      "rank": "s",
+      "name": "GGB102148 SGB145498",
+      "relative_abundance": 0.14683,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB84178|o__OFGB84178|f__FGB84178|g__GGB99979|s__GGB99979_SGB145437",
+      "rank": "s",
+      "name": "GGB99979 SGB145437",
+      "relative_abundance": 0.145502,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Mycoplasmatota|c__CFGB83914|o__OFGB83914|f__FGB83914|g__GGB101288|s__GGB101288_SGB146244",
+      "rank": "s",
+      "name": "GGB101288 SGB146244",
+      "relative_abundance": 0.142604,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB84491|o__OFGB84491|f__FGB84491|g__GGB102668|s__GGB102668_SGB145424",
+      "rank": "s",
+      "name": "GGB102668 SGB145424",
+      "relative_abundance": 0.136435,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__Clostridia|o__Eubacteriales|f__Eubacteriales_unclassified|g__Eubacteriales_unclassified|s__Clostridiales_bacterium_COT073_COT_073",
+      "rank": "s",
+      "name": "Clostridiales bacterium COT073 COT 073",
+      "relative_abundance": 0.133146,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__Bacteroidia|o__Bacteroidales|f__Porphyromonadaceae|g__Porphyromonas|s__Porphyromonas_sp_COT_239_OH1446",
+      "rank": "s",
+      "name": "Porphyromonas sp COT 239 OH1446",
+      "relative_abundance": 0.120281,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__Gammaproteobacteria|o__Cardiobacteriales|f__Cardiobacteriaceae|g__GGB100740|s__GGB100740_SGB142650",
+      "rank": "s",
+      "name": "GGB100740 SGB142650",
+      "relative_abundance": 0.119573,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB84139|o__OFGB84139|f__FGB84139|g__GGB101712|s__GGB101712_SGB144980",
+      "rank": "s",
+      "name": "GGB101712 SGB144980",
+      "relative_abundance": 0.11637,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__Gammaproteobacteria|o__Moraxellales|f__Moraxellaceae|g__Moraxella|s__Moraxella_SGB108607",
+      "rank": "s",
+      "name": "Moraxella SGB108607",
+      "relative_abundance": 0.091912,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB79103|o__OFGB79103|f__FGB79103|g__GGB101338|s__GGB101338_SGB146274",
+      "rank": "s",
+      "name": "GGB101338 SGB146274",
+      "relative_abundance": 0.089526,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__Bacteroidia|o__Bacteroidales|f__Tannerellaceae|g__GGB100822|s__GGB100822_SGB141900",
+      "rank": "s",
+      "name": "GGB100822 SGB141900",
+      "relative_abundance": 0.087993,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Actinomycetota|c__Actinomycetes|o__Micrococcales|f__Microbacteriaceae|g__Leucobacter|s__Leucobacter_sp_OH1287",
+      "rank": "s",
+      "name": "Leucobacter sp OH1287",
+      "relative_abundance": 0.074742,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Candidatus_Absconditibacteriota|c__CFGB1860|o__OFGB1860|f__FGB1860|g__GGB101875|s__GGB101875_SGB145685",
+      "rank": "s",
+      "name": "GGB101875 SGB145685",
+      "relative_abundance": 0.067913,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Synergistota|c__Synergistia|o__Synergistales|f__Aminobacteriaceae|g__Fretibacterium|s__Fretibacterium_SGB142778",
+      "rank": "s",
+      "name": "Fretibacterium SGB142778",
+      "relative_abundance": 0.060832,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__Clostridia|o__Peptostreptococcales|f__Filifactoraceae|g__GGB100597|s__GGB100597_SGB146196",
+      "rank": "s",
+      "name": "GGB100597 SGB146196",
+      "relative_abundance": 0.052077,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Spirochaetota|c__Spirochaetia|o__Spirochaetales|f__Treponemataceae|g__GGB2674|s__GGB2674_SGB96712",
+      "rank": "s",
+      "name": "GGB2674 SGB96712",
+      "relative_abundance": 0.051011,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB1394|o__OFGB1394|f__FGB1394|g__GGB102207|s__GGB102207_SGB143247",
+      "rank": "s",
+      "name": "GGB102207 SGB143247",
+      "relative_abundance": 0.049288,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Firmicutes|c__CFGB33129|o__OFGB33129|f__FGB33129|g__GGB102497|s__GGB102497_SGB143623",
+      "rank": "s",
+      "name": "GGB102497 SGB143623",
+      "relative_abundance": 0.047992,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__Bacteroidia|o__Bacteroidales|f__Porphyromonadaceae|g__Porphyromonas|s__Porphyromonas_crevioricanis",
+      "rank": "s",
+      "name": "Porphyromonas crevioricanis",
+      "relative_abundance": 0.046829,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__Gammaproteobacteria|o__Pasteurellales|f__Pasteurellaceae|g__Pasteurella|s__Pasteurella_canis",
+      "rank": "s",
+      "name": "Pasteurella canis",
+      "relative_abundance": 0.039522,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Candidatus_Saccharibacteria|c__CFGB7382|o__OFGB7382|f__FGB7382|g__GGB49949|s__GGB49949_SGB145455",
+      "rank": "s",
+      "name": "GGB49949 SGB145455",
+      "relative_abundance": 0.035579,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__Betaproteobacteria|o__Burkholderiales|f__Comamonadaceae|g__Vandammella|s__Vandammella_animalimorsus",
+      "rank": "s",
+      "name": "Vandammella animalimorsus",
+      "relative_abundance": 0.034758,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Actinomycetota|c__CFGB84691|o__OFGB84691|f__FGB84691|g__GGB102420|s__GGB102420_SGB142867",
+      "rank": "s",
+      "name": "GGB102420 SGB142867",
+      "relative_abundance": 0.030524,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__Bacteroidia|o__Bacteroidales|f__Bacteroidaceae|g__Bacteroides|s__Bacteroides_pyogenes",
+      "rank": "s",
+      "name": "Bacteroides pyogenes",
+      "relative_abundance": 0.029114,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__Gammaproteobacteria|o__Pasteurellales|f__Pasteurellaceae|g__Pasteurella|s__Pasteurella_dagmatis",
+      "rank": "s",
+      "name": "Pasteurella dagmatis",
+      "relative_abundance": 0.024716,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__CFGB84033|o__OFGB84033|f__FGB84033|g__GGB100857|s__GGB100857_SGB145422",
+      "rank": "s",
+      "name": "GGB100857 SGB145422",
+      "relative_abundance": 0.016875,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__Gammaproteobacteria|o__Pasteurellales|f__Pasteurellaceae|g__Frederiksenia|s__Frederiksenia_canicola",
+      "rank": "s",
+      "name": "Frederiksenia canicola",
+      "relative_abundance": 0.010503,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__Flavobacteriia|o__Flavobacteriales|f__Weeksellaceae|g__GGB101492|s__GGB101492_SGB145830",
+      "rank": "s",
+      "name": "GGB101492 SGB145830",
+      "relative_abundance": 0.008416,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Actinomycetota|c__CFGB84691|o__OFGB84691|f__FGB84691|g__GGB102421|s__GGB102421_SGB142865",
+      "rank": "s",
+      "name": "GGB102421 SGB142865",
+      "relative_abundance": 0.006575,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__CFGB73473|o__OFGB73473|f__FGB73473|g__GGB6673|s__GGB6673_SGB9421",
+      "rank": "s",
+      "name": "GGB6673 SGB9421",
+      "relative_abundance": 0.006441,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Candidatus_Saccharibacteria|c__Candidatus_Saccharibacteria_unclassified|o__Candidatus_Saccharibacteria_unclassified|f__Candidatus_Saccharibacteria_unclassified|g__Candidatus_Saccharibacteria_unclassified|s__Candidatus_Saccharibacteria_bacterium_oral_taxon_955",
+      "rank": "s",
+      "name": "Candidatus Saccharibacteria bacterium oral taxon 955",
+      "relative_abundance": 0.003493,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__Gammaproteobacteria|o__Pasteurellales|f__Pasteurellaceae|g__Pasteurella|s__Pasteurella_SGB9764",
+      "rank": "s",
+      "name": "Pasteurella SGB9764",
+      "relative_abundance": 0.003112,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Candidatus_Saccharibacteria|c__CFGB991|o__OFGB991|f__FGB991|g__GGB101852|s__GGB101852_SGB145470",
+      "rank": "s",
+      "name": "GGB101852 SGB145470",
+      "relative_abundance": 0.002778,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__CFGB72559|o__OFGB72559|f__FGB72559|g__GGB76988|s__GGB76988_SGB104625",
+      "rank": "s",
+      "name": "GGB76988 SGB104625",
+      "relative_abundance": 0.002624,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Bacteroidota|c__Flavobacteriia|o__Flavobacteriales|f__Weeksellaceae|g__Bergeyella|s__Bergeyella_zoohelcum",
+      "rank": "s",
+      "name": "Bergeyella zoohelcum",
+      "relative_abundance": 0.002529,
+      "estimated_reads": null
+    },
+    {
+      "clade": "k__Bacteria|p__Pseudomonadota|c__Gammaproteobacteria|o__Lysobacterales|f__Lysobacteraceae|g__Lysobacteraceae_unclassified|s__Lysobacteraceae_bacterium_NML03_0222",
+      "rank": "s",
+      "name": "Lysobacteraceae bacterium NML03 0222",
+      "relative_abundance": 0.001562,
+      "estimated_reads": null
+    }
+  ]
+}

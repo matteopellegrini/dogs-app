@@ -1,0 +1,37 @@
+{
+  "regions": [
+    {
+      "chrom": "chr14",
+      "start": 10429170,
+      "end": 10531752,
+      "size": "102kb",
+      "sample_pct_mean": 9,
+      "ref_depth_pct": 92,
+      "disrupted_genes": [],
+      "disrupted_gene_details": [],
+      "verdict": "putative_deletion"
+    },
+    {
+      "chrom": "chr17",
+      "start": 37886952,
+      "end": 37989534,
+      "size": "102kb",
+      "sample_pct_mean": 9,
+      "ref_depth_pct": 89,
+      "disrupted_genes": [],
+      "disrupted_gene_details": [],
+      "verdict": "putative_deletion"
+    }
+  ],
+  "disrupted_genes": [],
+  "artefact_regions": [],
+  "summary": {
+    "total_regions": 2,
+    "unique_genes": 0,
+    "method": "Adaptive CNV window (34.2kb), depth normalised to genome-wide mean. Ratio<0.15 threshold for homozygous deletion. Ref depth from pooled reference panel (6 dogs); regions with ref_depth_pct<80% classified as mappability artefacts.",
+    "min_detectable_kb": 68,
+    "calling_resolution_kb": 34.2,
+    "panel_note": "2 putative deletion region(s) after artefact filtering (0 artefact region(s) excluded). Ref depth = normalised coverage in 6-dog reference panel.",
+    "artefact_note": "0 region(s) with ref_depth_pct<80% are canFam4 mappability artefacts (low coverage in the reference panel too)."
+  }
+}

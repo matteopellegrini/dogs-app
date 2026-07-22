@@ -18,7 +18,7 @@
           "start": 10420193,
           "end": 10430836,
           "overlap": "partial",
-          "exon_overlap": "unknown"
+          "exon_overlap": "intronic"
         }
       ],
       "verdict": "putative_deletion"
@@ -42,7 +42,7 @@
           "start": 37747873,
           "end": 37888732,
           "overlap": "partial",
-          "exon_overlap": "unknown"
+          "exon_overlap": "intronic"
         },
         {
           "gene": "IL36B",
@@ -51,7 +51,7 @@
           "start": 37938462,
           "end": 37938563,
           "overlap": "full",
-          "exon_overlap": "unknown"
+          "exon_overlap": "intronic"
         }
       ],
       "verdict": "putative_deletion"
@@ -65,7 +65,7 @@
       "start": 10420193,
       "end": 10430836,
       "overlap": "partial",
-      "exon_overlap": "unknown"
+      "exon_overlap": "intronic"
     },
     {
       "gene": "IL37",
@@ -74,7 +74,7 @@
       "start": 37747873,
       "end": 37888732,
       "overlap": "partial",
-      "exon_overlap": "unknown"
+      "exon_overlap": "intronic"
     },
     {
       "gene": "IL36B",
@@ -83,7 +83,7 @@
       "start": 37938462,
       "end": 37938563,
       "overlap": "full",
-      "exon_overlap": "unknown"
+      "exon_overlap": "intronic"
     }
   ],
   "artefact_regions": [],
